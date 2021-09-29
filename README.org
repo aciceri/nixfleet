@@ -1,0 +1,56 @@
+* NixFleet
+
+  A complete, declarative and reproducible configuration of my entire Nix fleet, this includes the following machines:
+
+  - my main home workstation ~pc~
+  - homeserver (mainly a nas) ~hs~ *(to do, soon)*
+  - my arm based [[https://wiki.pine64.org/wiki/Pinebook_Pro][PineBook Pro]] ~pbp~, almost completely open hardware
+  - MacBook PRO that I use for work, for this I'll use [[https://github.com/LnL7/nix-darwin][nix-darwin]] keeping macOs 11 Big Sur *(to do, not soon)*
+
+  The different confgurations share many profiles, in fact my original goal was to avoid to rewrite the same Nix derivations for my different machines.
+
+** Commands
+Here I describe my most used commands.
+All the commands are executed inside the Flake's development shell.
+To enter in this shell is sufficent to ~cd~ in the folder (if you use ~direnv~) or run ~nix develop~.
+
+*** Checking
+To check that the Nix Flake is [[https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake-check.html#evaluation-checks][well defined]]:
+#+begin_src shell
+nix flake check
+#+end_src
+
+*** Building
+#+begin_src shell
+nix -Lv build ".#nixosConfigurations.<host>.config.system.build.toplevel"
+#+end_src
+
+Where ~<host>~ is the hostname e.g. ~pc~.
+
+*** Testing new config
+#+begin_src shell
+bud rebuild <host> test
+#+end_src
+
+Where ~<host>~ is the hostname e.g. ~pc~.
+
+
+*** Switching
+#+begin_src shell
+bud rebuild <host> switch
+#+end_src
+
+Where ~<host>~ is the hostname e.g. ~pc~.
+
+*** Remote deploy
+Using ~deploy-rs~ I guess, still finding out how to do.
+
+
+** Github Actions
+*** Check and build
+At every commit pushed on ~master~ a Github actions which ~nix flake check~ the flake is executed and then every system is build.
+Currently this workflow will skip ~aarch64~ hosts since the runner is ~x86_64~ and I didn't find a way to make it cross compile.
+
+*** Release
+At every commit tagget with a ~v~ character a process that release all the bootstrap ISOs for the systems is started.
+Here I've the same problem with ~aarch64~ hosts so the runner will skip them.
