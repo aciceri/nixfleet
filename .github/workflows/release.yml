@@ -3,7 +3,7 @@ name: "Release (with Cachix)"
 on:
   push:
     tags:
-      - "v*"
+      - "release-*"
 jobs:
   release:
     runs-on: ubuntu-latest
