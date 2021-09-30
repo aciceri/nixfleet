@@ -46,10 +46,6 @@ in
   time.timeZone = "Europe/Rome";
   location.provider = "geoclue2";
 
-  xdg.portal.enable = true; # is this needed?
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
-  xdg.portal.gtkUsePortal = true;
-
   nix = {
     autoOptimiseStore = true;
     gc.automatic = true;
