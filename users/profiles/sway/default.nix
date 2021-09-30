@@ -6,47 +6,47 @@
       let
         modifier = "Mod4";
       in
-        {
-          enable = true;
-          config = {
-            modifier = modifier;
-            menu = "${pkgs.bemenu}/bin/bemenu-run -b -m 1 -p 'λ'";
-            output = {
-              HDMI-A-2 = {
-                #bg = "~/dotfiles/dotfiles/xorg/wallpaper.jpg fill";
-              };
-            };
-            #fonts = [ "Font Awesome" "Fira Code" ];
-            terminal = "${pkgs.foot}/bin/footclient";
-            bars = [
-              {
-                command = "${pkgs.waybar}/bin/waybar";
-              }
-            ];
-            startup = [
-              {
-                command = "foot --server";
-                always = true;
-              }
-            ];
-            window.commands = [
-              { criteria = { app_id = "mpv"; }; command = "sticky enable"; }
-              { criteria = { app_id = "mpv"; }; command = "floating enable"; }
-              { criteria = { title = "MetaMask Notification.*"; }; command = "floating enable"; }
-            ];
-            input = {
-              "*" = {
-                xkb_layout = "us";
-                xkb_variant = "intl";
-              };
+      {
+        enable = true;
+        config = {
+          modifier = modifier;
+          menu = "${pkgs.bemenu}/bin/bemenu-run -b -m 1 -p 'λ'";
+          output = {
+            HDMI-A-2 = {
+              #bg = "~/dotfiles/dotfiles/xorg/wallpaper.jpg fill";
             };
           };
-          extraConfig = ''
-            bindsym ${modifier}+p move workspace to output right
-          '';
-          xwayland = true;
-          systemdIntegration = true;
+          #fonts = [ "Font Awesome" "Fira Code" ];
+          terminal = "${pkgs.foot}/bin/footclient";
+          bars = [
+            {
+              command = "${pkgs.waybar}/bin/waybar";
+            }
+          ];
+          startup = [
+            {
+              command = "foot --server";
+              always = true;
+            }
+          ];
+          window.commands = [
+            { criteria = { app_id = "mpv"; }; command = "sticky enable"; }
+            { criteria = { app_id = "mpv"; }; command = "floating enable"; }
+            { criteria = { title = "MetaMask Notification.*"; }; command = "floating enable"; }
+          ];
+          input = {
+            "*" = {
+              xkb_layout = "us";
+              xkb_variant = "intl";
+            };
+          };
         };
+        extraConfig = ''
+          bindsym ${modifier}+p move workspace to output right
+        '';
+        xwayland = true;
+        systemdIntegration = true;
+      };
   };
 
   programs.waybar = {
@@ -56,13 +56,13 @@
       {
         layer = "top";
         position = "top";
-        output = [ "HDMI-A-2" ];
+        #output = [ "HDMI-A-2" ];
 
         modules-left = [
           "sway/mode"
           "sway/workspaces"
         ];
-        modules-center = [];
+        modules-center = [ ];
         modules-right = [
           "idle_inhibitor"
           "tray"
