@@ -20,7 +20,6 @@
     # and manually installed ghost-text for atomic-chrome
     #];
     profiles.ccr = {
-      id = 0; # implies isDefault = true
       settings = {
         "browser.startup.homepage" = "https://google.it";
         "browser.search.region" = "IT";
@@ -29,7 +28,8 @@
         "general.useragent.locale" = "it-IT";
         "browser.bookmarks.showMobileBookmarks" = true;
         "browser.download.folderList" = 2;
-        "browser.download.lastDir" = "~/downloads/";
+        "browser.download.lastDir" = "/home/ccr/downloads/";
+        "browser.shell.checkDefaultBrowser" = false;
       };
       userChrome = ''
         /* Hide tab bar in FF Quantum * /
