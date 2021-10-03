@@ -22,14 +22,22 @@
             use-package
             evil
             evil-collection
+            helm
             projectile
             magit
             fira-code-mode
+            format-all
             nix-mode
             lispy
             lsp-mode
             dap-mode
             which-key
+            treemacs
+            treemacs-evil
+            treemacs-projectile
+            treemacs-icons-dired
+            treemacs-magit
+            treemacs-persp
           ]
         ) ++ (
           with epkgs.elpaPackages; [
