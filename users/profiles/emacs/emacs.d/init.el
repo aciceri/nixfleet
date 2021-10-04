@@ -4,8 +4,10 @@
       read-process-output-max (* 1024 1024))
 
 (require 'aesthetics)
+(require 'config-emacs)
 (require 'config-evil)
 (require 'config-helm)
+(require 'config-magit)
 (require 'config-treemacs)
 (require 'config-lsp)
 (require 'nix)

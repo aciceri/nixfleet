@@ -1,4 +1,4 @@
-{ pkgs, suites, ... }:
+{ pkgs, suites, lib, ... }:
 {
   home-manager.users.ccr = { suites, ... }: {
     imports = with suites; shell ++ gui ++ browser ++ multimedia ++ dev ++ base;
