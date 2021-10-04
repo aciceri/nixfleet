@@ -48,9 +48,13 @@ Using ~deploy-rs~ I guess, still finding out how to do.
 
 ** Github Actions
 *** Check and build
-At every commit pushed on ~master~ a Github actions which ~nix flake check~ the flake is executed and then every system is build.
-Currently this workflow will skip ~aarch64~ hosts since the runner is ~x86_64~ and I didn't find a way to make it cross compile.
+At every commit pushed on ~master~ a Github actions which ~nix flake
+check~ the flake is executed and then every system is build.
+Currently this workflow will skip ~aarch64~ hosts since the runner is
+~x86_64~ and I didn't find a way to make it cross compile.
 
 *** Release
-At every commit tagget with a ~v~ character a process that release all the bootstrap ISOs for the systems is started.
-Here I've the same problem with ~aarch64~ hosts so the runner will skip them.
+At every tagged commit whose tag name starts with ~release-~ a process
+that release all the bootstrap ISOs for the systems is started.  Here
+I've the same problem with ~aarch64~ hosts so the runner will skip
+them.

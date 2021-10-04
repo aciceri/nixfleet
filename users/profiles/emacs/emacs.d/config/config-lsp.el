@@ -1,8 +1,3 @@
-(defun my-lsp-format-buffer ()
-  (if (eq major-mode 'nix-mode)
-      (lsp-format-buffer)))
-
-
 (use-package lsp-mode
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
@@ -11,7 +6,7 @@
          (nix-mode . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
-         (before-save . my-lsp-format-buffer)
+         (before-save . lsp-format-buffer)
   :commands lsp)
 
 ;; optionally
