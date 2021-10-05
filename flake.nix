@@ -52,6 +52,7 @@
     , nixos
     , home
     , nixos-hardware
+    , darwin
     , pinebook-pro
     , pinebook-pro-kernel-latest
     , nixpkgs-wayland
@@ -119,6 +120,7 @@
               ];
             };
             hosts = {
+              # mbp is added bypassing Digga's mkFlake and adding a specific output to this flake
               pc = {
                 system = "x86_64-linux";
               };
@@ -179,5 +181,12 @@
       // {
         budModules = { devos = import ./bud; };
         # checks.aarch64-linux = { }; # this line will be uncommented by Github Action in order since it can't build aarch64 derivations
+      }
+      // {
+        darwinConfigurations."mbp" = darwin.lib.darwinSystem {
+          system = "x86_64-darwin";
+          modules = [ home.darwinModules.home-manager ./hosts/mbp ];
+          inputs = { inherit darwin; };
+        };
       };
 }
