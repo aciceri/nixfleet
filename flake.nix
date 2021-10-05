@@ -63,130 +63,132 @@
     , ...
     } @ inputs:
 
-      digga.lib.mkFlake
-        {
-          inherit self inputs;
+    digga.lib.mkFlake
+      {
+        inherit self inputs;
 
-          channelsConfig = { allowUnfree = true; };
+        channelsConfig = { allowUnfree = true; };
 
-          channels =
-            let
-              commonOverlays = [
-                digga.overlays.patchedNix
-                nur.overlay
-                emacs-overlay.overlay
-                nvfetcher.overlay
-                deploy.overlay
-                nixpkgs-wayland.overlay
-                ./pkgs/default.nix
-              ];
-            in
-              {
-                stable = {
-                  imports = [ (digga.lib.importOverlays ./overlays) ];
-                  overlays = commonOverlays;
-                };
-                unstable = {
-                  imports = [ (digga.lib.importOverlays ./overlays) ];
-                  overlays = commonOverlays;
-                };
-              };
-
-          lib = import ./lib { lib = digga.lib // nixos.lib; };
-
-          sharedOverlays = [
-            (
-              final: prev: {
-                __dontExport = true;
-                lib = prev.lib.extend (
-                  lfinal: lprev: {
-                    our = self.lib;
-                  }
-                );
-              }
-            )
-          ];
-
-          nixos = {
-            hostDefaults = {
-              channelName = "unstable";
-              imports = [ (digga.lib.importModules ./modules) ];
-              externalModules = [
-                { lib.our = self.lib; }
-                digga.nixosModules.bootstrapIso
-                digga.nixosModules.nixConfig
-                home.nixosModules.home-manager
-                bud.nixosModules.bud
-              ];
+        channels =
+          let
+            commonOverlays = [
+              digga.overlays.patchedNix
+              nur.overlay
+              emacs-overlay.overlay
+              nvfetcher.overlay
+              deploy.overlay
+              nixpkgs-wayland.overlay
+              ./pkgs/default.nix
+            ];
+          in
+          {
+            stable = {
+              imports = [ (digga.lib.importOverlays ./overlays) ];
+              overlays = commonOverlays;
             };
-            hosts = {
-              # mbp is added bypassing Digga's mkFlake and adding a specific output to this flake
-              pc = {
-                system = "x86_64-linux";
-              };
-              pbp = {
-                system = "aarch64-linux";
-                modules = [
-                  "${pinebook-pro}/pinebook_pro.nix"
-                ];
-              };
+            unstable = {
+              imports = [ (digga.lib.importOverlays ./overlays) ];
+              overlays = commonOverlays;
             };
-            imports = [ (digga.lib.importHosts ./hosts) ];
-            importables = rec {
-              profiles = digga.lib.rakeLeaves ./profiles // {
-                users = digga.lib.rakeLeaves ./users;
-              };
-              suites = with profiles; rec {
-                base = [ core users.ccr users.root ];
-              };
-              pbpKernelLatest = (
-                import pinebook-pro-kernel-latest {
-                  system = "aarch64-linux";
-                  overlays = [
-                    (import "${pinebook-pro}/overlay.nix")
-                  ];
-                  config.allowUnfree = true;
+          };
+
+        lib = import ./lib { lib = digga.lib // nixos.lib; };
+
+        sharedOverlays = [
+          (
+            final: prev: {
+              __dontExport = true;
+              lib = prev.lib.extend (
+                lfinal: lprev: {
+                  our = self.lib;
                 }
-              ).pkgs.linuxPackages_pinebookpro_latest;
+              );
+            }
+          )
+        ];
+
+        nixos = {
+          hostDefaults = {
+            channelName = "unstable";
+            imports = [ (digga.lib.importModules ./modules) ];
+            externalModules = [
+              { lib.our = self.lib; }
+              digga.nixosModules.bootstrapIso
+              digga.nixosModules.nixConfig
+              home.nixosModules.home-manager
+              bud.nixosModules.bud
+            ];
+          };
+          hosts = {
+            # mbp is added bypassing Digga's mkFlake and adding a specific output to this flake
+            pc = {
+              system = "x86_64-linux";
+              imports = [{ modules = ./hosts/pc; }];
+            };
+            pbp = {
+              system = "aarch64-linux";
+              imports = [{ modules = ./hosts/pbp; }];
+              modules = [
+                "${pinebook-pro}/pinebook_pro.nix"
+              ];
             };
           };
-
-          home = {
-            imports = [ (digga.lib.importModules ./users/modules) ];
-            externalModules = [];
-            importables = rec {
-              profiles = digga.lib.rakeLeaves ./users/profiles;
-              suites = with profiles; rec {
-                base = [ direnv git zsh gpg password-store ];
-                shell = [ zsh exa fzf ];
-                gui = [ sway xdg gtk foot bat ];
-                browser = [ firefox chromium qutebrowser ];
-                multimedia = [ mpv zathura ];
-                dev = [ vim emacs vscode lorri direnv ];
-              };
+          # imports = [ (digga.lib.importHosts ./hosts) ]; # same reason as above
+          importables = rec {
+            profiles = digga.lib.rakeLeaves ./profiles // {
+              users = digga.lib.rakeLeaves ./users;
             };
+            suites = with profiles; rec {
+              base = [ core users.ccr users.root ];
+            };
+            pbpKernelLatest = (
+              import pinebook-pro-kernel-latest {
+                system = "aarch64-linux";
+                overlays = [
+                  (import "${pinebook-pro}/overlay.nix")
+                ];
+                config.allowUnfree = true;
+              }
+            ).pkgs.linuxPackages_pinebookpro_latest;
           };
-
-          devshell = ./shell;
-
-          homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
-
-          deploy.nodes = digga.lib.mkDeployNodes self.nixosConfigurations {};
-
-          defaultTemplate = self.templates.bud;
-          templates.bud.path = ./.;
-          templates.bud.description = "bud template";
-
-        }
-      // {
-        budModules = { devos = import ./bud; };
-        # checks.aarch64-linux = { }; # this line will be uncommented by Github Action in order since it can't build aarch64 derivations
-      }
-      // {
-        darwinConfigurations."mbp" = darwin.lib.darwinSystem {
-          system = "x86_64-darwin";
-          modules = [ home.darwinModules.home-manager ./hosts/mbp ];
-          inputs = { inherit darwin; };
         };
+
+        home = {
+          imports = [ (digga.lib.importModules ./users/modules) ];
+          externalModules = [ ];
+          importables = rec {
+            profiles = digga.lib.rakeLeaves ./users/profiles;
+            suites = with profiles; rec {
+              base = [ direnv git zsh gpg password-store ];
+              shell = [ zsh exa fzf ];
+              gui = [ sway xdg gtk foot bat ];
+              browser = [ firefox chromium qutebrowser ];
+              multimedia = [ mpv zathura ];
+              dev = [ vim emacs vscode lorri direnv ];
+            };
+          };
+        };
+
+        devshell = ./shell;
+
+        homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
+
+        deploy.nodes = digga.lib.mkDeployNodes self.nixosConfigurations { };
+
+        defaultTemplate = self.templates.bud;
+        templates.bud.path = ./.;
+        templates.bud.description = "bud template";
+
+      }
+    // {
+      budModules = { devos = import ./bud; };
+      # checks.aarch64-linux = { }; # this line will be uncommented by Github Action in order since it can't build aarch64 derivations
+    }
+    // {
+      darwinConfigurations."mbp" = darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        modules = [ home.darwinModules.home-manager ./hosts/mbp ];
+        inputs = { inherit darwin; };
       };
+    };
 }
