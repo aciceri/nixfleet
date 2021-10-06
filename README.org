@@ -27,7 +27,8 @@ To check that the Nix Flake is [[https://nixos.org/manual/nix/unstable/command-r
 *** Building
 #+begin_src shell
 nix -Lv build
-".#nixosConfigurations.<host>.config.system.build.toplevel" #+end_src
+".#nixosConfigurations.<host>.config.system.build.toplevel"
+#+end_src
 
 Where ~<host>~ is the hostname e.g. ~pc~.
 
