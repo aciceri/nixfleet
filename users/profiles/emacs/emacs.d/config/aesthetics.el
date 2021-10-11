@@ -23,6 +23,11 @@
 (scroll-bar-mode -1)
 (fringe-mode 1)
 (display-time-mode 1)
+(global-hl-line-mode 1)
+
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook #'show-paren-mode)
 
 
 (provide 'aesthetics)

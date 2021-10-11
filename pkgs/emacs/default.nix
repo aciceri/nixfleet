@@ -14,15 +14,20 @@ emacsWithPackages (
       evil-collection
       helm
       projectile
+      helm-projectile
       magit
+      company
+      helm-company
       fira-code-mode
       org-superstar
       nix-mode
+      lsp-python-ms
       lispy
       lsp-mode
       dap-mode
       which-key
       sudo-utils
+      rainbow-delimiters
       treemacs
       treemacs-evil
       treemacs-projectile
