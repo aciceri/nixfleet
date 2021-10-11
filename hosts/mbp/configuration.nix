@@ -1,4 +1,4 @@
-{pkgs, home-manager, ...}:
+{ pkgs, home-manager, emacs-overlay, ... }:
 {
   imports = [
     ../../users/andreaciceri
@@ -14,6 +14,8 @@
     enableSSHSupport = true;
   };
 
+  nixpkgs.overlays = [ (import ../../pkgs) emacs-overlay.overlay ];
+
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
@@ -27,4 +29,4 @@
       options = "--delete-older-than 3d";
     };
   };
-  }
+}

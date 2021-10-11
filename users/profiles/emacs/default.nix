@@ -12,10 +12,9 @@
   };
 
   home.packages = with pkgs; [
-    python-language-server
     fd
     ag
     nixpkgs-fmt
     rnix-lsp
-  ];
+  ] ++ (if config.network.hostname != "mbp" then python-language-server else [ ]);
 }
