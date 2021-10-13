@@ -9,8 +9,10 @@
 )  
 
 (use-package fira-code-mode
-  :custom (fira-code-mode-disabled-ligatures '(":")) ;; List of ligatures to turn off
-  :config (global-fira-code-mode))
+  :custom (fira-code-mode-disabled-ligatures '()) ;; List of ligatures to turn off
+  :config
+  (fira-code-mode-set-font)
+  (global-fira-code-mode))
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)

@@ -41,8 +41,8 @@
       pinebook-pro-kernel-latest.url = github:nixos/nixpkgs/755db9a1e9a35c185f7d6c0463025e94ef44622e;
 
       nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-      # nixpkgs-wayland.inputs.nixpkgs.follows = "unstable";
-      # nixpkgs-wayland.inputs.cachix.follows = "stable";
+      nixpkgs-wayland.inputs.nixpkgs.follows = "unstable";
+      nixpkgs-wayland.inputs.cachix.follows = "unstable";
     };
 
   outputs =

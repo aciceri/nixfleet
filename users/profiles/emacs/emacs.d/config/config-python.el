@@ -1,6 +1,6 @@
 (use-package lsp-python-ms
-  :ensure t
   :hook (python-mode . (lambda ()
+                         (setq indent-tabs-mode nil)  ; disable tabs
                          (require 'lsp-python-ms)
                          (lsp)))
   :init

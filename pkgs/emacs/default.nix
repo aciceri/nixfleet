@@ -5,7 +5,7 @@ let
 in
 emacsWithPackages (
   epkgs: (
-    with epkgs.melpaStablePackages; []
+    with epkgs.melpaStablePackages; [ ]
   ) ++ (
     with epkgs.melpaPackages; [
       all-the-icons
@@ -18,8 +18,10 @@ emacsWithPackages (
       magit
       company
       helm-company
+      helm-ag
       fira-code-mode
       org-superstar
+      org-roam
       nix-mode
       lsp-python-ms
       lispy
@@ -39,5 +41,9 @@ emacsWithPackages (
     with epkgs.elpaPackages; [
       modus-themes
     ]
-  ) ++ []
+  ) ++ (
+    with pkgs; [
+      pkgs.graphviz-nox
+    ]
+  )
 )

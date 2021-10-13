@@ -3,12 +3,15 @@
   home-manager.users.ccr = { suites, ... }: {
     imports = with suites; shell ++ gui ++ browser ++ multimedia ++ dev ++ base;
     home.packages = with pkgs; [
-      nixpkgs-fmt
-      rnix-lsp
       ack
       ranger
       calibre
       element-desktop
+      gtk-engine-murrine
+      gtk_engines
+      gsettings-desktop-schemas
+      lxappearance
+      yarn
     ];
   };
 
