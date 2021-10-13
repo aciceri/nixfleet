@@ -1,10 +1,10 @@
-{ prev, pkgs, ... }:
+{ prev, ... }:
 
 prev.runCommandNoCC "codium"
-{ buildInputs = with pkgs; [ makeWrapper ]; }
+{ buildInputs = with prev.pkgs; [ makeWrapper ]; }
   ''
-    makeWrapper ${prev.vscodium}/bin/codium $out/bin/codium \
+    makeWrapper ${prev.pkgs.vscodium}/bin/codium $out/bin/codium \
       --add-flags "--enable-features=UseOzonePlatform" \
       --add-flags "--ozone-platform=wayland"
-    ln -sf ${prev.vscodium}/share $out/share
+    ln -sf ${prev.pkgs.vscodium}/share $out/share
   ''

@@ -1,10 +1,10 @@
-{ prev, pkgs, ... }:
+{ prev, ... }:
 
 prev.runCommandNoCC "wrap-chromium"
-{ buildInputs = with pkgs; [ makeWrapper ]; }
+{ buildInputs = with prev.pkgs; [ makeWrapper ]; }
   ''
-    makeWrapper ${c}/bin/chromium $out/bin/chromium \
+    makeWrapper ${prev.pkgs.chromium}/bin/chromium $out/bin/chromium \
       --add-flags "--enable-features=UseOzonePlatform" \
       --add-flags "--ozone-platform=wayland"
-    ln -sf ${c}/share $out/share
+    ln -sf ${prev.pkgs.chromium}/share $out/share
   ''

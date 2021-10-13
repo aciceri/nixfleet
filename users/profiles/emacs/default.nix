@@ -12,18 +12,12 @@
   };
 
   home.packages = with pkgs; [
-<<<<<<< HEAD
-=======
     python-language-server
     python
->>>>>>> 651ab71 (Emacs and inputs updated)
     fd
     ag
     nixpkgs-fmt
     rnix-lsp
-<<<<<<< HEAD
-  ] ++ (if config.network.hostname != "mbp" then python-language-server else [ ]);
-=======
     (
       makeDesktopItem {
         name = "org-protocol";
@@ -36,5 +30,4 @@
       }
     )
   ];
->>>>>>> 651ab71 (Emacs and inputs updated)
 }
