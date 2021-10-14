@@ -12,7 +12,6 @@
   };
 
   home.packages = with pkgs; [
-    python-language-server
     python
     fd
     ag
@@ -29,5 +28,5 @@
         mimeType = "x-scheme-handler/org-protocol";
       }
     )
-  ];
+  ] ++ (if pkgs.system == "x86_64-linux" then [ python-language-server ] else [ ]);
 }

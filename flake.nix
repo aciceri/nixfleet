@@ -182,9 +182,11 @@
       }
     // {
       budModules = { devos = import ./bud; };
-      # checks.aarch64-linux = { }; # this line will be uncommented by Github Action in order since it can't build aarch64 derivations
-    }
-    // {
+
+      # checks.aarch64-linux = { }; # ga-uncomment
+      # checks.x86_64-darwin = { }; # ga-uncomment
+      # packages.x86_64-darwin = { }; # ga-uncomment
+
       darwinConfigurations."mbp" = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [ home.darwinModules.home-manager ./hosts/mbp ];
