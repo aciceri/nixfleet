@@ -21,6 +21,7 @@ emacsWithPackages (
       helm-ag
       fira-code-mode
       org-superstar
+      org-fragtog
       org-roam
       org-download
       visual-fill-column

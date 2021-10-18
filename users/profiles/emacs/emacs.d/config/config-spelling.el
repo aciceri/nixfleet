@@ -10,8 +10,6 @@
   ((ispell-program-name "hunspell")
    (ispell-dictionary "it_IT"))
   :config
-  ;(add-to-list 'ispell-hunspell-dictionary-alist '("italian-hunspell" "[[:alpha:]]" "[^[:alpha:]]" "[']" t ("-d" "it_IT") nil iso-8859-1))
-  ;(add-to-list 'ispell-hunspell-dictionary-alist '("english-hunspell" "[[:alpha:]]" "[^[:alpha:]]" "[']" t ("-d" "en_US") nil iso-8859-1))
   (defun switch-dictionary-it-en ()
     (interactive)
     (let* ((dict ispell-current-dictionary)

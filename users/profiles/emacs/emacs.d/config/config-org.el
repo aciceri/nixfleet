@@ -4,10 +4,42 @@
     (require 'org-protocol)
   :custom
   (org-startup-folded 'fold)
+  (org-agenda-files '("~/roam/"))
+  (org-ellipsis "⤵")
+  (org-startup-indented nil)
+  (org-superstar-remove-leading-stars t)
+  (org-superstar-leading-bullet ?\s)
+  (org-indent-mode-turns-on-hiding-stars nil)
   :hook 
   ((org-mode . auto-fill-mode) ;refill-mode breaks org headings 
-   (org-mode . (lambda () (org-superstar-mode 1)))
-   (org-mode . prettify-symbols-mode)))
+   (org-mode . org-num-mode)
+   (org-mode . (lambda ()
+		 (dolist (face '((org-level-1 1.5)
+				 (org-level-2 1.4)
+				 (org-level-3 1.3)
+				 (org-level-4 1.2)
+				 (org-level-5 1.1)))
+		   (set-face-attribute (car face) nil :weight 'semi-bold :height (cadr face)))))
+   (org-mode . prettify-symbols-mode))
+  :config
+  (org-indent-mode -1))
+
+(use-package org-fragtog
+  :custom
+  (org-format-latex-options (plist-put org-format-latex-options :scale 1.6))
+  :hook
+  ((org-mode . org-fragtog-mode)))
+
+(use-package org-download
+  :hook
+  ((org-mode . (lambda () (setq-local org-download-image-dir "~/roam/images/")))))
+
+(use-package org-superstar
+  :custom
+  (org-superstar-special-todo-items t)
+  (org-superstar-headline-bullets-list '("\u200b"))
+  :hook
+  (('org-mode . (lambda () (org-superstar-mode 1)))))
 
 (use-package org-download
   :hook
@@ -20,18 +52,11 @@
   (org-roam-directory (file-truename "~/roam/"))
   (org-roam-graph-executable "dot")
   (org-roam-db-location (file-truename "roam/org-roam.db"))
+  (org-roam-node-display-template "${directories:10} ${tags:10} ${title:100} ${backlinkscount:6}")
   (org-roam-capture-templates
-   '(
- ("i" "incremental" plain
-         #'org-roam-capture--get-point
-         "${body}\n%?" ;; this reads from
-        ; "%i%?"
-         :empty-lines-before 1
-         :file-name "web/${slug}"
-         :head "#+title: ${title}\n#+roam_key ${ref}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
-         :unnarrowed t)
-     ("r" "roam-ref" plain #'org-roam-capture--get-point "%i%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}"))))  
-
+   '(("d" "default" plain "\n%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}") :unnarrowed t)))
+  :hook
+  ((org-roam-mode . (lambda () (org-hide-properties))))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
@@ -40,8 +65,48 @@
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
   :config
+  (defun org-hide-properties ()
+    "Hide all org-mode headline property drawers in buffer. Could be slow if it has a lot of overlays."
+    (interactive)
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward
+              "^ *:properties:\n\\( *:.+?:.*\n\\)+ *:end:\n" nil t)
+	(let ((ov_this (make-overlay (match-beginning 0) (match-end 0))))
+          (overlay-put ov_this 'display "")
+          (overlay-put ov_this 'hidden-prop-drawer t))))
+    (put 'org-toggle-properties-hide-state 'state 'hidden))
+  
+  (defun org-show-properties ()
+    "Show all org-mode property drawers hidden by org-hide-properties."
+    (interactive)
+    (remove-overlays (point-min) (point-max) 'hidden-prop-drawer t)
+    (put 'org-toggle-properties-hide-state 'state 'shown))
+  
+  (defun org-toggle-properties ()
+    "Toggle visibility of property drawers."
+    (interactive)
+    (if (eq (get 'org-toggle-properties-hide-state 'state) 'hidden)
+	(org-show-properties)
+      (org-hide-properties)))
+
+  (cl-defmethod org-roam-node-directories ((node org-roam-node))
+    (if-let ((dirs (file-name-directory (file-relative-name (org-roam-node-file node) org-roam-directory))))
+	(format "(%s)" (car (f-split dirs)))
+      ""))
+  
+  (cl-defmethod org-roam-node-backlinkscount ((node org-roam-node))
+    (let* ((count (caar (org-roam-db-query
+			 [:select (funcall count source)
+                                  :from links
+                                  :where (= dest $s1)
+                                  :and (= type "id")]
+			 (org-roam-node-id node)))))
+      (format "[%d]" count)))
+
+  
   (org-roam-db-autosync-mode)
-  (require 'org-roam-protocol)
+  (require 'org-roam-protocol))
 
   
 (provide 'config-org)
