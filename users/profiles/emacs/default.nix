@@ -17,11 +17,14 @@
     ag
     nixpkgs-fmt
     rnix-lsp
+    graphviz-nox
+    hunspell
+    hunspellDicts.en_US
+    hunspellDicts.it_IT
     (
       makeDesktopItem {
         name = "org-protocol";
-        exec = "emacs %u";
-        #exec = "emacsclient %u";
+        exec = "emacsclient %u";
         comment = "Org protocol";
         desktopName = "org-protocol";
         type = "Application";

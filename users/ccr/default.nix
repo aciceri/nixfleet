@@ -5,6 +5,7 @@
     home.packages = with pkgs; [
       ack
       ranger
+      imv
       calibre
       element-desktop
       gtk-engine-murrine

@@ -22,6 +22,9 @@ emacsWithPackages (
       fira-code-mode
       org-superstar
       org-roam
+      org-download
+      visual-fill-column
+      writegood-mode
       nix-mode
       lsp-python-ms
       lispy
@@ -40,10 +43,9 @@ emacsWithPackages (
   ) ++ (
     with epkgs.elpaPackages; [
       modus-themes
+      minimap
     ]
   ) ++ (
-    with pkgs; [
-      pkgs.graphviz-nox
-    ]
+    with pkgs; []
   )
 )

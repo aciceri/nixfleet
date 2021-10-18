@@ -14,6 +14,23 @@
   (fira-code-mode-set-font)
   (global-fira-code-mode))
 
+(use-package visual-fill-column
+  :commands (visual-fill-column-mode)
+  :hook
+  (markdown-mode . activate-visual-fill-column)
+  (org-mode . activate-visual-fill-column)
+  :init
+  (defun activate-visual-fill-column ()
+    (interactive)
+    (setq-local fill-column 80)
+    (visual-line-mode t)
+    (visual-fill-column-mode t))
+  :config
+  (setq-default visual-fill-column-center-text t
+                visual-fill-column-fringes-outside-margins nil))
+
+(use-package minimap)
+
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-dialog-box nil

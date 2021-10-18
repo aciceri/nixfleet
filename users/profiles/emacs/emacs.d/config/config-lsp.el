@@ -7,7 +7,6 @@
          (python-mode . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
-         (before-save . lsp-format-buffer)
   :commands lsp)
 
 ;; optionally
