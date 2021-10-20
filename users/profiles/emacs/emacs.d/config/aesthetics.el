@@ -31,6 +31,9 @@
 
 (use-package minimap)
 
+;; To move in a different config file
+(when (string-equal system-type "darwin")
+  (setq mac-command-modifier 'ctrl))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-dialog-box nil

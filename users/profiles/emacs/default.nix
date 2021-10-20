@@ -11,6 +11,12 @@
     package = pkgs.customEmacs;
   };
 
+  # For some reason Hunspell dictionaries paths must be specified on Darwin
+  home.sessionVariables =
+    if pkgs.system == "x86_64-darwin" then {
+      DICPATH = "${pkgs.hunspellDicts.it_IT}/share/hunspell:${pkgs.hunspellDicts.en_US}/share/hunspell";
+    } else { };
+
   home.packages = with pkgs; [
     python
     fd
