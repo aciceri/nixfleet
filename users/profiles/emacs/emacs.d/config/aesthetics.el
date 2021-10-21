@@ -34,6 +34,10 @@
 ;; To move in a different config file
 (when (string-equal system-type "darwin")
   (setq mac-command-modifier 'ctrl))
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-dialog-box nil

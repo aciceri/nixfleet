@@ -6,10 +6,16 @@
   (org-startup-folded 'fold)
   (org-agenda-files '("~/roam/"))
   (org-ellipsis "⤵")
-  (org-startup-indented nil)
-  (org-superstar-remove-leading-stars t)
-  (org-superstar-leading-bullet ?\s)
-  (org-indent-mode-turns-on-hiding-stars nil)
+  (org-pretty-entities t)
+  (org-hide-emphasis-markers t)
+  (org-agenda-block-separator "")
+  (org-fontify-whole-heading-line t)
+  (org-fontify-done-headline t)
+  (org-fontify-quote-and-verse-blocks t)
+  (prettify-symbols-alist '(("#+BEGIN_SRC" . "λ")
+                            ("#+END_SRC" . "†")
+                            ("#+begin_src" . "λ")
+                            ("#+end_src" . "λ")))
   :hook 
   ((org-mode . auto-fill-mode) ;refill-mode breaks org headings 
    (org-mode . org-num-mode)
@@ -20,9 +26,7 @@
 				 (org-level-4 1.2)
 				 (org-level-5 1.1)))
 		   (set-face-attribute (car face) nil :weight 'semi-bold :height (cadr face)))))
-   (org-mode . prettify-symbols-mode))
-  :config
-  (org-indent-mode -1))
+   (org-mode . prettify-symbols-mode)))
 
 (use-package org-fragtog
   :custom

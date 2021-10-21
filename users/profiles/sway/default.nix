@@ -63,6 +63,10 @@
                 xkb_variant = "intl";
               };
             };
+            keybindings  = {
+              "${modifier}+f" = "exec firefox";
+              "${modifier}+e" = "exec emacs";
+            };
           };
           extraConfig = ''
             bindsym ${modifier}+p move workspace to output right

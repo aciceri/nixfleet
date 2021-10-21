@@ -9,37 +9,38 @@ emacsWithPackages (
   ) ++ (
     with epkgs.melpaPackages; [
       all-the-icons
-      use-package
+      company
+      dap-mode
+      doom-modeline
       evil
       evil-collection
-      helm
-      projectile
-      helm-projectile
-      magit
-      company
-      helm-company
-      helm-ag
       fira-code-mode
-      org-superstar
-      org-fragtog
-      org-roam
-      org-download
-      visual-fill-column
-      writegood-mode
-      nix-mode
-      lsp-python-ms
+      helm
+      helm-ag
+      helm-company
+      helm-projectile
       lispy
       lsp-mode
-      dap-mode
-      which-key
-      sudo-utils
+      lsp-python-ms
+      magit
+      nix-mode
+      org-download
+      org-fragtog
+      org-roam
+      org-superstar
+      projectile
       rainbow-delimiters
+      sudo-utils
       treemacs
       treemacs-evil
-      treemacs-projectile
       treemacs-icons-dired
       treemacs-magit
       treemacs-persp
+      treemacs-projectile
+      use-package
+      visual-fill-column
+      which-key
+      writegood-mode
     ]
   ) ++ (
     with epkgs.elpaPackages; [
