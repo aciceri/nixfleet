@@ -5,5 +5,5 @@
   ] ++ suites.base;
 
   bud.enable = true;
-  bud.localFlakeClone = "/home/andrea/fleet";
+  bud.localFlakeClone = "/home/ccr/fleet";
 }

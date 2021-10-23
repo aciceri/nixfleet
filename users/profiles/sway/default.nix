@@ -12,11 +12,17 @@
         config = {
           modifier = modifier;
           menu = "${pkgs.bemenu}/bin/bemenu-run -b -m 1 -p 'λ'";
-          output = {
-            HDMI-A-2 = {
-              bg = "${./wallpaper.jpg} fill";
+          output =
+            let
+              bg = "${./wallpaper.jpg} fill"; in
+            {
+              HDMI-A-2 = {
+                inherit bg;
+              };
+              eDP-1 = {
+                inherit bg;
+              };
             };
-          };
           #fonts = [ "Font Awesome" "Fira Code" ];
           terminal = "${pkgs.foot}/bin/footclient";
           bars = [
