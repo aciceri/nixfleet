@@ -1,11 +1,11 @@
 { config, lib, pkgs, profiles, ... }:
 
 {
-  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg ];
+  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker ];
 
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-    initrd.kernelModules = [];
+    initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
@@ -41,7 +41,7 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-label/swap"; } ];
+    [{ device = "/dev/disk/by-label/swap"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

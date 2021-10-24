@@ -4,7 +4,7 @@
   inputs =
     {
       stable.url = "github:nixos/nixpkgs/release-21.05";
-      unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+      unstable.url = "github:nixos/nixpkgs/30aeeaded47d4e246941147acaa357d1605ad486";
 
       nur.url = "github:nix-community/NUR";
 

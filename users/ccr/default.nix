@@ -13,6 +13,7 @@
       gsettings-desktop-schemas
       lxappearance
       yarn
+      yarn2nix
       texlive.combined.scheme-full
     ];
   };

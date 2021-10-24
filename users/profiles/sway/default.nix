@@ -50,6 +50,7 @@
           keybindings = lib.mkOptionDefault {
             "${modifier}+x" = "exec ${pkgs.customEmacs}/bin/emacs";
             "${modifier}+b" = "exec ${pkgs.firefox}/bin/firefox";
+            "${modifier}+s" = "exec \'file=\"~/shots/\$(date --iso-8601=seconds).png\"; ${pkgs.grim}/bin/grim -t png -g \"\$(${pkgs.slurp}/bin/slurp)\" \$file; wl-copy -t image/png < \$file\'";
           };
         };
         extraConfig = ''
