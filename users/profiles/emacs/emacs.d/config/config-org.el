@@ -16,9 +16,15 @@
                             ("#+END_SRC" . "†")
                             ("#+begin_src" . "λ")
                             ("#+end_src" . "λ")))
+  (org-babel-python-command "python3")
+  (org-src-preserve-indentation t)
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)))
   :hook 
   ((org-mode . auto-fill-mode) ;refill-mode breaks org headings 
-   (org-mode . org-num-mode)
+   ;(org-mode . org-num-mode)
    (org-mode . (lambda ()
 		 (dolist (face '((org-level-1 1.5)
 				 (org-level-2 1.4)
@@ -65,10 +71,18 @@
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-node-insert)
+         ("C-c n I" . org-roam-node-insert-immediate)
          ("C-c n c" . org-roam-capture)
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
   :config
+  (defun org-roam-node-insert-immediate (arg &rest args)
+    (interactive "P")
+    (let ((args (cons arg args))
+          (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+                                                    '(:immediate-finish t)))))
+      (apply #'org-roam-node-insert args)))
+
   (defun org-hide-properties ()
     "Hide all org-mode headline property drawers in buffer. Could be slow if it has a lot of overlays."
     (interactive)

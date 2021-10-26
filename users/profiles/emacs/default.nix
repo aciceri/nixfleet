@@ -18,7 +18,7 @@
     } else { };
 
   home.packages = with pkgs; [
-    python
+    python3Full
     fd
     ag
     nixpkgs-fmt

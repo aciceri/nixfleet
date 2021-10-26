@@ -15,6 +15,7 @@ emacsWithPackages (
       evil
       evil-collection
       fira-code-mode
+      haskell-mode
       helm
       helm-ag
       helm-company
@@ -48,6 +49,6 @@ emacsWithPackages (
       minimap
     ]
   ) ++ (
-    with pkgs; []
+    with pkgs; [ ]
   )
 )
