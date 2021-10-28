@@ -47,11 +47,20 @@
               xkb_variant = "intl";
             };
           };
-          keybindings = lib.mkOptionDefault {
-            "${modifier}+x" = "exec ${pkgs.customEmacs}/bin/emacs";
-            "${modifier}+b" = "exec ${pkgs.firefox}/bin/firefox";
-            "${modifier}+s" = "exec \'file=\"~/shots/\$(date --iso-8601=seconds).png\"; ${pkgs.grim}/bin/grim -t png -g \"\$(${pkgs.slurp}/bin/slurp)\" \$file; wl-copy -t image/png < \$file\'";
-          };
+          keybindings =
+            let
+              screenshotScript = pkgs.writeShellScript "screenshot.sh" ''
+                filename="~/shots/$(date --iso-8601=seconds).png"
+                coords="$(${pkgs.slurp}/bin/slurp)"
+                ${pkgs.grim}/bin/grim -t png -g "$coords" $filename
+                wl-copy -t image/png < $filename
+              '';
+            in
+            lib.mkOptionDefault {
+              "${modifier}+x" = "exec ${pkgs.customEmacs}/bin/emacs";
+              "${modifier}+b" = "exec ${pkgs.firefox}/bin/firefox";
+              "${modifier}+s" = "exec ${screenshotScript}";
+            };
         };
         extraConfig = ''
           bindsym ${modifier}+p move workspace to output right
@@ -77,7 +86,6 @@
         ];
         modules-center = [ "sway/window" ];
         modules-right = [
-          "idle_inhibitor"
           "tray"
           "network"
           "cpu"

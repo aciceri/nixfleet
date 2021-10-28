@@ -23,6 +23,8 @@
     ag
     nixpkgs-fmt
     rnix-lsp
+    haskell-language-server
+    stylish-haskell
     graphviz-nox
     hunspell
     hunspellDicts.en_US

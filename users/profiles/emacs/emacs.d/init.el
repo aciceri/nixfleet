@@ -16,6 +16,7 @@ Return nil if COMMAND is not found anywhere in `exec-path'."
 (require 'config-evil)
 (require 'config-helm)
 (require 'config-org)
+(require 'config-emails)
 (require 'config-projectile)
 (require 'config-company)
 (require 'config-magit)

@@ -21,7 +21,7 @@ channels: final: prev: {
         in
         {
           # same for haskell packages, matching ghc versions
-          inherit (channels.latest.haskell.packages."ghc${version}")
+          inherit (channels.unstable.haskell.packages."ghc${version}")
             haskell-language-server;
         });
     });

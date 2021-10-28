@@ -1,7 +1,7 @@
 { pkgs, suites, lib, ... }:
 {
   home-manager.users.ccr = { suites, ... }: {
-    imports = with suites; shell ++ gui ++ browser ++ multimedia ++ dev ++ base;
+    imports = with suites; shell ++ gui ++ browser ++ multimedia ++ emails ++ dev ++ base;
     home.packages = with pkgs; [
       ack
       ranger
@@ -20,7 +20,7 @@
 
   users.users.ccr = {
     uid = 1000;
-    hashedPassword = "$6$JGOefuRk7kL$fK9.5DFnLLoW08GL4eKRyf958jyZdw//hLMaz4pp28jJuSFb24H6R3dgt1.sMs0huPY85rludSw4dnQJG5xSw1"; #mkpasswd -m sha-512
+    hashedPassword = "$6$JGOefuRk7kL$fK9.5DFnLLoW08GL4eKRyf958jyZdw//hLMaz4pp28jJuSFb24H6R3dgt1.sMs0huPY85rludSw4dnQJG5xSw1"; # mkpasswd -m sha-512
     description = "Andrea Ciceri";
     isNormalUser = true;
     extraGroups = [

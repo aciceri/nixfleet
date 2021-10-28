@@ -9,7 +9,7 @@
 )  
 
 (use-package fira-code-mode
-  :custom (fira-code-mode-disabled-ligatures '()) ;; List of ligatures to turn off
+  :custom (fira-code-mode-disabled-ligatures '("x")) ;; List of ligatures to turn off
   :config
   (fira-code-mode-set-font)
   (global-fira-code-mode))
@@ -30,6 +30,9 @@
                 visual-fill-column-fringes-outside-margins nil))
 
 (use-package minimap)
+
+(use-package rainbow-identifiers
+  :hook ((prog-mode . rainbow-identifiers-mode)))
 
 ;; To move in a different config file
 (when (string-equal system-type "darwin")

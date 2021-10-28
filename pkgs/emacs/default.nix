@@ -16,11 +16,13 @@ emacsWithPackages (
       evil-collection
       fira-code-mode
       haskell-mode
+      notmuch
       helm
       helm-ag
       helm-company
       helm-projectile
       lispy
+      lsp-haskell
       lsp-mode
       lsp-python-ms
       magit
@@ -31,6 +33,7 @@ emacsWithPackages (
       org-superstar
       projectile
       rainbow-delimiters
+      rainbow-identifiers
       sudo-utils
       treemacs
       treemacs-evil

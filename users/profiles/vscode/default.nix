@@ -18,6 +18,14 @@
     extensions = with pkgs.vscode-extensions; [
       eamodio.gitlens
       jnoortheen.nix-ide
+      haskell.haskell
+      justusadam.language-haskell
     ];
   };
+
+  home.packages = with pkgs; [
+    haskell-language-server
+    stylish-haskell
+    ghc
+  ];
 }
