@@ -38,7 +38,6 @@
       ];
     };
     shellAliases = {
-      "screenshot" = "scrot '~/shots/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f' -s";
       "pass-clone" = "[ -d .password-store ] && echo 'Password store archive already exists' || git clone git@git.sr.ht:~zrsk/pass ~/.password-store";
       "getpass" = "pass show $(find .password-store/ -name \"*.gpg\" | sed \"s/\\.password-store\\/\\(.*\\)\\.gpg$/\\1/g\" | fzf) | wl-copy; ((sleep 60 && wl-copy --clear) &)";
       "cat" = "bat";
@@ -55,8 +54,11 @@
       PROMPT = "\\\${IN_NIX_SHELL:+[nix-shell] }$PROMPT";
     };
     loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec sway";
-    initExtra = if pkgs.system == "x86_64-darwin"
-    then "if test -e /etc/static/bashrc; then source /etc/static/bashrc > /dev/null 2>&1; fi"
-    else "";
+    initExtra =
+      if pkgs.system == "x86_64-darwin"
+      then "if test -e /etc/static/bashrc; then source /etc/static/bashrc > /dev/null 2>&1; fi"
+      else "";
   };
+
+  programs.command-not-found.enable = true;
 }

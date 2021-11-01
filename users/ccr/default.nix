@@ -15,6 +15,10 @@
       yarn
       yarn2nix
       texlive.combined.scheme-full
+      purescript
+      spago
+      nodePackages.parcel-bundler
+      nodejs
     ];
   };
 

@@ -50,7 +50,7 @@
           keybindings =
             let
               screenshotScript = pkgs.writeShellScript "screenshot.sh" ''
-                filename="~/shots/$(date --iso-8601=seconds).png"
+                filename="$HOME/shots/$(date --iso-8601=seconds).png"
                 coords="$(${pkgs.slurp}/bin/slurp)"
                 ${pkgs.grim}/bin/grim -t png -g "$coords" $filename
                 wl-copy -t image/png < $filename
