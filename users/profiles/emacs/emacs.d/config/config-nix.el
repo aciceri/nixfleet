@@ -15,4 +15,4 @@
 
 (global-set-key [f6] 'nixos-rebuild-test)
 
-(provide 'nix)
+(provide 'config-nix)

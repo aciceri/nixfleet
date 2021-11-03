@@ -16,7 +16,6 @@ emacsWithPackages (
       evil-collection
       fira-code-mode
       haskell-mode
-      notmuch
       helm
       helm-ag
       helm-company
@@ -27,11 +26,15 @@ emacsWithPackages (
       lsp-python-ms
       magit
       nix-mode
+      notmuch
       org-download
       org-fragtog
       org-roam
       org-superstar
       projectile
+      psc-ide
+      psci
+      purescript-mode
       rainbow-delimiters
       rainbow-identifiers
       sudo-utils

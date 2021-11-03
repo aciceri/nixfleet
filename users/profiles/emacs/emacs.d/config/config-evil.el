@@ -1,7 +1,8 @@
 
 (use-package evil
-  :init
-  (setq evil-want-keybinding nil)
+  :custom
+  (evil-want-keybinding nil)
+  (evil-undo-system 'undo-redo)
   :config
     (evil-mode 1) ; globally enable evil-mode except for the following modes
     (mapcar (lambda (mode) (evil-set-initial-state mode 'emacs))

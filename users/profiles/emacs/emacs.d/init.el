@@ -24,6 +24,7 @@ Return nil if COMMAND is not found anywhere in `exec-path'."
 (require 'config-lsp)
 (require 'config-python)
 (require 'config-spelling)
-(require 'nix)
+(require 'config-nix)
+(require 'config-purescript)
 
 (server-start)

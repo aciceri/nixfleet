@@ -2,6 +2,7 @@
 {
   home-manager.users.ccr = { suites, ... }: {
     imports = with suites; shell ++ gui ++ browser ++ multimedia ++ emails ++ dev ++ base;
+
     home.packages = with pkgs; [
       ack
       ranger
@@ -15,10 +16,6 @@
       yarn
       yarn2nix
       texlive.combined.scheme-full
-      purescript
-      spago
-      nodePackages.parcel-bundler
-      nodejs
     ];
   };
 
