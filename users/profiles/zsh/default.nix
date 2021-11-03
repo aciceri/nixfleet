@@ -55,7 +55,7 @@
     };
     loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec sway";
     initExtra =
-      if pkgs.system == "x86_64-darwin"
+      if pkgs.stdenv.hostPlatform.isDarwin
       then "if test -e /etc/static/bashrc; then source /etc/static/bashrc > /dev/null 2>&1; fi"
       else "";
   };
