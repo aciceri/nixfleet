@@ -110,8 +110,8 @@
         nixos = {
           hostDefaults = {
             channelName = "unstable";
-            imports = [ (digga.lib.importModules ./modules) ];
-            externalModules = [
+            imports = [ (digga.lib.importExportableModules ./modules) ];
+            modules = [
               { lib.our = self.lib; }
               digga.nixosModules.bootstrapIso
               digga.nixosModules.nixConfig
@@ -124,6 +124,10 @@
             pc = {
               system = "x86_64-linux";
               imports = [{ modules = ./hosts/pc; }];
+            };
+            hs = {
+              system = "x86_64-linux";
+              imports = [{ modules = ./hosts/hs; }];
             };
             pbp = {
               system = "aarch64-linux";
@@ -154,8 +158,8 @@
         };
 
         home = {
-          imports = [ (digga.lib.importModules ./users/modules) ];
-          externalModules = [ ];
+          imports = [ (digga.lib.importExportableModules ./users/modules) ];
+          modules = [ ];
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {

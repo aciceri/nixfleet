@@ -35,6 +35,7 @@ jobs:
         name: aciceri-fleet
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix -Lv develop -c bud build pc bootstrapIso
+    - run: nix -Lv develop -c bud build hs bootstrapIso
     - uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: '${{ secrets.GITHUB_TOKEN }}'

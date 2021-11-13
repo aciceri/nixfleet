@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  externalModules = with inputs; [
+  exportedModules = with inputs; [
     bud.devshellModules.bud
   ];
   modules = [

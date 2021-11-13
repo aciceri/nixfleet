@@ -1,11 +1,16 @@
-{ pkgs, suites, lib, ... }:
+{ pkgs, suites, lib, config, ... }:
 {
   home-manager.users.ccr = { suites, ... }: {
-    imports = with suites; shell ++ gui ++ browser ++ multimedia ++ emails ++ dev ++ base;
+    imports = with suites; shell ++ base ++ (if config.networking.hostName != "hs" then
+      (
+        gui ++ browser ++ multimedia ++ emails ++ dev
+      ) else [ ]);
+
 
     home.packages = with pkgs; [
       ack
       ranger
+    ] ++ (if config.networking.hostName != "hs" then [
       imv
       calibre
       element-desktop
@@ -16,7 +21,7 @@
       yarn
       yarn2nix
       texlive.combined.scheme-full
-    ];
+    ] else [ ]);
   };
 
   users.users.ccr = {

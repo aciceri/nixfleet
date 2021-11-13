@@ -34,8 +34,8 @@
       (error "purs-tidy not found")))
 
   :hook
-  (before-save . purescript-purs-tidy-format-buffer)
   (purescript-mode . (lambda ()
+		       (add-hook 'before-save-hook purescript-purs-tidy-format-buffer nil 'make-it-local)
 		       (psc-ide-mode)
 		       (company-mode)
 		       (flycheck-mode)

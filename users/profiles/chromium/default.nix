@@ -2,6 +2,6 @@
 {
   programs.chromium = {
     enable = true;
-    package = pkgs.ungoogled-chromium;
+    package = with pkgs; if stdenv.hostPlatform.isAarch64 then ungoogled-chromium else google-chrome;
   };
 }
