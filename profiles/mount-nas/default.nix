@@ -2,24 +2,26 @@
 {
   environment.systemPackages = [ pkgs.sshfs ];
 
-  fileSystems = let
-    nasUser = "andrea";
-    nasHost = "ccr.ydns.eu";
-    fsType = "fuse.sshfs";
-    target = "/home/ccr/nas";
-    options = [
-      "delay_connect"
-      "_netdev,user"
-      "idmap=user"
-      "transform_symlinks"
-      "identityfile=/home/andrea/.ssh/id_rsa"
-      "allow_other"
-      "default_permissions"
-      "uid=1000"
-      "gid=100"
-      "nofail"
-    ];
-  in
+  fileSystems =
+    let
+      nasUser = "ccr";
+      nasHost = "ccr.ydns.eu";
+      fsType = "fuse.sshfs";
+      target = "/home/ccr/nas";
+      options = [
+        "delay_connect"
+        "_netdev,user"
+        "idmap=user"
+        "transform_symlinks"
+        # ssh-add -L > ~/.ssh/id_rsa
+        "identityfile=/home/ccr/.ssh/id_rsa"
+        "allow_other"
+        "default_permissions"
+        "uid=1000"
+        "gid=100"
+        "nofail"
+      ];
+    in
     {
       "${target}/amule" = {
         inherit fsType options;

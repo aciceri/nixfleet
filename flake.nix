@@ -3,7 +3,7 @@
 
   inputs =
     {
-      stable.url = "github:nixos/nixpkgs/release-21.05";
+      stable.url = "github:nixos/nixpkgs/release-21.11";
       unstable.url = "github:nixos/nixpkgs/30aeeaded47d4e246941147acaa357d1605ad486";
 
       nur.url = "github:nix-community/NUR";
@@ -11,14 +11,14 @@
       digga.url = "github:divnix/digga";
       digga.inputs.nixpkgs.follows = "stable";
       digga.inputs.nixlib.follows = "stable";
-      digga.inputs.home-manager.follows = "home";
+      digga.inputs.home-manager.follows = "unstable";
 
       bud.url = "github:divnix/bud";
       bud.inputs.nixpkgs.follows = "unstable";
       bud.inputs.devshell.follows = "digga/devshell";
 
-      home.url = "github:nix-community/home-manager/release-21.05";
-      home.inputs.nixpkgs.follows = "stable";
+      home.url = "github:nix-community/home-manager/release-21.11";
+      home.inputs.nixpkgs.follows = "unstable";
 
       darwin.url = "github:LnL7/nix-darwin";
       darwin.inputs.nixpkgs.follows = "unstable";
@@ -72,7 +72,6 @@
         channels =
           let
             commonOverlays = [
-              digga.overlays.patchedNix
               nur.overlay
               emacs-overlay.overlay
               nvfetcher.overlay
@@ -167,7 +166,7 @@
               emails = [ mails ];
               shell = [ zsh exa fzf ];
               gui = [ sway xdg gtk foot bat ];
-              browser = [ firefox chromium qutebrowser ];
+              browser = [ firefox chromium qutebrowser tor-browser ];
               multimedia = [ mpv zathura ];
               dev = [ vim emacs vscode lorri direnv ];
             };

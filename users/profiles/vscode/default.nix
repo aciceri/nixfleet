@@ -10,7 +10,11 @@
 
     userSettings = {
       "update.channel" = "none";
-      "editor"."formatOnSave" = true;
+      "editor" = {
+        "formatOnSave" = true;
+        "fontFamily" = "Fira Code";
+        "fontLigatures" = true;
+      };
       "window"."menuBarVisibility" = "classic";
       "[nix]"."editor.tabSize" = 2;
       "nix"."enableLanguageServer" = true;
@@ -20,6 +24,7 @@
       jnoortheen.nix-ide
       haskell.haskell
       justusadam.language-haskell
+      #ms-python.python
     ];
   };
 

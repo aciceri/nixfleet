@@ -11,6 +11,6 @@
 
   programs.gpg = {
     enable = true;
-    settings = {};
+    settings = { };
   };
 }

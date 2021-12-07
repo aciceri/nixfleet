@@ -1,12 +1,12 @@
 { config, lib, pkgs, profiles, ... }:
 
 {
-  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker ];
+  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker adb ];
 
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ ];
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [ "kvm-intel" "v4l2loopback" ];
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
