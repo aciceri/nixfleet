@@ -11,6 +11,7 @@ emacsWithPackages (
       all-the-icons
       company
       dap-mode
+      # dirvish
       doom-modeline
       evil
       evil-collection
@@ -30,6 +31,7 @@ emacsWithPackages (
       org-download
       org-fragtog
       org-roam
+      org-roam-ui
       org-superstar
       projectile
       psc-ide

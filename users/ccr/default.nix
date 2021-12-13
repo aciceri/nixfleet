@@ -3,7 +3,7 @@
   home-manager.users.ccr = { suites, ... }: {
     imports = with suites; shell ++ base ++ (if config.networking.hostName != "hs" then
       (
-        gui ++ browser ++ multimedia ++ emails ++ dev
+        gui ++ browser ++ multimedia ++ emails ++ dev ++ modelling
       ) else [ ]);
 
     home.packages = with pkgs; [
@@ -12,7 +12,7 @@
     ] ++ (if config.networking.hostName != "hs" then [
       imv
       calibre
-      scrcpy
+      # scrcpy  # TODO: create a profile only for x86_64 (not available for aarch64)
       element-desktop
       gtk-engine-murrine
       gtk_engines

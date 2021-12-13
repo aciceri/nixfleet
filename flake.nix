@@ -169,6 +169,7 @@
               browser = [ firefox chromium qutebrowser tor-browser ];
               multimedia = [ mpv zathura ];
               dev = [ vim emacs vscode lorri direnv ];
+              modelling = [ blender cura ];
             };
           };
         };

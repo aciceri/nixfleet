@@ -31,17 +31,22 @@
         };
     in
     with pkgs; [
-      python3Full
-      fd
       ag
-      nixpkgs-fmt
-      rnix-lsp
-      haskell-language-server
-      stylish-haskell
+      fd
+      ffmpegthumbnailer
       graphviz-nox
+      haskell-language-server
       hunspell
       hunspellDicts.en_US
       hunspellDicts.it_IT
+      imagemagick
+      mediainfo
+      nixpkgs-fmt
+      poppler_utils
+      python3Full
+      rnix-lsp
+      stylish-haskell
+      unzip
       (
         makeDesktopItem {
           name = "org-protocol";
