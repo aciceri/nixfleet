@@ -4,7 +4,7 @@
   inputs =
     {
       stable.url = "github:nixos/nixpkgs/release-21.11";
-      unstable.url = "github:nixos/nixpkgs/30aeeaded47d4e246941147acaa357d1605ad486";
+      unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
       nur.url = "github:nix-community/NUR";
 
@@ -76,7 +76,7 @@
               emacs-overlay.overlay
               nvfetcher.overlay
               deploy.overlay
-              nixpkgs-wayland.overlay
+              #nixpkgs-wayland.overlay
               ./pkgs/default.nix
             ];
           in

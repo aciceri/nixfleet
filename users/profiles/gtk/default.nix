@@ -3,10 +3,11 @@
   gtk = {
     enable = true;
     font.name = "DejaVu Sans";
-    theme = {
-      name = "WhiteSur-dark-alt-blue";
-      package = pkgs.whitesur-gtk-theme;
-    };
+    # broken
+    #theme = {
+    #  name = "WhiteSur-dark-alt-blue";
+    #  package = pkgs.whitesur-gtk-theme;
+    #};
     iconTheme = {
       name = "Adwaita";
       package = pkgs.gnome.adwaita-icon-theme;

@@ -22,7 +22,14 @@
       yarn2nix
       python39Packages.poetry
       texlive.combined.scheme-full
-    ] else [ ]);
+      gphoto2
+      digikam
+      rawtherapee
+      freecad
+      deploy-rs.deploy-rs
+    ] ++
+    (if !stdenv.hostPlatform.isAarch64 then [ wineWowPackages.full ] else [ ])
+    else [ ]);
   };
 
   users.users.ccr = {

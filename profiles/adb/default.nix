@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  # programs.adb.enable = !pkgs.stdenv.hostPlatform.isAarch64;
+  programs.adb.enable = !pkgs.stdenv.hostPlatform.isAarch64;
 }

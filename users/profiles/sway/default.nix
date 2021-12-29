@@ -24,7 +24,7 @@
               };
             };
           #fonts = [ "Font Awesome" "Fira Code" ];
-          terminal = "${pkgs.foot}/bin/footclient";
+          terminal = "footclient";
           bars = [
             {
               command = "${pkgs.waybar}/bin/waybar";
