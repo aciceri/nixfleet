@@ -26,5 +26,6 @@ Return nil if COMMAND is not found anywhere in `exec-path'."
 (require 'config-spelling)
 (require 'config-nix)
 (require 'config-purescript)
+(require 'config-scad)
 
 (server-start)

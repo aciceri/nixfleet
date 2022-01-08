@@ -8,10 +8,10 @@ emacsWithPackages (
     with epkgs.melpaStablePackages; [ ]
   ) ++ (
     with epkgs.melpaPackages; [
+      # dirvish
       all-the-icons
       company
       dap-mode
-      # dirvish
       doom-modeline
       evil
       evil-collection
@@ -39,6 +39,7 @@ emacsWithPackages (
       purescript-mode
       rainbow-delimiters
       rainbow-identifiers
+      scad-mode
       sudo-utils
       treemacs
       treemacs-evil
