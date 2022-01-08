@@ -60,12 +60,12 @@
     ] ++ (if pkgs.system == "x86_64-linux" then [
       python-language-server
     ] ++ (with easy-ps; [
-      purs
-      spago
-      spago2nix
+      # spago2nix
+      nodejs
       pulp
       purescript-language-server
+      purs
       purs-tidy
-      nodejs
+      spago
     ]) else [ ]);
 }
