@@ -35,7 +35,6 @@
       fd
       ffmpegthumbnailer
       graphviz-nox
-      haskell-language-server
       hunspell
       hunspellDicts.en_US
       hunspellDicts.it_IT
@@ -59,6 +58,7 @@
       )
     ] ++ (if pkgs.system == "x86_64-linux" then [
       python-language-server
+      haskell-language-server
     ] ++ (with easy-ps; [
       # spago2nix
       nodejs

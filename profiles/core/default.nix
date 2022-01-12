@@ -26,7 +26,7 @@ in
       nix-index
       nmap
       ripgrep
-      skim
+      #skim
       tealdeer
       tmux
       usbutils

@@ -25,8 +25,6 @@
       gphoto2
       digikam
       rawtherapee
-      freecad
-      openscad
       deploy-rs.deploy-rs
     ] ++
     (if !stdenv.hostPlatform.isAarch64 then [ wineWowPackages.full ] else [ ])

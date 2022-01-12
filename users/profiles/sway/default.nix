@@ -57,8 +57,8 @@
               '';
             in
             lib.mkOptionDefault {
-              "${modifier}+x" = "exec ${pkgs.customEmacs}/bin/emacs";
-              "${modifier}+b" = "exec ${pkgs.firefox}/bin/firefox";
+              "${modifier}+x" = "exec emacs";
+              "${modifier}+b" = "exec firefox";
               "${modifier}+s" = "exec ${screenshotScript}";
             };
         };
