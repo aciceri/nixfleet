@@ -57,7 +57,7 @@
               '';
             in
             lib.mkOptionDefault {
-              "${modifier}+x" = "exec emacs";
+              "${modifier}+x" = "exec emacsclient -c";
               "${modifier}+b" = "exec firefox";
               "${modifier}+s" = "exec ${screenshotScript}";
             };

@@ -11,6 +11,10 @@
     package = pkgs.customEmacs;
   };
 
+  services.emacs = {
+    enable = true;
+  };
+
   # For some reason Hunspell dictionaries paths must be specified on Darwin
   home.sessionVariables =
     if pkgs.stdenv.hostPlatform.isDarwin then {

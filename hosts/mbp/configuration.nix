@@ -18,13 +18,8 @@
 
   nix = {
     package = pkgs.nixUnstable;
-    extraOptions = ''
-      experimental-features = nix-command flakes flakes ca-references
-      keep-derivations = true
-      keep-outputs = true
-    '';
     gc = {
-      automatic = false;
+      automatic = true;
       user = "andreaciceri";
       options = "--delete-older-than 3d";
     };

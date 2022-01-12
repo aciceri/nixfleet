@@ -43,5 +43,13 @@
   swapDevices =
     [{ device = "/dev/disk/by-label/swap"; }];
 
+  nix = {
+    package = pkgs.nixUnstable;
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 3d";
+    };
+  };
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
