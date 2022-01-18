@@ -51,5 +51,22 @@
     };
   };
 
+  services.syncthing = {
+    enable = true;
+    guiAddress = "127.0.0.1:8384";
+    dataDir = "/home/ccr/syncthing";
+    user = "ccr";
+    folders = {
+      "orgzly" = {
+        id = "orgzly";
+        path = "/home/ccr/orgzly";
+      };
+      "roam" = {
+        id = "roam";
+        path = "/home/ccr/roam";
+      };
+    };
+  };
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
