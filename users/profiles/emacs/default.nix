@@ -33,7 +33,6 @@
     with pkgs; [
       ag
       fd
-      ffmpegthumbnailer
       graphviz-nox
       haskell-language-server
       hunspell
@@ -61,6 +60,7 @@
       python-language-server
     ] ++ (with easy-ps; [
       # spago2nix
+      ffmpegthumbnailer
       nodejs
       pulp
       purescript-language-server
