@@ -165,34 +165,21 @@
       guiAddress = "0.0.0.0:8384";
       dataDir = "/mnt/archivio/syncthing";
       user = "ccr";
-      devices = {
-        oneplus5t = {
-          id = "IUETIK2-LBTIIKO-GTZXVMA-LEDFK5I-F2M7JKX-76OUDJL-QRJ62J4-5DYYIAI";
-        };
-        pc = {
-          id = "VI4CPQE-PTRRBQQ-LQVG3SE-7BVHQC2-TT4TIP7-L3OBXQR-AWLZVCO-GVPQUQG";
-        };
-      };
       folders = {
         "/mnt/archivio/syncthing/camera" = {
           id = "camera";
-          devices = [ "oneplus5t" ];
         };
         "/mnt/archivio/syncthing/orgzly" = {
           id = "orgzly";
-          devices = [ "oneplus5t" "pc" ];
         };
         "/mnt/archivio/syncthing/roam" = {
           id = "roam";
-          devices = [ "oneplus5t" "pc" ];
         };
         "/mnt/archivio/syncthing/whatsapp" = {
           id = "whatsapp";
-          devices = [ "oneplus5t" ];
         };
         "/mnt/archivio/syncthing/calls" = {
           id = "calls";
-          devices = [ "oneplus5t" ];
         };
       };
     };

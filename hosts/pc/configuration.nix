@@ -1,7 +1,7 @@
 { config, lib, pkgs, profiles, ... }:
 
 {
-  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker adb ];
+  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker adb syncthing ];
 
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
@@ -48,23 +48,6 @@
     gc = {
       automatic = true;
       options = "--delete-older-than 3d";
-    };
-  };
-
-  services.syncthing = {
-    enable = true;
-    guiAddress = "127.0.0.1:8384";
-    dataDir = "/home/ccr/syncthing";
-    user = "ccr";
-    folders = {
-      "orgzly" = {
-        id = "orgzly";
-        path = "/home/ccr/orgzly";
-      };
-      "roam" = {
-        id = "roam";
-        path = "/home/ccr/roam";
-      };
     };
   };
 
