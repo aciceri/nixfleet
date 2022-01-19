@@ -14,7 +14,10 @@
     enableSSHSupport = true;
   };
 
-  nixpkgs.overlays = [ (import ../../pkgs) emacs-overlay.overlay ];
+  nixpkgs = {
+    overlays = [ (import ../../pkgs) emacs-overlay.overlay ];
+    config.allowUnfree = true;
+  };
 
   nix = {
     package = pkgs.nixUnstable;

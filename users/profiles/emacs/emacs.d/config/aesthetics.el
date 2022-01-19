@@ -31,12 +31,16 @@
 
 (use-package minimap)
 
+
+
 (use-package rainbow-identifiers
   :hook ((prog-mode . rainbow-identifiers-mode)))
 
 ;; To move in a different config file
 (when (string-equal system-type "darwin")
+  (set-face-attribute 'default nil :height 150)
   (setq mac-command-modifier 'ctrl))
+
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))

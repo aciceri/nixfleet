@@ -12,7 +12,7 @@
   };
 
   services.emacs = {
-    enable = true;
+    enable = !pkgs.stdenv.hostPlatform.isDarwin;
   };
 
   # For some reason Hunspell dictionaries paths must be specified on Darwin

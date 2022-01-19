@@ -12,6 +12,14 @@
     home.packages = with pkgs; [
       yarn
       pinentry_mac
+      openscad
+      nodejs
+
+      yabai
+      skhd
+      spacebar
+      xquartz
+      xterm
     ];
 
     programs.gpg = {
