@@ -165,10 +165,27 @@
       guiAddress = "0.0.0.0:8384";
       dataDir = "/mnt/archivio/syncthing";
       user = "ccr";
+      folders = {
+        "/mnt/archivio/syncthing/camera" = {
+          id = "camera";
+        };
+        "/mnt/archivio/syncthing/orgzly" = {
+          id = "orgzly";
+        };
+        "/mnt/archivio/syncthing/roam" = {
+          id = "roam";
+        };
+        "/mnt/archivio/syncthing/whatsapp" = {
+          id = "whatsapp";
+        };
+        "/mnt/archivio/syncthing/calls" = {
+          id = "calls";
+        };
+      };
     };
 
     navidrome = {
-      enable = true;
+      enable = false;
       settings = {
         Address = "0.0.0.0";
         Port = 9093;
@@ -257,6 +274,14 @@
   security.acme = {
     acceptTerms = true;
     email = "andrea.ciceri@autistici.org";
+  };
+
+  nix = {
+    package = pkgs.nixUnstable;
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 3d";
+    };
   };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

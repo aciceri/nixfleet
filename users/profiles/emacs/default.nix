@@ -11,6 +11,10 @@
     package = pkgs.customEmacs;
   };
 
+  services.emacs = {
+    enable = true;
+  };
+
   # For some reason Hunspell dictionaries paths must be specified on Darwin
   home.sessionVariables =
     if pkgs.stdenv.hostPlatform.isDarwin then {
@@ -34,7 +38,6 @@
       ag
       fd
       graphviz-nox
-      haskell-language-server
       hunspell
       hunspellDicts.en_US
       hunspellDicts.it_IT
@@ -58,6 +61,7 @@
       )
     ] ++ (if pkgs.system == "x86_64-linux" then [
       python-language-server
+      haskell-language-server
     ] ++ (with easy-ps; [
       # spago2nix
       ffmpegthumbnailer

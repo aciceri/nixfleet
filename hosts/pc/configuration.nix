@@ -1,7 +1,7 @@
 { config, lib, pkgs, profiles, ... }:
 
 {
-  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker adb ];
+  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker adb syncthing ];
 
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
@@ -42,6 +42,14 @@
 
   swapDevices =
     [{ device = "/dev/disk/by-label/swap"; }];
+
+  nix = {
+    package = pkgs.nixUnstable;
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 3d";
+    };
+  };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

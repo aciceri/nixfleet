@@ -168,7 +168,7 @@
               gui = [ sway xdg gtk foot bat ];
               browser = [ firefox chromium qutebrowser tor-browser ];
               multimedia = [ mpv zathura ];
-              dev = [ vim emacs vscode lorri direnv ];
+              dev = [ vim emacs vscode lorri direnv qmk ];
               modelling = [ blender cura ];
             };
           };

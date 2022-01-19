@@ -1,12 +1,12 @@
 { config, lib, pkgs, profiles, pbpKernelLatest, ... }:
 
 {
-  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg ];
+  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg syncthing ];
 
   boot = {
     initrd.availableKernelModules = [ "usbhid" ];
     kernelPackages = pbpKernelLatest;
-    kernelModules = [];
+    kernelModules = [ ];
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
@@ -45,7 +45,16 @@
   };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/e236d328-496e-4cf8-ba54-857789ca258f"; } ];
+    [{ device = "/dev/disk/by-uuid/e236d328-496e-4cf8-ba54-857789ca258f"; }];
+
+
+  nix = {
+    package = pkgs.nixUnstable;
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 3d";
+    };
+  };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 }

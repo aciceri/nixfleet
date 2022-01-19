@@ -29,8 +29,9 @@
   };
 
   home.packages = with pkgs; [
-    haskell-language-server
     stylish-haskell
     ghc
-  ];
+  ] ++ (if pkgs.system == "x86_64-linux" then [
+    haskell-language-server
+  ] else [ ]);
 }
