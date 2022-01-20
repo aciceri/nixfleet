@@ -4,7 +4,8 @@
     (require 'org-protocol)
   :custom
   (org-startup-folded 'fold)
-  (org-agenda-files '("~/roam/"))
+  (org-startup-indented t)
+  (org-agenda-files '("~/roam/" "~/orgzly~"))
   (org-ellipsis "⤵")
   (org-pretty-entities t)
   (org-hide-emphasis-markers t)
@@ -13,7 +14,7 @@
   (org-fontify-done-headline t)
   (org-fontify-quote-and-verse-blocks t)
   (prettify-symbols-alist '(("#+BEGIN_SRC" . "λ")
-                            ("#+END_SRC" . "†")
+                            ("#+END_SRC" . "λ")
                             ("#+begin_src" . "λ")
                             ("#+end_src" . "λ")))
   (org-babel-python-command "python3")
@@ -62,7 +63,7 @@
   (org-roam-directory (file-truename "~/roam/"))
   (org-roam-graph-executable "dot")
   (org-roam-db-location (file-truename "roam/org-roam.db"))
-  (org-roam-node-display-template "${directories:10} ${tags:10} ${title:100} ${backlinkscount:6}")
+  (org-roam-node-display-template "${title:72} ${tags:10} ${backlinkscount:6}")
   (org-roam-capture-templates
    '(("d" "default" plain "\n%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}") :unnarrowed t)))
   :hook
