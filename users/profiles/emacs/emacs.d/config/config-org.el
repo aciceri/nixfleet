@@ -24,14 +24,14 @@
    '((python . t)))
   :hook 
   ((org-mode . auto-fill-mode) ;refill-mode breaks org headings 
-   ;(org-mode . org-num-mode)
-   (org-mode . (lambda ()
-		 (dolist (face '((org-level-1 1.5)
-				 (org-level-2 1.4)
-				 (org-level-3 1.3)
-				 (org-level-4 1.2)
-				 (org-level-5 1.1)))
-		   (set-face-attribute (car face) nil :weight 'semi-bold :height (cadr face)))))
+   ;; (org-mode . org-num-mode)
+   ;; (org-mode . (lambda ()
+   ;; 		 (dolist (face '((org-level-1 1.5)
+   ;; 				 (org-level-2 1.4)
+   ;; 				 (org-level-3 1.3)
+   ;; 				 (org-level-4 1.2)
+   ;; 				 (org-level-5 1.1)))
+   ;;		   (set-face-attribute (car face) nil :weight 'semi-bold :height (cadr face)))))
    (org-mode . prettify-symbols-mode)))
 
 (use-package org-fragtog

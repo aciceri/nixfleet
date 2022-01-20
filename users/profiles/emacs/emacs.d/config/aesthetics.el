@@ -4,7 +4,8 @@
         modus-themes-region '(bg-only no-extend))
   (modus-themes-load-themes)
   :config
-    (modus-themes-load-vivendi)
+    (modus-themes-load-operandi) ;white theme
+    ;; (modus-themes-load-vivendi) ;black theme
   :bind ("<f5>" . modus-themes-toggle)    
 )  
 
@@ -29,7 +30,15 @@
   (setq-default visual-fill-column-center-text t
                 visual-fill-column-fringes-outside-margins nil))
 
-(use-package minimap)
+(use-package minimap
+  :custom ((minimap-window-location 'right))
+  :bind ("<f7>" . minimap-mode))
+
+(use-package good-scroll
+  :config (good-scroll-mode 1)
+  :custom 
+  :bind (([next] #'good-scroll-up-full-screen)
+	 ([prior] #'good-scroll-down-full-screen))) 
 
 
 

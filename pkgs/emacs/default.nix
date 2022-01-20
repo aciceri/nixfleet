@@ -16,6 +16,7 @@ emacsWithPackages (
       evil
       evil-collection
       fira-code-mode
+      good-scroll
       haskell-mode
       helm
       helm-ag
