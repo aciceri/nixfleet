@@ -165,6 +165,8 @@
       guiAddress = "0.0.0.0:8384";
       dataDir = "/mnt/archivio/syncthing";
       user = "ccr";
+      overrideDevices = false;
+      overrideFolders = false;
       folders = {
         "/mnt/archivio/syncthing/camera" = {
           id = "camera";

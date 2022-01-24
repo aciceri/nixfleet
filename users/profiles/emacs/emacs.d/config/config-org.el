@@ -4,7 +4,7 @@
     (require 'org-protocol)
   :custom
   (org-startup-folded 'fold)
-  (org-startup-indented t)
+  (org-startup-indented f)
   (org-agenda-files '("~/roam/" "~/orgzly~"))
   (org-ellipsis "⤵")
   (org-pretty-entities t)
