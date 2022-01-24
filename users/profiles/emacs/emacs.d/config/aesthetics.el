@@ -36,9 +36,8 @@
 
 (use-package good-scroll
   :config (good-scroll-mode 1)
-  :custom 
-  :bind (([next] #'good-scroll-up-full-screen)
-	 ([prior] #'good-scroll-down-full-screen))) 
+  :bind (("<next>" . #'good-scroll-up-full-screen)
+	 ("<prior>" . #'good-scroll-down-full-screen))) 
 
 
 
