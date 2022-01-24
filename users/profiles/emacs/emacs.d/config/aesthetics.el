@@ -57,7 +57,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-dialog-box nil
       display-time-format "%H:%M"
-      mouse-autoselect-window 't
+      column-number-mode t
+      mouse-autoselect-window t
       inhibit-startup-screen t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
