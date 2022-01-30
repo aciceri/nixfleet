@@ -10,10 +10,11 @@
 )  
 
 (use-package fira-code-mode
-  :custom (fira-code-mode-disabled-ligatures '("x")) ;; List of ligatures to turn off
-  :config
-  (fira-code-mode-set-font)
-  (global-fira-code-mode))
+  ;;:custom (fira-code-mode-disabled-ligatures '("x")) ;; List of ligatures to turn off
+  :config (progn
+	    (global-fira-code-mode)
+	    ;;TODO: why a timer is needed? It shouldn't
+	    (run-at-time "30 sec" nil #'set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
 
 (use-package visual-fill-column
   :commands (visual-fill-column-mode)
@@ -38,8 +39,6 @@
   :config (good-scroll-mode 1)
   :bind (("<next>" . #'good-scroll-up-full-screen)
 	 ("<prior>" . #'good-scroll-down-full-screen))) 
-
-
 
 (use-package rainbow-identifiers
   :hook ((prog-mode . rainbow-identifiers-mode)))

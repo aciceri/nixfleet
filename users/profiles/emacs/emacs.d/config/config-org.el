@@ -4,11 +4,8 @@
     (require 'org-protocol)
   :custom
   (org-startup-folded 'fold)
-<<<<<<< HEAD
-  (org-startup-indented nil)
-=======
   (org-startup-indented f)
->>>>>>> 087566ed5f0d08df2e0b36e4c80398f5c0d26c22
+  (org-startup-indented nil)
   (org-agenda-files '("~/roam/" "~/orgzly~"))
   (org-ellipsis "⤵")
   (org-pretty-entities t)
@@ -52,7 +49,6 @@
 (use-package org-superstar
   :custom
   (org-superstar-special-todo-items t)
-  (org-superstar-headline-bullets-list '("\u200b"))
   :hook
   (('org-mode . (lambda () (org-superstar-mode 1)))))
 
