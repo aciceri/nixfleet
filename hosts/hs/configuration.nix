@@ -8,7 +8,7 @@
     loader.grub = pkgs.lib.mkForce {
       enable = true;
       version = 2;
-      device = "/dev/disk/by-id/usb-SanDisk_Cruzer_Force_03021612083020030151-0:0";
+      device = "/dev/disk/by-id/ata-OCZ-VERTEX_TMHAK8OARSURAIF6N1A5";
     };
   };
 
@@ -30,21 +30,21 @@
   swapDevices =
     [{ device = "/dev/disk/by-label/swap"; }];
 
-  systemd.services.standby-sda = {
-    description = "Set spindown time (sleep) for /dev/sda ";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.hdparm}/bin/hdparm -B 127 -S 241 /dev/sda";
-    };
-  };
-
   systemd.services.standby-sdb = {
     description = "Set spindown time (sleep) for /dev/sdb ";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.hdparm}/bin/hdparm -B 127 -S 241 /dev/sdb";
+    };
+  };
+
+  systemd.services.standby-sdc = {
+    description = "Set spindown time (sleep) for /dev/sdc ";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.hdparm}/bin/hdparm -B 127 -S 241 /dev/sdc";
     };
   };
 
