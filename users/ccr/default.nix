@@ -23,11 +23,13 @@
       python39Packages.poetry
       texlive.combined.scheme-full
       gphoto2
-      digikam
       rawtherapee
       deploy-rs.deploy-rs
     ] ++
-    (if !stdenv.hostPlatform.isAarch64 then [ wineWowPackages.full ] else [ ])
+    (if !stdenv.hostPlatform.isAarch64 then [
+      wineWowPackages.full
+      #digikam # broken
+    ] else [ ])
     else [ ]);
   };
 

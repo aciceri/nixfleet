@@ -1,7 +1,7 @@
 { config, lib, pkgs, profiles, ... }:
 
 {
-  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker adb syncthing ];
+  imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker adb syncthing qmk-udev ];
 
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];

@@ -4,7 +4,7 @@
     openscad
   ] ++ (if !stdenv.hostPlatform.isAarch64 then [
     blender
-    freecad
+    # freecad
   ]
   else [ ]);
 }

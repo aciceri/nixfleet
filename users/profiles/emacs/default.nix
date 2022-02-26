@@ -7,7 +7,7 @@
   };
 
   programs.emacs = {
-    enable = true;
+    enable = !pkgs.stdenv.hostPlatform.isDarwin;
     package = pkgs.customEmacs;
   };
 
@@ -35,7 +35,7 @@
         };
     in
     with pkgs; [
-      ag
+      silver-searcher
       fd
       graphviz-nox
       hunspell
@@ -56,7 +56,7 @@
           comment = "Org protocol";
           desktopName = "org-protocol";
           type = "Application";
-          mimeType = "x-scheme-handler/org-protocol";
+          mimeTypes = [ "x-scheme-handler/org-protocol" ];
         }
       )
     ] ++ (if pkgs.system == "x86_64-linux" then [

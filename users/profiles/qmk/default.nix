@@ -1,5 +1,9 @@
 { pkgs, ... }: with pkgs; {
 
-  home.packages = [ qmk ];
+  home.packages = [
+    gnumake
+    qmk
+    vial
+  ];
 
 }

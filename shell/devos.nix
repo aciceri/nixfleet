@@ -38,12 +38,12 @@ in
 
   commands = with pkgs; [
     (devos nixUnstable)
-    {
-      category = "devos";
-      name = nvfetcher-bin.pname;
-      help = nvfetcher-bin.meta.description;
-      command = "cd $DEVSHELL_ROOT/pkgs; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml --no-output $@";
-    }
+    # {
+    #   category = "devos";
+    #   name = nvfetcher-bin.pname;
+    #   help = nvfetcher-bin.meta.description;
+    #   command = "cd $DEVSHELL_ROOT/pkgs; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml --no-output $@";
+    # }
     (linter nixpkgs-fmt)
     (linter editorconfig-checker)
     # (docs python3Packages.grip) too many deps

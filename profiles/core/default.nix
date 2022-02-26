@@ -5,8 +5,6 @@ in
 {
   imports = [ ../cachix ];
 
-  nix.systemFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-
   environment = {
 
     systemPackages = with pkgs; [
@@ -52,12 +50,15 @@ in
   ];
 
   nix = {
-    autoOptimiseStore = true;
     gc.automatic = true;
     optimise.automatic = true;
-    useSandbox = true;
-    allowedUsers = [ "@wheel" ];
-    trustedUsers = [ "root" "@wheel" ];
+    settings = {
+      sandbox = true;
+      trusted-users = [ "root" "@wheel" ];
+      allowed-users = [ "@wheel" ];
+      system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      auto-optimise-store = true;
+    };
     extraOptions = ''
       min-free = 536870912
       keep-outputs = true

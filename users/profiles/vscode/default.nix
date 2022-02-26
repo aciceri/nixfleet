@@ -18,6 +18,9 @@
       "window"."menuBarVisibility" = "classic";
       "[nix]"."editor.tabSize" = 2;
       "nix"."enableLanguageServer" = true;
+      "github.copilot.enable" = {
+        "*" = true;
+      };
     };
     extensions = with pkgs.vscode-extensions; [
       eamodio.gitlens

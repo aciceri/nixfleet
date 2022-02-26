@@ -1,12 +1,11 @@
-{ config, lib, pkgs, profiles, pbpKernelLatest, ... }:
+{ config, lib, pkgs, profiles, ... }:
 
 {
   imports = with profiles; [ mount-nas sshd dbus avahi printing xdg syncthing ];
 
   boot = {
     initrd.availableKernelModules = [ "usbhid" ];
-    kernelPackages = pbpKernelLatest;
-    kernelModules = [ ];
+    kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
