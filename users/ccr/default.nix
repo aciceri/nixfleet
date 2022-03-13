@@ -24,10 +24,11 @@
       texlive.combined.scheme-full
       gphoto2
       rawtherapee
-      deploy-rs.deploy-rs
     ] ++
     (if !stdenv.hostPlatform.isAarch64 then [
       wineWowPackages.full
+      vial
+      deploy-rs.deploy-rs # to slow to cross compile for aarch64
       #digikam # broken
     ] else [ ])
     else [ ]);

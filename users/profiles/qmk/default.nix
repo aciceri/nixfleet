@@ -2,8 +2,7 @@
 
   home.packages = [
     gnumake
-    qmk
-    vial
+    #qmk
   ];
 
 }

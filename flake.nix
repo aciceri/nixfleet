@@ -9,8 +9,8 @@
       nur.url = "github:nix-community/NUR";
 
       digga.url = "github:divnix/digga";
-      digga.inputs.nixpkgs.follows = "stable";
-      digga.inputs.nixlib.follows = "stable";
+      digga.inputs.nixpkgs.follows = "unstable";
+      digga.inputs.nixlib.follows = "unstable";
       digga.inputs.home-manager.follows = "unstable";
 
       home.url = "github:nix-community/home-manager/release-21.11";
@@ -96,7 +96,8 @@
 
         nixos = {
           hostDefaults = {
-            channelName = "unstable";
+            # channelName = "unstable";
+            channelName = "stable";
             imports = [ (digga.lib.importExportableModules ./modules) ];
             modules = [
               { lib.our = self.lib; }
@@ -132,6 +133,9 @@
             suites = with profiles; rec {
               base = [ core users.ccr users.root ];
             };
+            unstableKernelForPBP = (import inputs.unstable {
+              system = "aarch64-linux";
+            }).pkgs.linuxPackages_latest;
           };
         };
 

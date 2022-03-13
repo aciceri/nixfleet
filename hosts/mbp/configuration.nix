@@ -20,7 +20,6 @@
   };
 
   nix = {
-    package = pkgs.nixUnstable;
     gc = {
       automatic = true;
       user = "andreaciceri";

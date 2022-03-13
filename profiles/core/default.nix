@@ -15,6 +15,7 @@ in
       dosfstools
       fd
       git
+      htop
       bottom
       gptfdisk
       iputils
@@ -52,13 +53,10 @@ in
   nix = {
     gc.automatic = true;
     optimise.automatic = true;
-    settings = {
-      sandbox = true;
-      trusted-users = [ "root" "@wheel" ];
-      allowed-users = [ "@wheel" ];
-      system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-      auto-optimise-store = true;
-    };
+    autoOptimiseStore = true;
+    useSandbox = true;
+    allowedUsers = [ "@wheel" ];
+    trustedUsers = [ "root" "@wheel" ];
     extraOptions = ''
       min-free = 536870912
       keep-outputs = true

@@ -72,7 +72,7 @@
         workgroup = WORKGROUP
         server string = nas
         netbios name = nas
-        security = user 
+        security = user
         map to guest = bad user
         vfs objects = recycle
         recycle:repository = .recycle
@@ -279,7 +279,6 @@
   };
 
   nix = {
-    package = pkgs.nixUnstable;
     gc = {
       automatic = true;
       options = "--delete-older-than 3d";

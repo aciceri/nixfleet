@@ -1,11 +1,11 @@
-{ config, lib, pkgs, profiles, ... }:
+{ config, lib, pkgs, unstableKernelForPBP, profiles, ... }:
 
 {
   imports = with profiles; [ mount-nas sshd dbus avahi printing xdg syncthing ];
 
   boot = {
     initrd.availableKernelModules = [ "usbhid" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = unstableKernelForPBP;
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
@@ -48,7 +48,6 @@
 
 
   nix = {
-    package = pkgs.nixUnstable;
     gc = {
       automatic = true;
       options = "--delete-older-than 3d";

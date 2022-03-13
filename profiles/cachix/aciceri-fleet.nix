@@ -1,9 +1,9 @@
 {
-  nix.settings = {
-    substituters = [
+  nix = {
+    binaryCaches = [
       "https://aciceri-fleet.cachix.org"
     ];
-    trusted-public-keys = [
+    binaryCachePublicKeys = [
       "aciceri-fleet.cachix.org-1:WiHJIK4UFTdfvWx0lG3mCR4EddyYsRhIuMGSje3/YGI="
     ];
   };

@@ -7,7 +7,7 @@
   };
 
   programs.emacs = {
-    enable = !pkgs.stdenv.hostPlatform.isDarwin;
+    enable = false;
     package = pkgs.customEmacs;
   };
 
@@ -56,7 +56,7 @@
           comment = "Org protocol";
           desktopName = "org-protocol";
           type = "Application";
-          mimeTypes = [ "x-scheme-handler/org-protocol" ];
+          mimeType = "x-scheme-handler/org-protocol";
         }
       )
     ] ++ (if pkgs.system == "x86_64-linux" then [
