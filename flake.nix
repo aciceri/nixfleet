@@ -23,12 +23,12 @@
 
       emacs-overlay.url = github:nix-community/emacs-overlay;
 
-      nixos-hardware.url = "github:nixos/nixos-hardware";
+      nixos-hardware.url = github:aciceri/nixos-hardware;
 
-      pinebook-pro = {
-        url = "github:samueldr/wip-pinebook-pro/995a6859f3eb4d740dbc086150dee8f98175a3b6";
-        flake = false;
-      };
+      # pinebook-pro = {
+      #   url = "github:samueldr/wip-pinebook-pro/995a6859f3eb4d740dbc086150dee8f98175a3b6";
+      #   flake = false;
+      # };
       # pinebook-pro-kernel-latest.url = github:nixos/nixpkgs/755db9a1e9a35c185f7d6c0463025e94ef44622e;
 
       nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
@@ -43,7 +43,7 @@
     , home
     , nixos-hardware
     , darwin
-    , pinebook-pro
+      # , pinebook-pro
       # , pinebook-pro-kernel-latest
     , nixpkgs-wayland
     , emacs-overlay
@@ -65,7 +65,9 @@
               emacs-overlay.overlay
               deploy.overlay
               #nixpkgs-wayland.overlay
-              ./pkgs/default.nix
+              (import ./pkgs/default.nix {
+                unstablePkgsInput = inputs.unstable;
+              })
             ];
           in
           {
@@ -118,10 +120,9 @@
             };
             pbp = {
               system = "aarch64-linux";
-              channelName = "stable";
               imports = [{ modules = ./hosts/pbp; }];
               modules = [
-                "${pinebook-pro}/pinebook_pro.nix"
+                "${nixos-hardware}/pine64/pinebook-pro"
               ];
             };
           };
@@ -133,9 +134,9 @@
             suites = with profiles; rec {
               base = [ core users.ccr users.root ];
             };
-            unstableKernelForPBP = (import inputs.unstable {
-              system = "aarch64-linux";
-            }).pkgs.linuxPackages_latest;
+            # unstableKernelForPBP = (import inputs.unstable {
+            #   system = "aarch64-linux";
+            # }).pkgs.linuxPackages_latest;
           };
         };
 

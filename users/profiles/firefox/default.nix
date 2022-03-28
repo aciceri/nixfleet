@@ -2,6 +2,7 @@
 {
   programs.firefox = {
     enable = true;
+    package = pkgs.firefox-unwrapped;
     #package = (pkgs.firefox.override { extraNativeMessagingHosts = [
     #  pkgs.browserpass
     #  pkgs.passff-host

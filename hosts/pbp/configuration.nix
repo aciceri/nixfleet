@@ -1,11 +1,10 @@
-{ config, lib, pkgs, unstableKernelForPBP, profiles, ... }:
+{ config, lib, pkgs, profiles, ... }:
 
 {
   imports = with profiles; [ mount-nas sshd dbus avahi printing xdg syncthing ];
 
   boot = {
     initrd.availableKernelModules = [ "usbhid" ];
-    kernelPackages = unstableKernelForPBP;
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
@@ -21,7 +20,22 @@
       enable = true;
       package = pkgs.pulseaudioFull;
     };
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          MultiProfile = "multiple";
+          ControllerMode = "dual";
+          AutoConnect = true;
+        };
+        Policy = {
+          AutoEnable = true;
+        };
+      };
+    };
   };
+
+  services.blueman.enable = true;
 
   networking = {
     useDHCP = false;
@@ -30,7 +44,11 @@
   };
 
   time.timeZone = "Europe/Rome";
-  location.provider = "geoclue2";
+  # location = {
+  #   # not using geoclue since it's broken on aarch64
+  #   latitude = "45.4654219";
+  #   longitude = "45.4654219";
+  # };
 
   fileSystems = {
     "/" = {
@@ -46,7 +64,6 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/e236d328-496e-4cf8-ba54-857789ca258f"; }];
 
-
   nix = {
     gc = {
       automatic = true;
@@ -55,4 +72,8 @@
   };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
+
+  services.logind.extraConfig = ''
+    HandlePowerKey=ignore
+  '';
 }

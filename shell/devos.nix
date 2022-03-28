@@ -49,11 +49,6 @@ in
     # (docs python3Packages.grip) too many deps
     (docs mdbook)
   ]
-
-  ++ lib.optional
-    (pkgs ? deploy-rs)
-    (devos deploy-rs.deploy-rs)
-
   ++ lib.optional
     (system != "i686-linux")
     (devos cachix)

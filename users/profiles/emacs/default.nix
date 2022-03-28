@@ -7,7 +7,7 @@
   };
 
   programs.emacs = {
-    enable = false;
+    enable = true;
     package = pkgs.customEmacs;
   };
 

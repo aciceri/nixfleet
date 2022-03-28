@@ -265,6 +265,7 @@
       443 # https
       445 # samba
       4712 # amule
+      4711 # amule web gui
       8384 # syncthing
     ];
     allowedUDPPorts = [
