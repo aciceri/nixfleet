@@ -21,7 +21,7 @@
 
       deploy.follows = "digga/deploy";
 
-      emacs-overlay.url = github:nix-community/emacs-overlay;
+      emacs-overlay.url = github:nix-community/emacs-overlay/beffadfb0345078ab3d630e9ca6e0aaf061d3aa5;
 
       nixos-hardware.url = github:aciceri/nixos-hardware;
 
