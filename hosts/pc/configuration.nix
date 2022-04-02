@@ -50,5 +50,15 @@
     };
   };
 
+  # TODO: disable, only for playing
+  services.hydra = {
+    enable = true;
+    hydraURL = "http://localhost:3000";
+    notificationSender = "hydra@localhost";
+    buildMachinesFiles = [ ];
+    useSubstitutes = true;
+  };
+
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
