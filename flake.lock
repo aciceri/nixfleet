@@ -18,7 +18,7 @@
     "darwin": {
       "inputs": {
         "nixpkgs": [
-          "unstable"
+          "stable"
         ]
       },
       "locked": {

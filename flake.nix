@@ -17,7 +17,7 @@
       home.inputs.nixpkgs.follows = "unstable";
 
       darwin.url = "github:LnL7/nix-darwin";
-      darwin.inputs.nixpkgs.follows = "unstable";
+      darwin.inputs.nixpkgs.follows = "stable";
 
       deploy.follows = "digga/deploy";
 
@@ -173,7 +173,9 @@
         system = "x86_64-darwin";
         modules = [ home.darwinModules.home-manager ./hosts/mbp ];
         inputs = { inherit darwin; };
-        specialArgs = { inherit emacs-overlay; };
+        specialArgs = {
+          inherit emacs-overlay; unstablePkgsInput = inputs.unstablePkgs;
+        };
       };
     };
 }

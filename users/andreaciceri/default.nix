@@ -13,13 +13,22 @@
       yarn
       pinentry_mac
       openscad
-      nodejs
+      nodejs-14_x
+
+      poetry
+      ipfs
+      ipget
 
       yabai
       skhd
       spacebar
       xquartz
       xterm
+
+      qmk
+
+      youtube-dl
+      ffmpeg
     ];
 
     programs.gpg = {

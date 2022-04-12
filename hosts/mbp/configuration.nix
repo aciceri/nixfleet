@@ -1,4 +1,9 @@
-{ pkgs, home-manager, emacs-overlay, ... }:
+{ pkgs
+, home-manager
+, emacs-overlay
+, unstablePkgsInput
+, ...
+}:
 {
   imports = [
     ../../users/andreaciceri
@@ -15,7 +20,13 @@
   };
 
   nixpkgs = {
-    overlays = [ (import ../../pkgs) emacs-overlay.overlay ];
+    overlays = [
+      (import ../../pkgs {
+        inherit unstablePkgsInput
+          ;
+      })
+      emacs-overlay.overlay
+    ];
     config.allowUnfree = true;
   };
 
@@ -25,5 +36,10 @@
       user = "andreaciceri";
       options = "--delete-older-than 3d";
     };
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command
+      experimental-features = flakes
+    '';
   };
 }
