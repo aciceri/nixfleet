@@ -136,6 +136,21 @@
         "type": "github"
       }
     },
+    "flake-compat-ci": {
+      "locked": {
+        "lastModified": 1646664117,
+        "narHash": "sha256-AX2VewPcS9eRsoirVHfnk07MHAOH6CTDiD10XtRaZbk=",
+        "owner": "hercules-ci",
+        "repo": "flake-compat-ci",
+        "rev": "e588637b2eec4261ed0d36335c83a117f2744dea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-compat-ci",
+        "type": "github"
+      }
+    },
     "flake-compat_2": {
       "flake": false,
       "locked": {
@@ -153,6 +168,22 @@
       }
     },
     "flake-compat_3": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648199409,
+        "narHash": "sha256-JwPKdC2PoVBkG6E+eWw3j6BMR6sL3COpYWfif7RVb8Y=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "64a525ee38886ab9028e6f61790de0832aa3ef03",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_4": {
       "flake": false,
       "locked": {
         "lastModified": 1641205782,
@@ -253,17 +284,6 @@
         "type": "github"
       }
     },
-    "nixos": {
-      "locked": {
-        "narHash": "sha256-obk4aD7DmB0yyKsw1tL8Pd1WQLFp/arZETIIMKTVx+E=",
-        "path": "/nix/store/r4y8hrjiix7zj2m2jgn2bjiqj2hd4rd4-source",
-        "type": "path"
-      },
-      "original": {
-        "id": "nixos",
-        "type": "indirect"
-      }
-    },
     "nixos-generators": {
       "inputs": {
         "nixlib": "nixlib",
@@ -319,7 +339,7 @@
         "cachix": [
           "unstable"
         ],
-        "flake-compat": "flake-compat_3",
+        "flake-compat": "flake-compat_4",
         "nixpkgs": [
           "unstable"
         ]
@@ -409,8 +429,9 @@
         ],
         "digga": "digga",
         "emacs-overlay": "emacs-overlay",
+        "flake-compat": "flake-compat_3",
+        "flake-compat-ci": "flake-compat-ci",
         "home": "home",
-        "nixos": "nixos",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur",
