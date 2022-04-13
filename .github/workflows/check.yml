@@ -33,8 +33,9 @@ jobs:
         with:
           name: aciceri-fleet
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - run: sed -i 's/#\(.*\).*\#.* ga-uncomment/\1/g' flake.nix # disabling outputs unsupported inside the GitHub action
-      - run: nix -Lv flake check
-      - run: nix -Lv build ".#nixosConfigurations.pc.config.system.build.toplevel"
-      - run: nix -Lv build ".#nixosConfigurations.hs.config.system.build.toplevel"
+      #- run: sed -i 's/#\(.*\).*\#.* ga-uncomment/\1/g' flake.nix # disabling outputs unsupported inside the GitHub action
+      - run: nix -Lv build ".#nixosConfigurations.pbp.config.system.build.toplevel"
+      #- run: nix -Lv flake check
+      #- run: nix -Lv build ".#nixosConfigurations.pc.config.system.build.toplevel"
+      #- run: nix -Lv build ".#nixosConfigurations.hs.config.system.build.toplevel"
       - run: nix -Lv develop -c echo OK
