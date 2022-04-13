@@ -3,6 +3,8 @@
       delete-old-versions 6
       kept-old-versions 2
       version-control t
-      create-lockfiles nil)
+      create-lockfiles nil
+      native-comp-async-report-warnings-errors nil
+      )
 
 (provide 'config-emacs)
