@@ -3,41 +3,29 @@
 
   inputs =
     {
-      stable.url = "github:nixos/nixpkgs/release-21.11";
-      unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+      stable.url = github:nixos/nixpkgs/release-21.11;
+      unstable.url = github:nixos/nixpkgs/nixos-unstable;
 
-      nur.url = "github:nix-community/NUR";
+      nur.url = github:nix-community/NUR;
 
-      digga.url = "github:divnix/digga";
+      digga.url = github:divnix/digga;
       digga.inputs.nixpkgs.follows = "unstable";
       digga.inputs.nixlib.follows = "unstable";
       digga.inputs.home-manager.follows = "unstable";
 
-      flake-compat = {
-        url = "github:edolstra/flake-compat";
-        flake = false;
-      };
-      flake-compat-ci.url = github:hercules-ci/flake-compat-ci;
-
-      home.url = "github:nix-community/home-manager/release-21.11";
+      home.url = github:nix-community/home-manager/release-21.11;
       home.inputs.nixpkgs.follows = "unstable";
 
-      darwin.url = "github:LnL7/nix-darwin";
+      darwin.url = github:LnL7/nix-darwin;
       darwin.inputs.nixpkgs.follows = "stable";
 
       deploy.follows = "digga/deploy";
 
       emacs-overlay.url = github:nix-community/emacs-overlay/beffadfb0345078ab3d630e9ca6e0aaf061d3aa5;
 
-      nixos-hardware.url = github:aciceri/nixos-hardware;
+      nixos-hardware.url = github:NixOS/nixos-hardware;
 
-      # pinebook-pro = {
-      #   url = "github:samueldr/wip-pinebook-pro/995a6859f3eb4d740dbc086150dee8f98175a3b6";
-      #   flake = false;
-      # };
-      # pinebook-pro-kernel-latest.url = github:nixos/nixpkgs/755db9a1e9a35c185f7d6c0463025e94ef44622e;
-
-      nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+      nixpkgs-wayland.url = github:nix-community/nixpkgs-wayland;
       nixpkgs-wayland.inputs.nixpkgs.follows = "unstable";
       nixpkgs-wayland.inputs.cachix.follows = "unstable";
     };
@@ -45,13 +33,10 @@
   outputs =
     { self
     , digga
-    , flake-compat-ci
     , unstable
     , home
     , nixos-hardware
     , darwin
-      # , pinebook-pro
-      # , pinebook-pro-kernel-latest
     , nixpkgs-wayland
     , emacs-overlay
     , nur
@@ -141,9 +126,6 @@
             suites = with profiles; rec {
               base = [ core users.ccr users.root ];
             };
-            # unstableKernelForPBP = (import inputs.unstable {
-            #   system = "aarch64-linux";
-            # }).pkgs.linuxPackages_latest;
           };
         };
 
@@ -184,12 +166,5 @@
           inherit emacs-overlay; unstablePkgsInput = inputs.unstablePkgs;
         };
       };
-
-      ciNix = flake-compat-ci.lib.recurseIntoFlakeWith {
-        flake = self;
-        systems = [ "x86_64-linux" ];
-      };
-
-
     };
 }
