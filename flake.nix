@@ -13,6 +13,12 @@
       digga.inputs.nixlib.follows = "unstable";
       digga.inputs.home-manager.follows = "unstable";
 
+      flake-compat = {
+        url = "github:edolstra/flake-compat";
+        flake = false;
+      };
+      flake-compat-ci.url = github:hercules-ci/flake-compat-ci;
+
       home.url = "github:nix-community/home-manager/release-21.11";
       home.inputs.nixpkgs.follows = "unstable";
 
@@ -39,7 +45,8 @@
   outputs =
     { self
     , digga
-    , nixos
+    , flake-compat-ci
+    , unstable
     , home
     , nixos-hardware
     , darwin
@@ -81,7 +88,7 @@
             };
           };
 
-        lib = import ./lib { lib = digga.lib // nixos.lib; };
+        lib = import ./lib { lib = digga.lib // unstable.lib; };
 
         sharedOverlays = [
           (
@@ -177,5 +184,12 @@
           inherit emacs-overlay; unstablePkgsInput = inputs.unstablePkgs;
         };
       };
+
+      ciNix = flake-compat-ci.lib.recurseIntoFlakeWith {
+        flake = self;
+        systems = [ "x86_64-linux" ];
+      };
+
+
     };
 }
