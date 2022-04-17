@@ -303,6 +303,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-dev": {
+      "locked": {
+        "lastModified": 1650234480,
+        "narHash": "sha256-EdnUK7+8pUoo/CraZvLb1pW9VvL7mfjpJ9swae5btjE=",
+        "owner": "aciceri",
+        "repo": "nixpkgs",
+        "rev": "c2bc2e8c2488f4b0b88217d8655e072ab4fc403b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aciceri",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-wayland": {
       "inputs": {
         "cachix": [
@@ -400,6 +415,7 @@
         "emacs-overlay": "emacs-overlay",
         "home": "home",
         "nixos-hardware": "nixos-hardware",
+        "nixpkgs-dev": "nixpkgs-dev",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur",
         "stable": "stable",

@@ -1,4 +1,4 @@
-{ pkgs, suites, lib, config, ... }:
+{ pkgs, suites, lib, config, nixpkgs-dev, ... }:
 {
   home-manager.users.ccr = { suites, ... }: {
     imports = with suites; shell ++ base ++ (if config.networking.hostName != "hs" then
@@ -9,6 +9,7 @@
     home.packages = with pkgs; [
       ack
       ranger
+      nixpkgs-dev.umoria
     ] ++ (if config.networking.hostName != "hs" then [
       imv
       calibre

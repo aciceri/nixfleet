@@ -5,6 +5,7 @@
     {
       stable.url = github:nixos/nixpkgs/release-21.11;
       unstable.url = github:nixos/nixpkgs/nixos-unstable;
+      nixpkgs-dev.url = github:aciceri/nixpkgs;
 
       nur.url = github:nix-community/NUR;
 
@@ -34,6 +35,7 @@
     { self
     , digga
     , unstable
+    , nixpkgs-dev
     , home
     , nixos-hardware
     , darwin
@@ -126,6 +128,7 @@
             suites = with profiles; rec {
               base = [ core users.ccr users.root ];
             };
+            nixpkgs-dev = inputs.nixpkgs-dev.legacyPackages.aarch64-linux;
           };
         };
 
