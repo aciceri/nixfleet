@@ -303,21 +303,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-dev": {
-      "locked": {
-        "lastModified": 1650234480,
-        "narHash": "sha256-EdnUK7+8pUoo/CraZvLb1pW9VvL7mfjpJ9swae5btjE=",
-        "owner": "aciceri",
-        "repo": "nixpkgs",
-        "rev": "c2bc2e8c2488f4b0b88217d8655e072ab4fc403b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aciceri",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-wayland": {
       "inputs": {
         "cachix": [
@@ -339,6 +324,21 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs-wayland",
+        "type": "github"
+      }
+    },
+    "nixpkgsDevInput": {
+      "locked": {
+        "lastModified": 1650235668,
+        "narHash": "sha256-OmGlM2pIMMrhkoHNi4yxG0H3JzoK8gZ7dUfx7OsDoFE=",
+        "owner": "aciceri",
+        "repo": "nixpkgs",
+        "rev": "a28ba9716a4c3f16379ceba7e4d754782846bebb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aciceri",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -415,8 +415,8 @@
         "emacs-overlay": "emacs-overlay",
         "home": "home",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs-dev": "nixpkgs-dev",
         "nixpkgs-wayland": "nixpkgs-wayland",
+        "nixpkgsDevInput": "nixpkgsDevInput",
         "nur": "nur",
         "stable": "stable",
         "unstable": "unstable"
@@ -459,11 +459,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1647893727,
-        "narHash": "sha256-pOi7VdCb+s5Cwh5CS7YEZVRgH9uCmE87J5W7iXv29Ck=",
+        "lastModified": 1650161686,
+        "narHash": "sha256-70ZWAlOQ9nAZ08OU6WY7n4Ij2kOO199dLfNlvO/+pf8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1ec61dd4167f04be8d05c45780818826132eea0d",
+        "rev": "1ffba9f2f683063c2b14c9f4d12c55ad5f4ed887",
         "type": "github"
       },
       "original": {

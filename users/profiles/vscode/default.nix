@@ -1,9 +1,8 @@
 { pkgs, ... }:
 {
   # only purpose of this is to make vscode login to Github
-  services.gnome-keyring = {
-    enable = true;
-  };
+  services.gnome-keyring.enable = true;
+
 
   programs.vscode = {
     enable = true;
@@ -32,6 +31,7 @@
   };
 
   home.packages = with pkgs; [
+    gnome.gnome-keyring
     stylish-haskell
     ghc
   ] ++ (if pkgs.system == "x86_64-linux" then [

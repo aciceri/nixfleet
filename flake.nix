@@ -5,7 +5,7 @@
     {
       stable.url = github:nixos/nixpkgs/release-21.11;
       unstable.url = github:nixos/nixpkgs/nixos-unstable;
-      nixpkgs-dev.url = github:aciceri/nixpkgs;
+      nixpkgsDevInput.url = github:aciceri/nixpkgs;
 
       nur.url = github:nix-community/NUR;
 
@@ -35,7 +35,6 @@
     { self
     , digga
     , unstable
-    , nixpkgs-dev
     , home
     , nixos-hardware
     , darwin
@@ -60,7 +59,8 @@
               deploy.overlay
               #nixpkgs-wayland.overlay
               (import ./pkgs/default.nix {
-                unstablePkgsInput = inputs.unstable;
+                nixpkgsUnstableInput = inputs.unstable;
+                nixpkgsDevInput = inputs.nixpkgsDevInput;
               })
             ];
           in
@@ -128,7 +128,6 @@
             suites = with profiles; rec {
               base = [ core users.ccr users.root ];
             };
-            nixpkgs-dev = inputs.nixpkgs-dev.legacyPackages.aarch64-linux;
           };
         };
 
@@ -166,7 +165,9 @@
         modules = [ home.darwinModules.home-manager ./hosts/mbp ];
         inputs = { inherit darwin; };
         specialArgs = {
-          inherit emacs-overlay; unstablePkgsInput = inputs.unstablePkgs;
+          inherit emacs-overlay;
+          nixpkgsUnstableInput = inputs.unstable;
+          nixpkgsDevInput = inputs.nixpkgsDevInput;
         };
       };
     };
