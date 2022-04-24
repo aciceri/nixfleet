@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  home.packages = with pkgs; [ wl-clipboard ];
+  home.packages = with pkgs; [ wl-clipboard fuzzel ];
 
   wayland = {
     windowManager.sway =
