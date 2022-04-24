@@ -59,7 +59,7 @@
             in
             lib.mkOptionDefault {
               "${modifier}+x" = "exec emacsclient -c";
-              "${modifier}+b" = "exec firefox";
+              "${modifier}+b" = "exec qutebrowser";
               "${modifier}+s" = "exec ${screenshotScript}";
               "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s +5%";
               "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%-";

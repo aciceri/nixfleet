@@ -41,7 +41,8 @@
       "pass-clone" = "[ -d .password-store ] && echo 'Password store archive already exists' || git clone git@git.sr.ht:~zrsk/pass ~/.password-store";
       "getpass" = "pass show $(find .password-store/ -name \"*.gpg\" | sed \"s/\\.password-store\\/\\(.*\\)\\.gpg$/\\1/g\" | fzf) | wl-copy; ((sleep 60 && wl-copy --clear) &)";
       "cat" = "bat";
-      "em" = "emacsclient -c";
+      "em" = "[[ -z \$XDG_CURRENT_DESKTOP ]] && emacsclient -c -nw || emacsclient -c";
+      "emw" = "emacsclient -c";
       "emnw" = "emacsclient -c -nw";
     };
     localVariables = {
@@ -49,7 +50,7 @@
       SPACESHIP_TIME_SHOW = "true";
       SPACESHIP_USER_SHOW = "always";
       SPACESHIP_HOST_SHOW = "always";
-      EDITOR = "vim";
+      EDITOR = "em";
       NIX_BUILD_SHELL = "${pkgs.zsh-nix-shell}/scripts/buildShellShim.zsh";
       PROMPT = "\\\${IN_NIX_SHELL:+[nix-shell] }$PROMPT";
     };
