@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 {
   home.packages = with pkgs; [ wl-clipboard ];
+
   wayland = {
     windowManager.sway =
       let
@@ -60,6 +61,8 @@
               "${modifier}+x" = "exec emacsclient -c";
               "${modifier}+b" = "exec firefox";
               "${modifier}+s" = "exec ${screenshotScript}";
+              "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s +5%";
+              "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%-";
             };
         };
         extraConfig = ''
@@ -125,8 +128,8 @@
 
           backlight = {
             format = "nit {percent}%";
-            on-scroll-up = "${pkgs.light}/bin/light -A 2";
-            on-scroll-down = "${pkgs.light}/bin/light -U 2";
+            on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl s +5%";
+            on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl s 5%-";
           };
 
           tray.spacing = 10;

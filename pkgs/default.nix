@@ -18,6 +18,7 @@ in
   amule = prev.callPackage (import ./amule) { };
   digikam = nixpkgsUnstable.digikam;
   cura = nixpkgsUnstable.cura;
+  qutebrowser = import ./qutebrowser { pkgs = prev; };
   #firefox-unwrapped = nixpkgsUnstable.firefox-unwrapped;
   xdg-desktop-portal = nixpkgsUnstable.xdg-desktop-portal;
   xdg-desktop-portal-gtk = nixpkgsUnstable.xdg-desktop-portal-gtk;

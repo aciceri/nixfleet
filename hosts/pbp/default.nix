@@ -3,5 +3,4 @@
   imports = [
     ./configuration.nix
   ] ++ suites.base;
-
 }
