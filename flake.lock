@@ -329,11 +329,11 @@
     },
     "nixpkgsDevInput": {
       "locked": {
-        "lastModified": 1650235668,
-        "narHash": "sha256-OmGlM2pIMMrhkoHNi4yxG0H3JzoK8gZ7dUfx7OsDoFE=",
+        "lastModified": 1650450000,
+        "narHash": "sha256-/ASymH28AS7KsNvkQ1RMKRoCQKSi1AsWkHdJpQwhXCg=",
         "owner": "aciceri",
         "repo": "nixpkgs",
-        "rev": "a28ba9716a4c3f16379ceba7e4d754782846bebb",
+        "rev": "cf941213b48d9602be0dc2656e02e065740798ab",
         "type": "github"
       },
       "original": {

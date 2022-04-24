@@ -16,7 +16,9 @@ in
     package = pkgs.gitAndTools.gitFull;
 
     extraConfig = {
+      ui.color = true;
       pull.rebase = false;
+      rebase.autostash = true;
     };
 
     userName = config.name;

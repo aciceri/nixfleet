@@ -12,6 +12,7 @@ emacsWithPackages (
       all-the-icons
       company
       dap-mode
+      diff-hl
       doom-modeline
       evil
       evil-collection

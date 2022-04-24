@@ -10,6 +10,7 @@
       ack
       ranger
       umoria
+      droidcam
     ] ++ (if config.networking.hostName != "hs" then [
       imv
       calibre

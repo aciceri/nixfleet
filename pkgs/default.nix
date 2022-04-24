@@ -26,5 +26,7 @@ in
   geoclue2 = nixpkgsUnstable.geoclue2;
   gnome = nixpkgsUnstable.gnome;
   umoria = nixpkgsDev.umoria;
+  droidcam = prev.callPackage (import ./droidcam) { };
+  v4l2loopback-dc = prev.callPackage (import ./v4l2loopback-dc) { kernel = prev.linux; };
   # then, call packages with `final.callPackage`
 }

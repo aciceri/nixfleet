@@ -41,7 +41,8 @@
 	 ("<prior>" . #'good-scroll-down-full-screen))) 
 
 (use-package rainbow-identifiers
-  :hook ((prog-mode . rainbow-identifiers-mode)))
+  ;; :hook ((prog-mode . rainbow-identifiers-mode))
+  )
 
 ;; To move in a different config file
 (when (string-equal system-type "darwin")
