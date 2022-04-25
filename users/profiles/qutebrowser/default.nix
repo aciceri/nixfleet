@@ -1,6 +1,14 @@
 {
   programs.qutebrowser = {
     enable = true;
+    searchEngines = {
+      DEFAULT = "https://searx.be/search?q={}&category_general=on&language=all";
+      w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
+      np = "https://search.nixos.org/packages?sort=relevance&type=packages&query={}";
+      no = "https://search.nixos.org/options?sort=relevance&type=options&query={}";
+      g = "https://google.com/search?q={}";
+      git = "https://github.com/search?q={}";
+    };
     keyBindings = {
       normal = {
         "<Ctrl-V>" = "spawn mpv {url}";
@@ -12,6 +20,7 @@
       };
     };
     settings = {
+      url.start_pages = [ "https://searx.be" ];
       editor.command = [
         "emacsclient"
         "+{line}:{column}"
@@ -21,3 +30,4 @@
     };
   };
 }
+
