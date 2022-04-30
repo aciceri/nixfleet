@@ -2,6 +2,9 @@
   :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-status)))
 
+(use-package magit-delta
+  :hook (magit-mode . magit-delta-mode))
+
 (use-package transient
   :defer t
   :config

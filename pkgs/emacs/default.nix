@@ -18,6 +18,7 @@ emacsWithPackages (
       evil-collection
       fira-code-mode
       good-scroll
+      go-translate
       haskell-mode
       helm
       helm-ag
@@ -28,6 +29,7 @@ emacsWithPackages (
       lsp-mode
       lsp-python-ms
       magit
+      magit-delta
       nix-mode
       notmuch
       org-download

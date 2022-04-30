@@ -51,6 +51,15 @@
     };
   };
 
+
+  networking.firewall = {
+    enable = true;
+    allowPing = true;
+    allowedTCPPorts = [
+      5900 # vnc
+    ];
+  };
+
   # TODO: disable, only for playing
   services.hydra = {
     enable = true;

@@ -8,10 +8,11 @@
       no = "https://search.nixos.org/options?sort=relevance&type=options&query={}";
       g = "https://google.com/search?q={}";
       git = "https://github.com/search?q={}";
+      y = "https://www.youtube.com/results?search_query={}";
     };
     keyBindings = {
       normal = {
-        "<Ctrl-V>" = "spawn mpv {url}";
+        "<Ctrl-V>" = "spawn mpv --force-window=immediate {url}";
         ",l" = ''config-cycle spellcheck.languages [" it-IT "] [" en-US "]'';
         "<z><l>" = "spawn --userscript qute-pass --dmenu-invocation 'fuzzel -d'";
         "<z><u><l>" = "spawn --userscript qute-pass --dmenu-invocation 'fuzzel -d' --username-only";

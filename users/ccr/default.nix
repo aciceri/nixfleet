@@ -31,7 +31,7 @@
       wineWowPackages.full
       vial
       deploy-rs.deploy-rs # to slow to cross compile for aarch64
-      digikam # broken
+      digikam
     ] else [ ])
     else [ ]);
   };

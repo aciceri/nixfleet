@@ -10,11 +10,10 @@
 )  
 
 (use-package fira-code-mode
+  :after all-the-icons
   ;;:custom (fira-code-mode-disabled-ligatures '("x")) ;; List of ligatures to turn off
-  :config (progn
-	    (global-fira-code-mode)
-	    ;;TODO: why a timer is needed? It shouldn't
-	    (run-at-time "30 sec" nil #'set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
+  :config 
+  :hook ((prog-mode . (lambda () (progn (fira-code-mode) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))))))
 
 (use-package visual-fill-column
   :commands (visual-fill-column-mode)

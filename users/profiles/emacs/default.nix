@@ -35,7 +35,7 @@
         };
     in
     with pkgs; [
-      silver-searcher
+      delta
       fd
       graphviz-nox
       hunspell
@@ -47,6 +47,7 @@
       poppler_utils
       python3Full
       rnix-lsp
+      silver-searcher
       stylish-haskell
       unzip
       (
