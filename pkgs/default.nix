@@ -28,5 +28,7 @@ in
   umoria = nixpkgsDev.umoria;
   droidcam = prev.callPackage (import ./droidcam) { };
   v4l2loopback-dc = prev.callPackage (import ./v4l2loopback-dc) { kernel = prev.linux; };
+  slack = import ./slack { pkgs = prev; };
+  google-chrome = import ./google-chrome { pkgs = prev; };
   # then, call packages with `final.callPackage`
 }

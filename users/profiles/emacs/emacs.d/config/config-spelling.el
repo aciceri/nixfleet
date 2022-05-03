@@ -8,13 +8,13 @@
    )
   :custom
   ((ispell-program-name "hunspell")
-   (ispell-dictionary "it_IT"))
+   (ispell-dictionary "en_US"))
   :config
   (defun switch-dictionary-it-en ()
     (interactive)
     (let* ((dict ispell-current-dictionary)
-           (new (if (string= dict "it_IT") "en_US"
-                  "it_IT")))
+           (new (if (string= dict "en_US") "it_IT"
+                  "en_US")))
       (ispell-change-dictionary new)
       (message "Switched dictionary from %s to %s" dict new))))
 

@@ -9,6 +9,7 @@ emacsWithPackages (
   ) ++ (
     with epkgs.melpaPackages; [
       # dirvish
+      aggressive-indent
       all-the-icons
       company
       dap-mode
@@ -17,8 +18,8 @@ emacsWithPackages (
       evil
       evil-collection
       fira-code-mode
-      good-scroll
       go-translate
+      good-scroll
       haskell-mode
       helm
       helm-ag
@@ -45,6 +46,7 @@ emacsWithPackages (
       rainbow-identifiers
       scad-mode
       sudo-utils
+      symex
       treemacs
       treemacs-evil
       treemacs-icons-dired

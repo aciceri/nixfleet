@@ -26,6 +26,8 @@
       texlive.combined.scheme-full
       gphoto2
       rawtherapee
+      slack
+      translate-shell
     ] ++
     (if !stdenv.hostPlatform.isAarch64 then [
       wineWowPackages.full

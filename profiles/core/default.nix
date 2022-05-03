@@ -16,6 +16,7 @@ in
       fd
       git
       htop
+      glances
       bottom
       gptfdisk
       iputils

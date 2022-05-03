@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   programs.qutebrowser = {
     enable = true;
@@ -30,5 +32,17 @@
       ];
     };
   };
+  home.packages = [
+    (
+      pkgs.makeDesktopItem {
+        name = "qutebrowser";
+        exec = "qutebrowser %u";
+        comment = "Qutebrowser";
+        desktopName = "qutebrowser";
+        type = "Application";
+        mimeType = "x-scheme-handler/https";
+      }
+    )
+  ];
 }
 

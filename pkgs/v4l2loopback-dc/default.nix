@@ -1,5 +1,8 @@
 { stdenv, fetchzip, kernel }:
 
+# if "Built-in-audio" (virtual device) is not shown in pavucontrol try the following
+# pacmd load-module module-alsa-source device=hw:Loopback,1,0
+
 stdenv.mkDerivation rec {
   pname = "v4l2loopback-dc";
   version = "0";

@@ -49,8 +49,8 @@
 (use-package org-superstar
   :custom
   (org-superstar-special-todo-items t)
-  :hook
-  (('org-mode . (lambda () (org-superstar-mode 1)))))
+  ;; :hook (('org-mode . (lambda () (org-superstar-mode 1))))
+  )
 
 (use-package org-download
   :hook
