@@ -14,6 +14,7 @@ emacsWithPackages (
       company
       dap-mode
       diff-hl
+      envrc
       doom-modeline
       evil
       evil-collection
@@ -29,6 +30,7 @@ emacsWithPackages (
       lsp-haskell
       lsp-mode
       lsp-python-ms
+      lsp-ui
       magit
       magit-delta
       nix-mode

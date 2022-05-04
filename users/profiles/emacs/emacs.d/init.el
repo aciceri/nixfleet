@@ -29,5 +29,6 @@ Return nil if COMMAND is not found anywhere in `exec-path'."
 (require 'config-scad)
 (require 'config-translate)
 (require 'config-lisp)
+(require 'config-direnv)
 
 (server-start)
