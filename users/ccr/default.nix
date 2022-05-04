@@ -26,10 +26,10 @@
       texlive.combined.scheme-full
       gphoto2
       rawtherapee
-      slack
       translate-shell
     ] ++
     (if !stdenv.hostPlatform.isAarch64 then [
+      slack
       wineWowPackages.full
       vial
       deploy-rs.deploy-rs # to slow to cross compile for aarch64
