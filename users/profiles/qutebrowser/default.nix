@@ -30,6 +30,7 @@
         "{file}"
         "-c"
       ];
+      content.pdfjs = true;
     };
   };
   home.packages = [
