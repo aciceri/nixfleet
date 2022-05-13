@@ -210,9 +210,7 @@
                                  'rt=$request_time uct="$upstream_connect_time" uht="$upstream_header_time" urt="$upstream_response_time"';
       '';
       virtualHosts = {
-
         "torrent.ccr.ydns.eu" = {
-
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -252,7 +250,52 @@
             proxyPass = "http://192.168.1.71:80";
           };
         };
+
+        "cam.ccr.ydns.eu" = {
+          enableACME = true;
+          addSSL = true;
+          locations."/" = {
+            proxyPass = "http://192.168.1.80:80";
+          };
+        };
       };
+    };
+  };
+
+
+  systemd.services.ydns =
+    let
+      ydnsUpdater = pkgs.writeScriptBin "ydnsUpdater" ''
+        #!${pkgs.stdenv.shell}
+        USER="andrea.ciceri@autistici.org"
+        PASSWORD=$(${pkgs.stdenv}/bin/cat /home/ccr/.ydns-password)
+        DOMAIN="ccr.ydns.eu"
+
+        for SUBDOMAIN in "books" "music" "sync" "torrent" "gate" "cam"
+        do
+            HOST="$SUBDOMAIN.$DOMAIN"
+            ${pkgs.curl}/bin/curl --basic -u "$USER:$PASSWORD" --silent https://ydns.io/api/v1/update/?host=$HOST
+        done
+        ${pkgs.curl}/bin/curl --basic -u "$USER:$PASSWORD" --silent https://ydns.io/api/v1/update/?host=$DOMAIN
+      '';
+    in
+    {
+      description = "YDNS IP updater";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+      serviceConfig = {
+        User = "ccr";
+        Type = "oneshot";
+        ExecStart = "${ydnsUpdater}/bin/ydnsUpdater";
+      };
+    };
+
+  systemd.timers.ydnsUpdater = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "ydnsUpdater.service" ];
+    timerConfig = {
+      OnCalendar = "*-*-* *:00:00"; # hourly
+      Unit = "ydnsUpdater.service";
     };
   };
 

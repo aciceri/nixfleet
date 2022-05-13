@@ -41,6 +41,7 @@
       "pass-clone" = "[ -d .password-store ] && echo 'Password store archive already exists' || git clone git@git.sr.ht:~zrsk/pass ~/.password-store";
       "getpass" = "pass show $(find .password-store/ -name \"*.gpg\" | sed \"s/\\.password-store\\/\\(.*\\)\\.gpg$/\\1/g\" | fzf) | wl-copy; ((sleep 60 && wl-copy --clear) &)";
       "cat" = "bat";
+      "man" = "batman";
       "em" = "[[ -z \$XDG_CURRENT_DESKTOP ]] && emacsclient -c -nw || emacsclient -c";
       "emw" = "emacsclient -c";
       "emnw" = "emacsclient -c -nw";

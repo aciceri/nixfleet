@@ -12,6 +12,7 @@ emacsWithPackages (
       aggressive-indent
       all-the-icons
       company
+      company-nixos-options
       dap-mode
       diff-hl
       envrc
@@ -25,6 +26,7 @@ emacsWithPackages (
       helm
       helm-ag
       helm-company
+      helm-nixos-options
       helm-projectile
       lispy
       lsp-haskell
@@ -34,6 +36,8 @@ emacsWithPackages (
       magit
       magit-delta
       nix-mode
+      nix-modeline
+      nixos-options
       notmuch
       org-download
       org-fragtog

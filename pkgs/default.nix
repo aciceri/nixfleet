@@ -17,7 +17,7 @@ in
   customEmacs = prev.callPackage (import ./emacs) { };
   amule = prev.callPackage (import ./amule) { };
   digikam = nixpkgsUnstable.digikam;
-  cura = nixpkgsUnstable.cura;
+  #cura = nixpkgsUnstable.cura;
   qutebrowser = import ./qutebrowser { pkgs = prev; };
   #firefox-unwrapped = nixpkgsUnstable.firefox-unwrapped;
   xdg-desktop-portal = nixpkgsUnstable.xdg-desktop-portal;
@@ -30,5 +30,7 @@ in
   v4l2loopback-dc = prev.callPackage (import ./v4l2loopback-dc) { kernel = prev.linux; };
   slack = import ./slack { pkgs = prev; };
   google-chrome = import ./google-chrome { pkgs = prev; };
+  nixFromMaster = import ./nix-from-master { nix = nixpkgsUnstable.nix; pkgs = prev; };
+  nix = nixpkgsUnstable.nix;
   # then, call packages with `final.callPackage`
 }

@@ -2,6 +2,7 @@
   :init
   (setq company-backends '(company-capf
                            company-keywords
+			   company-nixos-options
                            company-semantic
                            company-files
                            company-etags

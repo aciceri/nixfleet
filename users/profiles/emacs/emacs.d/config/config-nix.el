@@ -1,7 +1,10 @@
 (use-package nix-mode
   :mode "\\.nix\\'"
-  :hook 
-  (before-save . lsp-format-buffer))
+  ;;:hook
+  ;;(before-save . lsp-format-buffer)
+  )
+
+
 (require 'sudo-utils)
 
 (defun nixos-rebuild-switch ()

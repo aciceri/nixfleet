@@ -8,6 +8,8 @@ in
   environment = {
 
     systemPackages = with pkgs; [
+      bat
+      bat-extras.batman
       binutils
       coreutils
       curl
@@ -58,12 +60,6 @@ in
     useSandbox = true;
     allowedUsers = [ "@wheel" ];
     trustedUsers = [ "root" "@wheel" ];
-    extraOptions = ''
-      min-free = 536870912
-      keep-outputs = true
-      keep-derivations = true
-      fallback = true
-    '';
   };
 
   services.earlyoom.enable = true;

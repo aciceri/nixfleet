@@ -10,3 +10,5 @@ doi
 pkgs/_sources/.shake*
 
 *.qcow2
+
+profiles/cachix/mlabs.nix

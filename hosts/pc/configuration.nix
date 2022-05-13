@@ -38,7 +38,13 @@
   fileSystems."/" =
     {
       device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
+      fsType = "ext4";
+    };
+  
+  fileSystems."/home" =
+    {
+      device = "/dev/disk/by-label/home";
+      fsType = "ext4";
     };
 
   swapDevices =
@@ -49,15 +55,16 @@
       automatic = true;
       options = "--delete-older-than 3d";
     };
+    # package = pkgs.nixFromMaster;
+    package = pkgs.nix; # currently from unstable through an overlay
+    extraOptions = ''
+      experimental-features = ca-derivations 
+    '';
   };
-
 
   networking.firewall = {
     enable = true;
     allowPing = true;
-    allowedTCPPorts = [
-      5900 # vnc
-    ];
   };
 
   # TODO: disable, only for playing
