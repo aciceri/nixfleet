@@ -1,5 +1,5 @@
 {
-  description = "A highly structured configuration database.";
+  description = "A complete, declarative and reproducible configuration of my entire Nix fleet";
 
   inputs =
     {
@@ -9,36 +9,30 @@
 
       nur.url = github:nix-community/NUR;
 
-      digga.url = github:divnix/digga;
+      digga.url = github:divnix/digga/hotfix-exported-overlays; # waiting for https://github.com/divnix/digga/issues/464
       digga.inputs.nixpkgs.follows = "unstable";
       digga.inputs.nixlib.follows = "unstable";
       digga.inputs.home-manager.follows = "unstable";
 
-      home.url = github:nix-community/home-manager/release-21.11;
+      home.url = github:nix-community/home-manager;
       home.inputs.nixpkgs.follows = "unstable";
-
-      darwin.url = github:LnL7/nix-darwin;
-      darwin.inputs.nixpkgs.follows = "stable";
 
       deploy.follows = "digga/deploy";
 
-      emacs-overlay.url = github:nix-community/emacs-overlay/beffadfb0345078ab3d630e9ca6e0aaf061d3aa5;
+      emacs-overlay.url = github:nix-community/emacs-overlay;
+      emacs-overlay.inputs.nixpkgs.follows = "unstable";
 
       nixos-hardware.url = github:NixOS/nixos-hardware;
-
-      nixpkgs-wayland.url = github:nix-community/nixpkgs-wayland;
-      nixpkgs-wayland.inputs.nixpkgs.follows = "unstable";
-      nixpkgs-wayland.inputs.cachix.follows = "unstable";
     };
 
   outputs =
     { self
-    , digga
+    , stable
     , unstable
+    , nixpkgsDevInput
+    , digga
     , home
     , nixos-hardware
-    , darwin
-    , nixpkgs-wayland
     , emacs-overlay
     , nur
     , deploy
@@ -51,31 +45,14 @@
 
         channelsConfig = { allowUnfree = true; };
 
-        channels =
-          let
-            commonOverlays = [
-              nur.overlay
-              emacs-overlay.overlay
-              deploy.overlay
-              #nixpkgs-wayland.overlay
-              (import ./pkgs/default.nix {
-                nixpkgsUnstableInput = inputs.unstable;
-                nixpkgsDevInput = inputs.nixpkgsDevInput;
-              })
-            ];
-          in
-          {
-            stable = {
-              imports = [ (digga.lib.importOverlays ./overlays) ];
-              overlays = commonOverlays;
-            };
-            unstable = {
-              imports = [ (digga.lib.importOverlays ./overlays) ];
-              overlays = commonOverlays;
-            };
+        channels = {
+          stable = {
+            imports = [ (digga.lib.importOverlays ./overlays) ];
           };
-
-        lib = import ./lib { lib = digga.lib // unstable.lib; };
+          unstable = {
+            imports = [ (digga.lib.importOverlays ./overlays) ];
+          };
+        };
 
         sharedOverlays = [
           (
@@ -88,39 +65,46 @@
               );
             }
           )
+          emacs-overlay.overlay
+          nur.overlay
+          deploy.overlay
+          (import ./pkgs {
+            nixpkgsStableInput = stable;
+            nixpkgsDevInput = nixpkgsDevInput;
+          })
         ];
 
         nixos = {
           hostDefaults = {
-            # channelName = "unstable";
             channelName = "stable";
             imports = [ (digga.lib.importExportableModules ./modules) ];
             modules = [
-              { lib.our = self.lib; }
+              # { lib.our = self.lib; }
               digga.nixosModules.bootstrapIso
               digga.nixosModules.nixConfig
               home.nixosModules.home-manager
             ];
           };
           hosts = {
-            # mbp is added bypassing Digga's mkFlake and adding a specific output to this flake
             pc = {
               system = "x86_64-linux";
+              channelName = "unstable";
               imports = [{ modules = ./hosts/pc; }];
             };
             hs = {
               system = "x86_64-linux";
+              channelName = "stable";
               imports = [{ modules = ./hosts/hs; }];
             };
             pbp = {
               system = "aarch64-linux";
+              channelName = "unstable";
               imports = [{ modules = ./hosts/pbp; }];
               modules = [
                 "${nixos-hardware}/pine64/pinebook-pro"
               ];
             };
           };
-          # imports = [ (digga.lib.importHosts ./hosts) ]; # same reason as above
           importables = rec {
             profiles = digga.lib.rakeLeaves ./profiles // {
               users = digga.lib.rakeLeaves ./users;
@@ -151,24 +135,20 @@
 
         devshell = ./shell;
 
-        homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
+        homeConfigurations = digga.lib.mkHomeConfigurations
+          self.nixosConfigurations;
 
-        deploy.nodes = digga.lib.mkDeployNodes self.nixosConfigurations { };
+        deploy.nodes = digga.lib.mkDeployNodes
+          self.nixosConfigurations
+          { };
       }
     // {
-      # checks.aarch64-linux = { }; # ga-uncomment
-      # checks.x86_64-darwin = { }; # ga-uncomment
-      # packages.x86_64-darwin = { }; # ga-uncomment
+      # The following line gets uncommented by the GitHub action during CI (`ga-uncomment`)
+      # is a placeholder to make `sed` find the correct line.
+      # This is because I found no way to get an `aarch64` GitHub runner or supporting `kvm`.
+      # If only there was a way to evaluate `flakes` passing arguments I could avoit this
+      # hacky solution.
 
-      darwinConfigurations."mbp" = darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        modules = [ home.darwinModules.home-manager ./hosts/mbp ];
-        inputs = { inherit darwin; };
-        specialArgs = {
-          inherit emacs-overlay;
-          nixpkgsUnstableInput = inputs.unstable;
-          nixpkgsDevInput = inputs.nixpkgsDevInput;
-        };
-      };
+      # checks.aarch64-linux = { }; # ga-uncomment
     };
 }

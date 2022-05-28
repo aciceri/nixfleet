@@ -12,7 +12,7 @@
   };
 
   services.emacs = {
-    enable = !pkgs.stdenv.hostPlatform.isDarwin;
+    enable = true;
   };
 
   # For some reason Hunspell dictionaries paths must be specified on Darwin
@@ -38,7 +38,6 @@
       delta
       fd
       graphviz-nox
-      haskell-language-server
       hunspell
       hunspellDicts.en_US
       hunspellDicts.it_IT
@@ -49,7 +48,6 @@
       python3Full
       rnix-lsp
       silver-searcher
-      stylish-haskell
       unzip
       (
         makeDesktopItem {
@@ -58,19 +56,12 @@
           comment = "Org protocol";
           desktopName = "org-protocol";
           type = "Application";
-          mimeType = "x-scheme-handler/org-protocol";
+          mimeTypes = [ "x-scheme-handler/org-protocol" ];
         }
       )
     ] ++ (if pkgs.system == "x86_64-linux" then [
       python-language-server
     ] ++ (with easy-ps; [
-      # spago2nix
       ffmpegthumbnailer
-      nodejs
-      pulp
-      purescript-language-server
-      purs
-      purs-tidy
-      spago
     ]) else [ ]);
 }

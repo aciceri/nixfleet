@@ -3,6 +3,8 @@
 {
   imports = with profiles; [ mount-nas sshd dbus avahi printing xdg docker adb syncthing qmk-udev ];
 
+  system.stateVersion = "22.05";
+
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ ];
@@ -40,7 +42,7 @@
       device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
-  
+
   fileSystems."/home" =
     {
       device = "/dev/disk/by-label/home";
@@ -52,30 +54,25 @@
 
   nix = {
     gc = {
-      automatic = true;
+      automatic = lib.mkForce false; # Temporarily disabled, TODO: re-enable
       options = "--delete-older-than 3d";
     };
     # package = pkgs.nixFromMaster;
-    package = pkgs.nix; # currently from unstable through an overlay
-    extraOptions = ''
-      experimental-features = ca-derivations 
+    package = pkgs.nix;
+    extraOptions = lib.mkForce ''
+      experimental-features = ca-derivations nix-command flakes
+
+      keep-outputs = true
+      keep-derivations = true
     '';
+  };
+
+  systemd.services.nix-daemon.serviceConfig = {
+    LimitNOFILE = lib.mkForce 131072; # should help with fds errors due to experimental feature `ca-derivations`
   };
 
   networking.firewall = {
     enable = true;
     allowPing = true;
   };
-
-  # TODO: disable, only for playing
-  services.hydra = {
-    enable = true;
-    hydraURL = "http://localhost:3000";
-    notificationSender = "hydra@localhost";
-    buildMachinesFiles = [ ];
-    useSubstitutes = true;
-  };
-
-
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

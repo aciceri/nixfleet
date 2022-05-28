@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  myEmacs = pkgs.emacsPgtkGcc;
+  myEmacs = pkgs.emacsPgtkNativeComp;
   emacsWithPackages = (pkgs.emacsPackagesFor myEmacs).emacsWithPackages;
 in
 emacsWithPackages (
@@ -9,6 +9,8 @@ emacsWithPackages (
   ) ++ (
     with epkgs.melpaPackages; [
       # dirvish
+      vimish-fold
+      evil-vimish-fold
       aggressive-indent
       all-the-icons
       company

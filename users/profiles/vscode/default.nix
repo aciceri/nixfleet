@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-  # only purpose of this is to make vscode login to Github
-  services.gnome-keyring.enable = true;
-
-
   programs.vscode = {
     enable = true;
 

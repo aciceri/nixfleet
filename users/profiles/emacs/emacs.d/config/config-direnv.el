@@ -4,4 +4,4 @@
     :config
     (envrc-global-mode))
 
-(provide 'config-envrc)
+(provide 'config-direnv)
