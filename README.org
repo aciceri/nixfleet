@@ -6,7 +6,6 @@
   - [X] my main home workstation ~pc~
   - [X] homeserver (mainly a nas) ~hs~
   - [X] my arm based [[https://wiki.pine64.org/wiki/Pinebook_Pro][PineBook Pro]] ~pbp~, almost completely open hardware
-  - [X] MacBook PRO that I use for work, for this I'll use [[https://github.com/LnL7/nix-darwin][nix-darwin]] keeping macOs 11 Monterey.
     
   The different confgurations share many profiles, in fact my original
   goal was to avoid to rewrite the same Nix derivations for my
