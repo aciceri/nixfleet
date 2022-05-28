@@ -1,9 +1,9 @@
 (use-package nix-mode
   :mode "\\.nix\\'"
-  ;;:hook
-  ;;(before-save . lsp-format-buffer)
-  )
-
+  :config (setq  format-on-save t)
+  :bind ("<f8>" . (lambda () (interactive) (setq format-on-save (not format-on-save)) ))
+  :hook
+  (before-save . (lambda () (when (format-on-save) (lsp-format-buffer)))))
 
 (require 'sudo-utils)
 

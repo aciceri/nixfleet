@@ -1,15 +1,16 @@
-name: "Check & Build (with Cachix)"
+name: update-flake-lock
 on:
   workflow_dispatch: # allows manual triggering
-  push:
-    branches:
-      - master
-      - update_flake_lock_action 
+  schedule:
+    - cron: '0 2 * * 5' # runs weekly on Friday at 02:00 AM
+
 jobs:
-  check:
+  lockfile:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - uses: cachix/install-nix-action@v17
         with:
           extra_nix_config: >
@@ -29,13 +30,18 @@ jobs:
             nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
             arm.cachix.org-1:K3XjAeWPgWkFtSS9ge5LJSLw3xgnNqyOaG7MDecmTQ8=
             cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+
       - uses: cachix/cachix-action@v10
         with:
           name: aciceri-fleet
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - run: sed -i 's/#\(.*\).*\#.* ga-uncomment/\1/g' flake.nix # disabling outputs unsupported inside the GitHub action
-      - run: echo "hello" # nix -Lv flake check
-      - run: cat flake.nix
-      - run: nix -Lv build ".#nixosConfigurations.pc.config.system.build.toplevel"
-      - run: nix -Lv build ".#nixosConfigurations.hs.config.system.build.toplevel"
-      - run: nix -Lv develop -c echo OK
+
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v9
+        env:
+          token: ${{ secrets.PR_UPDATE_FLAKE_TOKEN }}
+        with:
+          pr-title: "Automatic `flake.lock` update"
+          pr-labels: |
+            flake-inputs
+            automatic
