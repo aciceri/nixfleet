@@ -149,6 +149,6 @@
       # If only there was a way to evaluate `flakes` passing arguments I could avoit this
       # hacky solution.
 
-      # checks.aarch64-linux = { }; # ga-uncomment
+       checks.aarch64-linux = { }; 
     };
 }
