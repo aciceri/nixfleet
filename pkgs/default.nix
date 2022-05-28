@@ -1,36 +1,28 @@
-{ nixpkgsUnstableInput, nixpkgsDevInput }:
-
+{ nixpkgsStableInput, nixpkgsDevInput }:
 final: prev:
 let
-  nixpkgsUnstable = (import nixpkgsUnstableInput {
+  config.allowUnfree = true;
+  overlays = [ ];
+  nixpkgsStable = (import nixpkgsStableInput {
+    inherit config overlays;
     system = prev.system;
-    config.allowUnfree = true;
   }).pkgs;
   nixpkgsDev = (import nixpkgsDevInput {
+    inherit config overlays;
     system = prev.system;
-    config.allowUnfree = true;
   }).pkgs;
 in
 {
   # keep sources this first
   # sources = prev.callPackage (import ./_sources/generated.nix) { };
-  customEmacs = prev.callPackage (import ./emacs) { };
   amule = prev.callPackage (import ./amule) { };
-  digikam = nixpkgsUnstable.digikam;
-  #cura = nixpkgsUnstable.cura;
-  qutebrowser = import ./qutebrowser { pkgs = prev; };
-  #firefox-unwrapped = nixpkgsUnstable.firefox-unwrapped;
-  xdg-desktop-portal = nixpkgsUnstable.xdg-desktop-portal;
-  xdg-desktop-portal-gtk = nixpkgsUnstable.xdg-desktop-portal-gtk;
-  vscode = nixpkgsUnstable.vscode;
-  geoclue2 = nixpkgsUnstable.geoclue2;
-  gnome = nixpkgsUnstable.gnome;
-  umoria = nixpkgsDev.umoria;
+  customEmacs = prev.callPackage (import ./emacs) { pkgs = prev; };
   droidcam = prev.callPackage (import ./droidcam) { };
-  v4l2loopback-dc = prev.callPackage (import ./v4l2loopback-dc) { kernel = prev.linux; };
-  slack = import ./slack { pkgs = prev; };
   google-chrome = import ./google-chrome { pkgs = prev; };
-  nixFromMaster = import ./nix-from-master { nix = nixpkgsUnstable.nix; pkgs = prev; };
-  nix = nixpkgsUnstable.nix;
+  nixFromMaster = import ./nix-from-master { nix = prev.nix; pkgs = prev; };
+  qutebrowser = import ./qutebrowser { pkgs = prev; };
+  slack = import ./slack { pkgs = prev; };
+  umoria = nixpkgsDev.umoria;
+  v4l2loopback-dc = prev.callPackage (import ./v4l2loopback-dc) { kernel = prev.linux; };
   # then, call packages with `final.callPackage`
 }

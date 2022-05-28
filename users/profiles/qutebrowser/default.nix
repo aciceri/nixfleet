@@ -41,7 +41,7 @@
         comment = "Qutebrowser";
         desktopName = "qutebrowser";
         type = "Application";
-        mimeType = "x-scheme-handler/https";
+        mimeTypes = [ "x-scheme-handler/https" ];
       }
     )
   ];
