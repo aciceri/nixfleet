@@ -63,5 +63,4 @@ in
   };
 
   services.earlyoom.enable = true;
-
 }

@@ -1,13 +1,13 @@
 (use-package modus-themes
   :init 
   (setq
-        modus-themes-region '(bg-only no-extend))
+   modus-themes-region '(bg-only no-extend))
   (modus-themes-load-themes)
   :config
-    (modus-themes-load-operandi) ;white theme
-    ;; (modus-themes-load-vivendi) ;black theme
+  (modus-themes-load-operandi) ;white theme
+  ;; (modus-themes-load-vivendi) ;black theme
   :bind ("<f5>" . modus-themes-toggle)    
-)  
+  )  
 
 (use-package fira-code-mode
   :after all-the-icons
@@ -43,7 +43,15 @@
   ;; :hook ((prog-mode . rainbow-identifiers-mode))
   )
 
-;; To move in a different config file
+(use-package highlight-indent-guides
+  :hook ((prog-mode . highlight-indent-guides-mode))
+  :config  (setq highlight-indent-guides-method 'character
+		 highlight-indent-guides-responsive 'top))
+
+(use-package origami
+  :hook ((prog-mode . origami-mode)))
+
+;; TODO: To move in a different config file
 (when (string-equal system-type "darwin")
   (set-face-attribute 'default nil :height 150)
   (setq mac-command-modifier 'ctrl))

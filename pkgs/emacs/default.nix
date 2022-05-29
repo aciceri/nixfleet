@@ -8,17 +8,16 @@ emacsWithPackages (
     with epkgs.melpaStablePackages; [ ]
   ) ++ (
     with epkgs.melpaPackages; [
-      # dirvish
-      vimish-fold
-      evil-vimish-fold
       aggressive-indent
       all-the-icons
       company
       company-nixos-options
       dap-mode
       diff-hl
-      envrc
+      diredfl
+      dirvish
       doom-modeline
+      envrc
       evil
       evil-collection
       fira-code-mode
@@ -30,6 +29,7 @@ emacsWithPackages (
       helm-company
       helm-nixos-options
       helm-projectile
+      highlight-indent-guides
       lispy
       lsp-haskell
       lsp-mode
@@ -46,6 +46,7 @@ emacsWithPackages (
       org-roam
       org-roam-ui
       org-superstar
+      origami
       projectile
       psc-ide
       psci

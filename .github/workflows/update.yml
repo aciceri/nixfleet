@@ -2,7 +2,7 @@ name: update-flake-lock
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '0 2 * * 5' # runs weekly on Friday at 02:00 AM
+    - cron: '0 2 * * 6' # runs weekly on Friday at 02:00 AM
 
 jobs:
   lockfile:
@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - uses: cachix/install-nix-action@v17
 
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v9

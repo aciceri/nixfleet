@@ -121,7 +121,7 @@
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {
-              base = [ direnv git zsh gpg password-store ];
+              base = [ direnv git zsh gpg password-store udiskie ];
               emails = [ mails ];
               shell = [ zsh exa fzf ];
               gui = [ sway xdg gtk foot bat ];

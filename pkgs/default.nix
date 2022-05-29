@@ -17,6 +17,7 @@ in
   # sources = prev.callPackage (import ./_sources/generated.nix) { };
   amule = prev.callPackage (import ./amule) { };
   customEmacs = prev.callPackage (import ./emacs) { pkgs = prev; };
+  cura = prev.callPackage (import ./cura) { pkgs = prev; };
   droidcam = prev.callPackage (import ./droidcam) { };
   google-chrome = import ./google-chrome { pkgs = prev; };
   nixFromMaster = import ./nix-from-master { nix = prev.nix; pkgs = prev; };

@@ -22,5 +22,6 @@
 (require 'config-translate)
 (require 'config-lisp)
 (require 'config-direnv)
+(require 'config-dirvish)
 
 (server-start)
