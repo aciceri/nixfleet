@@ -11,6 +11,13 @@
   goal was to avoid to rewrite the same Nix derivations for my
   different machines.
 
+** Continuous integration
+At every commit a GitHub action builds all the machines and publish the
+artifacts produces to [[aciceri-fleet.cachix.org]].
+Moreover, every night, another GitHub action is triggered and it try to update
+the flake's lockfile creating a PR, the same GitHub action is before is run
+against the branch of this PR.
+
 ** Commands
 Here I describe my most used commands.  All the commands are executed
 inside the Flake's development shell.  To enter in this shell is
