@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
-  myEmacs = pkgs.emacsPgtkNativeComp;
+  # TODO: when `emcasPgtkNativeComp` will build on aarch64 re-use it
+  myEmacs = with pkgs; if stdenv.hostPlatform.isAarch64 then emacs else emacsPgtkNativeComp;
   emacsWithPackages = (pkgs.emacsPackagesFor myEmacs).emacsWithPackages;
 in
 emacsWithPackages (
@@ -23,6 +24,7 @@ emacsWithPackages (
       evil-collection
       evil-tree-edit
       fira-code-mode
+      git-auto-commit-mode
       go-translate
       good-scroll
       haskell-mode

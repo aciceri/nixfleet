@@ -60,6 +60,9 @@
       if pkgs.stdenv.hostPlatform.isDarwin
       then "if test -e /etc/static/bashrc; then source /etc/static/bashrc > /dev/null 2>&1; fi"
       else "";
+    envExtra = ''
+      [ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' # for Emacs TRAMP mode
+    '';
   };
 
   programs.command-not-found.enable = true;

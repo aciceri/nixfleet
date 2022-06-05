@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
+      - run: |
+          DEBIAN_FRONTEND=noninteractive
+          sudo apt-get update -q -y && sudo apt-get install -q -y qemu-system-aarch64 qemu-efi binfmt-support qemu-user-static
       - uses: cachix/install-nix-action@v17
         with:
           extra_nix_config: >
@@ -37,5 +40,6 @@ jobs:
       - run: echo "hello" # nix -Lv flake check
       - run: cat flake.nix
       - run: nix -Lv build ".#nixosConfigurations.pc.config.system.build.toplevel"
+      - run: nix -Lv build ".#nixosConfigurations.pbp.config.system.build.toplevel" --option system aarch64-linux
       - run: nix -Lv build ".#nixosConfigurations.hs.config.system.build.toplevel"
       - run: nix -Lv develop -c echo OK
