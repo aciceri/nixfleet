@@ -2,7 +2,7 @@ name: update-flake-lock
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '0 2 * * 6' # runs weekly on Friday at 02:00 AM
+    - cron: '0 2 * * *' # runs weekly on Friday at 02:00 AM
 
 jobs:
   lockfile:
