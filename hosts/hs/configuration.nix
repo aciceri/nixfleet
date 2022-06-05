@@ -130,7 +130,6 @@
 
     transmission = {
       enable = true;
-      port = 9091;
       # the following json is merged to this attrset, it must have `rpc-username` and `rpc-password`
       credentialsFile = "/mnt/archivio/transmission/credentials.json";
       settings = {
@@ -138,6 +137,7 @@
         incomplete-dir = "/mnt/archivio/transmission/.incomplete";
         incomplete-dir-enabled = true;
 
+        rpc-port = 9091;
         rpc-whitelist-enabled = false;
         rpc-host-whitelist-enabled = false;
         rpc-authentication-required = true;
@@ -268,7 +268,7 @@
       ydnsUpdater = pkgs.writeScriptBin "ydnsUpdater" ''
         #!${pkgs.stdenv.shell}
         USER="andrea.ciceri@autistici.org"
-        PASSWORD=$(${pkgs.stdenv}/bin/cat /home/ccr/.ydns-password)
+        PASSWORD=$(cat /home/ccr/.ydns-password)
         DOMAIN="ccr.ydns.eu"
 
         for SUBDOMAIN in "books" "music" "sync" "torrent" "gate" "cam"

@@ -9,6 +9,12 @@ emacsWithPackages (
   ) ++ (
     with epkgs.melpaPackages; [
       aggressive-indent
+      pkgs.emacs28Packages.tree-sitter-langs
+      tree-sitter
+      # ts-fold
+      tree-edit
+      evil-tree-edit
+      pkgs.emacs28Packages.tsc
       all-the-icons
       company
       company-nixos-options

@@ -8,27 +8,28 @@ in
   environment = {
 
     systemPackages = with pkgs; [
+      #skim
       bat
       bat-extras.batman
       binutils
+      bottom
       coreutils
       curl
       dnsutils
       dosfstools
       fd
       git
-      htop
       glances
-      bottom
       gptfdisk
+      htop
       iputils
       jq
+      lsof
       manix
       moreutils
       nix-index
       nmap
       ripgrep
-      #skim
       tealdeer
       tmux
       usbutils
@@ -59,7 +60,7 @@ in
     autoOptimiseStore = true;
     useSandbox = true;
     allowedUsers = [ "@wheel" ];
-    trustedUsers = [ "root" "@wheel" ];
+    trustedUsers = [ "root" "@wheel" "hydra" "hydra-www" ];
   };
 
   services.earlyoom.enable = true;
