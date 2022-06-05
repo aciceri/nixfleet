@@ -8,13 +8,8 @@ emacsWithPackages (
     with epkgs.melpaStablePackages; [ ]
   ) ++ (
     with epkgs.melpaPackages; [
-      aggressive-indent
-      pkgs.emacs28Packages.tree-sitter-langs
-      tree-sitter
       # ts-fold
-      tree-edit
-      evil-tree-edit
-      pkgs.emacs28Packages.tsc
+      aggressive-indent
       all-the-icons
       company
       company-nixos-options
@@ -26,6 +21,7 @@ emacsWithPackages (
       envrc
       evil
       evil-collection
+      evil-tree-edit
       fira-code-mode
       go-translate
       good-scroll
@@ -36,6 +32,7 @@ emacsWithPackages (
       helm-nixos-options
       helm-projectile
       highlight-indent-guides
+      hl-todo
       lispy
       lsp-haskell
       lsp-mode
@@ -53,6 +50,8 @@ emacsWithPackages (
       org-roam-ui
       org-superstar
       origami
+      pkgs.emacs28Packages.tree-sitter-langs
+      pkgs.emacs28Packages.tsc
       projectile
       psc-ide
       psci
@@ -62,6 +61,8 @@ emacsWithPackages (
       scad-mode
       sudo-utils
       symex
+      tree-edit
+      tree-sitter
       treemacs
       treemacs-evil
       treemacs-icons-dired

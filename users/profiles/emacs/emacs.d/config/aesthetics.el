@@ -51,6 +51,9 @@
 (use-package origami
   :hook ((prog-mode . origami-mode)))
 
+(use-package hl-todo
+  :hook ((prog-mode . hl-todo-mode)))
+
 ;; TODO: To move in a different config file
 (when (string-equal system-type "darwin")
   (set-face-attribute 'default nil :height 150)

@@ -1,3 +1,5 @@
+# FIXME: why this doesn't work anymore?
+
 { pkgs, ... }:
 {
   environment.systemPackages = [ pkgs.sshfs ];
@@ -23,37 +25,37 @@
       ];
     in
     {
-      "${target}/amule" = {
-        inherit fsType options;
-        device = "${nasUser}@${nasHost}:/mnt/archivio/amule";
-      };
-      "${target}/transmission" = {
-        inherit fsType options;
-        device = "${nasUser}@${nasHost}:/mnt/archivio/transmission";
-      };
-      "${target}/calibre" = {
-        inherit fsType options;
-        device = "${nasUser}@${nasHost}:/mnt/archivio/calibre";
-      };
-      "${target}/archivio" = {
-        inherit fsType options;
-        device = "${nasUser}@${nasHost}:/mnt/archivio/archivio";
-      };
-      "${target}/film" = {
-        inherit fsType options;
-        device = "${nasUser}@${nasHost}:/mnt/film/film";
-      };
-      "${target}/syncthing" = {
-        inherit fsType options;
-        device = "${nasUser}@${nasHost}:/mnt/archivio/syncthing";
-      };
-      "${target}/aria" = {
-        inherit fsType options;
-        device = "${nasUser}@${nasHost}:/mnt/archivio/aria2";
-      };
-      "${target}/musica" = {
-        inherit fsType options;
-        device = "${nasUser}@${nasHost}:/mnt/film/musica";
-      };
+      # "${target}/amule" = {
+      #   inherit fsType options;
+      #   device = "${nasUser}@${nasHost}:/mnt/archivio/amule/";
+      # };
+      # "${target}/transmission" = {
+      #   inherit fsType options;
+      #   device = "${nasUser}@${nasHost}:/mnt/archivio/transmission/";
+      # };
+      # "${target}/calibre" = {
+      #   inherit fsType options;
+      #   device = "${nasUser}@${nasHost}:/mnt/archivio/calibre/";
+      # };
+      # "${target}/archivio" = {
+      #   inherit fsType options;
+      #   device = "${nasUser}@${nasHost}:/mnt/archivio/archivio/";
+      # };
+      #   "${target}/film" = {
+      #     inherit fsType options;
+      #     device = "${nasUser}@${nasHost}:/mnt/film/film/";
+      #   };
+      #   "${target}/syncthing" = {
+      #     inherit fsType options;
+      #     device = "${nasUser}@${nasHost}:/mnt/archivio/syncthing/";
+      #   };
+      #   "${target}/aria" = {
+      #     inherit fsType options;
+      #     device = "${nasUser}@${nasHost}:/mnt/archivio/aria2/";
+      #   };
+      #   "${target}/musica" = {
+      #     inherit fsType options;
+      #     device = "${nasUser}@${nasHost}:/mnt/film/musica/";
+      #   };
     };
 }
