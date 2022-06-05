@@ -141,14 +141,5 @@
         deploy.nodes = digga.lib.mkDeployNodes
           self.nixosConfigurations
           { };
-      }
-    // {
-      # The following line gets uncommented by the GitHub action during CI (`ga-uncomment`)
-      # is a placeholder to make `sed` find the correct line.
-      # This is because I found no way to get an `aarch64` GitHub runner or supporting `kvm`.
-      # If only there was a way to evaluate `flakes` passing arguments I could avoit this
-      # hacky solution.
-
-      # checks.aarch64-linux = { }; # ga-uncomment
-    };
+      };
 }
