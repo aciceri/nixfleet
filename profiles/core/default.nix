@@ -31,7 +31,6 @@ in
       nmap
       ripgrep
       tealdeer
-      tmux
       usbutils
       utillinux
       whois

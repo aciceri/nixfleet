@@ -110,7 +110,7 @@
               users = digga.lib.rakeLeaves ./users;
             };
             suites = with profiles; rec {
-              base = [ core users.ccr users.root ];
+              base = [ core upower users.ccr users.root ];
             };
           };
         };
@@ -121,7 +121,7 @@
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {
-              base = [ direnv git zsh gpg password-store udiskie ];
+              base = [ direnv git zsh gpg password-store udiskie tmux ];
               emails = [ mails ];
               shell = [ zsh exa fzf ];
               gui = [ sway xdg gtk foot bat ];
