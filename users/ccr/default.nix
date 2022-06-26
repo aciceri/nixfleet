@@ -8,6 +8,7 @@
 
     home.packages = with pkgs; [
       ack
+      fx
       ranger
       umoria
       droidcam
@@ -20,8 +21,6 @@
       gtk_engines
       gsettings-desktop-schemas
       lxappearance
-      yarn
-      yarn2nix
       python39Packages.poetry
       texlive.combined.scheme-full
       gphoto2

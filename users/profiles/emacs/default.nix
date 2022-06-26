@@ -47,6 +47,9 @@
       poppler_utils
       python3Full
       rnix-lsp
+      nodePackages.typescript-language-server
+      nodePackages.eslint
+      nodejs
       silver-searcher
       unzip
       (
@@ -60,7 +63,6 @@
         }
       )
     ] ++ (if pkgs.system == "x86_64-linux" then [
-      python-language-server
     ] ++ (with easy-ps; [
       ffmpegthumbnailer
     ]) else [ ]);

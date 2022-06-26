@@ -204,10 +204,10 @@
       recommendedTlsSettings = true;
       clientMaxBodySize = "10G"; # max file size for uploads
       commonHttpConfig = ''
-        log_format upstream_time '$remote_addr - $remote_user [$time_local] '
-                                 '"$request" $status $body_bytes_sent '
-                                 '"$http_referer" "$http_user_agent"'
-                                 'rt=$request_time uct="$upstream_connect_time" uht="$upstream_header_time" urt="$upstream_response_time"';
+        log_format upstream_time  '$remote_addr - $remote_user [$time_local] '
+                                  '"$request" $status $body_bytes_sent '
+                                  '"$http_referer" "$http_user_agent"'
+                                  'rt=$request_time uct="$upstream_connect_time" uht="$upstream_header_time" urt="$upstream_response_time"';
       '';
       virtualHosts = {
         "torrent.ccr.ydns.eu" = {
@@ -314,7 +314,52 @@
     allowedUDPPorts = [
       137 # samba
       138 # samba
+      51820 # wireguard
     ];
+  };
+
+  networking.nat.enable = true;
+  networking.nat.externalInterface = "enp0s10";
+  networking.nat.internalInterfaces = [ "wg0" ];
+
+  networking.wireguard.interfaces = {
+    # "wg0" is the network interface name. You can name the interface arbitrarily.
+    wg0 = {
+      # Determines the IP address and subnet of the server's end of the tunnel interface.
+      ips = [ "10.100.0.1/24" ];
+
+      # The port that WireGuard listens to. Must be accessible by the client.
+      listenPort = 51820;
+
+      # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
+      # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
+      postSetup = ''
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o enp0s10 -j MASQUERADE
+      '';
+
+      # This undoes the above command
+      postShutdown = ''
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o enp0s10 -j MASQUERADE
+      '';
+
+      # Path to the private key file.
+      #
+      # Note: The private key can also be included inline via the privateKey option,
+      # but this makes the private key world-readable; thus, using privateKeyFile is
+      # recommended.
+      privateKeyFile = "/home/ccr/wireguard-keys/private";
+
+      peers = [
+        # List of allowed peers.
+        {
+          # Feel free to give a meaning full name
+          # Public key of the peer (not a file path).
+          publicKey = "fCwjd75CefC9A7WqO7s3xfOk2nRcoTKfnAzDT6Lc5AA=";
+          # List of IPs assigned to this peer within the tunnel subnet. Used to configure routing.
+          allowedIPs = [ "10.100.0.2/32" ];
+        }
+      ];
+    };
   };
 
   security.acme = {

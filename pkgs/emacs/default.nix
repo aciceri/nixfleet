@@ -24,6 +24,7 @@ emacsWithPackages (
       evil-collection
       evil-tree-edit
       fira-code-mode
+      flycheck-status-emoji
       git-auto-commit-mode
       go-translate
       good-scroll
@@ -54,6 +55,7 @@ emacsWithPackages (
       origami
       pkgs.emacs28Packages.tree-sitter-langs
       pkgs.emacs28Packages.tsc
+      prettier
       projectile
       psc-ide
       psci
@@ -61,8 +63,10 @@ emacsWithPackages (
       rainbow-delimiters
       rainbow-identifiers
       scad-mode
+      solidity-mode
       sudo-utils
       symex
+      tide
       tree-edit
       tree-sitter
       treemacs
@@ -71,6 +75,7 @@ emacsWithPackages (
       treemacs-magit
       treemacs-persp
       treemacs-projectile
+      typescript-mode
       use-package
       visual-fill-column
       which-key

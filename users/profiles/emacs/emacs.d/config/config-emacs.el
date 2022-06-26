@@ -1,3 +1,5 @@
+(envrc-global-mode)
+
 (setq backup-directory-alist `(("." . "~/.saves"))
       backup-by-copying t
       delete-old-versions 6

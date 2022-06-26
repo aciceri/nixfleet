@@ -5,6 +5,8 @@
 
   system.stateVersion = "22.05";
 
+  services.gnome.gnome-keyring.enable = true; # test for VSCode, it works. TODO: move away from here
+
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ ];
@@ -76,14 +78,4 @@
     allowPing = true;
   };
 
-
-  services.hydra = {
-    enable = true;
-    hydraURL = "http://localhost:3000"; # externally visible URL
-    notificationSender = "hydra@localhost"; # e-mail of hydra service
-    # a standalone hydra will require you to unset the buildMachinesFiles list to avoid using a nonexistant /etc/nix/machines
-    buildMachinesFiles = [ ];
-    # you will probably also want, otherwise *everything* will be built from scratch
-    useSubstitutes = true;
-  };
 }
