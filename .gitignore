@@ -1,14 +1,4 @@
 result
 .direnv
-doc/index.html
-
-# Result of flk commands
-vm
-iso
-doi
-
-pkgs/_sources/.shake*
-
+.pre-commit-config.yaml
 *.qcow2
-
-profiles/cachix/mlabs.nix
