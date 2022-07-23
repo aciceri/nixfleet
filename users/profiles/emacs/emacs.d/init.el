@@ -19,7 +19,6 @@
 (require 'config-nix)
 (require 'config-typescript)
 (require 'config-purescript)
-(require 'config-solidity)
 (require 'config-scad)
 (require 'config-translate)
 (require 'config-lisp)

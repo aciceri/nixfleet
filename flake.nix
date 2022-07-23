@@ -23,6 +23,10 @@
       emacs-overlay.inputs.nixpkgs.follows = "unstable";
 
       nixos-hardware.url = github:NixOS/nixos-hardware;
+
+      doom-emacs.url = github:nix-community/nix-doom-emacs;
+
+      hydra.url = "/home/ccr/mlabs/hydra";
     };
 
   outputs =
@@ -36,6 +40,7 @@
     , emacs-overlay
     , nur
     , deploy
+    , doom-emacs
     , ...
     } @ inputs:
 
@@ -83,6 +88,7 @@
               digga.nixosModules.bootstrapIso
               digga.nixosModules.nixConfig
               home.nixosModules.home-manager
+              inputs.hydra.nixosModules.hydra
             ];
           };
           hosts = {
@@ -117,7 +123,9 @@
 
         home = {
           imports = [ (digga.lib.importExportableModules ./users/modules) ];
-          modules = [ ];
+          modules = [
+            doom-emacs.hmModule
+          ];
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {

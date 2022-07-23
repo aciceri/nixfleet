@@ -15,8 +15,8 @@
         "_netdev,user"
         "idmap=user"
         "transform_symlinks"
-        # ssh-add -L > ~/.ssh/id_rsa
-        "identityfile=/home/ccr/.ssh/id_rsa"
+        # ssh-add -L > ~/.ssh/id_rsa.pub
+        "identityfile=/home/ccr/.ssh/id_rsa.pub"
         "allow_other"
         "default_permissions"
         "uid=1000"

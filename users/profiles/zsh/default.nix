@@ -51,7 +51,7 @@
       SPACESHIP_TIME_SHOW = "true";
       SPACESHIP_USER_SHOW = "always";
       SPACESHIP_HOST_SHOW = "always";
-      EDITOR = "em";
+      EDITOR = "emacsclient";
       NIX_BUILD_SHELL = "${pkgs.zsh-nix-shell}/scripts/buildShellShim.zsh";
       PROMPT = "\\\${IN_NIX_SHELL:+[nix-shell] }$PROMPT";
     };

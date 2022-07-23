@@ -40,6 +40,7 @@
           ];
           floating.criteria = [
             { title = "MetaMask Notification.*"; }
+            { title = "Live Caption"; }
             { title = "Volume Control"; } # pavucontrol
           ];
           input = {

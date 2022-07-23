@@ -14,6 +14,8 @@ in
   # For email browsing, tagging, and searching
   programs.notmuch.enable = true;
 
+  programs.mu.enable = true;
+
   accounts.email.accounts = {
     personal = {
       realName = "Andrea Ciceri";

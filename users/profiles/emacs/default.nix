@@ -1,25 +1,31 @@
-{ pkgs, ... }:
-{
-  home.file."emacs" = {
-    recursive = true;
-    source = ./emacs.d;
-    target = ".emacs.d";
+{ pkgs, ... }: {
+  # TODO re-enable after finished testing out Doom Emacs
+  # home.file."emacs" = {
+  #   recursive = true;
+  #   source = ./emacs.d;
+  #   target = ".emacs.d";
+  # };
+
+  # programs.emacs = {
+  #   enable = true;
+  #   package = pkgs.customEmacs;
+  # };
+
+  programs.doom-emacs = {
+    enable = true;
+    #emacsPackage = pkgs.emacsPgtkNativeComp;
+    doomPrivateDir = ../../../doom.d;
   };
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.customEmacs;
-  };
-
-  services.emacs = {
-    enable = true;
-  };
+  services.emacs = { enable = true; };
 
   # For some reason Hunspell dictionaries paths must be specified on Darwin
   home.sessionVariables =
     if pkgs.stdenv.hostPlatform.isDarwin then {
-      DICPATH = "${pkgs.hunspellDicts.it_IT}/share/hunspell:${pkgs.hunspellDicts.en_US}/share/hunspell";
-    } else { };
+      DICPATH =
+        "${pkgs.hunspellDicts.it_IT}/share/hunspell:${pkgs.hunspellDicts.en_US}/share/hunspell";
+    } else
+      { };
 
   home.packages =
     let
@@ -30,11 +36,12 @@
           rev = "7802db65618c2ead3a55121355816b4c41d276d9";
           sha256 = "0n99hxxcp9yc8yvx7bx4ac6askinfark7dnps3hzz5v9skrvq15q";
         })
-        {
-          inherit pkgs;
-        };
+        { inherit pkgs; };
     in
-    with pkgs; [
+    with pkgs;
+    [
+      alejandra
+      gdb
       delta
       fd
       graphviz-nox
@@ -52,18 +59,16 @@
       nodejs
       silver-searcher
       unzip
-      (
-        makeDesktopItem {
-          name = "org-protocol";
-          exec = "emacsclient %u";
-          comment = "Org protocol";
-          desktopName = "org-protocol";
-          type = "Application";
-          mimeTypes = [ "x-scheme-handler/org-protocol" ];
-        }
-      )
-    ] ++ (if pkgs.system == "x86_64-linux" then [
-    ] ++ (with easy-ps; [
-      ffmpegthumbnailer
-    ]) else [ ]);
+      (makeDesktopItem {
+        name = "org-protocol";
+        exec = "emacsclient %u";
+        comment = "Org protocol";
+        desktopName = "org-protocol";
+        type = "Application";
+        mimeTypes = [ "x-scheme-handler/org-protocol" ];
+      })
+    ] ++ (if pkgs.system == "x86_64-linux" then
+      [ ] ++ (with easy-ps; [ ffmpegthumbnailer ])
+    else
+      [ ]);
 }

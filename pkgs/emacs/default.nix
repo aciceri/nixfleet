@@ -9,7 +9,7 @@ emacsWithPackages (
     with epkgs.melpaStablePackages; [ ]
   ) ++ (
     with epkgs.melpaPackages; [
-      # ts-fold
+      ts-fold
       aggressive-indent
       all-the-icons
       company
