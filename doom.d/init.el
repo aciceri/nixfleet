@@ -111,7 +111,7 @@
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
        tty               ; improve the terminal Emacs experience
-       exwm
+       (exwm +status +xim)
 
        :lang
        ;;agda              ; types of types of types of types...

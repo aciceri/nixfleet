@@ -45,8 +45,8 @@
     };
 
   mkConfigurations = {
-    thinkpad = mkConfiguration {
-      name = "thinkpad";
+    pc = mkConfiguration {
+      name = "pc";
       system = supportedSystems.x86_64-linux;
       modules = [];
     };
@@ -68,6 +68,8 @@
         configurationName:
           mkVmApp system configurations.${configurationName}
       ));
+
+  formatter = lib.perSystem (system: pkgsFor.${system}.alejandra);
 
   formatApp = lib.perSystem (
     system: {
@@ -102,5 +104,5 @@
     };
   });
 in {
-  inherit lib mkConfigurations mkVmApps supportedSystems formatApp mkDevShell checkFormatting;
+  inherit lib mkConfigurations mkVmApps supportedSystems formatApp formatter mkDevShell checkFormatting;
 }

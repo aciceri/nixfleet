@@ -23,7 +23,7 @@
     doomEmacs,
   } @ inputs: let
     utils = (import ./utils) inputs;
-    inherit (utils) lib mkConfigurations mkVmApps checkFormatting formatApp mkDevShell;
+    inherit (utils) lib mkConfigurations mkVmApps checkFormatting formatter formatApp mkDevShell;
   in {
     nixosConfigurations = mkConfigurations;
 
@@ -32,5 +32,7 @@
     checks = checkFormatting ./.;
 
     devShells = mkDevShell;
+
+    inherit formatter;
   };
 }

@@ -20,7 +20,7 @@
   (setq exwm-input-global-keys
         `(([?\s-r] . exwm-reset)
           ([?\s-w] . exwm-workspace-switch)
-          ([?\s-&] . (lambda (command)
+          ([?\s-d] . (lambda (command)
                        (interactive (list (read-shell-command "$ ")))
                        (start-process-shell-command command nil command)))
           ,@(mapcar (lambda (i)
@@ -51,6 +51,20 @@
   ;; Restore window configurations involving exwm buffers by only changing names
   ;; of visible buffers.
   (advice-add #'exwm--update-utf8-title :around #'exwm--update-utf8-title-advice)
+
+  (defun exwm-rename-buffer ()
+    (interactive)
+    (exwm-workspace-rename-buffer
+     (concat exwm-class-name " :: "
+             (if (<= (length exwm-title) 50) exwm-title
+               (concat (substring exwm-title 0 49) "...")))))
+
+  ;; Add these hooks in a suitable place (e.g., as done in exwm-config-default)
+  (add-hook 'exwm-update-class-hook 'exwm-rename-buffer)
+  (add-hook 'exwm-update-title-hook 'exwm-rename-buffer)
+
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
 
   ;; Enable the window manager.
   (exwm-enable))

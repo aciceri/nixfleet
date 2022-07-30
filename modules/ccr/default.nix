@@ -40,6 +40,11 @@
       "git"
       "gpg"
       "password-store"
+      "slack"
+      "chrome"
+      "vscode"
+      "element"
+      "udiskie"
     ];
     home.packages = with pkgs; [
     ];

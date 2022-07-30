@@ -22,15 +22,15 @@
     xset r rate 200 60
 
     # Uncomment the following block to use the exwm-xim module.
-    #export XMODIFIERS=@im=exwm-xim
-    #export GTK_IM_MODULE=xim
-    #export QT_IM_MODULE=xim
-    #export CLUTTER_IM_MODULE=xim
+    export XMODIFIERS=@im=exwm-xim
+    export GTK_IM_MODULE=xim
+    export QT_IM_MODULE=xim
+    export CLUTTER_IM_MODULE=xim
 
     # Lockscreen
-    exec ${pkgs.xss-lock}/bin/xss-lock -- ${pkgs.i3lock-blur}/bin/i3lock-blur &
+    exec ${pkgs.xss-lock}/bin/xss-lock -- ${pkgs.i3lock-blur}/bin/i3lock-color &
 
     # Finally start Emacs
-    exec emacsclient --eval "(exwm-init)" --create-frame -F "((fullscreen . fullboth))"
+    exec dbus-launch emacsclient --eval "(exwm-init)" --create-frame -F "((fullscreen . fullboth))"
   '';
 }

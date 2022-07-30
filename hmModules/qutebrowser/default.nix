@@ -29,6 +29,7 @@
         "-c"
       ];
       content.pdfjs = true;
+      tabs.tabs_are_windows = true;
     };
   };
   home.packages = [
