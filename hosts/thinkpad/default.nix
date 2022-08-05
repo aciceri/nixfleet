@@ -5,46 +5,22 @@
   fleetModules,
   ...
 }: {
-  imports = fleetModules [
-    "common"
-    "audio"
-    "ccr"
-    "exwm"
-  ];
-
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.enableRedistributableFirmware = true;
+  imports =
+    [
+      ./zfs.nix
+      ./hardware-configuration.nix
+    ]
+    ++ fleetModules [
+      "common"
+      "audio"
+      "ccr"
+      "exwm"
+    ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "rpool/system/root";
-    fsType = "zfs";
-  };
-
-  fileSystems."/nix" = {
-    device = "rpool/system/nix";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "rpool/user/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
-  };
-
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/3cab8a5d-602c-4e3d-b436-c0e5595aeb94";}
-  ];
-
-  networking.hostId = "8ef630a9";
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -52,16 +28,6 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   #networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault true;
   #networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
-
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-
-  boot.loader.grub = {
-    enable = true;
-    copyKernels = true;
-    efiSupport = true;
-    devices = ["nodev"];
-    efiInstallAsRemovable = true;
-  };
 
   networking.hostName = "thinkpad"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -116,6 +82,8 @@
     networkmanager
     wget
   ];
+
+  programs.light.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

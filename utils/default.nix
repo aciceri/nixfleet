@@ -45,8 +45,8 @@
     };
 
   mkConfigurations = {
-    pc = mkConfiguration {
-      name = "pc";
+    thinkpad = mkConfiguration {
+      name = "thinkpad";
       system = supportedSystems.x86_64-linux;
       modules = [];
     };
