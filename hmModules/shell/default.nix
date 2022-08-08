@@ -14,6 +14,8 @@
     nix-direnv.enable = true;
   };
 
+  services.lorri.enable = true;
+
   programs.exa = {
     enable = true;
     enableAliases = true;

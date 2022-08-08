@@ -9,4 +9,13 @@
   services.emacs = {
     enable = true;
   };
+
+  home.packages = with pkgs; [
+    binutils
+    (ripgrep.override {withPCRE2 = true;})
+    gnutls
+    fd
+    imagemagick
+    sqlite
+  ];
 }

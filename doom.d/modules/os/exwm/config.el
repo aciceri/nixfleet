@@ -101,24 +101,11 @@
                     (call-process
                      "xrandr" nil nil nil
                      "--output" (match-string 1) "--primary" "--auto"
-                     "--output" default-output "--off")
+                     "--output" default-output "--off"
+		     )
                     (setq exwm-randr-workspace-monitor-plist
                           (list 0 (match-string 1))))))))
   (exwm-randr-enable))
-
-;; Configure emacs input methods in all X windows.
-(when (featurep! +xim)
-  (use-package! exwm-xim
-    :after exwm
-    :config
-    ;; These variables are required for X programs to pick up Emacs IM.
-    (setenv "XMODIFIERS" "@im=exwm-xim")
-    (setenv "GTK_IM_MODULE" "xim")
-    (setenv "QT_IM_MODULE" "xim")
-    (setenv "CLUTTER_IM_MODULE" "xim")
-    (setenv "QT_QPA_PLATFORM" "xcb")
-    (setenv "SDL_VIDEODRIVER" "x11")
-    (exwm-xim-enable)))
 
 ;; Configure the rudamentary status bar.
 (when (featurep! +status)
