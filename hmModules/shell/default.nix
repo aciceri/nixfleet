@@ -42,11 +42,6 @@
         src = pkgs.spaceship-prompt;
       }
       {
-        name = "zsh-fzf-tab";
-        file = "share/fzf-tab/fzf-tab.plugin.zsh";
-        src = pkgs.zsh-fzf-tab;
-      }
-      {
         name = "fast-zsh-syntax-highlighting";
         file = "share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
         src = pkgs.zsh-fast-syntax-highlighting;
@@ -57,38 +52,36 @@
       plugins = [
         "git"
         "sudo"
-        "command-not-found"
         "colored-man-pages"
         "colorize"
+        "thefuck"
+        "fzf"
       ];
     };
     shellAliases = {
-      "pass-clone" = "[ -d .password-store ] && echo 'Password store archive already exists' || git clone git@git.sr.ht:~zrsk/pass ~/.password-store";
-      "getpass" = "pass show $(find .password-store/ -name \"*.gpg\" | sed \"s/\\.password-store\\/\\(.*\\)\\.gpg$/\\1/g\" | fzf) | wl-copy; ((sleep 60 && wl-copy --clear) &)";
       "cat" = "bat";
-      "man" = "batman";
-      "em" = "[[ -z \$XDG_CURRENT_DESKTOP ]] && emacsclient -c -nw || emacsclient -c";
       "emw" = "emacsclient -c";
       "emnw" = "emacsclient -c -nw";
     };
     localVariables = {
       PASSWORD_STORE_DIR = "/home/ccr/.password-store";
+      SPACESHIP_CHAR_SYMBOL = "λ ";
       SPACESHIP_TIME_SHOW = "true";
       SPACESHIP_USER_SHOW = "always";
       SPACESHIP_HOST_SHOW = "always";
-      EDITOR = "em";
       NIX_BUILD_SHELL = "${pkgs.zsh-nix-shell}/scripts/buildShellShim.zsh";
       PROMPT = "\\\${IN_NIX_SHELL:+[nix-shell] }$PROMPT";
     };
     loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec startx";
-    initExtra =
-      if pkgs.stdenv.hostPlatform.isDarwin
-      then "if test -e /etc/static/bashrc; then source /etc/static/bashrc > /dev/null 2>&1; fi"
-      else "";
     envExtra = ''
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' # for Emacs TRAMP mode
     '';
   };
 
-  programs.command-not-found.enable = true;
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  home.packages = with pkgs; [thefuck];
 }

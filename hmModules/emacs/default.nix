@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.emacs.enable = true;
   programs.doom-emacs = {
     enable = true;
@@ -8,6 +12,8 @@
 
   services.emacs = {
     enable = true;
+    extraOptions = ["-f" "exwm-enable"];
+    defaultEditor = true;
   };
 
   home.packages = with pkgs; [

@@ -4,6 +4,7 @@
   inputs = {
     nixpkgsUnstable.url = github:NixOS/nixpkgs/nixos-unstable;
     nixpkgsStable.url = github:NixOS/nixpkgs/nixos-22.05;
+    nixosHardware.url = github:aciceri/nixos-hardware;
     homeManager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgsUnstable";
@@ -17,6 +18,7 @@
     self,
     nixpkgsUnstable,
     nixpkgsStable,
+    nixosHardware,
     homeManager,
     preCommitHooks,
     agenix,

@@ -45,6 +45,7 @@
       "vscode"
       "element"
       "udiskie"
+      "discord"
     ];
     home.packages = with pkgs; [
     ];

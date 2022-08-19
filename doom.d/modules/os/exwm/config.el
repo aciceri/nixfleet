@@ -16,19 +16,35 @@
 ;; Confgure `exwm' the X window manager for emacs.
 (use-package! exwm
   :config
+
+  ;(mapcar (lambda (i) (exwm-workspace-switch-create i) (number-sequence 0 9)))
+  ;(exwm-workspace-switch-create 1)
+
   ;; Configure global key bindings.
   (setq exwm-input-global-keys
         `(([?\s-r] . exwm-reset)
           ([?\s-w] . exwm-workspace-switch)
+          ([?\s-q] . kill-this-buffer)
+          ([?\s-f] . exwm-layout-toggle-fullscreen)
+          ([?\s-c] . exwm-input-toggle-keyboard)
           ([?\s-d] . (lambda (command)
                        (interactive (list (read-shell-command "$ ")))
                        (start-process-shell-command command nil command)))
+          ,@(mapcar (lambda (i)
+                     `(,(kbd (format "C-s-%d" i)) .
+                       (lambda ()
+                         (interactive)
+                         (exwm-workspace-move-window ,i))))
+                   (number-sequence 0 9))
           ,@(mapcar (lambda (i)
                       `(,(kbd (format "s-%d" i)) .
                         (lambda ()
                           (interactive)
                           (exwm-workspace-switch-create ,i))))
                     (number-sequence 0 9))))
+
+  (setq exwm-layout-show-all-buffers t)
+  (setq exwm-workspace-show-all-buffers t)
 
   ;; Configure the default buffer behaviour. All buffers created in `exwm-mode'
   ;; are named "*EXWM*". Change it in `exwm-update-class-hook' and `exwm-update-title-hook'
@@ -64,10 +80,7 @@
   (add-hook 'exwm-update-title-hook 'exwm-rename-buffer)
 
   (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
-
-  ;; Enable the window manager.
-  (exwm-enable))
+  (exwm-systemtray-enable))
 
 ;; Use the `ido' configuration for a few configuration fixes that alter
 ;; 'C-x b' workplace switching behaviour. This also effects the functionality
@@ -83,28 +96,32 @@
 (use-package! exwm-randr
   :after exwm
   :config
-  (add-hook 'exwm-randr-screen-change-hook
-            (lambda ()
-              (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
-                    default-output)
-                (with-temp-buffer
-                  (call-process "xrandr" nil t nil)
-                  (goto-char (point-min))
-                  (re-search-forward xrandr-output-regexp nil 'noerror)
-                  (setq default-output (match-string 1))
-                  (forward-line)
-                  (if (not (re-search-forward xrandr-output-regexp nil 'noerror))
-                      (call-process
-                       "xrandr" nil nil nil
-                       "--output" default-output
-                       "--auto")
-                    (call-process
-                     "xrandr" nil nil nil
-                     "--output" (match-string 1) "--primary" "--auto"
-                     "--output" default-output "--off"
-		     )
-                    (setq exwm-randr-workspace-monitor-plist
-                          (list 0 (match-string 1))))))))
+  (setq exwm-randr-workspace-monitor-plist '(1 "DP-2" 2 "eDP-1"))
+  (setq exwm-workspace-warp-cursor t)
+  (setq mouse-autoselect-window t
+        focus-follows-mouse t)
+  ;; (add-hook 'exwm-randr-screen-change-hook
+  ;;           (lambda ()
+  ;;             (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
+  ;;                   default-output)
+  ;;               (with-temp-buffer
+  ;;                 (call-process "xrandr" nil t nil)
+  ;;                 (goto-char (point-min))
+  ;;                 (re-search-forward xrandr-output-regexp nil 'noerror)
+  ;;                 (setq default-output (match-string 1))
+  ;;                 (forward-line)
+  ;;                 (if (not (re-search-forward xrandr-output-regexp nil 'noerror))
+  ;;                     (call-process
+  ;;                      "xrandr" nil nil nil
+  ;;                      "--output" default-output
+  ;;                      "--auto")
+  ;;                   (call-process
+  ;;                    "xrandr" nil nil nil
+  ;;                    "--output" (match-string 1) "--primary" "--auto"
+  ;;                    "--output" default-output "--off"
+  ;;       	     )
+  ;;                   (setq exwm-randr-workspace-monitor-plist
+  ;;                         (list 0 (match-string 1))))))))
   (exwm-randr-enable))
 
 ;; Configure the rudamentary status bar.
@@ -132,4 +149,4 @@
         (cl-pushnew k exwm-firefox-evil-firefox-class-name))
       ;; Add the firefox buffer hook
       (add-hook 'exwm-manage-finish-hook
-              'exwm-firefox-evil-activate-if-firefox))))
+                'exwm-firefox-evil-activate-if-firefox))))

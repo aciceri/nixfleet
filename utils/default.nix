@@ -1,5 +1,6 @@
 {
   nixpkgsUnstable,
+  nixosHardware,
   preCommitHooks,
   homeManager,
   doomEmacs,
@@ -48,7 +49,7 @@
     thinkpad = mkConfiguration {
       name = "thinkpad";
       system = supportedSystems.x86_64-linux;
-      modules = [];
+      modules = [nixosHardware.nixosModules.lenovo-thinkpad-x1-7th-gen];
     };
   };
 
