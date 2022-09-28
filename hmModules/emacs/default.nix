@@ -23,5 +23,7 @@
     fd
     imagemagick
     sqlite
+    maim
+    xclip
   ];
 }

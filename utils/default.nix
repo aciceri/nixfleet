@@ -5,6 +5,7 @@
   homeManager,
   doomEmacs,
   agenix,
+  comma,
   ...
 }: let
   supportedSystems = {x86_64-linux = "x86_64-linux";};
@@ -26,15 +27,15 @@
         [
           {
             networking.hostName = lib.mkForce name;
+            home-manager.users.ccr.imports = [
+              doomEmacs.hmModule
+            ];
+            age.identityPaths = ["/home/ccr/.ssh/id_rsa"];
+            nixpkgs.overlays = [agenix.overlay comma.overlays.default];
           }
           (../hosts + "/${name}")
           homeManager.nixosModule
           agenix.nixosModule
-          {
-            home-manager.users.ccr.imports = [
-              doomEmacs.hmModule
-            ];
-          }
         ]
         ++ modules;
       specialArgs = {
@@ -55,7 +56,6 @@
 
   mkVmApp = system: configuration: let
     shellScript = pkgsFor.${system}.writeShellScript "run-vm" ''
-      #rm ${configuration.config.networking.hostName}.qcow2
       ${configuration.config.system.build.vm}/bin/run-${configuration.config.networking.hostName}-vm
     '';
   in {
@@ -99,9 +99,19 @@
     }
   );
 
-  mkDevShell = lib.perSystem (system: {
-    default = pkgsFor.${system}.mkShell {
-      inherit (checkFormattingHook.${system}.nix) shellHook;
+  mkDevShell = lib.perSystem (system: let
+    pkgs = pkgsFor.${system};
+  in {
+    default = pkgs.mkShell {
+      shellHook =
+        checkFormattingHook.${system}.nix.shellHook
+        + ''
+          export RULES="$(git rev-parse --show-toplevel)/secrets/default.nix";
+        '';
+      packages = with pkgs; [
+        git
+        agenix.packages.${system}.agenix
+      ];
     };
   });
 in {

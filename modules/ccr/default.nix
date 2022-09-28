@@ -46,9 +46,19 @@
       "element"
       "udiskie"
       "discord"
+      "cura"
     ];
     home.packages = with pkgs; [
+      comma
     ];
     home.stateVersion = config.system.stateVersion;
+    # TODO move away from here
+    xdg.enable = true;
+    home.pointerCursor = {
+      x11.enable = true;
+      size = 32;
+      package = pkgs.vanilla-dmz;
+      name = "Vanilla-DMZ";
+    };
   };
 }

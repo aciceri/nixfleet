@@ -16,7 +16,7 @@
 ;; Confgure `exwm' the X window manager for emacs.
 (use-package! exwm
   :config
-
+  (setq exwm-workspace-number 10)
   ;(mapcar (lambda (i) (exwm-workspace-switch-create i) (number-sequence 0 9)))
   ;(exwm-workspace-switch-create 1)
 
@@ -27,6 +27,7 @@
           ([?\s-q] . kill-this-buffer)
           ([?\s-f] . exwm-layout-toggle-fullscreen)
           ([?\s-c] . exwm-input-toggle-keyboard)
+          ([?\s-s] . (lambda () (interactive) (start-process-shell-command "screenshot" nil "maim -s -u | xclip -selection clipboard -t image/png -i")))
           ([?\s-d] . (lambda (command)
                        (interactive (list (read-shell-command "$ ")))
                        (start-process-shell-command command nil command)))

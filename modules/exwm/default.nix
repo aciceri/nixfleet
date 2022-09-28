@@ -1,38 +1,54 @@
 {pkgs, ...}: {
   services.xserver = {
     enable = true;
-    autorun = false;
+    autorun = true;
+    exportConfiguration = true;
+    layout = "us";
+    xkbModel = "thinkpad";
+    xkbVariant = "altgr-intl";
     libinput.enable = true;
-    displayManager.startx.enable = true;
+    displayManager = {
+      defaultSession = "none+exwm";
+      autoLogin.enable = true;
+      autoLogin.user = "ccr";
+      sddm = {
+        enable = true;
+        autoLogin.relogin = true;
+        #background = "#000000";
+      };
+    };
+    desktopManager = {
+      xterm.enable = false;
+    };
+    windowManager = {
+      session = pkgs.lib.singleton {
+        name = "exwm";
+        # TODO query emacs daemon to discover if it's ready to start EXWM)` before starting the session
+        start = ''
+          exec dbus-launch --exit-with-session emacsclient --create-frame -F "((fullscreen . fullboth))" --eval "(exwm-init)"
+        '';
+      };
+    };
   };
 
-  hardware.opengl.enable = true;
-
-  home-manager.users.ccr.home.file.".xinitrc".text = ''
-    # Disable access control for the current user.
-    xhost +SI:localuser:$USER
-
-    # Make Java applications aware this is a non-reparenting window manager.
-    export _JAVA_AWT_WM_NONREPARENTING=1
-
-    # Set default cursor.
-    xsetroot -cursor_name left_ptr
-
-    # Set keyboard repeat rate.
-    xset r rate 200 60
-
-    # Uncomment the following block to use the exwm-xim module.
-    export XMODIFIERS=@im=exwm-xim
-    export GTK_IM_MODULE=xim
-    export QT_IM_MODULE=xim
-    export CLUTTER_IM_MODULE=xim
-
-    dbus-update-activation-environment DISPLAY
-
-    # Lockscreen
-    exec ${pkgs.xss-lock}/bin/xss-lock -- ${pkgs.i3lock-blur}/bin/i3lock-color &
-
-    # Finally start Emacs
-    exec dbus-launch emacsclient --create-frame -F "((fullscreen . fullboth))"
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge <${
+      pkgs.writeText "Xresources" ''
+        Xcursor.theme: Adwaita
+        Xcursor.size: 16
+        Emacs.Background: black
+      ''
+    }
   '';
+
+  home-manager.users.ccr = {
+    services.network-manager-applet.enable = true;
+    services.blueman-applet.enable = true;
+    services.pasystray.enable = true;
+    xsession.enable = true;
+  };
+
+  services.udisks2.enable = true;
+
+  hardware.opengl.enable = true;
 }

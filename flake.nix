@@ -12,18 +12,10 @@
     preCommitHooks.url = github:cachix/pre-commit-hooks.nix;
     agenix.url = github:ryantm/agenix;
     doomEmacs.url = github:nix-community/nix-doom-emacs;
+    comma.url = github:nix-community/comma;
   };
 
-  outputs = {
-    self,
-    nixpkgsUnstable,
-    nixpkgsStable,
-    nixosHardware,
-    homeManager,
-    preCommitHooks,
-    agenix,
-    doomEmacs,
-  } @ inputs: let
+  outputs = {self, ...} @ inputs: let
     utils = (import ./utils) inputs;
     inherit (utils) lib mkConfigurations mkVmApps checkFormatting formatter formatApp mkDevShell;
   in {

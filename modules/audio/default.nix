@@ -5,4 +5,6 @@
     enable = true;
     package = pkgs.pulseaudioFull;
   };
+
+  users.extraUsers.ccr.extraGroups = ["audio"];
 }
