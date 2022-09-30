@@ -1,0 +1,23 @@
+name: nix-check
+on:
+  workflow_dispatch: # allows manual triggering
+  push:
+    branches:
+      - master
+      - update_flake_lock_action
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: cachix/install-nix-action@v17
+
+      - uses: cachix/cachix-action@vXX
+        with:
+          name: aciceri-fleet
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - run: nix check -Lv

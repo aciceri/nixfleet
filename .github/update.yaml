@@ -1,0 +1,28 @@
+name: update-flake-lock
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: '0 2 * * *' # running daily at 02:00 AM
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: cachix/install-nix-action@v17
+
+      - uses: cachix/cachix-action@vXX
+        with:
+          name: aciceri-fleet
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v14
+        with:
+          pr-title: "Automatic `flake.lock` update"
+          pr-labels: |
+            flake-inputs
+            automatic
+          token: ${{ secrets.PR_UPDATE_FLAKE_TOKEN }} # to open the PR using my GitHub account, needed to trigger the `build` workflow
