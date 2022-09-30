@@ -1,4 +1,4 @@
-name: nix-check
+name: build-thinkpad
 on:
   workflow_dispatch: # allows manual triggering
   push:
@@ -20,4 +20,4 @@ jobs:
           name: aciceri-fleet
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
-      - run: nix --print-build-logs --verbose flake check --allow-import-from-derivation --keep-going
+      - run: nix --print-build-logs --verbose build --allow-import-from-derivation --keep-going .#nixosConfigurations.thinkpad.config.system.build.toplevel
