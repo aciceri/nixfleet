@@ -1,0 +1,2 @@
+* NixFleet
+A complete, declarative and reproducible configuration of my entire Nix fleet.
