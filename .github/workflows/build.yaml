@@ -25,6 +25,7 @@ jobs:
   build-thinkpad:
     if: ${{ always() }}
     needs: check
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
