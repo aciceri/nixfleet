@@ -5,7 +5,7 @@ on:
     - cron: '0 2 * * *' # running daily at 02:00 AM
 
 jobs:
-  lockfile:
+  update-lockfile:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -13,7 +13,7 @@ jobs:
 
       - uses: cachix/install-nix-action@v17
 
-      - uses: cachix/cachix-action@vXX
+      - uses: cachix/cachix-action@v10
         with:
           name: aciceri-fleet
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
