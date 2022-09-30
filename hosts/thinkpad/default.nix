@@ -12,9 +12,10 @@
     ]
     ++ fleetModules [
       "common"
+      "fonts"
+      "dbus"
       "audio"
       "ccr"
-      "exwm"
       "battery"
       "ssh"
       "adb"
@@ -123,4 +124,16 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      mesa
+      vulkan-loader
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
 }

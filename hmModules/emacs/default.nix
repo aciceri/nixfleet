@@ -4,6 +4,7 @@
   ...
 }: {
   programs.emacs.enable = true;
+
   programs.doom-emacs = {
     enable = true;
     package = pkgs.emacs28NativeComp;
@@ -12,7 +13,6 @@
 
   services.emacs = {
     enable = true;
-    extraOptions = ["-f" "exwm-enable"];
     defaultEditor = true;
   };
 

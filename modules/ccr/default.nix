@@ -28,11 +28,14 @@
     ];
   };
 
+  services.getty.autologinUser = "ccr";
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.ccr = {
     imports = fleetHmModules [
       "shell"
+      "sway"
       "emacs"
       "mpv"
       "firefox"
@@ -54,11 +57,11 @@
     home.stateVersion = config.system.stateVersion;
     # TODO move away from here
     xdg.enable = true;
-    home.pointerCursor = {
-      x11.enable = true;
-      size = 32;
-      package = pkgs.vanilla-dmz;
-      name = "Vanilla-DMZ";
-    };
+    # home.pointerCursor = {
+    #   x11.enable = true;
+    #   size = 32;
+    #   package = pkgs.vanilla-dmz;
+    #   name = "Vanilla-DMZ";
+    # };
   };
 }

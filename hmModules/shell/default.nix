@@ -72,7 +72,7 @@
       NIX_BUILD_SHELL = "${pkgs.zsh-nix-shell}/scripts/buildShellShim.zsh";
       PROMPT = "\\\${IN_NIX_SHELL:+[nix-shell] }$PROMPT";
     };
-    loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec startx";
+    loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec sway";
     envExtra = ''
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' # for Emacs TRAMP mode
     '';
