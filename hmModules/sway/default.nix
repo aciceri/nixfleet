@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./waybar.nix
+    ./gammastep.nix
     ../foot
   ];
   config = {
@@ -25,6 +26,9 @@
         package = pkgs.gnome.adwaita-icon-theme;
       };
     };
+
+    # TODO check if work (just wait?)
+    services.swayidle.enable = true;
 
     wayland = {
       windowManager.sway = let

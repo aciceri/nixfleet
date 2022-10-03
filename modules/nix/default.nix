@@ -20,7 +20,7 @@
       substituters = [
         "https://cache.iog.io"
         "https://mlabs.cachix.org"
-        "httos://aciceri-fleet.cachix.org"
+        "https://aciceri-fleet.cachix.org"
       ];
     };
 

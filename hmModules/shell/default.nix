@@ -33,8 +33,8 @@
     plugins = [
       {
         name = "nix-zsh-completions";
-        src = pkgs.nix-zsh-completions;
         file = "share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
+        src = pkgs.nix-zsh-completions;
       }
       {
         name = "spaceship";
