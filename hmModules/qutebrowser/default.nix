@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.qutebrowser = {
     enable = true;
     searchEngines = {
@@ -21,6 +25,7 @@
       };
     };
     settings = {
+      auto_save.session = true;
       url.start_pages = ["https://searx.be"];
       editor.command = [
         "emacsclient"
@@ -29,12 +34,40 @@
         "-c"
       ];
       content.pdfjs = true;
-      tabs.tabs_are_windows = true;
+      fonts = {
+        default_size = "11pt";
+        tabs = {
+          selected = "13pt";
+          unselected = "13pt";
+        };
+      };
+      colors = {
+        tabs = {
+          even = {
+            bg = "silver";
+            fg = "#666666";
+          };
+          odd = {
+            bg = "gainsboro";
+            fg = config.programs.qutebrowser.settings.colors.tabs.even.fg;
+          };
+        };
+      };
     };
+    # `c.tabs.padding` must be set here since it's a python dict
+    extraConfig = ''
+      c.tabs.padding = {
+        'bottom': 4,
+        'left': 4,
+        'right': 4,
+        'top': 4
+      }
+    '';
   };
-  home.packages = [
+  home.packages = with pkgs; [
+    fuzzel
     (
-      pkgs.makeDesktopItem {
+      makeDesktopItem {
         name = "qutebrowser";
         exec = "qutebrowser %u";
         comment = "Qutebrowser";

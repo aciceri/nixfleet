@@ -5,6 +5,8 @@
 }: {
   imports = [
     ./waybar.nix
+    ./idle.nix
+    ./mako.nix
     ./gammastep.nix
     ../foot
   ];
