@@ -12,10 +12,10 @@
     ]
     ++ fleetModules [
       "common"
+      "ccr"
       "fonts"
       "dbus"
       "audio"
-      "ccr"
       "battery"
       "ssh"
       "adb"
@@ -24,13 +24,53 @@
       "docker"
       "transmission"
       "fprintd"
+      "binfmt"
     ];
+
+  ccr = {
+    enable = true;
+    autologin = true;
+    modules = [
+      "shell"
+      "sway"
+      "emacs"
+      "mpv"
+      "firefox"
+      "qutebrowser"
+      "git"
+      "gpg"
+      "password-store"
+      "slack"
+      "chrome"
+      "vscode"
+      "element"
+      "udiskie"
+      "discord"
+      "cura"
+      "xdg"
+    ];
+    packages = with pkgs; [
+      comma
+    ];
+    extraGroups = [
+      "wheel"
+      "fuse"
+      "video"
+      "adbusers"
+      "docker"
+      "networkmanager"
+      "dialout"
+      "bluetooth"
+      "camera"
+    ];
+  };
 
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction

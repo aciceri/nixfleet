@@ -8,7 +8,10 @@
   comma,
   ...
 }: let
-  supportedSystems = {x86_64-linux = "x86_64-linux";};
+  supportedSystems = {
+    x86_64-linux = "x86_64-linux";
+    aarch64-linux = "aarch64-linux";
+  };
 
   pkgsFor = lib.genAttrs (lib.attrValues supportedSystems) (system: nixpkgsUnstable.legacyPackages.${system});
 
@@ -51,6 +54,15 @@
       name = "thinkpad";
       system = supportedSystems.x86_64-linux;
       modules = [nixosHardware.nixosModules.lenovo-thinkpad-x1-7th-gen];
+    };
+    hs = mkConfiguration {
+      name = "hs";
+      system = supportedSystems.x86_64-linux;
+    };
+    pbp = mkConfiguration {
+      name = "pbp";
+      system = supportedSystems.aarch64-linux;
+      modules = ["${nixosHardware}/pine64/pinebook-pro"];
     };
   };
 

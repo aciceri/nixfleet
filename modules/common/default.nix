@@ -11,6 +11,7 @@
   time.timeZone = lib.mkDefault "Europe/Rome";
   networking.useDHCP = lib.mkDefault true;
   users.mutableUsers = false;
+  # TODO remove
   users.users.root.password = "password";
   i18n.defaultLocale = "en_US.UTF-8";
 
