@@ -12,9 +12,27 @@
       "common"
       "ssh"
       "ccr"
-      #"mara"
+      "mara"
+      "xfce"
+      "battery"
     ];
 
   ccr.enable = true;
-  # mara.enable = true;
+  mara = {
+    enable = true;
+    modules = [
+      "shell"
+      "mpv"
+      "firefox"
+      "git"
+      "chrome"
+      "udiskie"
+    ];
+  };
+
+  home-manager.users.mara = {
+    programs.chromium.package = lib.mkForce pkgs.chromium;
+  };
+
+  i18n.defaultLocale = lib.mkForce "it_IT.UTF-8";
 }

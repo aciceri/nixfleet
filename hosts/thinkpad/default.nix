@@ -25,6 +25,7 @@
       "transmission"
       "fprintd"
       "binfmt"
+      "udisks2"
     ];
 
   ccr = {

@@ -48,16 +48,16 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/nvme0n1p1";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
     };
     "/boot" = {
-      device = "/dev/disk/by-uuid/C406-2AFC";
+      device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
   };
 
-  swapDevices = [{device = "/dev/disk/by-uuid/e236d328-496e-4cf8-ba54-857789ca258f";}];
+  swapDevices = [{device = "/dev/disk/by-label/swap";}];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 
