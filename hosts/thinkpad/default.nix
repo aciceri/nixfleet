@@ -26,6 +26,7 @@
       "fprintd"
       "binfmt"
       "udisks2"
+      "printing"
     ];
 
   ccr = {

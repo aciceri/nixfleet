@@ -15,6 +15,7 @@
       "mara"
       "xfce"
       "battery"
+      "printing"
     ];
 
   ccr.enable = true;

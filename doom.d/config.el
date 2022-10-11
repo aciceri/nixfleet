@@ -80,4 +80,9 @@
 
 (setenv "SSH_AUTH_SOCK" "/run/user/1000/gnupg/S.gpg-agent.ssh")
 
-(set-formatter! 'nix-flake "nix --no-warn-dirty fmt -- --quiet" :modes '(nix-mode))
+(set-formatter! 'nix-flake "nixFormat 2>/dev/null" :modes '(nix-mode))
+
+(defun doom-modeline-set-vcs-modeline () nil) ; FIXME
+
+(setq +format-on-save-enabled-modes
+      '(not latex-mode))
