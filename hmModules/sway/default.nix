@@ -22,7 +22,7 @@
 
     gtk = {
       enable = true;
-      font.name = "DejaVu Sans";
+      font.name = "Fira Code,Symbols Nerd Font";
       iconTheme = {
         name = "Adwaita";
         package = pkgs.gnome.adwaita-icon-theme;

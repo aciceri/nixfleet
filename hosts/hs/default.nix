@@ -2,6 +2,7 @@
   fleetModules,
   pkgs,
   lib,
+  config,
   ...
 }: {
   imports =
@@ -128,7 +129,7 @@
 
     transmission = {
       enable = true;
-      # the following json is merged to this attrset, it must have `rpc-username` and `rpc-password`
+      # following json is merged to this attrset, it must have `rpc-username` and `rpc-password`
       credentialsFile = "/mnt/archivio/transmission/credentials.json";
       settings = {
         download-dir = "/mnt/archivio/transmission/";
@@ -295,11 +296,13 @@
       4712 # amule
       4711 # amule web gui
       8384 # syncthing
+      53 # dns
     ];
     allowedUDPPorts = [
       137 # samba
       138 # samba
       51820 # wireguard
+      53 # dns
     ];
   };
 
@@ -360,4 +363,35 @@
   };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  # TODO move away
+  networking.nameservers = [
+    # https://libreops.cc/radicaldns.html
+    "88.198.92.222"
+    "192.71.166.92"
+  ];
+
+  #environment.etc."coredns/blocklist.hosts".source = ../blocklist.hosts;
+
+  services.coredns = {
+    enable = true;
+    config = ''
+      . {
+        # RadicalDNS Forwarding
+        forward . 88.198.92.222 192.71.166.92
+        cache
+      }
+
+      ccr.ydns.eu {
+          template IN A  {
+            answer "{{ .Name }} 0 IN A 192.168.1.33"
+          }
+      }
+      *.ccr.ydns.eu {
+          template IN A  {
+            answer "{{ .Name }} 0 IN A 192.168.1.33"
+          }
+      }
+    '';
+  };
 }

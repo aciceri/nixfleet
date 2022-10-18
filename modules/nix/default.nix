@@ -41,7 +41,7 @@
   system.activationScripts = {
     populate-netrc.text = ''
       cat <<EOF> /etc/nix/netrc
-      machine mlabs.cachix.org login "" password "$(cat ${config.age.secrets.mlabs-cachix.path})"
+      machine mlabs.cachix.org login x password "$(cat ${config.age.secrets.mlabs-cachix.path})"
       EOF
     '';
   };

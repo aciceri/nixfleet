@@ -9,17 +9,18 @@
     settings = {
       main = {
         term = "xterm-256color";
-
-        font = "Fira Code:size=11";
+        login-shell = "yes";
+        font = "Fira Code,Symbols Nerd Font,JoyPixels";
         dpi-aware = "yes";
       };
 
       mouse = {
         hide-when-typing = "yes";
       };
+
+      colors = {
+        background = "282C34";
+      };
     };
   };
-
-  # without `--login-shell` PATH isn't well configured (it's inherited from the "systemd shell")
-  systemd.user.services.foot.Service.ExecStart = lib.mkForce "${config.programs.foot.package}/bin/foot --server  --login-shell";
 }

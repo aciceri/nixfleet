@@ -64,6 +64,10 @@
       system = supportedSystems.aarch64-linux;
       modules = ["${nixosHardware}/pine64/pinebook-pro"];
     };
+    beebox = mkConfiguration {
+      name = "beebox";
+      system = supportedSystems.x86_64-linux;
+    };
   };
 
   mkVmApp = system: configuration: let

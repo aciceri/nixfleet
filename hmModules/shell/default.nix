@@ -62,6 +62,8 @@
       "cat" = "bat";
       "emw" = "emacsclient -c";
       "emnw" = "emacsclient -c -nw";
+      "pass-clone" = "[ -d .password-store ] && echo 'Password store archive already exists' || git clone git@git.sr.ht:~zrsk/pass ~/.password-store";
+      "getpass" = "pass show $(find .password-store/ -name \"*.gpg\" | sed \"s/\\.password-store\\/\\(.*\\)\\.gpg$/\\1/g\" | fzf) | wl-copy; ((sleep 60 && wl-copy --clear) &)";
     };
     localVariables = {
       PASSWORD_STORE_DIR = "/home/ccr/.password-store";
@@ -81,6 +83,28 @@
   programs.nix-index = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  systemd.user.services.nix-index-update = {
+    Unit = {Description = "Update nix-index";};
+
+    Service = {
+      CPUSchedulingPolicy = "idle";
+      IOSchedulingClass = "idle";
+      ExecStart = "${pkgs.nix-index}/bin/nix-index --path ${config.programs.password-store.settings.PASSWORD_STORE_DIR}";
+    };
+  };
+
+  systemd.user.timers.nix-index-update = {
+    Unit = {Description = "Update nix-index";};
+
+    Timer = {
+      Unit = "nix-index-update.service";
+      OnCalendar = "OnCalendar=monday  *-*-* 10:00:00";
+      Persistent = true;
+    };
+
+    Install = {WantedBy = ["timers.target"];};
   };
 
   home.packages = with pkgs; [thefuck];

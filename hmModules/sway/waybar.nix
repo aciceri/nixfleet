@@ -15,13 +15,13 @@
         modules-center = ["sway/window"];
         modules-right = [
           "tray"
+          "pulseaudio"
           "network"
           "cpu"
           "memory"
-          "pulseaudio"
-          "clock"
-          "backlight"
+          "temperature"
           "battery"
+          "clock"
         ];
 
         "sway/workspaces" = {
@@ -32,36 +32,61 @@
         "sway/mode" = {tooltip = false;};
 
         "sway/window" = {max_length = 50;};
-
-        pulseaudio = {
-          format = "vol {volume}%";
-          on-click-middle = "${pkgs.sway}/bin/swaymsg exec \"${pkgs.pavucontrol}/bin/pavucontrol\"";
+        tray = {
+          spacing = "1px";
         };
-
-        network = {
-          format-wifi = "{essid} {signalStrength}% {bandwidthUpBits} {bandwidthDownBits}";
-          format-ethernet = "{ifname} eth {bandwidthUpBits} {bandwidthDownBits}";
-        };
-
-        cpu = {
-          interval = 2;
-          format = "{icon} {usage}";
-        };
-
-        memory.format = "mem {}%";
-
-        backlight = {
-          format = "nit {percent}%";
-          on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl s +5%";
-          on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl s 5%-";
-        };
-
-        tray.spacing = 10;
-
-        clock.format = "{:%a %b %d %H:%M}";
-
         battery = {
-          format = "bat {}";
+          format = "{capacity}% {icon}";
+          format-alt = "{time} {icon}";
+          format-charging = "{capacity}% ";
+          format-icons = ["" "" "" "" ""];
+          format-plugged = "{capacity}% ";
+          states = {
+            critical = 15;
+            warning = 30;
+          };
+        };
+        clock = {
+          format-alt = "{:%Y-%m-%d}";
+          tooltip-format = "{:%Y-%m-%d | %H:%M}";
+        };
+        cpu = {
+          format = "{usage}% ";
+          tooltip = false;
+        };
+        memory = {format = "{}% ";};
+        network = {
+          interval = 1;
+          format-alt = "{ifname}: {ipaddr}/{cidr}";
+          format-disconnected = "Disconnected ⚠";
+          format-ethernet = "{ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
+          format-linked = "{ifname} (No IP) ";
+          format-wifi = "{essid} ({signalStrength}%) ";
+        };
+        pulseaudio = {
+          format = "{volume}% {icon} {format_source}";
+          format-bluetooth = "{volume}% {icon} {format_source}";
+          format-bluetooth-muted = " {icon} {format_source}";
+          format-icons = {
+            car = "";
+            default = ["" "" ""];
+            handsfree = "";
+            headphones = "";
+            headset = "";
+            phone = "";
+            portable = "";
+          };
+          format-muted = " {format_source}";
+          format-source = "{volume}% ";
+          format-source-muted = "";
+          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+        };
+        "sway/mode" = {format = ''<span style="italic">{}</span>'';};
+        temperature = {
+          critical-threshold = 80;
+          format = "{temperatureC}°C {icon}";
+          format-icons = ["" "" ""];
+          hwmon-path = "/sys/class/thermal/thermal_zone4/temp";
         };
       };
     };

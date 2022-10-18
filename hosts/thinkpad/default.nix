@@ -50,6 +50,7 @@
       "discord"
       "cura"
       "xdg"
+      "helix"
     ];
     packages = with pkgs; [
       comma
