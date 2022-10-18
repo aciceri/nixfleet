@@ -1,13 +1,21 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
-  programs.emacs.enable = true;
+  programs.emacs = {
+    enable = true;
+    package = lib.mkForce (pkgs.emacs28NativeComp.override {
+      # FIXME `mkForce` shouldn't be needed
+      nativeComp = true;
+      withSQLite3 = true;
+      withGTK3 = true;
+    });
+  };
 
   programs.doom-emacs = {
     enable = true;
-    package = pkgs.emacs28NativeComp;
     doomPrivateDir = ../../doom.d;
   };
 

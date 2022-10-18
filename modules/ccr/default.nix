@@ -13,7 +13,7 @@
 
     modules = lib.mkOption {
       type = with lib.types; listOf str;
-      default = ["shell" "git"];
+      default = ["shell" "git" "nix-index"];
     };
 
     packages = lib.mkOption {

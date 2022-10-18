@@ -86,3 +86,8 @@
 
 (setq +format-on-save-enabled-modes
       '(not latex-mode))
+
+(setq org-roam-directory (file-truename "~/roam"))
+(org-roam-db-autosync-mode)
+
+(setq +tree-sitter-hl-enabled-modes t)

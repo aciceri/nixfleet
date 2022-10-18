@@ -16,6 +16,7 @@
       "xfce"
       "battery"
       "printing"
+      "tree-sitter-grammars"
     ];
 
   ccr.enable = true;

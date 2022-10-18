@@ -51,3 +51,4 @@
 
 
 (package! dirvish)
+(package! git-auto-commit-mode)
