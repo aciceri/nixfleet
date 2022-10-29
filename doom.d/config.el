@@ -75,9 +75,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(use-package! dirvish
-  :config (dirvish-override-dired-mode))
-
 (setenv "SSH_AUTH_SOCK" "/run/user/1000/gnupg/S.gpg-agent.ssh")
 
 (set-formatter! 'nix-flake "nixFormat 2>/dev/null" :modes '(nix-mode))
@@ -90,4 +87,9 @@
 (setq org-roam-directory (file-truename "~/roam"))
 (org-roam-db-autosync-mode)
 
-(setq +tree-sitter-hl-enabled-modes t)
+(setq doom-font (font-spec :family "Fira Code" :size 16)
+      doom-variable-pitch-font (font-spec :family "Fira Code")
+      doom-big-font-increment 1)
+
+(dotimes (workspace-number 10)
+  (define-key vterm-mode-map (kbd (format "M-%d" workspace-number)) nil))

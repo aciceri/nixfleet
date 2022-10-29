@@ -248,6 +248,15 @@
             proxyPass = "http://192.168.1.71:80";
           };
         };
+
+        "wstunnel.ccr.ydns.eu" = {
+          enableACME = true;
+          addSSL = true;
+          locations."/" = {
+            proxyPass = "http://localhost:8080";
+            proxyWebsockets = true;
+          };
+        };
       };
     };
   };
@@ -272,6 +281,17 @@
       User = "root";
       Type = "oneshot";
       ExecStart = "${pkgs.bash}/bin/bash ${ydnsUpdater}/bin/ydnsUpdater";
+    };
+  };
+
+  systemd.services.wstunnel = {
+    description = "WSTunnel";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+    serviceConfig = {
+      User = "root";
+      Type = "oneshot";
+      ExecStart = "${pkgs.wstunnel}/bin/wstunnel wstunnel --server ws://0.0.0.0:8080";
     };
   };
 
