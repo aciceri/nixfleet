@@ -6,6 +6,7 @@
   doomEmacs,
   agenix,
   comma,
+  robotnix,
   ...
 }: let
   supportedSystems = {
@@ -15,9 +16,11 @@
 
   pkgsFor = lib.genAttrs (lib.attrValues supportedSystems) (system: nixpkgsUnstable.legacyPackages.${system});
 
-  lib = nixpkgsUnstable.lib.extend (self: super: {
-    perSystem = super.genAttrs (super.attrValues supportedSystems);
-  });
+  lib = nixpkgsUnstable.lib.extend (self: super:
+    {
+      perSystem = super.genAttrs (super.attrValues supportedSystems);
+    }
+    // robotnix.lib);
 
   mkConfiguration = {
     name,
@@ -49,7 +52,7 @@
       };
     };
 
-  mkConfigurations = {
+  nixosConfigurations = {
     thinkpad = mkConfiguration {
       name = "thinkpad";
       system = supportedSystems.x86_64-linux;
@@ -69,6 +72,25 @@
       system = supportedSystems.x86_64-linux;
     };
   };
+
+  mkAndroidConfiguration = {
+    name,
+    device,
+    flavor,
+  }:
+    lib.robotnixSystem {
+      inherit device flavor;
+    };
+
+  androidConfigurations = {
+    oneplus5t = mkAndroidConfiguration {
+      name = "oneplus5t";
+      device = "dumpling";
+      flavor = "lineageos";
+    };
+  };
+
+  androidImages = lib.perSystem (system: builtins.mapAttrs (name: conf: conf.img) androidConfigurations);
 
   mkVmApp = system: configuration: let
     shellScript = pkgsFor.${system}.writeShellScript "run-vm" ''
@@ -131,5 +153,15 @@
     };
   });
 in {
-  inherit lib mkConfigurations mkVmApps supportedSystems formatApp formatter mkDevShell checkFormatting;
+  inherit
+    androidImages
+    checkFormatting
+    formatApp
+    formatter
+    lib
+    mkDevShell
+    mkVmApps
+    nixosConfigurations
+    supportedSystems
+    ;
 }

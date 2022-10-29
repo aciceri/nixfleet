@@ -13,13 +13,26 @@
     agenix.url = github:ryantm/agenix;
     doomEmacs.url = github:nix-community/nix-doom-emacs;
     comma.url = github:nix-community/comma;
+    robotnix.url = github:danielfullmer/robotnix;
   };
 
   outputs = {self, ...} @ inputs: let
-    utils = (import ./utils) inputs;
-    inherit (utils) lib mkConfigurations mkVmApps checkFormatting formatter formatApp mkDevShell;
+    utils = import ./utils inputs;
+    inherit
+      (utils)
+      androidImages
+      checkFormatting
+      formatApp
+      formatter
+      lib
+      mkDevShell
+      mkVmApps
+      nixosConfigurations
+      ;
   in {
-    nixosConfigurations = mkConfigurations;
+    inherit nixosConfigurations;
+
+    packages = androidImages;
 
     apps = lib.recursiveUpdate (mkVmApps self.nixosConfigurations) formatApp;
 
