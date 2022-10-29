@@ -63,7 +63,7 @@ in {
     doomPackageDir = pkgs.linkFarm "my-doom-packages" [
       {
         name = "config.el";
-        path = ../../doom.d/config.el;
+        path = pkgs.emptyFile;
       }
       {
         name = "init.el";

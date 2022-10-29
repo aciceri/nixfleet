@@ -91,5 +91,21 @@
       doom-variable-pitch-font (font-spec :family "Fira Code")
       doom-big-font-increment 1)
 
-(dotimes (workspace-number 10)
-  (define-key vterm-mode-map (kbd (format "M-%d" workspace-number)) nil))
+(after! vterm
+  (dotimes (workspace-number 10)
+    (define-key vterm-mode-map (kbd (format "M-%d" workspace-number)) nil)))
+
+(after! polymode (progn
+        (define-hostmode poly-nix-hostmode :mode 'nix-mode)
+
+        (define-innermode poly-sh-innermode
+        :mode 'sh-mode
+        :head-matcher "^.*=.*''.*$"
+        :tail-matcher "^.*''.*;.*$"
+        :head-mode 'host
+        :tail-mode 'host)
+
+        (define-polymode poly-nix-mode
+        :hostmode 'poly-nix-hostmode
+        :innermodes '(poly-sh-innermode))
+))
