@@ -59,6 +59,13 @@
               command = "${pkgs.waybar}/bin/waybar";
             }
           ];
+          assigns = {
+            "1" = [{title = ".*Mozilla Firefox$";} {title = ".*qutebrowser$";}];
+            "2" = [{title = ".*Emacs$";}];
+            "3" = [{title = "Slack.*";}];
+            "8" = [{title = "^Franz$";}];
+            "9" = [{title = "^Element.*";}];
+          };
           floating.criteria = [
             {title = "MetaMask Notification.*";}
             {title = "Volume Control";} # pavucontrol

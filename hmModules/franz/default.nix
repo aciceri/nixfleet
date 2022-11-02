@@ -1,16 +1,16 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.element-desktop];
+  home.packages = [pkgs.franz];
 
-  systemd.user.services.element-desktop = {
+  systemd.user.services.franz = {
     Install.WantedBy = ["graphical-session.target"];
 
     Unit = {
-      Description = "Element";
+      Description = "Franz";
       PartOf = ["graphical-session.target"];
     };
 
     Service = {
-      ExecStart = "${pkgs.element-desktop}/bin/element-desktop";
+      ExecStart = "${pkgs.franz}/bin/franz";
       Restart = "on-failure";
       RestartSec = 3;
     };

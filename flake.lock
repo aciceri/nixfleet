@@ -727,15 +727,16 @@
         "nixpkgsUnstable": "nixpkgsUnstable_2"
       },
       "locked": {
-        "lastModified": 1665032132,
-        "narHash": "sha256-3TtIR7JXGewZmvN4TknmVPzZkPptxJUxDvlfxks46tA=",
-        "owner": "danielfullmer",
+        "lastModified": 1665920835,
+        "narHash": "sha256-FBe55Yz8q8lcgq5H/yClqeen7bTZtNGom6UAdAP+Pvg=",
+        "owner": "atemu",
         "repo": "robotnix",
-        "rev": "2bcd6a106fd73e5f6454a4e3afc2d29cb78a2793",
+        "rev": "dd7e83fb19c7ef7eb87d21ceb07fb44d84ddbd57",
         "type": "github"
       },
       "original": {
-        "owner": "danielfullmer",
+        "owner": "atemu",
+        "ref": "update/lineageos",
         "repo": "robotnix",
         "type": "github"
       }

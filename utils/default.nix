@@ -77,9 +77,13 @@
     name,
     device,
     flavor,
+    androidVersion,
   }:
     lib.robotnixSystem {
       inherit device flavor;
+      imports = [
+        (../hosts + "/${name}")
+      ];
     };
 
   androidConfigurations = {
@@ -87,10 +91,21 @@
       name = "oneplus5t";
       device = "dumpling";
       flavor = "lineageos";
+      androidVersion = 12;
     };
   };
 
-  androidImages = lib.perSystem (system: builtins.mapAttrs (name: conf: conf.img) androidConfigurations);
+  androidImages = lib.perSystem (system: builtins.mapAttrs (confName: conf: conf.img) androidConfigurations);
+
+  androidGenerateKeysScripts = lib.perSystem (system:
+    lib.mapAttrs' (confName: conf: {
+      name = "${confName}-generateKeys";
+      value = {
+        type = "app";
+        program = "${conf.generateKeysScript}";
+      };
+    })
+    androidConfigurations);
 
   mkVmApp = system: configuration: let
     shellScript = pkgsFor.${system}.writeShellScript "run-vm" ''
@@ -154,6 +169,7 @@
   });
 in {
   inherit
+    androidGenerateKeysScripts
     androidImages
     checkFormatting
     formatApp

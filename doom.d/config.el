@@ -96,16 +96,24 @@
     (define-key vterm-mode-map (kbd (format "M-%d" workspace-number)) nil)))
 
 (after! polymode (progn
-        (define-hostmode poly-nix-hostmode :mode 'nix-mode)
+                   (define-hostmode poly-nix-hostmode :mode 'nix-mode)
 
-        (define-innermode poly-sh-innermode
-        :mode 'sh-mode
-        :head-matcher "^.*=.*''.*$"
-        :tail-matcher "^.*''.*;.*$"
-        :head-mode 'host
-        :tail-mode 'host)
+                   (define-innermode poly-sh-innermode
+                     :mode 'sh-mode
+                     :head-matcher "^.*[+=].*''"
+                     :tail-matcher "''.*[+;].*$"
+                     :head-mode 'host
+                     :tail-mode 'host)
 
-        (define-polymode poly-nix-mode
-        :hostmode 'poly-nix-hostmode
-        :innermodes '(poly-sh-innermode))
-))
+                   (define-polymode poly-nix-mode
+                     :hostmode 'poly-nix-hostmode
+                     :innermodes '(poly-sh-innermode))
+                   ))
+
+(after! org
+  (setq-default prettify-symbols-alist
+                '(("[ ]" "☐")
+                  ("[X]" "☑")
+                  ("[-]" "❍")
+                  ("#+begin_src" "λ")
+                  ("#+end_src" "λ"))))

@@ -1,7 +1,7 @@
 * {
     border: none;
     font-family: "Fira Code, Symbols Nerd Font";
-    font-weight: bold;
+    font-weight: normal;
     font-size: 9pt;
     min-height: 0;
 }
@@ -14,7 +14,7 @@ window#waybar {
     transition-duration: .5s;
 }
 
-window .modules-right * {
+window .modules-right :not(image) {  /* :not(image) excluded tray icon */
     margin: 0 1rem;
 }
 
@@ -26,6 +26,10 @@ window#waybar.hidden {
     padding: 0 5px;
     background-color: transparent;
     color: #ffffff;
+}
+
+#workspaces button label {
+    font-size: 25px;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */

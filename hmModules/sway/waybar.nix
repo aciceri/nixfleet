@@ -27,13 +27,26 @@
         "sway/workspaces" = {
           all-outputs = true;
           disable-scroll-wraparound = true;
+          active-only = true;
+          format = "{icon}";
+          on-click = "activate";
+          format-icons = {
+            "1" = "";
+            "2" = "";
+            "3" = "";
+            "8" = "甆";
+            "9" = "ﬧ";
+            urgent = "";
+            default = "";
+          };
+          sort-by-number = true;
         };
 
         "sway/mode" = {tooltip = false;};
 
         "sway/window" = {max_length = 50;};
         tray = {
-          spacing = "1px";
+          spacing = 10;
         };
         battery = {
           format = "{capacity}% {icon}";

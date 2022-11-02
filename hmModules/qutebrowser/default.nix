@@ -34,6 +34,7 @@
         "-c"
       ];
       content.pdfjs = true;
+      scrolling.smooth = true;
       fonts = {
         default_size = "11pt";
         tabs = {
