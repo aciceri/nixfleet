@@ -9,7 +9,6 @@ on:
 jobs:
   build-hs:
     if: ${{ always() }}
-    needs: check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
