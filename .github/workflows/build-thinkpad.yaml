@@ -1,0 +1,28 @@
+name: build-thinkpad
+on:
+  workflow_dispatch: # allows manual triggering
+  push:
+    branches:
+      - master
+      - update_flake_lock_action
+
+jobs:
+  build-thinkpad:
+    if: ${{ always() }}
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: cachix/install-nix-action@v17
+        with:
+          extra_nix_config: |
+            max-jobs = 10
+
+      - uses: cachix/cachix-action@v10
+        with:
+          name: aciceri-fleet
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - run: nix --print-build-logs --verbose build --allow-import-from-derivation .#nixosConfigurations.thinkpad.config.system.build.toplevel
