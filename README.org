@@ -1,2 +1,10 @@
 * NixFleet
 A complete, declarative and reproducible configuration of my entire Nix fleet.
+
+** Current status
+
+#+html: <img src="https://img.shields.io/github/workflow/status/aciceri/nixfleet/check?label=nix%20flake%20check&logo=nixos"/>
+#+html: <img src="https://img.shields.io/github/workflow/status/aciceri/nixfleet/build-thinkpad?label=thinkpad&logo=nixos" />
+#+html: <img src="https://img.shields.io/github/workflow/status/aciceri/nixfleet/build-hs?label=hs&logo=nixos" />
+#+html: <img src="https://img.shields.io/github/workflow/status/aciceri/nixfleet/build-pbp?label=pbp&logo=nixos" />
+#+html: <img src="https://img.shields.io/github/workflow/status/aciceri/nixfleet/build-beebox?label=beebox&logo=nixos" />
