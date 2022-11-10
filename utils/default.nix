@@ -1,12 +1,12 @@
 {
-  nixpkgsUnstable,
-  nixosHardware,
-  preCommitHooks,
-  homeManager,
-  doomEmacs,
   agenix,
   comma,
-  robotnix,
+  doomEmacs,
+  homeManager,
+  nixosHardware,
+  nixpkgsUnstable,
+  preCommitHooks,
+  self,
   ...
 }: let
   supportedSystems = {
@@ -16,11 +16,9 @@
 
   pkgsFor = lib.genAttrs (lib.attrValues supportedSystems) (system: nixpkgsUnstable.legacyPackages.${system});
 
-  lib = nixpkgsUnstable.lib.extend (self: super:
-    {
-      perSystem = super.genAttrs (super.attrValues supportedSystems);
-    }
-    // robotnix.lib);
+  lib = nixpkgsUnstable.lib.extend (self: super: {
+    perSystem = super.genAttrs (super.attrValues supportedSystems);
+  });
 
   mkConfiguration = {
     name,
@@ -73,40 +71,6 @@
     };
   };
 
-  mkAndroidConfiguration = {
-    name,
-    device,
-    flavor,
-    androidVersion,
-  }:
-    lib.robotnixSystem {
-      inherit device flavor;
-      imports = [
-        (../hosts + "/${name}")
-      ];
-    };
-
-  androidConfigurations = {
-    oneplus5t = mkAndroidConfiguration {
-      name = "oneplus5t";
-      device = "dumpling";
-      flavor = "lineageos";
-      androidVersion = 12;
-    };
-  };
-
-  androidImages = lib.perSystem (system: builtins.mapAttrs (confName: conf: conf.img) androidConfigurations);
-
-  androidGenerateKeysScripts = lib.perSystem (system:
-    lib.mapAttrs' (confName: conf: {
-      name = "${confName}-generateKeys";
-      value = {
-        type = "app";
-        program = "${conf.generateKeysScript}";
-      };
-    })
-    androidConfigurations);
-
   mkVmApp = system: configuration: let
     shellScript = pkgsFor.${system}.writeShellScript "run-vm" ''
       ${configuration.config.system.build.vm}/bin/run-${configuration.config.networking.hostName}-vm
@@ -146,8 +110,11 @@
   checkFormattingHook = lib.perSystem (
     system: {
       nix = preCommitHooks.lib.${system}.run {
-        src = ./.;
-        hooks.alejandra.enable = true;
+        src = self;
+        hooks.alejandra = {
+          enable = true;
+          entry = lib.mkForce formatApp.${system}.format.program;
+        };
       };
     }
   );
@@ -169,8 +136,6 @@
   });
 in {
   inherit
-    androidGenerateKeysScripts
-    androidImages
     checkFormatting
     formatApp
     formatter

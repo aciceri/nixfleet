@@ -52,7 +52,6 @@
               inherit bg;
             };
           };
-          #fonts = [ "Font Awesome" "Fira Code" ];
           terminal = "footclient";
           bars = [
             {
@@ -61,7 +60,7 @@
           ];
           assigns = {
             "1" = [{title = ".*Mozilla Firefox$";} {title = ".*qutebrowser$";}];
-            "2" = [{title = ".*Emacs$";}];
+            "2" = [{title = "^((?!qutebrowser-editor).)*Emacs$";}];
             "3" = [{title = "Slack.*";}];
             "8" = [{title = "^Franz$";}];
             "9" = [{title = "^Element.*";}];
@@ -69,6 +68,7 @@
           floating.criteria = [
             {title = "MetaMask Notification.*";}
             {title = "Volume Control";} # pavucontrol
+            {title = "^.*editor - qutebrowser$";} # Emacs opened by qutebrowser
           ];
           input = {
             "*" = {
@@ -80,14 +80,21 @@
             screenshotScript = pkgs.writeShellScript "screenshot.sh" ''
               filename="$HOME/shots/$(date --iso-8601=seconds).png"
               coords="$(${pkgs.slurp}/bin/slurp)"
-              ${pkgs.grim}/bin/grim -t png -g "$coords" $filename
+              ${pkgs.grim}/bin/grim -t png -g "$coords" "$filename"
               wl-copy -t image/png < $filename
+            '';
+            screenrecordingScript = pkgs.writeShellScript "screenrecorder.sh" ''
+              filename="$HOME/shots/recording-$(date --iso-8601=seconds).mp4"
+              coords="$(${pkgs.slurp}/bin/slurp)"
+              ${pkgs.wf-recorder}/bin/wf-recorder -g "$coords" -f "$filename"
+              wl-copy -t video/mp4 < $filename
             '';
           in
             lib.mkOptionDefault {
               "${modifier}+x" = "exec emacsclient -c";
               "${modifier}+b" = "exec qutebrowser";
               "${modifier}+s" = "exec ${screenshotScript}";
+              "${modifier}+g" = "exec ${screenrecordingScript}";
               "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s +5%";
               "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%-";
             };

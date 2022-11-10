@@ -80,5 +80,9 @@
     '';
   };
 
-  home.packages = with pkgs; [thefuck htop-vim dig.dnsutils];
+  home.packages = with pkgs; [
+    thefuck
+    htop-vim
+    dig.dnsutils
+  ];
 }

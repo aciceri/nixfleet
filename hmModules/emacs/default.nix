@@ -28,28 +28,28 @@
           --replace '(emacs-repository-get-branch)' '"master"'
         ''
         + (lib.optionalString (old ? NATIVE_FULL_AOT)
-        # TODO: remove when https://github.com/NixOS/nixpkgs/pull/193621 is merged
-        (
-          let
-            backendPath =
-              lib.concatStringsSep " "
-              (builtins.map (x: ''\"-B${x}\"'') [
-                # Paths necessary so the JIT compiler finds its libraries:
-                "${lib.getLib pkgs.libgccjit}/lib"
-                "${lib.getLib pkgs.libgccjit}/lib/gcc"
-                "${lib.getLib pkgs.stdenv.cc.libc}/lib"
+          # TODO: remove when https://github.com/NixOS/nixpkgs/pull/193621 is merged
+          (
+            let
+              backendPath =
+                lib.concatStringsSep " "
+                (builtins.map (x: ''\"-B${x}\"'') [
+                  # Paths necessary so the JIT compiler finds its libraries:
+                  "${lib.getLib pkgs.libgccjit}/lib"
+                  "${lib.getLib pkgs.libgccjit}/lib/gcc"
+                  "${lib.getLib pkgs.stdenv.cc.libc}/lib"
 
-                # Executable paths necessary for compilation (ld, as):
-                "${lib.getBin pkgs.stdenv.cc.cc}/bin"
-                "${lib.getBin pkgs.stdenv.cc.bintools}/bin"
-                "${lib.getBin pkgs.stdenv.cc.bintools.bintools}/bin"
-              ]);
-          in ''
-            substituteInPlace lisp/emacs-lisp/comp.el --replace \
-              "(defcustom comp-libgccjit-reproducer nil" \
-              "(setq native-comp-driver-options '(${backendPath})) (defcustom comp-libgccjit-reproducer nil"
-          ''
-        ));
+                  # Executable paths necessary for compilation (ld, as):
+                  "${lib.getBin pkgs.stdenv.cc.cc}/bin"
+                  "${lib.getBin pkgs.stdenv.cc.bintools}/bin"
+                  "${lib.getBin pkgs.stdenv.cc.bintools.bintools}/bin"
+                ]);
+            in ''
+              substituteInPlace lisp/emacs-lisp/comp.el --replace \
+                "(defcustom comp-libgccjit-reproducer nil" \
+                "(setq native-comp-driver-options '(${backendPath})) (defcustom comp-libgccjit-reproducer nil"
+            ''
+          ));
     });
 in {
   programs.emacs = {
@@ -86,17 +86,22 @@ in {
   };
 
   home.packages = with pkgs; let
-    path = pkgs.lib.makeBinPath (with pkgs; [
+    path = pkgs.lib.makeBinPath [
+      git
+      jq
       nix
       nixpkgs-fmt
-      git
-    ]);
+    ];
     nixFormat = writeScriptBin "nixFormat" ''
       export PATH=${pkgs.lib.escapeShellArg path}
 
-      if [[ ! "$(nix fmt $@)" ]]
+      customFormatter=$(nix flake show --no-write-lock-file --no-update-lock-file --json | jq 'has("formatter")')
+
+      if [[ $customFormatter == "true" ]]
       then
-        nixpkgs-fmt $@
+        nix fmt <<< /dev/stdin
+      else
+        nixpkgs-fmt <<< /dev/stdin
       fi
     '';
   in [

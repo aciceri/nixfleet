@@ -13,7 +13,6 @@
     agenix.url = github:ryantm/agenix;
     doomEmacs.url = github:nix-community/nix-doom-emacs;
     comma.url = github:nix-community/comma;
-    robotnix.url = github:atemu/robotnix/update/lineageos;
   };
 
   outputs = {self, ...} @ inputs: let
@@ -33,12 +32,9 @@
   in {
     inherit nixosConfigurations;
 
-    packages = androidImages;
-
     apps = lib.foldr lib.recursiveUpdate {} [
       (mkVmApps self.nixosConfigurations)
       formatApp
-      androidGenerateKeysScripts
     ];
 
     checks = checkFormatting ./.;

@@ -44,6 +44,7 @@
       "git"
       "gpg"
       "helix"
+      "mopidy"
       "mpv"
       "password-store"
       "qutebrowser"
