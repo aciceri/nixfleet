@@ -19,8 +19,6 @@
     utils = import ./utils inputs;
     inherit
       (utils)
-      androidGenerateKeysScripts
-      androidImages
       checkFormatting
       formatApp
       formatter
