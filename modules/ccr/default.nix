@@ -64,7 +64,15 @@
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.users.ccr = {
-      imports = fleetHmModules config.ccr.modules;
+      imports =
+        fleetHmModules config.ccr.modules
+        ++ [
+          {
+            _module.args = {
+              secrets = config.age.secrets;
+            };
+          }
+        ];
       home.packages = config.ccr.packages;
       home.stateVersion = config.system.stateVersion;
     };

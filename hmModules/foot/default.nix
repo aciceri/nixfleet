@@ -1,8 +1,4 @@
 {
-  config,
-  lib,
-  ...
-}: {
   programs.foot = {
     enable = true;
     server.enable = true;
@@ -11,7 +7,6 @@
         term = "xterm-256color";
         login-shell = "yes";
         font = "Fira Code,Symbols Nerd Font,JoyPixels";
-        dpi-aware = "yes";
       };
 
       mouse = {

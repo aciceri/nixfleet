@@ -2,17 +2,17 @@
   description = "A complete, declarative, and reproducible configuration of my entire Nix fleet";
 
   inputs = {
-    nixpkgsUnstable.url = github:NixOS/nixpkgs/nixos-unstable;
-    nixpkgsStable.url = github:NixOS/nixpkgs/nixos-22.05;
-    nixosHardware.url = github:NixOS/nixos-hardware;
+    nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
-      url = github:nix-community/home-manager;
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
-    preCommitHooks.url = github:cachix/pre-commit-hooks.nix;
-    agenix.url = github:ryantm/agenix;
-    doomEmacs.url = github:nix-community/nix-doom-emacs;
-    comma.url = github:nix-community/comma;
+    preCommitHooks.url = "github:cachix/pre-commit-hooks.nix";
+    agenix.url = "github:ryantm/agenix";
+    doomEmacs.url = "github:nix-community/nix-doom-emacs";
+    comma.url = "github:nix-community/comma";
   };
 
   outputs = {self, ...} @ inputs: let

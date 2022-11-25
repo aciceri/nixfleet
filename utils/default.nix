@@ -34,7 +34,13 @@
             home-manager.users.ccr.imports = [
               doomEmacs.hmModule
             ];
-            age.identityPaths = ["/home/ccr/.ssh/id_rsa"];
+            age = {
+              identityPaths = ["/home/ccr/.ssh/id_rsa"];
+              secrets = lib.mapAttrs' (name: _: {
+                name = lib.removeSuffix ".age" (builtins.baseNameOf name);
+                value.file = ./.. + "/${name}";
+              }) (import ../secrets);
+            };
             nixpkgs.overlays = [agenix.overlay comma.overlays.default];
           }
           (../hosts + "/${name}")

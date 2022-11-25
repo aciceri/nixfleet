@@ -78,6 +78,7 @@ in {
         path = ../../doom.d/modules;
       }
     ];
+    extraPackages = with pkgs; [mu];
   };
 
   services.emacs = {
@@ -104,16 +105,23 @@ in {
         nixpkgs-fmt <<< /dev/stdin
       fi
     '';
-  in [
-    binutils
-    (ripgrep.override {withPCRE2 = true;})
-    gnutls
-    fd
-    imagemagick
-    sqlite
-    maim
-    nixFormat
-    jq
-    xclip
-  ];
+  in
+    [
+      binutils
+      (ripgrep.override {withPCRE2 = true;})
+      gnutls
+      fd
+      imagemagick
+      sqlite
+      maim
+      nil
+      nixFormat
+      jq
+      xclip
+      hunspell
+    ]
+    ++ (with hunspellDicts; [
+      en_US-large
+      it_IT
+    ]);
 }

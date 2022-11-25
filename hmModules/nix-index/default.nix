@@ -3,11 +3,6 @@
   pkgs,
   ...
 }: {
-  programs.nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
   systemd.user.services.nix-index-update = {
     Unit = {Description = "Update nix-index";};
 

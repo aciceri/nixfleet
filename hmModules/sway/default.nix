@@ -29,7 +29,7 @@
       };
     };
 
-    # TODO check if work (just wait?)
+    # TODO check if it works (just wait?)
     services.swayidle.enable = true;
 
     wayland = {
@@ -62,7 +62,6 @@
             "1" = [{title = ".*Mozilla Firefox$";} {title = ".*qutebrowser$";}];
             "2" = [{title = "^((?!qutebrowser-editor).)*Emacs$";}];
             "3" = [{title = "Slack.*";}];
-            "8" = [{title = "^Franz$";}];
             "9" = [{title = "^Element.*";}];
           };
           floating.criteria = [
@@ -89,12 +88,16 @@
               ${pkgs.wf-recorder}/bin/wf-recorder -g "$coords" -f "$filename"
               wl-copy -t video/mp4 < $filename
             '';
+            emacsclientAsTerminal = pkgs.writeShellScript "emacsclientAsTerminal" ''
+              emacsclient -c -F '\\'(name . "VTerm"))' -q --eval '\\'(vterm "/bin/zsh")'
+            '';
           in
             lib.mkOptionDefault {
               "${modifier}+x" = "exec emacsclient -c";
               "${modifier}+b" = "exec qutebrowser";
               "${modifier}+s" = "exec ${screenshotScript}";
               "${modifier}+g" = "exec ${screenrecordingScript}";
+              # "${modifier}+Shift+Enter" = "exec ${emacsclientAsTerminal}"; # FIXME
               "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s +5%";
               "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%-";
             };

@@ -40,6 +40,7 @@
       "discord"
       "element"
       "emacs"
+      "email"
       "firefox"
       "git"
       "gpg"
@@ -53,7 +54,6 @@
       "sway"
       "udiskie"
       "vscode"
-      "franz"
       "xdg"
       "zathura"
     ];
