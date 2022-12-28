@@ -1,4 +1,4 @@
-name: build-beebox
+name: build-rock5b
 on:
   workflow_dispatch: # allows manual triggering
   push:
@@ -7,7 +7,7 @@ on:
       - update_flake_lock_action
 
 jobs:
-  build-beebox:
+  build-rock5b:
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
@@ -24,4 +24,4 @@ jobs:
           name: aciceri-fleet
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
-      - run: nix --print-build-logs --verbose build --allow-import-from-derivation .#nixosConfigurations.beebox.config.system.build.toplevel
+      - run: nix --print-build-logs --verbose build --allow-import-from-derivation .#nixosConfigurations.rock5b.config.system.build.toplevel
