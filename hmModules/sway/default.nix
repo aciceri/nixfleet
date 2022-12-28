@@ -29,7 +29,6 @@
       };
     };
 
-    # TODO check if it works (just wait?)
     services.swayidle.enable = true;
 
     wayland = {
@@ -55,9 +54,14 @@
           terminal = "footclient";
           bars = [
             {
+              mode = "hide";
+              position = "top";
               command = "${pkgs.waybar}/bin/waybar";
             }
           ];
+          gaps = {
+            smartBorders = "on";
+          };
           assigns = {
             "1" = [{title = ".*Mozilla Firefox$";} {title = ".*qutebrowser$";}];
             "2" = [{title = "^((?!qutebrowser-editor).)*Emacs$";}];

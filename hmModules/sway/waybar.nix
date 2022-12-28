@@ -4,6 +4,7 @@
     style = builtins.readFile ./style.css;
     settings = {
       mainBar = {
+        ipc = true;
         layer = "top";
         position = "top";
         height = 30;

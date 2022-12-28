@@ -226,6 +226,22 @@
         "type": "github"
       }
     },
+    "fan-control": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1669548492,
+        "narHash": "sha256-qqPmOEF+r10VGz3izAnHZW6aJk1mOXy9BrpR9FvWSt0=",
+        "owner": "pymumu",
+        "repo": "fan-control-rock5b",
+        "rev": "8419990c6c0f47a3ed0b55255d7e3591cc5fdab9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pymumu",
+        "repo": "fan-control-rock5b",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -363,6 +379,22 @@
         "type": "github"
       }
     },
+    "kernel-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1670395302,
+        "narHash": "sha256-IZdeXSvGips2OPTwXljGPTeR2Kpx70NGQGF0Cd9xa+0=",
+        "owner": "radxa",
+        "repo": "kernel",
+        "rev": "ca15bbe36e6c087c96a603db7cc491a01d9a6467",
+        "type": "github"
+      },
+      "original": {
+        "owner": "radxa",
+        "repo": "kernel",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -466,16 +498,15 @@
     },
     "nixpkgsUnstable": {
       "locked": {
-        "lastModified": 1670597555,
-        "narHash": "sha256-/k939P2S2246G6K5fyvC0U2IWvULhb4ZJg9K7ZxsX+k=",
+        "lastModified": 1672239721,
+        "narHash": "sha256-yGFJrTbRR/338y+UOvjRXi1pfidSdWb016UHOFFcfns=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2dea0f4c2d6e4603f54b2c56c22367e77869490c",
+        "rev": "4d5535c90c817917015bf26794d29802e254cb32",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -524,6 +555,22 @@
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1656239181,
+        "narHash": "sha256-wW1xRFBn376yGloXZ4QzBE4hjipMawpV18Lshd9QSPw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f2537a505d45c31fe5d9c27ea9829b6f4c4e6ac5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f2537a505d45c31fe5d9c27ea9829b6f4c4e6ac5",
         "type": "github"
       }
     },
@@ -661,6 +708,26 @@
         "type": "github"
       }
     },
+    "rock5b": {
+      "inputs": {
+        "fan-control": "fan-control",
+        "kernel-src": "kernel-src",
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1672220053,
+        "narHash": "sha256-7LcL2J+5BIShEEjc7/gOKvDxvm+zKPHS2LQcDTQtQOA=",
+        "owner": "aciceri",
+        "repo": "rock5b-nixos",
+        "rev": "8b2f9583fa761f2013a9b20c15c8a621c1fd4a76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aciceri",
+        "repo": "rock5b-nixos",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -670,7 +737,8 @@
         "nixosHardware": "nixosHardware",
         "nixpkgsStable": "nixpkgsStable",
         "nixpkgsUnstable": "nixpkgsUnstable",
-        "preCommitHooks": "preCommitHooks"
+        "preCommitHooks": "preCommitHooks",
+        "rock5b": "rock5b"
       }
     },
     "rotate-text": {

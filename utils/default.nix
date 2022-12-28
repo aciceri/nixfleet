@@ -6,6 +6,7 @@
   nixosHardware,
   nixpkgsUnstable,
   preCommitHooks,
+  rock5b,
   self,
   ...
 }: let
@@ -74,6 +75,11 @@
     beebox = mkConfiguration {
       name = "beebox";
       system = supportedSystems.x86_64-linux;
+    };
+    rock5b = mkConfiguration {
+      name = "rock5b";
+      system = supportedSystems.aarch64-linux;
+      modules = [rock5b.nixosModules.kernel rock5b.nixosModules.fan-control];
     };
   };
 

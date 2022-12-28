@@ -5,4 +5,5 @@ let
 in {
   "secrets/mlabs-cachix.age".publicKeys = [keys.agenix];
   "secrets/autistici-password.age".publicKeys = [keys.agenix];
+  "secrets/magit-forge-github-token.age".publicKeys = [keys.agenix];
 }

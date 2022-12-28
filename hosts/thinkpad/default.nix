@@ -28,6 +28,7 @@
       "transmission"
       "udisks2"
       "xdg"
+      "nix-development"
     ];
 
   ccr = {
@@ -77,6 +78,7 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

@@ -84,6 +84,5 @@
     dig.dnsutils
     zsh-completions
     nix-zsh-completions
-    gnuapl
   ];
 }

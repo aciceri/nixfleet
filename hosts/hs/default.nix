@@ -313,16 +313,18 @@
       139 # samba
       443 # https
       445 # samba
+      4662
       4712 # amule
-      4711 # amule web gui
       8384 # syncthing
       53 # dns
     ];
     allowedUDPPorts = [
-      137 # samba
+      137
       138 # samba
       51820 # wireguard
       53 # dns
+      4665
+      4672 # amule
     ];
   };
 

@@ -138,4 +138,5 @@
 
 (after! eglot
   (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
+  (add-hook! 'nix-mode-hook #'eglot-ensure)
 )

@@ -12,6 +12,7 @@ in {
       ui.color = true;
       pull.rebase = false;
       rebase.autostash = true;
+      github.user = "aciceri";
     };
 
     userName = config.name;

@@ -2,7 +2,7 @@
   description = "A complete, declarative, and reproducible configuration of my entire Nix fleet";
 
   inputs = {
-    nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgsUnstable.url = "github:NixOS/nixpkgs";
     nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-22.05";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
@@ -13,8 +13,8 @@
     agenix.url = "github:ryantm/agenix";
     doomEmacs.url = "github:nix-community/nix-doom-emacs";
     comma.url = "github:nix-community/comma";
+    rock5b.url = "github:aciceri/rock5b-nixos";
   };
-
   outputs = {self, ...} @ inputs: let
     utils = import ./utils inputs;
     inherit
@@ -40,5 +40,16 @@
     devShells = mkDevShell;
 
     inherit formatter;
+  };
+
+  nixConfig = {
+    extra-substituters = [
+      "https://aciceri-fleet.cachix.org"
+      "https://rock5b-nixos.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "aciceri-fleet.cachix.org-1:e1AodrwmzRWy0eQi3lUY71M41fp9Sq+UpuKKv705xsI="
+      "rock5b-nixos.cachix.org-1:bXHDewFS0d8pT90A+/YZan/3SjcyuPZ/QRgRSuhSPnA="
+    ];
   };
 }
