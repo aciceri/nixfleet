@@ -3,8 +3,9 @@ on:
   workflow_dispatch: # allows manual triggering
   push:
     branches:
-      - master
-      - update_flake_lock_action
+      # TODO re-enable with cross-compilation (or `binfmt`?)
+      # - master
+      # - update_flake_lock_action
 
 jobs:
   build-rock5b:
