@@ -18,7 +18,7 @@
 
     Timer = {
       Unit = "nix-index-update.service";
-      OnCalendar = "OnCalendar=monday  *-*-* 10:00:00";
+      OnCalendar = "monday  *-*-* 10:00:00";
       Persistent = true;
     };
 

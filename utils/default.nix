@@ -72,10 +72,11 @@
       system = supportedSystems.aarch64-linux;
       modules = ["${nixosHardware}/pine64/pinebook-pro"];
     };
-    beebox = mkConfiguration {
-      name = "beebox";
-      system = supportedSystems.x86_64-linux;
-    };
+    # Retired but it could be still usefull, so I'm not deleting it
+    # beebox = mkConfiguration {
+    #   name = "beebox";
+    #   system = supportedSystems.x86_64-linux;
+    # };
     rock5b = mkConfiguration {
       name = "rock5b";
       system = supportedSystems.aarch64-linux;

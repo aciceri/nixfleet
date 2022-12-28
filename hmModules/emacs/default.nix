@@ -124,4 +124,31 @@ in {
       en_US-large
       it_IT
     ]);
+
+  # TODO: probably not the best place, this is unrelated to Emacs
+  systemd.user.services.second-brain-sync = {
+    Unit = {Description = "mbsync mailbox synchronization";};
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = let
+        sync = pkgs.writeShellScript "second-brain-sync-script" ''
+          echo ciao
+        '';
+      in "${sync}";
+    };
+  };
+
+  systemd.user.timers.second-brain-sync = {
+    Unit = {inherit (config.systemd.user.services.second-brain-sync.Unit) Description;};
+
+    Timer = {
+      OnCalendar = "daily";
+      Unit = "mbsync.service";
+      Persistent = true;
+      OnStartupSec = "60m";
+    };
+
+    Install = {WantedBy = ["timers.target"];};
+  };
 }
