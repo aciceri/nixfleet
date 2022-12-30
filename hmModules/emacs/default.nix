@@ -4,8 +4,8 @@
   lib,
   ...
 }: let
-  rev = "2ddc480f4417775d6bf8ebcfc27b8cd7fa761a7d"; # Emacs 29, seems a good commit
-  sha256 = "sha256-SmtafhTYOI27/eraeaXwC1F09K+WNpjOy5WFu1h4QQg=";
+  rev = "72a94f91fd0570556ce770dc3a39e658f7588f7e"; # Current master, Emacs 29, seems a good commit
+  sha256 = "e5kKIEZJB9BGbBvGtiPK3gNygFoGxkG02nRLCwnGtmk=";
   emacsMaster =
     (pkgs.emacs.override {
       nativeComp = true;
