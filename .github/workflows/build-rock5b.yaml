@@ -1,28 +1,28 @@
 # TODO re-enable with cross-compilation (or `binfmt`?)
 # name: build-rock5b
-# on:
-#   workflow_dispatch: # allows manual triggering
-#   push:
-#     branches:
-#       - master
-#       - update_flake_lock_action
+on:
+  workflow_dispatch: # allows manual triggering
+  push:
+    branches:
+      - master
+      - update_flake_lock_action
 
-# jobs:
-#   build-rock5b:
-#     if: ${{ always() }}
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v3
+jobs:
+  build-rock5b:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-#       - uses: cachix/install-nix-action@v18
-#         with:
-#           extra_nix_config: |
-#             accept-flake-config = true
+      # - uses: cachix/install-nix-action@v18
+      #   with:
+      #     extra_nix_config: |
+      #       accept-flake-config = true
 
-#       - uses: cachix/cachix-action@v12
-#         with:
-#           name: aciceri-fleet
-#           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      # - uses: cachix/cachix-action@v12
+      #   with:
+      #     name: aciceri-fleet
+      #     authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
-#       - run: nix --print-build-logs --verbose build --allow-import-from-derivation .#nixosConfigurations.rock5b.config.system.build.toplevel
+      # - run: nix --print-build-logs --verbose build --allow-import-from-derivation .#nixosConfigurations.rock5b.config.system.build.toplevel
