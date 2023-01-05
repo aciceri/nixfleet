@@ -5,6 +5,7 @@
   homeManager,
   nixosHardware,
   nixpkgsUnstable,
+  nur,
   preCommitHooks,
   rock5b,
   self,
@@ -42,7 +43,7 @@
                 value.file = ./.. + "/${name}";
               }) (import ../secrets);
             };
-            nixpkgs.overlays = [agenix.overlay comma.overlays.default];
+            nixpkgs.overlays = [agenix.overlay comma.overlays.default nur.overlay];
           }
           (../hosts + "/${name}")
           homeManager.nixosModule

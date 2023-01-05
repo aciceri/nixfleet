@@ -9,6 +9,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
+    nur.url = "github:nix-community/NUR";
     preCommitHooks.url = "github:cachix/pre-commit-hooks.nix";
     agenix.url = "github:ryantm/agenix";
     doomEmacs.url = "github:nix-community/nix-doom-emacs";

@@ -1,11 +1,32 @@
 {pkgs, ...}: {
   programs.firefox = {
     enable = true;
-    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-      extraPolicies = {
-        ExtensionSettings = {};
+    package =
+      (pkgs.wrapFirefox pkgs.firefox-unwrapped {
+        extraPolicies = {
+          ExtensionSettings = {};
+        };
+      })
+      .override {
+        cfg = {
+          enableTridactylNative = true;
+          enableBrowserpass = true;
+          enableFXCastBridge = true;
+        };
       };
-    };
+    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      https-everywhere
+      privacy-badger
+      ublock-origin
+      tridactyl
+      octotree
+      octolinker
+      org-capture
+      browserpass
+      bypass-paywalls-clean
+      ghosttext # or edit-with-emacs?
+      # fx_cast # TODO make PR to rycee NUR repo
+    ];
     profiles.ccr = {
       settings = {
         "browser.startup.homepage" = "https://google.it";

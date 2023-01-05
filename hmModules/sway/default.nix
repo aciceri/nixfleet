@@ -41,7 +41,7 @@
           modifier = modifier;
           menu = "${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0";
           output = let
-            bg = "${./wallpaper.png} fill";
+            bg = "${./wallpaper.svg} fill";
           in {
             DP-1 = {
               pos = "0 0";

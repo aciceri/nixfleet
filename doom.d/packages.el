@@ -53,3 +53,4 @@
 (package! dirvish)
 (package! git-auto-commit-mode)
 (package! polymode)
+(package! atomic-chrome)
