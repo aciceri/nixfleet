@@ -26,7 +26,7 @@
     cp -r /boot/efi/EFI $ESP_MIRROR
     for i in /boot/efis/*; do
      cp -r $ESP_MIRROR/EFI $i
-    done wv
+    done
     rm -rf $ESP_MIRROR
   '';
   boot.loader.grub.devices = [
