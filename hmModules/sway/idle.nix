@@ -1,7 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services.swayidle = let
+    # Downgraded due to
+    # https://github.com/mortie/swaylock-effects/issues/95
+    swaylock-effects = pkgs.swaylock-effects.overrideAttrs (_: {
+      version = "1.6-3";
+    });
     swaylockWithArgs = pkgs.writeScriptBin "swaylockWithArgs" ''
-      ${pkgs.swaylock-effects}/bin/swaylock \
+      ${swaylock-effects}/bin/swaylock \
         --daemonize \
         --screenshots \
         --clock \
@@ -18,7 +27,7 @@
         --grace 2 \
         --fade-in 0.2
     '';
-    swaylockCommand = "${swaylockWithArgs}/bin/swaylockWithArgs";
+    swaylockCommand = lib.traceVal "${swaylockWithArgs}/bin/swaylockWithArgs";
   in {
     enable = true;
     events = [
@@ -28,7 +37,7 @@
       }
       {
         event = "lock";
-        command = swaylockCommand;
+        command = "lock";
       }
     ];
     timeouts = [
