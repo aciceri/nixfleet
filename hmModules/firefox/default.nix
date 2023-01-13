@@ -11,11 +11,10 @@
         cfg = {
           enableTridactylNative = true;
           enableBrowserpass = true;
-          enableFXCastBridge = true;
+          enableFXCastBridge = pkgs.system == "x86_64-linux";
         };
       };
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      https-everywhere
       privacy-badger
       ublock-origin
       tridactyl
