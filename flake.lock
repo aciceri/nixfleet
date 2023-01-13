@@ -146,6 +146,23 @@
         "type": "github"
       }
     },
+    "emacsSource": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673616960,
+        "narHash": "sha256-nO3HbhF5s4Dg3WXe8lDoew2STks1cVU3vHIWd7ePFBQ=",
+        "ref": "emacs-29",
+        "rev": "861556c1339cd65842ec3e24ba48590e6b72bd48",
+        "revCount": 164162,
+        "type": "git",
+        "url": "git://git.savannah.gnu.org/emacs.git"
+      },
+      "original": {
+        "ref": "emacs-29",
+        "type": "git",
+        "url": "git://git.savannah.gnu.org/emacs.git"
+      }
+    },
     "evil-escape": {
       "flake": false,
       "locked": {
@@ -748,6 +765,7 @@
         "agenix": "agenix",
         "comma": "comma",
         "doomEmacs": "doomEmacs",
+        "emacsSource": "emacsSource",
         "homeManager": "homeManager",
         "nixosHardware": "nixosHardware",
         "nixpkgsStable": "nixpkgsStable",

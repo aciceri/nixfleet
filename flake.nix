@@ -15,6 +15,10 @@
     doomEmacs.url = "github:nix-community/nix-doom-emacs";
     comma.url = "github:nix-community/comma";
     rock5b.url = "github:aciceri/rock5b-nixos";
+    emacsSource = {
+      url = "git://git.savannah.gnu.org/emacs.git?ref=emacs-29";
+      flake = false;
+    };
   };
   outputs = {self, ...} @ inputs: let
     utils = import ./utils inputs;

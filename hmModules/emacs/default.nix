@@ -4,8 +4,6 @@
   lib,
   ...
 }: let
-  rev = "72a94f91fd0570556ce770dc3a39e658f7588f7e"; # Current master, Emacs 29, seems a good commit
-  sha256 = "e5kKIEZJB9BGbBvGtiPK3gNygFoGxkG02nRLCwnGtmk=";
   emacsMaster =
     (pkgs.emacs.override {
       nativeComp = true;
@@ -14,17 +12,13 @@
       withGTK3 = true;
     })
     .overrideAttrs (old: {
-      src = pkgs.fetchFromSavannah {
-        repo = "emacs";
-        inherit rev sha256;
-      };
-      version = rev;
+      src = pkgs.emacsSource;
       patches = [];
       postPatch =
         old.postPatch
         + ''
           substituteInPlace lisp/loadup.el \
-          --replace '(emacs-repository-get-version)' '"${rev}"' \
+          --replace '(emacs-repository-get-version)' '"${pkgs.emacsSource.rev}"' \
           --replace '(emacs-repository-get-branch)' '"master"'
         ''
         + (lib.optionalString (old ? NATIVE_FULL_AOT)

@@ -8,6 +8,7 @@
   nur,
   preCommitHooks,
   rock5b,
+  emacsSource,
   self,
   ...
 }: let
@@ -43,7 +44,12 @@
                 value.file = ./.. + "/${name}";
               }) (import ../secrets);
             };
-            nixpkgs.overlays = [agenix.overlay comma.overlays.default nur.overlay];
+            nixpkgs.overlays = [
+              agenix.overlay
+              comma.overlays.default
+              nur.overlay
+              (_: _: {inherit emacsSource;})
+            ];
           }
           (../hosts + "/${name}")
           homeManager.nixosModule
