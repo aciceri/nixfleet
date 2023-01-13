@@ -13,6 +13,7 @@
     })
     .overrideAttrs (old: {
       src = pkgs.emacsSource;
+      version = pkgs.emacsSource.rev;
       patches = [];
       postPatch =
         old.postPatch
