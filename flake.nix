@@ -16,7 +16,7 @@
     comma.url = "github:nix-community/comma";
     rock5b.url = "github:aciceri/rock5b-nixos";
     emacsSource = {
-      url = "git://git.savannah.gnu.org/emacs.git?ref=emacs-29";
+      url = "git://git.savannah.gnu.org/emacs.git?rev=72a94f91fd0570556ce770dc3a39e658f7588f7e";
       flake = false;
     };
   };

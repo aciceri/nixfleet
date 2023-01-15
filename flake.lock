@@ -149,16 +149,16 @@
     "emacsSource": {
       "flake": false,
       "locked": {
-        "lastModified": 1673649484,
-        "narHash": "sha256-7layqu2c1kB+tNAqV0zc1cgy2eNrUP5Prhzxxndmb40=",
-        "ref": "emacs-29",
-        "rev": "59c3c53efa43e82f0f2e48a4c27d5bd623201d4a",
-        "revCount": 164164,
+        "lastModified": 1666690703,
+        "narHash": "sha256-e5kKIEZJB9BGbBvGtiPK3gNygFoGxkG02nRLCwnGtmk=",
+        "ref": "refs/heads/master",
+        "rev": "72a94f91fd0570556ce770dc3a39e658f7588f7e",
+        "revCount": 161409,
         "type": "git",
         "url": "git://git.savannah.gnu.org/emacs.git"
       },
       "original": {
-        "ref": "emacs-29",
+        "rev": "72a94f91fd0570556ce770dc3a39e658f7588f7e",
         "type": "git",
         "url": "git://git.savannah.gnu.org/emacs.git"
       }
