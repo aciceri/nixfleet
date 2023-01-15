@@ -140,3 +140,9 @@
   (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
   (add-hook! 'nix-mode-hook #'eglot-ensure)
 )
+
+;; FIXME: https://github.com/minad/consult/issues/705
+(defun +vertico/project-search-fixed (&optional arg initial-query directory)
+  (interactive "P")
+  (consult-ripgrep directory initial-query))
+(advice-add '+vertico/project-search  :override #'+vertico/project-search-fixed )
