@@ -9,6 +9,7 @@
     ./mako.nix
     ./gammastep.nix
     ../foot
+    ../alacritty
   ];
   config = {
     home.packages = with pkgs; [wl-clipboard];
