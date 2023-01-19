@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   services.swayidle = let
     # Downgraded due to
     # https://github.com/mortie/swaylock-effects/issues/95
@@ -27,7 +23,7 @@
         --grace 2 \
         --fade-in 0.2
     '';
-    swaylockCommand = lib.traceVal "${swaylockWithArgs}/bin/swaylockWithArgs";
+    swaylockCommand = "${swaylockWithArgs}/bin/swaylockWithArgs";
   in {
     enable = true;
     events = [
