@@ -14,6 +14,10 @@
   config = {
     home.packages = with pkgs; [wl-clipboard];
 
+    systemd.user.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
+
     services.network-manager-applet.enable = true;
     services.blueman-applet.enable = true;
     services.pasystray.enable = true;
