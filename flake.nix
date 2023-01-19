@@ -20,6 +20,8 @@
       flake = false;
     };
     helix.url = "github:helix-editor/helix";
+
+    nom.url = "github:maralorn/nix-output-monitor";
   };
   outputs = {self, ...} @ inputs: let
     utils = import ./utils inputs;

@@ -10,6 +10,7 @@
   rock5b,
   emacsSource,
   helix,
+  nom,
   self,
   ...
 }: let
@@ -51,7 +52,8 @@
               nur.overlay
               (_: _: {
                 inherit emacsSource;
-                helix = helix.packages.${pkgs.system}.default;
+                helix = helix.packages.${pkgs.system}.helix-dev;
+                nom = nom.packages.${pkgs.system}.default;
               })
             ];
           })

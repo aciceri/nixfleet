@@ -21,6 +21,10 @@
     enableAliases = true;
   };
 
+  programs.zoxide.enable = true;
+
+  programs.zellij.enable = true;
+
   programs.fzf.enable = true;
 
   programs.vim.enable = true;
@@ -71,11 +75,18 @@
       "emnw" = "emacsclient -c -nw";
       "pass-clone" = "[ -d .password-store ] && echo 'Password store archive already exists' || git clone git@git.sr.ht:~zrsk/pass ~/.password-store";
       "getpass" = "pass show $(find .password-store/ -name \"*.gpg\" | sed \"s/\\.password-store\\/\\(.*\\)\\.gpg$/\\1/g\" | fzf) | wl-copy; ((sleep 60 && wl-copy --clear) &)";
+      "n" = "nom";
     };
     loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec sway";
     envExtra = ''
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' # for Emacs TRAMP mode
     '';
+    initExtra = ''
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+    '';
+    sessionVariables = {
+      EDITOR = "hx";
+    };
   };
 
   home.packages = with pkgs; [
@@ -84,5 +95,6 @@
     dig.dnsutils
     zsh-completions
     nix-zsh-completions
+    nom
   ];
 }
