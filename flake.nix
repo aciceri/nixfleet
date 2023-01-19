@@ -19,6 +19,7 @@
       url = "git://git.savannah.gnu.org/emacs.git?rev=72a94f91fd0570556ce770dc3a39e658f7588f7e";
       flake = false;
     };
+    helix.url = "github:helix-editor/helix";
   };
   outputs = {self, ...} @ inputs: let
     utils = import ./utils inputs;
@@ -51,10 +52,12 @@
     extra-substituters = [
       "https://aciceri-fleet.cachix.org"
       "https://rock5b-nixos.cachix.org"
+      "https://helix.cachix.org"
     ];
     extra-trusted-public-keys = [
       "aciceri-fleet.cachix.org-1:e1AodrwmzRWy0eQi3lUY71M41fp9Sq+UpuKKv705xsI="
       "rock5b-nixos.cachix.org-1:bXHDewFS0d8pT90A+/YZan/3SjcyuPZ/QRgRSuhSPnA="
+      "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
     ];
   };
 }

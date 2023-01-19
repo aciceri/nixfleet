@@ -9,6 +9,7 @@
   preCommitHooks,
   rock5b,
   emacsSource,
+  helix,
   self,
   ...
 }: let
@@ -32,7 +33,7 @@
       inherit system;
       modules =
         [
-          {
+          ({pkgs, ...}: {
             networking.hostName = lib.mkForce name;
             home-manager.users.ccr.imports = [
               doomEmacs.hmModule
@@ -48,9 +49,12 @@
               agenix.overlay
               comma.overlays.default
               nur.overlay
-              (_: _: {inherit emacsSource;})
+              (_: _: {
+                inherit emacsSource;
+                helix = helix.packages.${pkgs.system}.default;
+              })
             ];
-          }
+          })
           (../hosts + "/${name}")
           homeManager.nixosModule
           agenix.nixosModule
