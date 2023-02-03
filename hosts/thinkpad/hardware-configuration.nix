@@ -53,10 +53,15 @@
   };
 
   fileSystems."/boot/efi" = {
-    device = "/boot/efis/nvme-INTEL_SSDPEKKF010T8L_PHHP938405741P0D-part1";
-    fsType = "none";
-    options = ["bind"];
+    device = "/dev/disk/by-uuid/5C39-390F";
+    fsType = "vfat";
   };
+
+  # fileSystems."/boot/efi" = {
+  #   device = "/boot/efis/nvme-INTEL_SSDPEKKF010T8L_PHHP938405741P0D-part1";
+  #   fsType = "none";
+  #   options = ["bind"];
+  # };
 
   swapDevices = [
     {device = "/dev/disk/by-label/swap";}
