@@ -35,12 +35,12 @@
     enable = true;
     autologin = true;
     modules = [
-      "chrome"
       "cura"
       "digikam"
       "discord"
       "element"
       "emacs"
+      "vanilla-emacs"
       "email"
       "firefox"
       "git"
@@ -48,6 +48,7 @@
       "helix"
       "mopidy"
       "mpv"
+      "openscad"
       "password-store"
       "qutebrowser"
       "shell"
@@ -57,6 +58,7 @@
       "vscode"
       "xdg"
       "zathura"
+      "chrome"
     ];
     packages = with pkgs; [
       comma
