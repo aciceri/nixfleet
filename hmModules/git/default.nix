@@ -4,7 +4,6 @@
     email = "andrea.ciceri@autistici.org";
   };
 in {
-
   home.packages = [pkgs.gitoxide];
   programs.git = {
     enable = true;
