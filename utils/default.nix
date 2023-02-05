@@ -50,10 +50,10 @@
               agenix.overlay
               comma.overlays.default
               nur.overlay
-              (_: _: {
+              (_: self: {
                 inherit emacsSource;
                 helix = helix.packages.${pkgs.system}.helix-dev;
-                nom = nom.packages.${pkgs.system}.default;
+                nom = nom.packages.${pkgs.system}.default or (self.runCommandLocal "empty" {} "touch $out");
               })
             ];
           })
