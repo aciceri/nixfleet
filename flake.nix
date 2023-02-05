@@ -34,7 +34,7 @@
       mkVmApps
       nixosConfigurations
       ;
-  in   {
+  in {
     inherit nixosConfigurations;
 
     apps = lib.foldr lib.recursiveUpdate {} [

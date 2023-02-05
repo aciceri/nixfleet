@@ -39,6 +39,8 @@
       tree-sitter-langs
       yaml-mode
       hl-todo
+      markdown-mode
+      polymode # TODO remove if not able to configure it
     ]);
   vanillaEmacsBin = pkgs.writeScriptBin "vanillaEmacs" ''
     ${vanillaEmacs}/bin/emacs --init-directory ~/.vanilla-emacs.d $@
