@@ -23,14 +23,6 @@ in {
       key = config.email;
     };
 
-    extraConfig = {
-      url =
-        if pkgs.stdenv.hostPlatform.isDarwin
-        then {}
-        else {
-          "ssh://git@github.com/" = {insteadOf = https://github.com/;};
-        };
-    };
     delta = {
       enable = true;
       options = {

@@ -12,13 +12,9 @@
     nur.url = "github:nix-community/NUR";
     preCommitHooks.url = "github:cachix/pre-commit-hooks.nix";
     agenix.url = "github:ryantm/agenix";
-    doomEmacs.url = "github:nix-community/nix-doom-emacs";
     comma.url = "github:nix-community/comma";
     rock5b.url = "github:aciceri/rock5b-nixos";
-    emacsSource = {
-      url = "git://git.savannah.gnu.org/emacs.git?rev=72a94f91fd0570556ce770dc3a39e658f7588f7e";
-      flake = false;
-    };
+    ccrEmacs.url = "path:/home/ccr/.config/emacs";
     helix.url = "github:helix-editor/helix";
     nom.url = "github:maralorn/nix-output-monitor";
   };

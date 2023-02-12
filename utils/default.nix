@@ -1,16 +1,15 @@
 {
   agenix,
   comma,
-  doomEmacs,
   homeManager,
   nixosHardware,
   nixpkgsUnstable,
   nur,
   preCommitHooks,
   rock5b,
-  emacsSource,
   helix,
   nom,
+  ccrEmacs,
   self,
   ...
 }: let
@@ -37,7 +36,7 @@
           ({pkgs, ...}: {
             networking.hostName = lib.mkForce name;
             home-manager.users.ccr.imports = [
-              doomEmacs.hmModule
+              ccrEmacs.hmModules.default
             ];
             age = {
               identityPaths = ["/home/ccr/.ssh/id_rsa"];
@@ -51,7 +50,6 @@
               comma.overlays.default
               nur.overlay
               (_: self: {
-                inherit emacsSource;
                 helix = helix.packages.${pkgs.system}.helix-dev;
                 nom = nom.packages.${pkgs.system}.default or (self.runCommandLocal "empty" {} "touch $out");
               })

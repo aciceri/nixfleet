@@ -28,7 +28,7 @@
     ];
     profiles.ccr = {
       settings = {
-        "browser.startup.homepage" = "https://google.it";
+        "browser.startup.homepage" = "https://search.privatevoid.net/";
         "browser.search.region" = "IT";
         "browser.search.isUS" = false;
         "distribution.searchplugins.defaultLocale" = "it-IT";
@@ -37,6 +37,23 @@
         "browser.download.folderList" = 2;
         "browser.download.lastDir" = "/home/ccr/downloads/";
         "browser.shell.checkDefaultBrowser" = false;
+      };
+      search.force = true;
+      search.default = "Searx";
+      search.engines = {
+        "Searx" = {
+          urls = [
+            {
+              template = "https://search.privatevoid.net/search";
+              params = [
+                {
+                  name = "q";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+        };
       };
     };
   };
