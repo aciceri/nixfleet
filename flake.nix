@@ -14,7 +14,7 @@
     agenix.url = "github:ryantm/agenix";
     comma.url = "github:nix-community/comma";
     rock5b.url = "github:aciceri/rock5b-nixos";
-    ccrEmacs.url = "path:/home/ccr/.config/emacs";
+    ccrEmacs.url = "github:aciceri/emacs";
     helix.url = "github:helix-editor/helix";
     nom.url = "github:maralorn/nix-output-monitor";
   };
