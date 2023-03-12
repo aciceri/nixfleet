@@ -48,11 +48,20 @@
           output = let
             bg = "${./wallpaper.svg} fill";
           in {
-            DP-1 = {
+            DP-2 = {
+              res = "1900x1200";
               pos = "0 0";
+              inherit bg;
+              transform = "90";
+            };
+            DP-1 = {
+              res = "2560x1440";
+              pos = "1200 230";
               inherit bg;
             };
             eDP-1 = {
+              res = "1920x1080";
+              pos = "3760 230";
               inherit bg;
             };
           };
@@ -97,16 +106,15 @@
               ${pkgs.wf-recorder}/bin/wf-recorder -g "$coords" -f "$filename"
               wl-copy -t video/mp4 < $filename
             '';
-            emacsclientAsTerminal = pkgs.writeShellScript "emacsclientAsTerminal" ''
-              emacsclient -c -F '\\'(name . "VTerm"))' -q --eval '\\'(vterm "/bin/zsh")'
-            '';
           in
             lib.mkOptionDefault {
               "${modifier}+x" = "exec emacsclient -c";
               "${modifier}+b" = "exec qutebrowser";
               "${modifier}+s" = "exec ${screenshotScript}";
-              "${modifier}+g" = "exec ${screenrecordingScript}";
-              # "${modifier}+Shift+Enter" = "exec ${emacsclientAsTerminal}"; # FIXME
+              # "${modifier}+g" = "exec ${screenrecordingScript}";  # FIXME
+              "${modifier}+t" = ''
+                exec emacsclient -c -F "\'(name . \\"VTerm\\"))" -q --eval '(vterm (getenv "SHELL"))'
+              '';
               "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s +5%";
               "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%-";
             };

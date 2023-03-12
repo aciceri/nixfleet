@@ -6,6 +6,8 @@
     };
   };
 
+  nixpkgs.hostPlatform = "aarch64-linux";
+
   swapDevices = [];
 
   boot.loader = {

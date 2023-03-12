@@ -1,3 +1,3 @@
-{
+{lib, ...}: {
   ccrEmacs.enable = true;
 }

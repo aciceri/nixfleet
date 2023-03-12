@@ -14,7 +14,7 @@
       "adb"
       "audio"
       "battery"
-      "binfmt"
+      # "binfmt"
       "bluetooth"
       "ccr"
       "common"
@@ -29,6 +29,7 @@
       "udisks2"
       "xdg"
       "nix-development"
+      "clamav"
     ];
 
   ccr = {
@@ -58,6 +59,7 @@
       "xdg"
       "zathura"
       "chrome"
+      "obs-studio"
     ];
     packages = with pkgs; [
       comma
@@ -78,7 +80,7 @@
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

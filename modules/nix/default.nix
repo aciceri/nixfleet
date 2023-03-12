@@ -38,13 +38,4 @@
 
     optimise.automatic = true;
   };
-
-  age.secrets.cachix.file = ../../secrets/cachix.age;
-  system.activationScripts = {
-    populate-netrc.text = ''
-      cat <<EOF> /etc/nix/netrc
-      machine mlabs.cachix.org login x password "$(cat ${config.age.secrets.cachix.path})"
-      EOF
-    '';
-  };
 }
