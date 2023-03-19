@@ -47,10 +47,10 @@
   config = lib.mkIf config.mara.enable {
     users.users.mara = {
       uid = 1001;
-      hashedPassword = config.mara.hashedPassword;
+      inherit (config.mara) hashedPassword;
       description = "Mara Savastano";
       isNormalUser = true;
-      extraGroups = config.mara.extraGroups;
+      inherit (config.mara) extraGroups;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = config.mara.authorizedKeys;
     };

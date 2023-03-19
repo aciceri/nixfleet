@@ -1,4 +1,5 @@
 {
+  fleetFlake,
   fleetModules,
   lib,
   pkgs,
@@ -17,11 +18,13 @@
 
   ccr.enable = true;
 
+  # programs.sway.enable = true;
+
   services.rock5b-fan-control.enable = true;
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "libav-11.12"
-  ];
+  # nixpkgs.config.permittedInsecurePackages = [
+  #   "libav-11.12"
+  # ];
 
   fileSystems."/mnt/film" = {
     device = "//ccr.ydns.eu/film";

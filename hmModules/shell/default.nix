@@ -131,7 +131,12 @@
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' # for Emacs TRAMP mode
     '';
     initExtra = ''
+      # Don't enable VIM emulation when in Emacs
       [[ -z $INSIDE_EMACS ]] && source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+      # When enabling starship, home-manager add an `initExtra` rule to disable it when in Emacs but not with VTerm,
+      # since I use also `eat` besides `vterm` the following line is needed
+      [[ "$INSIDE_EMACS" =~ "eat" ]] && eval "$(${config.home.profileDirectory}/bin/starship init zsh)"
     '';
   };
 

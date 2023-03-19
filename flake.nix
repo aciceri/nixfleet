@@ -2,13 +2,24 @@
   description = "A complete, declarative, and reproducible configuration of my entire Nix fleet";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flakeParts.url = "github:hercules-ci/flake-parts";
     nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgsUnstable";
+        nixpkgs-stable.follows = "nixpkgsStable";
+      };
     };
     nur.url = "github:nix-community/NUR";
     agenix.url = "github:ryantm/agenix";
@@ -22,17 +33,29 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
+    statix = {
+      url = "github:nerdypepper/statix";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
+    deadnix = {
+      url = "github:astro/deadnix";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
+    alejandra = {
+      url = "github:kamadorueda/alejandra";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
   };
 
-  outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs = inputs @ {flakeParts, ...}:
+    flakeParts.lib.mkFlake {inherit inputs;} {
       imports = [
         # ./modules
         # ./hmModules
         ./hosts
         ./packages
         ./shell
-        ./formatting
+        ./checks
       ];
       systems = ["x86_64-linux" "aarch64-linux"];
     };

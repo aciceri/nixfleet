@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  settings = config.programs.qutebrowser.settings;
+  inherit (config.programs.qutebrowser) settings;
   websites = {
     searx = "https://searx.be";
   };
@@ -69,7 +69,7 @@ in {
           };
           odd = {
             bg = lighter-gray;
-            fg = settings.colors.tabs.even.fg;
+            inherit (settings.colors.tabs.even) fg;
           };
         };
         completion = {

@@ -10,9 +10,13 @@
       buildInputs = with pkgs; [
         git
         agenix
+        deadnix
+        statix
+        alejandra
       ];
       shellHook = ''
         export RULES="$(git rev-parse --show-toplevel)/secrets/default.nix";
+        ${config.pre-commit.installationScript}
       '';
     };
   };

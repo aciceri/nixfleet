@@ -19,7 +19,10 @@
         agenix.overlays.default
         comma.overlays.default
         nur.overlay
+        deadnix.overlays.default
+        statix.overlays.default
         nil.overlays.default
+        alejandra.overlays.default
       ];
     };
 
@@ -30,7 +33,7 @@
   }: {
     _module.args.pkgs =
       lib.foldl
-      (legacyPackages: overlay: legacyPackages.extend overlay)
+      (legacyPackages: legacyPackages.extend)
       inputs.nixpkgsUnstable.legacyPackages.${system}
       config.fleet.overlays;
   };

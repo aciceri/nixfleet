@@ -41,7 +41,7 @@
               agenix.overlays.default
               comma.overlays.default
               nur.overlay
-              nil.overlays.default
+              nil.overlays.default # FIXME This shouldn't be here
             ];
           };
           extraModules = lib.mkOption {
@@ -69,7 +69,7 @@
       internal = true;
       default = hostname: config:
         inputs.nixpkgsUnstable.lib.nixosSystem {
-          system = config.system;
+          inherit (config) system;
           modules =
             [
               ({lib, ...}: {
@@ -98,6 +98,7 @@
           specialArgs = {
             fleetModules = builtins.map (moduleName: "${self.outPath}/modules/${moduleName}");
             fleetHmModules = builtins.map (moduleName: "${self.outPath}/hmModules/${moduleName}");
+            fleetFlake = self;
           };
         };
     };
@@ -121,6 +122,16 @@
       rock5b = {
         system = "aarch64-linux";
         extraModules = [inputs.rock5b.nixosModules.default];
+      };
+      pbp = {
+        system = "aarch64-linux";
+        extraModules = with inputs; [
+          nixosHardware.nixosModules.pine64-pinebook-pro
+          disko.nixosModules.disko
+        ];
+        extraHmModules = [
+          inputs.ccrEmacs.hmModules.default
+        ];
       };
     };
 

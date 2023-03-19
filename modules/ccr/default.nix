@@ -48,10 +48,10 @@
   config = lib.mkIf config.ccr.enable {
     users.users.ccr = {
       uid = 1000;
-      hashedPassword = config.ccr.hashedPassword;
+      inherit (config.ccr) hashedPassword;
       description = "Andrea Ciceri";
       isNormalUser = true;
-      extraGroups = config.ccr.extraGroups;
+      inherit (config.ccr) extraGroups;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = config.ccr.authorizedKeys;
     };
@@ -69,7 +69,7 @@
         ++ [
           {
             _module.args = {
-              secrets = config.age.secrets;
+              inherit (config.age) secrets;
             };
           }
         ];

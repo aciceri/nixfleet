@@ -23,7 +23,7 @@
         octolinker
         org-capture
         browserpass
-        bypass-paywalls-clean
+        # bypass-paywalls-clean
         ghosttext # or edit-with-emacs?
         # fx_cast # TODO make PR to rycee NUR repo
       ];

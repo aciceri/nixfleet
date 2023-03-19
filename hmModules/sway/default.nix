@@ -43,7 +43,7 @@
         enable = true;
         wrapperFeatures.gtk = true;
         config = {
-          modifier = modifier;
+          inherit modifier;
           menu = "${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0";
           output = let
             bg = "${./wallpaper.svg} fill";

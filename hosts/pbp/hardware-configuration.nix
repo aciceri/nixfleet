@@ -4,6 +4,8 @@
   pkgs,
   ...
 }: {
+  disko.devices = import ./disko.nix {};
+
   boot = {
     initrd.availableKernelModules = ["usbhid"];
     extraModulePackages = with config.boot.kernelPackages; [
@@ -45,19 +47,6 @@
   };
 
   time.timeZone = "Europe/Rome";
-
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-    };
-    "/boot" = {
-      device = "/dev/disk/by-label/boot";
-      fsType = "vfat";
-    };
-  };
-
-  swapDevices = [{device = "/dev/disk/by-label/swap";}];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 
