@@ -133,6 +133,7 @@
           inputs.ccrEmacs.hmModules.default
         ];
       };
+      hs = {};
     };
 
     flake.nixosConfigurations =
