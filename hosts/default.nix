@@ -21,8 +21,23 @@
           };
           secrets = lib.mkOption {
             description = "List of secrets names in the `secrets` folder";
-            type = lib.types.listOf lib.types.str;
-            default = [];
+            type = lib.types.attrsOf (lib.types.submodule ({name, ...}: {
+              options = {
+                owner = lib.mkOption {
+                  type = lib.types.str;
+                  default = "root";
+                };
+                group = lib.mkOption {
+                  type = lib.types.str;
+                  default = "root";
+                };
+                file = lib.mkOption {
+                  type = lib.types.path;
+                  default = "${self.outPath}/secrets/${name}.age";
+                };
+              };
+            }));
+            default = {};
           };
           enableHomeManager = lib.mkOption {
             description = "Enable home-manager module";
@@ -80,20 +95,38 @@
             ]
             ++ (lib.optionals (config.secrets != []) [
               inputs.agenix.nixosModules.default
-              ({lib, ...}: {
-                age.secrets =
+              ({lib, ...}: let
+                allSecrets = lib.mapAttrs' (name: value: {
+                  name = lib.removeSuffix ".age" name;
+                  inherit value;
+                }) (import "${self.outPath}/secrets");
+                filteredSecrets =
                   lib.filterAttrs
-                  (name: _: builtins.elem name config.secrets)
-                  (lib.mapAttrs' (name: _: {
-                    name = lib.removeSuffix ".age" (builtins.baseNameOf name);
-                    value.file = "${self.outPath}/${name}";
-                  }) (import "${self.outPath}/secrets"));
+                  (name: _: builtins.hasAttr name config.secrets)
+                  allSecrets;
+              in {
+                age.secrets =
+                  lib.mapAttrs' (name: _: {
+                    name = builtins.baseNameOf name;
+                    value = {
+                      inherit (config.secrets.${name}) owner group file;
+                    };
+                  })
+                  filteredSecrets;
               })
             ])
-            ++ (lib.optionals config.enableHomeManager [
+            ++ (lib.optionals config.enableHomeManager (let
+              user = config.extraHmModulesUser;
+              extraHmModules = config.extraHmModules;
+            in [
               inputs.homeManager.nixosModule
-              {home-manager.users."${config.extraHmModulesUser}".imports = config.extraHmModules;}
-            ])
+              ({config, ...}: {
+                home-manager.users."${user}" = {
+                  imports = extraHmModules;
+                  _module.args.age = config.age or {};
+                };
+              })
+            ]))
             ++ config.extraModules;
           specialArgs = {
             fleetModules = builtins.map (moduleName: "${self.outPath}/modules/${moduleName}");
@@ -117,7 +150,6 @@
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
         ];
-        secrets = ["cachix"];
       };
       rock5b = {
         system = "aarch64-linux";
@@ -134,6 +166,15 @@
         ];
       };
       hs = {};
+      devbox = {
+        extraModules = [inputs.disko.nixosModules.disko];
+        extraHmModules = [
+          inputs.ccrEmacs.hmModules.default
+        ];
+        secrets = {
+          "git-workspace-tokens".owner = "ccr";
+        };
+      };
     };
 
     flake.nixosConfigurations =

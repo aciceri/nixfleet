@@ -60,6 +60,7 @@
       "zathura"
       "chrome"
       "obs-studio"
+      "spotify"
     ];
     packages = with pkgs; [
       comma

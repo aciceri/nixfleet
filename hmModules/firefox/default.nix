@@ -28,7 +28,7 @@
         # fx_cast # TODO make PR to rycee NUR repo
       ];
       settings = {
-        "browser.startup.homepage" = "https://searx.be";
+        "browser.startup.homepage" = "https://google.com";
         "browser.search.region" = "IT";
         "browser.search.isUS" = false;
         "distribution.searchplugins.defaultLocale" = "it-IT";
@@ -39,7 +39,7 @@
         "browser.shell.checkDefaultBrowser" = false;
       };
       search.force = true;
-      search.default = "Searx";
+      search.default = "Google";
       search.engines = {
         "Searx" = {
           urls = [

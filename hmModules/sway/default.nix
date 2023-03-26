@@ -10,6 +10,7 @@
     ./gammastep.nix
     ../foot
     ../alacritty
+    ../kitty
   ];
   config = {
     home.packages = with pkgs; [wl-clipboard];

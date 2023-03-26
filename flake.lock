@@ -641,16 +641,17 @@
     "kernel-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1678442395,
-        "narHash": "sha256-5q9ZqD+TQmLjKQI/sQetHHOgFRmwoNustb1I0M0f3ok=",
+        "lastModified": 1676631659,
+        "narHash": "sha256-TjAF7BPSDy5iHSk8byp+vsKop0V+rqrmr+TXLqXLB2M=",
         "owner": "radxa",
         "repo": "kernel",
-        "rev": "75f35d0549b7588cc561ed63b4246130c38a9c69",
+        "rev": "a9583fb47e9b96c552f458a376207141602c0025",
         "type": "github"
       },
       "original": {
         "owner": "radxa",
         "repo": "kernel",
+        "rev": "a9583fb47e9b96c552f458a376207141602c0025",
         "type": "github"
       }
     },
@@ -1124,11 +1125,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1678619682,
-        "narHash": "sha256-Om3Pe5Rss96jVh8Ncq72eFyu/ev8UO3iZZC8R0n2iAs=",
+        "lastModified": 1679242046,
+        "narHash": "sha256-CeGpTKnPQ++m11CV7Iisppwx+8fNwJSW8Q1ML6NxSJY=",
         "owner": "aciceri",
         "repo": "rock5b-nixos",
-        "rev": "ba79eb513a6db741b9c9d3b717ea5f7a36ff4812",
+        "rev": "e1099dd4a6be8018a5cc489fb2ee1d50e4e285a0",
         "type": "github"
       },
       "original": {

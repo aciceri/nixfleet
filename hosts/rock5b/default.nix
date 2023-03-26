@@ -14,17 +14,33 @@
       "common"
       "ssh"
       "ccr"
+      "cgit"
     ]);
 
   ccr.enable = true;
 
-  # programs.sway.enable = true;
-
   services.rock5b-fan-control.enable = true;
 
-  # nixpkgs.config.permittedInsecurePackages = [
-  #   "libav-11.12"
-  # ];
+  services.nginx.enable = true;
+  services.nginx.virtualHosts."localhost" = {
+    cgit = {
+      enable = true;
+      virtual-root = "/";
+      include = [
+        (builtins.toFile "cgitrc-extra-1" ''
+          repo.url=test-repo.git
+          repo.path=/srv/git/test-repo.
+          repo.desc=the master foo repository
+          repo.owner=fooman@example.com
+          css=/custom.css
+        '')
+        (builtins.toFile "cgitrc-extra-2" ''
+          # Allow http transport git clone
+          enable-http-clone=1
+        '')
+      ];
+    };
+  };
 
   fileSystems."/mnt/film" = {
     device = "//ccr.ydns.eu/film";
@@ -57,6 +73,18 @@
     uid = 1002;
     extraGroups = ["video" "input"];
   };
+
+  networking.firewall.allowedTCPPorts = [
+    8080 # kodi control
+    80
+  ];
+
+  programs.bash.loginShellInit = ''
+    [[ "$(tty)" == '/dev/tty1' ]] && \
+    [[ "$(whoami)" == 'kodi' ]] && \
+    ${pkgs.kodi-rock5b}/bin/kodi-standalone
+
+  '';
 
   # Waiting for https://github.com/NixOS/nixpkgs/issues/140304
   services.getty = let
