@@ -1,9 +1,4 @@
 {age, ...}: {
-  imports = [
-    ./git-workspace-program.nix
-    ./git-workspace-service.nix
-  ];
-
   programs.git-workspace.enable = true;
   services.git-workspace = {
     enable = true;

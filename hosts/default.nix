@@ -170,6 +170,15 @@
         extraModules = [inputs.disko.nixosModules.disko];
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
+          {
+            # TODO: remove after https://github.com/nix-community/home-manager/pull/3811
+            imports = let
+              hmModules = "${inputs.homeManagerGitWorkspace}/modules";
+            in [
+              "${hmModules}/programs/git-workspace.nix"
+              "${hmModules}/services/git-workspace.nix"
+            ];
+          }
         ];
         secrets = {
           "git-workspace-tokens".owner = "ccr";

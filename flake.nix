@@ -10,6 +10,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
+    # TODO: remove after https://github.com/nix-community/home-manager/pull/3811
+    homeManagerGitWorkspace = {
+      url = "github:aciceri/home-manager/git-workspace";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
