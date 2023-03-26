@@ -638,6 +638,28 @@
         "type": "github"
       }
     },
+    "homeManagerGitWorkspace": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgsUnstable"
+        ],
+        "utils": "utils_4"
+      },
+      "locked": {
+        "lastModified": 1679846261,
+        "narHash": "sha256-mclwhl8Di7v5MvF4yNjX7wBdepLFgDXu9XJeDLHsFlE=",
+        "owner": "aciceri",
+        "repo": "home-manager",
+        "rev": "3fb549b2b8823946ba4d5ee28d85a0a66471668a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aciceri",
+        "ref": "git-workspace",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "kernel-src": {
       "flake": false,
       "locked": {
@@ -1149,6 +1171,7 @@
         "flakeParts": "flakeParts",
         "helix": "helix",
         "homeManager": "homeManager",
+        "homeManagerGitWorkspace": "homeManagerGitWorkspace",
         "nil": "nil",
         "nixosHardware": "nixosHardware",
         "nixpkgsStable": "nixpkgsStable",
@@ -1358,6 +1381,21 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "utils_4": {
+      "locked": {
+        "lastModified": 1676283394,
+        "narHash": "sha256-XX2f9c3iySLCw54rJ/CZs+ZK6IQy7GXNY4nSOyu2QG4=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3db36a8b464d0c4532ba1c7dda728f4576d6d073",
         "type": "github"
       },
       "original": {
