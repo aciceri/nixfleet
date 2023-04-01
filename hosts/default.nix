@@ -166,7 +166,7 @@
         ];
       };
       hs = {};
-      devbox = {
+      mothership = {
         extraModules = [inputs.disko.nixosModules.disko];
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
@@ -181,7 +181,9 @@
           }
         ];
         secrets = {
+          "cachix" = {};
           "git-workspace-tokens".owner = "ccr";
+          "magit-forge-github-token".owner = "ccr";
         };
       };
     };
