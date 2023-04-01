@@ -5,16 +5,15 @@
   ...
 }: {
   nix = {
-    settings = {
-      optimise.automatic = true;
-      auto-optimise-store = true;
+    optimise.automatic = true;
 
+    settings = {
+      auto-optimise-store = true;
       trusted-users = [
         "root"
         "ccr"
         "@wheel"
       ];
-
       # Disabled all the substituters, this should be managed at flakes level
       # trusted-public-keys = [
       #   "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
