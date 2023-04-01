@@ -61,6 +61,9 @@
       "chrome"
       "obs-studio"
       "spotify"
+      "steam-run"
+      "lutris"
+      "wine"
     ];
     packages = with pkgs; [
       comma
@@ -181,6 +184,7 @@
 
   hardware.opengl = {
     enable = true;
+    driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
       mesa
@@ -190,4 +194,10 @@
       libvdpau-va-gl
     ];
   };
+
+  users.groups.input.members = ["ccr"];
+  services.udev.extraRules = ''
+    Sunshine
+    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+  '';
 }
