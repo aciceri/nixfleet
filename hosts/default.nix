@@ -144,7 +144,6 @@
 
   config = {
     fleet.hosts = {
-      # TODO add `hs` and `pbp`
       thinkpad = {
         extraModules = [inputs.nixosHardware.nixosModules.lenovo-thinkpad-x1-7th-gen];
         extraHmModules = [
@@ -152,6 +151,7 @@
         ];
         secrets = {
           "thinkpad-wireguard-private-key" = {};
+          "cachix-personal-token".owner = "ccr";
         };
       };
       rock5b = {
@@ -184,8 +184,8 @@
           }
         ];
         secrets = {
-          "cachix" = {};
           "mothership-wireguard-private-key" = {};
+          "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "magit-forge-github-token".owner = "ccr";
         };

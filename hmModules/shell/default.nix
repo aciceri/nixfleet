@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  age,
   ...
 }: {
   programs.bat.enable = true;
@@ -129,6 +130,7 @@
     loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec sway";
     envExtra = ''
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' # for Emacs TRAMP mode
+      export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
     '';
     initExtra = ''
       # Don't enable VIM emulation when in Emacs
