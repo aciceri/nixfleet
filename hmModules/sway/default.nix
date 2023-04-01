@@ -110,11 +110,15 @@
           in
             lib.mkOptionDefault {
               "${modifier}+x" = "exec emacsclient -c";
+              "${modifier}+y" = "exec ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.aciceri.dev emacsclient -c";
               "${modifier}+b" = "exec qutebrowser";
               "${modifier}+s" = "exec ${screenshotScript}";
               # "${modifier}+g" = "exec ${screenrecordingScript}";  # FIXME
               "${modifier}+t" = ''
                 exec emacsclient -c -F "\'(name . \\"VTerm\\"))" -q --eval '(vterm (getenv "SHELL"))'
+              '';
+              "${modifier}+u" = ''
+                exec ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.aciceri.dev emacsclient -c -F "\'(name . \\"VTerm\\"))" -q --eval '(eat (getenv "SHELL"))'
               '';
               "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s +5%";
               "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%-";
