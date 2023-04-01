@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
     ]
     ++ fleetModules [
+      "wireguard-client"
       "adb"
       "audio"
       "battery"

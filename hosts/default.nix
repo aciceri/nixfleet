@@ -150,6 +150,9 @@
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
         ];
+        secrets = {
+          "thinkpad-wireguard-private-key" = {};
+        };
       };
       rock5b = {
         system = "aarch64-linux";
