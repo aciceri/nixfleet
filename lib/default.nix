@@ -9,4 +9,8 @@
       mothership = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlepPWHE9GvQIBcAQBQPd80oiePSPxGDnMdqpdEqx6I";
     };
   };
+  ips = {
+    mothership = "10.100.0.1";
+    thinkpad = "10.100.0.2";
+  };
 }

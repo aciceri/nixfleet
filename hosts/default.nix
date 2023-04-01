@@ -8,11 +8,12 @@
   options.fleet = {
     hosts = lib.mkOption {
       description = "Host configuration";
-      type = lib.types.attrsOf (lib.types.submodule {
+      type = lib.types.attrsOf (lib.types.submodule ({name, ...}: {
         options = {
           name = lib.mkOption {
             description = "Host name";
             type = lib.types.strMatching "^$|^[[:alnum:]]([[:alnum:]_-]{0,61}[[:alnum:]])?$";
+            default = name;
           };
           system = lib.mkOption {
             description = "NixOS architecture (a.k.a. system)";
@@ -75,7 +76,7 @@
             default = "ccr";
           };
         };
-      });
+      }));
       default = {};
     };
     _mkNixosConfiguration = lib.mkOption {
@@ -90,6 +91,12 @@
               ({lib, ...}: {
                 networking.hostName = lib.mkForce hostname;
                 nixpkgs.overlays = config.overlays;
+                networking.hosts =
+                  lib.mapAttrs' (hostname: ip: {
+                    name = ip;
+                    value = ["${hostname}.fleet"];
+                  })
+                  (import "${self}/lib").ips;
               })
               "${self.outPath}/hosts/${hostname}"
             ]
