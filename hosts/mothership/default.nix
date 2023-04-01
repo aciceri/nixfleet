@@ -8,6 +8,7 @@
 }: {
   imports = fleetModules [
     "common"
+    "wireguard-server"
     "ssh"
     "ccr"
     "nix"

@@ -185,6 +185,7 @@
         ];
         secrets = {
           "cachix" = {};
+          "mothership-wireguard-private-key" = {};
           "git-workspace-tokens".owner = "ccr";
           "magit-forge-github-token".owner = "ccr";
         };

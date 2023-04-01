@@ -12,6 +12,6 @@ in {
   "git-workspace-tokens.age".publicKeys = [users.ccr hosts.test hosts.mothership];
 
   # WireGuard
-
   "thinkpad-wireguard-private-key.age".publicKeys = [hosts.thinkpad];
+  "mothership-wireguard-private-key.age".publicKeys = [hosts.mothership];
 }
