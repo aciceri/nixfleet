@@ -130,9 +130,10 @@
     loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec sway";
     envExtra = ''
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' # for Emacs TRAMP mode
-      export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
     '';
     initExtra = ''
+      export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
+
       # Don't enable VIM emulation when in Emacs
       [[ -z $INSIDE_EMACS ]] && source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
