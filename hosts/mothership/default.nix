@@ -54,6 +54,15 @@
 
   environment.systemPackages = with pkgs; [waypipe firefox];
 
+  home-manager.users.ccr.gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+    };
+  };
+  programs.dconf.enable = true;
+
   programs.mosh.enable = true;
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid"];
