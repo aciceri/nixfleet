@@ -15,16 +15,10 @@
     nix-direnv.enable = true;
   };
 
-  services.lorri.enable = false; # I'm not using it
-
   programs.exa = {
     enable = true;
     enableAliases = true;
   };
-
-  programs.zoxide.enable = true;
-
-  programs.zellij.enable = true;
 
   programs.fzf.enable = true;
 
@@ -40,7 +34,7 @@
         error_symbol = "[λ](bold red)";
       };
       nix_shell = {
-        symbol = "❄";
+        symbol = "❄ ";
       };
     };
   };
@@ -49,6 +43,9 @@
   programs.nushell = {
     enable = true;
     configFile.text = ''
+      let carapace_completer = {|spans|
+         carapace $spans.0 nushell $spans | from json
+      }
       let-env config = {
         show_banner: false
         ls: {
@@ -83,7 +80,7 @@
           external: {
             enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
             max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-            completer: null # check 'carapace_completer' above as an example
+            completer: $carapace_completer # check 'carapace_completer' above as an example
           }
         }
         filesize: {
@@ -95,7 +92,7 @@
   };
 
   programs.zsh = {
-    enable = true;
+    enable = false; # Disabled in favor on nushell but still here for posterity
     enableAutosuggestions = true;
     enableCompletion = true;
     enableSyntaxHighlighting = true;
@@ -149,6 +146,7 @@
     dig.dnsutils
     zsh-completions
     nix-zsh-completions
+    carapace # used by nushell
     # nom # FIXME disable on aarch64-linux, breaks everything :(
   ];
 }

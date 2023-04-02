@@ -55,6 +55,7 @@
   outputs = inputs @ {flakeParts, ...}:
     flakeParts.lib.mkFlake {inherit inputs;} {
       imports = [
+        # TODO export modules as flake outputs
         # ./modules
         # ./hmModules
         ./hosts
