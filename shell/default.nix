@@ -13,6 +13,8 @@
         deadnix
         statix
         alejandra
+        disko
+        deploy
       ];
       shellHook = ''
         export RULES="$(git rev-parse --show-toplevel)/secrets/default.nix";

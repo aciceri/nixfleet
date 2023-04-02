@@ -2,6 +2,7 @@
   inputs,
   lib,
   config,
+  self,
   ...
 }: {
   options.fleet.overlays = let
@@ -23,12 +24,17 @@
         statix.overlays.default
         nil.overlays.default
         alejandra.overlays.default
+        (final: _: {
+          inherit (disko.packages.${final.system}) disko;
+          inherit (self.packages.${final.system}) deploy;
+        })
       ];
     };
 
   config.perSystem = {
     system,
     lib,
+    pkgs,
     ...
   }: {
     _module.args.pkgs =
@@ -36,5 +42,15 @@
       (legacyPackages: legacyPackages.extend)
       inputs.nixpkgsUnstable.legacyPackages.${system}
       config.fleet.overlays;
+
+    packages =
+      lib.mapAttrs'
+      (name: value: {
+        inherit name;
+        value = pkgs.callPackage "${self}/packages/${name}" {};
+      })
+      (lib.filterAttrs
+        (_: type: type == "directory")
+        (builtins.readDir "${self}/packages"));
   };
 }
