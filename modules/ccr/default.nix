@@ -50,7 +50,7 @@
       description = "Andrea Ciceri";
       isNormalUser = true;
       inherit (config.ccr) extraGroups;
-      shell = pkgs.zsh;
+      shell = pkgs.nushell;
       openssh.authorizedKeys.keys = config.ccr.authorizedKeys;
     };
 
