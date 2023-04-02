@@ -15,13 +15,6 @@
   spotify-adblocked = pkgs.callPackage ./spotify-adblocked.nix {
     inherit spotify-adblock;
   };
-  # spotify-adblocked = pkgs.spotify.overrideAttrs (_: {
-  #   preInstallPhase = ''
-  #     ln -s ${spotify-adblock}/lib/libspotifyadblock.so $out/lib/spotify/
-  #     # wrapProgram $out/bin/spotify \
-  #     #   --set LD_PRELOAD ${spotify-adblock}/lib/libspotifyadblock.so
-  #   '';
-  # });
 in {
   home.packages = [spotify-adblocked];
 }
