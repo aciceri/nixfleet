@@ -66,10 +66,20 @@
         compression = "lz4";
         "com.sun:auto-snapshot" = "false";
       };
+      options.acltype = "posix";
       datasets = {
         root = {
           zfs_type = "filesystem";
-          options.mountpoint = "legacy";
+          options = {
+            mountpoint = "legacy";
+            autotrim = "on";
+            ashift = "12";
+            acltype = "posix";
+            dnodesize = "auto";
+            normalization = "formD";
+            relatime = "on";
+            xattr = "sa";
+          };
           mountpoint = "/";
         };
       };
