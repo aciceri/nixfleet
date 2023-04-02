@@ -30,8 +30,12 @@
         {
           # thinkpad
           publicKey = "g8wId6Rl0olRFRtAnQ046ihPRYFCtMxOJ+/Z9ARwIxI=";
-          # List of IPs assigned to this peer within the tunnel subnet. Used to configure routing.
           allowedIPs = ["10.100.0.2/32"];
+        }
+        {
+          # oneplus6t
+          publicKey = "O6/tKaA8Hs7OEqi15hV4RwviR6vyCTMYv6ZlhsI+tnI=";
+          allowedIPs = ["10.100.0.3/32"];
         }
       ];
     };
