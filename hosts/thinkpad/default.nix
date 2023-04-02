@@ -26,6 +26,7 @@
       "printing"
       "qmk-udev"
       "ssh"
+      "mosh"
       "transmission"
       "udisks2"
       "xdg"

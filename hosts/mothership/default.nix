@@ -10,6 +10,7 @@
     "common"
     "wireguard-server"
     "ssh"
+    "mosh"
     "ccr"
     "nix"
   ];
