@@ -12,5 +12,6 @@
   ips = {
     mothership = "10.100.0.1";
     thinkpad = "10.100.0.2";
+    oneplus6t = "10.100.0.3";
   };
 }
