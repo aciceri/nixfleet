@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   imports = [
@@ -66,7 +67,7 @@
               inherit bg;
             };
           };
-          terminal = "footclient";
+          terminal = "${config.programs.kitty.package}/bin/kitty ${config.programs.kitty.package}/bin/kitty +kitten ssh mothership.fleet";
           bars = [
             {
               mode = "hide";
