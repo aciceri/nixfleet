@@ -36,6 +36,11 @@
                   type = lib.types.path;
                   default = "${self.outPath}/secrets/${name}.age";
                 };
+                mode = lib.mkOption {
+                  # TODO improve type
+                  type = lib.types.str;
+                  default = "0440";
+                };
               };
             }));
             default = {};
@@ -116,7 +121,7 @@
                   lib.mapAttrs' (name: _: {
                     name = builtins.baseNameOf name;
                     value = {
-                      inherit (config.secrets.${name}) owner group file;
+                      inherit (config.secrets.${name}) owner group file mode;
                     };
                   })
                   filteredSecrets;
@@ -177,7 +182,10 @@
       };
       hs = {};
       mothership = {
-        extraModules = [inputs.disko.nixosModules.disko];
+        extraModules = with inputs; [
+          disko.nixosModules.disko
+          nix-serve-ng.nixosModules.default
+        ];
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
           {
@@ -195,6 +203,9 @@
           "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "magit-forge-github-token".owner = "ccr";
+          "hydra-admin-password".owner = "root";
+          "hydra-github-token".group = "hydra";
+          "cache-private-key".owner = "nix-serve";
         };
       };
     };
