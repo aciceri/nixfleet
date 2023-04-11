@@ -24,6 +24,11 @@ with lib; let
       pkgs.writeText name (lib.generators.toKeyValue {listsAsDuplicateKeys = true;} values);
   };
 in {
+  imports = [
+    ../nginx-base
+    ./config.nix
+  ];
+
   options.services.nginx.virtualHosts = mkOption {
     type = types.attrsOf (types.submodule ({config, ...}: let
       cfg = config.cgit;

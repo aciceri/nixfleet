@@ -13,6 +13,11 @@
     "mosh"
     "ccr"
     "nix"
+    "vm-sala"
+    "hydra"
+    "nix-serve"
+    "cgit"
+    "docker"
   ];
 
   ccr = {
