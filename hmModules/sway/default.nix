@@ -8,8 +8,8 @@
     ./idle.nix
     ./mako.nix
     ./gammastep.nix
-    ../foot
-    ../alacritty
+    # ../foot
+    # ../alacritty
     ../kitty
   ];
   config = {
