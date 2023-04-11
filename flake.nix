@@ -31,6 +31,15 @@
     comma.url = "github:nix-community/comma";
     rock5b.url = "github:aciceri/rock5b-nixos";
     ccrEmacs.url = "github:aciceri/emacs";
+    nix-serve-ng = {
+      url = "github:aristanetworks/nix-serve-ng";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
+    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     helix.url = "github:helix-editor/helix";
     nil.url = "github:oxalica/nil";
     nom.url = "github:maralorn/nix-output-monitor";
