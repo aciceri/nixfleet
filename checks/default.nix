@@ -20,4 +20,9 @@
       # statix.enable = true;
     };
   };
+
+  flake.checks.x86_64-linux =
+    builtins.mapAttrs
+    (_: nc: nc.config.system.build.toplevel)
+    self.nixosConfigurations;
 }

@@ -53,17 +53,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1679903104,
-        "narHash": "sha256-sKcV22cCxtEj+egRIm5FQD8ng8ZKjMZF+kKBpzn5IgI=",
-        "ref": "refs/heads/master",
-        "rev": "908cfcdaaa60cbe2081a70dc014c3536117b21d3",
-        "revCount": 35,
-        "type": "git",
-        "url": "file:///home/ccr/.config/emacs"
+        "lastModified": 1680949081,
+        "narHash": "sha256-/1/cdqr44UBbTxZXd2T9T03DsVNQgOPXVb4iSUEPD0Q=",
+        "owner": "aciceri",
+        "repo": "emacs",
+        "rev": "facb4171791d5bd4ce83e75a70a229b57b50e8aa",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/ccr/.config/emacs"
+        "owner": "aciceri",
+        "repo": "emacs",
+        "type": "github"
       }
     },
     "comma": {
