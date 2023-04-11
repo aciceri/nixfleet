@@ -50,7 +50,7 @@
       description = "Mara Savastano";
       isNormalUser = true;
       inherit (config.mara) extraGroups;
-      shell = pkgs.zsh;
+      shell = pkgs.nushell;
       openssh.authorizedKeys.keys = config.mara.authorizedKeys;
     };
 

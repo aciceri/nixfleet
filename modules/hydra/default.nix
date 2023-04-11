@@ -101,7 +101,7 @@ in {
   config = {
     # TODO manage `hydra` user ssh key declaratively
     nix.extraOptions = ''
-      allowed-uris = https://github.com/ git://git.savannah.gnu.org/
+      allowed-uris = https://github.com/ git://git.savannah.gnu.org/ https://git.sr.ht
     '';
 
     services.hydra = {
