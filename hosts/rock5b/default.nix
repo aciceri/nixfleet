@@ -6,20 +6,26 @@
   config,
   ...
 }: {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ]
-    ++ (fleetModules [
-      "common"
-      "ssh"
-      "ccr"
-      "cgit"
-    ]);
+  imports = fleetModules [
+    "common"
+    "ssh"
+    "ccr"
+  ];
 
   ccr.enable = true;
 
   services.rock5b-fan-control.enable = true;
+
+  nixpkgs.hostPlatform = "aarch64-linux";
+
+  swapDevices = [];
+
+  boot.loader = {
+    grub.enable = false;
+    generic-extlinux-compatible.enable = true;
+  };
+
+  disko.devices = import ./disko.nix {};
 
   services.nginx.enable = true;
   services.nginx.virtualHosts."localhost" = {
