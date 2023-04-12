@@ -1,6 +1,8 @@
 {
   pkgs,
   config,
+  fleetFlake,
+  lib,
   ...
 }: {
   networking.nat.enable = true;
@@ -26,18 +28,18 @@
 
       privateKeyFile = config.age.secrets."${config.networking.hostName}-wireguard-private-key".path;
 
-      peers = [
-        {
-          # thinkpad
-          publicKey = "g8wId6Rl0olRFRtAnQ046ihPRYFCtMxOJ+/Z9ARwIxI=";
-          allowedIPs = ["10.100.0.2/32"];
-        }
-        {
-          # oneplus6t
-          publicKey = "O6/tKaA8Hs7OEqi15hV4RwviR6vyCTMYv6ZlhsI+tnI=";
-          allowedIPs = ["10.100.0.3/32"];
-        }
-      ];
+      peers = let
+        publicKeys = {
+          thinkpad = "g8wId6Rl0olRFRtAnQ046ihPRYFCtMxOJ+/Z9ARwIxI=";
+          oneplus6t = "O6/tKaA8Hs7OEqi15hV4RwviR6vyCTMYv6ZlhsI+tnI=";
+          rock5b = "bc5giljukT1+ChbbyTLdOfejfR3c8RZ4XoXmQM54nTY=";
+        };
+        mkPeer = hostname: {
+          publicKey = publicKeys."${hostname}";
+          allowedIPs = ["${(import "${fleetFlake}/lib").ips."${hostname}"}/32"];
+        };
+      in
+        builtins.map mkPeer (lib.mapAttrsToList (hostname: _: hostname) publicKeys);
     };
   };
 }

@@ -1,5 +1,5 @@
 {emmc ? "/dev/mmcblk0", ...}: {
-  disko.devices = {
+  devices = {
     disk = {
       emmc = {
         type = "disk";

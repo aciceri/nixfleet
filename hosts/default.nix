@@ -168,7 +168,13 @@
       };
       rock5b = {
         system = "aarch64-linux";
-        extraModules = [inputs.rock5b.nixosModules.default];
+        extraModules = with inputs; [
+          disko.nixosModules.disko
+          rock5b.nixosModules.default
+        ];
+        secrets = {
+          "rock5b-wireguard-private-key" = {};
+        };
       };
       pbp = {
         system = "aarch64-linux";

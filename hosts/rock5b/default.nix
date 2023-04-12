@@ -10,6 +10,7 @@
     "common"
     "ssh"
     "ccr"
+    "wireguard-client"
   ];
 
   ccr.enable = true;
@@ -25,28 +26,7 @@
     generic-extlinux-compatible.enable = true;
   };
 
-  disko.devices = import ./disko.nix {};
-
-  services.nginx.enable = true;
-  services.nginx.virtualHosts."localhost" = {
-    cgit = {
-      enable = true;
-      virtual-root = "/";
-      include = [
-        (builtins.toFile "cgitrc-extra-1" ''
-          repo.url=test-repo.git
-          repo.path=/srv/git/test-repo.
-          repo.desc=the master foo repository
-          repo.owner=fooman@example.com
-          css=/custom.css
-        '')
-        (builtins.toFile "cgitrc-extra-2" ''
-          # Allow http transport git clone
-          enable-http-clone=1
-        '')
-      ];
-    };
-  };
+  disko = import ./disko.nix {};
 
   fileSystems."/mnt/film" = {
     device = "//ccr.ydns.eu/film";
