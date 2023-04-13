@@ -88,6 +88,7 @@
           format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
         }
       }
+      let-env TERM = "screen"
     '';
   };
 
