@@ -1,6 +1,7 @@
 {
   inputs,
   self,
+  lib,
   ...
 }: {
   imports = [
@@ -21,8 +22,14 @@
     };
   };
 
-  flake.checks.x86_64-linux =
-    builtins.mapAttrs
-    (_: nc: nc.config.system.build.toplevel)
-    self.nixosConfigurations;
+  flake.checks = let
+    build = _: nc: nc.config.system.build.toplevel;
+  in {
+    x86_64-linux = lib.mapAttrs build {
+      inherit (self.nixosConfigurations) hs thinkpad mothership;
+    };
+    aarch64-linux = {
+      inherit (self.nixosConfigurations) pbp rock5b;
+    };
+  };
 }
