@@ -38,5 +38,18 @@
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
+
+    buildMachines = [
+      {
+        hostName = "rock5b.fleet";
+        system = "aarch64-linux";
+        maxJobs = 6;
+        speedFactor = 2;
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+        mandatoryFeatures = [];
+        sshKey = "/etc/ssh/ssh_host_ed25519_key";
+      }
+    ];
+    distributedBuilds = true;
   };
 }
