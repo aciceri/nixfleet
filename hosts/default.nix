@@ -157,9 +157,13 @@
   config = {
     fleet.hosts = {
       thinkpad = {
-        extraModules = [inputs.nixosHardware.nixosModules.lenovo-thinkpad-x1-7th-gen];
-        extraHmModules = [
-          inputs.ccrEmacs.hmModules.default
+        extraModules = with inputs; [
+          nixosHardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+          hyprland.nixosModules.default
+        ];
+        extraHmModules = with inputs; [
+          ccrEmacs.hmModules.default
+          hyprland.homeManagerModules.default
         ];
         secrets = {
           "thinkpad-wireguard-private-key" = {};
@@ -191,6 +195,7 @@
         extraModules = with inputs; [
           disko.nixosModules.disko
           nix-serve-ng.nixosModules.default
+          hydra.nixosModules.hydra
         ];
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
@@ -220,5 +225,19 @@
       lib.mapAttrs
       config.fleet._mkNixosConfiguration
       config.fleet.hosts;
+
+    flake.colmena =
+      {
+        meta = {
+          nixpkgs = inputs.nixpkgsUnstable.legacyPackages.x86_64-linux;
+          nodeNixpkgs = builtins.mapAttrs (name: value: value.pkgs) self.nixosConfigurations;
+          nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) self.nixosConfigurations;
+        };
+      }
+      // builtins.mapAttrs (name: config: {
+        imports = config._module.args.modules;
+        deployment.targetHost = "${name}.fleet";
+      })
+      self.nixosConfigurations;
   };
 }

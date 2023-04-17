@@ -24,6 +24,7 @@
         statix.overlays.default
         nil.overlays.default
         alejandra.overlays.default
+        colmena.overlays.default
         (final: _: {
           inherit (disko.packages.${final.system}) disko;
           inherit (self.packages.${final.system}) deploy;

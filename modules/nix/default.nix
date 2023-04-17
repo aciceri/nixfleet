@@ -44,10 +44,11 @@
         hostName = "rock5b.fleet";
         system = "aarch64-linux";
         maxJobs = 6;
-        speedFactor = 2;
+        speedFactor = 1;
         supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
         mandatoryFeatures = [];
-        sshKey = "/etc/ssh/ssh_host_ed25519_key";
+        sshKey = "/var/lib/hydra/queue-runner/.ssh/id_rsa";
+        sshUser = "root";
       }
     ];
     distributedBuilds = true;

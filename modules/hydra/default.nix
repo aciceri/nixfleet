@@ -104,11 +104,10 @@ in {
       allowed-uris = https://github.com/ git://git.savannah.gnu.org/ https://git.sr.ht
     '';
 
-    services.hydra = {
+    services.hydra-dev = {
       enable = true;
       hydraURL = "https://${cfg.domain}";
       notificationSender = "hydra@mothership.fleet";
-      buildMachinesFiles = [];
       useSubstitutes = true;
       extraConfig =
         ''
@@ -147,6 +146,14 @@ in {
               --role admin
             touch ~hydra/.setup-is-complete
           fi
+
+          mkdir -p /var/lib/hydra/.ssh
+          cp /home/ccr/.ssh/id_rsa* /var/lib/hydra/.ssh/
+          chown -R hydra:hydra /var/lib/hydra/.ssh
+
+          mkdir -p /var/lib/hydra/queue-runner/.ssh
+          cp /home/ccr/.ssh/id_rsa* /var/lib/hydra/queue-runner/.ssh/
+          chown -R hydra-queue-runner:hydra /var/lib/hydra/queue-runner/.ssh
 
           curl --head -X GET --retry 5 --retry-connrefused --retry-delay 1 http://localhost:3000
 

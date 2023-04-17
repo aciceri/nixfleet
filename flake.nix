@@ -30,7 +30,19 @@
     agenix.url = "github:ryantm/agenix";
     comma.url = "github:nix-community/comma";
     rock5b.url = "github:aciceri/rock5b-nixos";
-    ccrEmacs.url = "github:aciceri/emacs";
+    # ccrEmacs.url = "github:aciceri/emacs";
+    ccrEmacs.url = "/home/ccr/.config/emacs";
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs = {
+        nixpkgs.follows = "nixpkgsUnstable";
+        stable.follows = "nixpkgsStable";
+      };
+    };
     nix-serve-ng = {
       url = "github:aristanetworks/nix-serve-ng";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
@@ -39,6 +51,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
+    hydra.url = "github:NixOS/hydra";
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     helix.url = "github:helix-editor/helix";
     nil.url = "github:oxalica/nil";

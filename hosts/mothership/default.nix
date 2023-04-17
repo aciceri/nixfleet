@@ -14,6 +14,7 @@
     "ccr"
     "nix"
     "vm-sala"
+    "vm-mara"
     "hydra"
     "nix-serve"
     "cgit"

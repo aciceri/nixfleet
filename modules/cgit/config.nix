@@ -40,9 +40,6 @@ in {
     };
     forceSSL = true;
     enableACME = true;
-    # locations."/" = {
-    #   proxyPass = "http://127.0.0.1:${builtins.toString config.services.hydra.port}";
-    # };
   };
 
   systemd.services.cgit-setup-repos = {
@@ -53,5 +50,14 @@ in {
     };
     wantedBy = ["multi-user.target"];
     script = builtins.toString cgit-setup-repos;
+  };
+
+  systemd.timers.cgit-setup-repos = {
+    wantedBy = ["timers.target"];
+    partOf = ["cgit-setup-repos.service"];
+    timerConfig = {
+      OnCalendar = "*-*-* 4:00:00"; # daily at 4 AM
+      Unit = "cgit-setup-repos.service";
+    };
   };
 }

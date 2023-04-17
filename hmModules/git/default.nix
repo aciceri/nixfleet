@@ -28,7 +28,10 @@ in {
     # };
 
     extraConfig.url = {
-      "ssh://git@github.com/" = {insteadOf = "https://github.com/";};
+      "ssh://git@github.com/".insteadOf = "https://github.com/";
+      # Workaround: https://github.com/rust-lang/cargo/issues/3381#issuecomment-1193730972
+      "https://github.com/rust-lang/crates.io-index".insteadOf = "https://github.com/rust-lang/crates.io-index";
+      "https://github.com/RustSec/advisory-db".insteadOf = "https://github.com/RustSec/advisory-db";
     };
 
     delta = {
