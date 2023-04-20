@@ -1,5 +1,11 @@
 {pkgs, ...}: {
   programs.waybar = {
+    package = pkgs.waybar.overrideAttrs (old: {
+      mesonFlags = old.mesonFlags ++ ["-Dexperimental=true"];
+      patchPhase = ''
+        sed -i -e 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+      '';
+    });
     enable = true;
     style = builtins.readFile ./style.css;
     settings = {
@@ -10,10 +16,10 @@
         height = 30;
 
         modules-left = [
-          "sway/mode"
-          "sway/workspaces"
+          "wlr/mode"
+          "wlr/workspaces"
         ];
-        modules-center = ["sway/window"];
+        modules-center = ["wlr/window"];
         modules-right = [
           "tray"
           "pulseaudio"
@@ -25,7 +31,7 @@
           "clock"
         ];
 
-        "sway/workspaces" = {
+        "wlr/workspaces" = {
           all-outputs = true;
           disable-scroll-wraparound = true;
           active-only = true;
@@ -41,9 +47,9 @@
           sort-by-number = true;
         };
 
-        "sway/mode" = {tooltip = false;};
+        "wlr/mode" = {tooltip = false;};
 
-        "sway/window" = {max_length = 50;};
+        "wlr/window" = {max_length = 50;};
         tray = {
           spacing = 10;
         };
@@ -93,7 +99,7 @@
           format-source-muted = "";
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
-        "sway/mode" = {format = ''<span style="italic">{}</span>'';};
+        "wlr/mode" = {format = ''<span style="italic">{}</span>'';};
         temperature = {
           critical-threshold = 80;
           format = "{temperatureC}°C {icon}";
