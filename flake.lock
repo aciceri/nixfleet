@@ -54,7 +54,7 @@
       },
       "locked": {
         "lastModified": 1680949081,
-        "narHash": "sha256-3XYuaEmNTK13QyoRdsK3NqggKXy++uDeCYi0NFiLReU=",
+        "narHash": "sha256-Z2OM36Ue6DsNNPnzg7znorZoXNVRwCVvjbbmhQosSxA=",
         "type": "git",
         "url": "file:///home/ccr/.config/emacs"
       },
@@ -820,6 +820,26 @@
         "type": "github"
       }
     },
+    "hyprpaper": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgsUnstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1681650457,
+        "narHash": "sha256-IGXRZrFGFqUeM5iDgP/ojbrd+gKL40PaFFAITxbkfZ0=",
+        "owner": "hyprwm",
+        "repo": "hyprpaper",
+        "rev": "3bfaac09f58ce31c33e1a56e7eaa606a87fe4c32",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprpaper",
+        "type": "github"
+      }
+    },
     "kernel-src": {
       "flake": false,
       "locked": {
@@ -1566,6 +1586,7 @@
         "homeManagerGitWorkspace": "homeManagerGitWorkspace",
         "hydra": "hydra",
         "hyprland": "hyprland",
+        "hyprpaper": "hyprpaper",
         "nil": "nil",
         "nix-serve-ng": "nix-serve-ng",
         "nixos-generators": "nixos-generators",

@@ -36,6 +36,10 @@
       url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
     colmena = {
       url = "github:zhaofengli/colmena";
       inputs = {
