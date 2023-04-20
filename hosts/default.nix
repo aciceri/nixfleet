@@ -58,12 +58,7 @@
               check = lib.isFunction;
               merge = lib.mergeOneOption;
             });
-            default = with inputs; [
-              agenix.overlays.default
-              comma.overlays.default
-              nur.overlay
-              nil.overlays.default # FIXME This shouldn't be here
-            ];
+            default = [];
           };
           extraModules = lib.mkOption {
             description = "Extra NixOS modules";
@@ -81,6 +76,11 @@
             default = "ccr";
           };
         };
+        config.overlays = with inputs; [
+          agenix.overlays.default
+          comma.overlays.default
+          nur.overlay
+        ];
       }));
       default = {};
     };
@@ -165,6 +165,7 @@
           ccrEmacs.hmModules.default
           hyprland.homeManagerModules.default
         ];
+        overlays = [inputs.nil.overlays.default];
         secrets = {
           "thinkpad-wireguard-private-key" = {};
           "cachix-personal-token".owner = "ccr";
@@ -209,6 +210,7 @@
             ];
           }
         ];
+        overlays = [inputs.nil.overlays.default];
         secrets = {
           "mothership-wireguard-private-key" = {};
           "cachix-personal-token".owner = "ccr";
