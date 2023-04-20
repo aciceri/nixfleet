@@ -39,6 +39,7 @@
   # not added if `null`, otherwise, should be a number.
   deviceScaleFactor ? null,
   spotify-adblock,
+  spotifywm,
 }: let
   # TO UPDATE: just execute the ./update.sh script (won't do anything if there is no update)
   # "rev" decides what is actually being downloaded
@@ -181,6 +182,7 @@ in
         --add-flags "--force-device-scale-factor=${toString deviceScaleFactor}" \
       ''} \
         --prefix LD_LIBRARY_PATH : "$librarypath" \
+        --prefix LD_PRELOAD : "${spotifywm}/lib/spotifywm.so" \
         --prefix PATH : "${gnome.zenity}/bin"
 
       # fix Icon line in the desktop file (#48062)

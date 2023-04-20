@@ -13,7 +13,22 @@
   };
 
   spotify-adblocked = pkgs.callPackage ./spotify-adblocked.nix {
-    inherit spotify-adblock;
+    inherit spotify-adblock spotifywm;
+  };
+
+  spotifywm = pkgs.stdenv.mkDerivation {
+    name = "spotifywm";
+    src = pkgs.fetchFromGitHub {
+      owner = "dasj";
+      repo = "spotifywm";
+      rev = "8624f539549973c124ed18753881045968881745";
+      sha256 = "sha256-AsXqcoqUXUFxTG+G+31lm45gjP6qGohEnUSUtKypew0=";
+    };
+    buildInputs = [pkgs.xorg.libX11];
+    installPhase = ''
+      mkdir -p $out/lib
+      cp spotifywm.so $out/lib/
+    '';
   };
 in {
   home.packages = [spotify-adblocked];
