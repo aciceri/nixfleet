@@ -14,4 +14,5 @@ in
     "thinkpad-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];
     "mothership-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "rock5b-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg rock5b];
+    "pbp-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg pbp];
   }

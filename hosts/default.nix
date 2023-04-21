@@ -190,6 +190,9 @@
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
         ];
+        secrets = {
+          "pbp-wireguard-private-key" = {};
+        };
       };
       hs = {};
       mothership = {

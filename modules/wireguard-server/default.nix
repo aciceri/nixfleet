@@ -33,6 +33,7 @@
           thinkpad = "g8wId6Rl0olRFRtAnQ046ihPRYFCtMxOJ+/Z9ARwIxI=";
           oneplus6t = "O6/tKaA8Hs7OEqi15hV4RwviR6vyCTMYv6ZlhsI+tnI=";
           rock5b = "bc5giljukT1+ChbbyTLdOfejfR3c8RZ4XoXmQM54nTY=";
+          pbp = "jvfAfQ2ykBndpnoLQTBJzDOhpjMOtIyCufEw+BxMxSc=";
         };
         mkPeer = hostname: {
           publicKey = publicKeys."${hostname}";

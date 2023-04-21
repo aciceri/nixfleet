@@ -47,7 +47,7 @@
         speedFactor = 1;
         supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
         mandatoryFeatures = [];
-        sshKey = "/var/lib/hydra/queue-runner/.ssh/id_rsa";
+        # sshKey = "/var/lib/hydra/queue-runner/.ssh/id_rsa";
         sshUser = "root";
       }
     ];

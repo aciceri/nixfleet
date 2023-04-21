@@ -9,6 +9,7 @@
       thinkpad = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDZMyLFfuBeDfPLn8WL6JazYpYq3oVvCdD4ktyt915TL";
       mothership = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlepPWHE9GvQIBcAQBQPd80oiePSPxGDnMdqpdEqx6I";
       rock5b = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+pPzPomBOf2eiC26HYrJb9+hlA0pnYPtv2eRYLfOAG";
+      pbp = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFF05LScu9m5BXMlFAT1g+g/AkAi7kvq1dY6W3Rzqq3f";
     };
   };
   ips = {
@@ -16,5 +17,6 @@
     thinkpad = "10.100.0.2";
     oneplus6t = "10.100.0.3";
     rock5b = "10.100.0.4";
+    pbp = "10.100.0.5";
   };
 }
