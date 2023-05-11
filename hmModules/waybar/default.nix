@@ -34,17 +34,16 @@
         "wlr/workspaces" = {
           all-outputs = true;
           disable-scroll-wraparound = true;
-          active-only = true;
-          format = "{icon}";
+          # format = "{icon}";
           on-click = "activate";
-          format-icons = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "9" = "ﬧ";
-            urgent = "";
-          };
-          sort-by-number = true;
+          # format-icons = {
+          #   "1" = "";
+          #   "2" = "";
+          #   "3" = "";
+          #   "9" = "ﬧ";
+          #   urgent = "";
+          # };
+          # sort-by-number = true;
         };
 
         "wlr/mode" = {tooltip = false;};

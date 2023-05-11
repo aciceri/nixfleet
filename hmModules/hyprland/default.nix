@@ -2,44 +2,94 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  screenshotScript = pkgs.writeShellScript "screenshot.sh" ''
+    filename="$HOME/shots/$(date --iso-8601=seconds).png"
+    coords="$(${pkgs.slurp}/bin/slurp)"
+    ${pkgs.grim}/bin/grim -t png -g "$coords" "$filename"
+    wl-copy -t image/png < $filename
+  '';
+in {
+  imports = [
+    ./hyprpaper.nix
+    ../waybar
+    ../swayidle
+    ../mako
+    ../gammastep
+    ../kitty
+  ];
+
+  home.packages = with pkgs; [wl-clipboard];
+
+  systemd.user.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
+  services.network-manager-applet.enable = true;
+  services.blueman-applet.enable = true;
+  services.pasystray.enable = true;
+  xsession.enable = true;
+
+  services.udiskie.enable = true;
+
+  gtk = {
+    enable = true;
+    font.name = "Sans,Symbols Nerd Font";
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
-             monitor = DP-2, 1920x1200, 0x0, 1, transform, 3
-             monitor = DP-1, 2560x1440, 1200x320, 1
-             monitor = eDP-1, 1920x1080, 3760x230, 1
+      input {
+        touchpad {
+          disable_while_typing = true # set to true while playing
+        }
+      }
 
-             exec-once = ${config.programs.waybar.package}/bin/waybar
-             exec-once = ${config.services.mako.package}/bin/mako
-             exec-once = ${pkgs.swaybg}/bin/swaybg ../sway/wallpaper.svg
+      monitor = DP-2, 1920x1200, 0x0, 1, transform, 3
+      monitor = DP-1, 2560x1440, 1200x320, 1
+      monitor = eDP-1, 1920x1080, 3760x230, 1
 
-             windowrulev2 = tile, class:^(Spotify)$
-             windowrulev2 = workspace 9, class:^(Spotify)$
+      exec-once = ${config.programs.waybar.package}/bin/waybar
+      exec-once = ${config.services.mako.package}/bin/mako
+      exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
 
-             bind = SUPER , F, exec, firefox
-             bind = SUPER , RETURN, exec, ${config.programs.kitty.package}/bin/kitty ${config.programs.kitty.package}/bin/kitty +kitten ssh mothership.fleet
-             bind = SUPER, y, exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet emacsclient -c
-             bind = SUPER, d, exec, ${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0
+      windowrulev2 = tile, class:^(Spotify)$
+      windowrulev2 = workspace 9, class:^(Spotify)$
 
-             bind = SUPER SHIFT, q, killactive
-             bind = SUPER SHIFT, f, fullscreen, 0
-             bind = SUPER SHIFT, e, exit
+      bind = SUPER , F, exec, firefox
+      bind = SUPER , RETURN, exec, ${config.programs.kitty.package}/bin/kitty ${config.programs.kitty.package}/bin/kitty +kitten ssh mothership.fleet
+      bind = SUPER, x, exec, emacsclient -c
+      bind = SUPER, y, exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet emacsclient -c
+      bind = SUPER, d, exec, ${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0
+      bind = SUPER, s, exec, ${screenshotScript}
+      bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
+      bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
 
-             bind = SUPER, h, movefocus, l
-             bind = SUPER, l, movefocus, r
-             bind = SUPER, k, movefocus, u
-             bind = SUPER, j, movefocus, d
+      bind = SUPER SHIFT, q, killactive
+      bind = SUPER SHIFT, f, fullscreen, 0
+      bind = SUPER SHIFT, e, exit
 
-             bind = SUPER SHIFT, h, movewindow, l
-             bind = SUPER SHIFT, l, movewindow, r
-             bind = SUPER SHIFT, k, movewindow, u
-             bind = SUPER SHIFT, j ,movewindow, d
+      bind = SUPER, h, movefocus, l
+      bind = SUPER, l, movefocus, r
+      bind = SUPER, k, movefocus, u
+      bind = SUPER, j, movefocus, d
 
-             bind = SUPER, p, movecurrentworkspacetomonitor, r
-             bind = SUPER, o, movecurrentworkspacetomonitor, l
+      bind = SUPER SHIFT, h, movewindow, l
+      bind = SUPER SHIFT, l, movewindow, r
+      bind = SUPER SHIFT, k, movewindow, u
+      bind = SUPER SHIFT, j ,movewindow, d
 
-             bind = SUPER, 1, workspace, 1
+      bind = SUPER, p, movecurrentworkspacetomonitor, r
+      bind = SUPER, o, movecurrentworkspacetomonitor, l
+
+      bindm=ALT,mouse:272,movewindow
+
+      bind = SUPER, 1, workspace, 1
       bind = SUPER, 2, workspace, 2
       bind = SUPER, 3, workspace, 3
       bind = SUPER, 4, workspace, 4

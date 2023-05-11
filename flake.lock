@@ -54,7 +54,7 @@
       },
       "locked": {
         "lastModified": 1680949081,
-        "narHash": "sha256-Z2OM36Ue6DsNNPnzg7znorZoXNVRwCVvjbbmhQosSxA=",
+        "narHash": "sha256-9dwAlNJ+owWvgcbhFeoJGX6/0jr+FY6m/wiziVVIu2c=",
         "type": "git",
         "url": "file:///home/ccr/.config/emacs"
       },

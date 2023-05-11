@@ -5,12 +5,10 @@
   ...
 }: {
   imports = [
-    ./waybar.nix
-    ./idle.nix
-    ./mako.nix
-    ./gammastep.nix
-    # ../foot
-    # ../alacritty
+    ../waybar
+    ../swayidle
+    ../mako
+    ../gammastep
     ../kitty
   ];
   config = {
@@ -35,8 +33,6 @@
         package = pkgs.gnome.adwaita-icon-theme;
       };
     };
-
-    services.swayidle.enable = true;
 
     wayland = {
       windowManager.sway = let

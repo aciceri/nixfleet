@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  fleetFlake,
   ...
 }: {
   nix = {
@@ -39,18 +40,29 @@
       options = "--delete-older-than 30d";
     };
 
-    buildMachines = [
-      {
-        hostName = "rock5b.fleet";
-        system = "aarch64-linux";
-        maxJobs = 6;
-        speedFactor = 1;
-        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-        mandatoryFeatures = [];
-        # sshKey = "/var/lib/hydra/queue-runner/.ssh/id_rsa";
-        sshUser = "root";
-      }
-    ];
+    # buildMachines = [
+    #   {
+    #     hostName = "rock5b.fleet";
+    #     system = "aarch64-linux";
+    #     maxJobs = 6;
+    #     speedFactor = 1;
+    #     supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+    #     mandatoryFeatures = [];
+    #     # sshKey = "/var/lib/hydra/queue-runner/.ssh/id_rsa";
+    #     sshUser = "root";
+    #   }
+    # ];
     distributedBuilds = true;
+
+    registry = lib.mkForce {
+      nixpkgs.to = {
+        type = "path";
+        path = fleetFlake.inputs.nixpkgsUnstable;
+      };
+      n.to = {
+        type = "path";
+        path = fleetFlake.inputs.nixpkgsUnstable;
+      };
+    };
   };
 }

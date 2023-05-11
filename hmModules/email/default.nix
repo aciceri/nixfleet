@@ -14,7 +14,8 @@
   };
   services = {
     mbsync = {
-      enable = true;
+      enable = false;
+      # FIXME this requires `pass` every 5 minutes that run `pinentry`
       frequency = "*:0/15";
       preExec = "${pkgs.isync}/bin/mbsync -Ha";
       # First time run: mu init --maildir ~/.mail --my-address andrea.ciceri@autistici.org

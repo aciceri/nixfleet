@@ -10,6 +10,20 @@
   networking.nat.internalInterfaces = ["wg0"];
   networking.firewall = {
     allowedUDPPorts = [51820];
+    interfaces.wg0 = {
+      allowedUDPPortRanges = [
+        {
+          from = 0;
+          to = 65535;
+        }
+      ];
+      allowedTCPPortRanges = [
+        {
+          from = 0;
+          to = 65535;
+        }
+      ];
+    };
   };
 
   networking.wireguard.interfaces = {

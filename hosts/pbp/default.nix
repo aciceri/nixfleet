@@ -16,6 +16,7 @@
       "xfce"
       "battery"
       "printing"
+      "wireguard-client"
     ];
 
   ccr.enable = true;
@@ -28,6 +29,11 @@
       "git"
       "chrome"
       "udiskie"
+    ];
+    packages = with pkgs; [
+      remmina
+      rdesktop
+      freerdp
     ];
   };
 

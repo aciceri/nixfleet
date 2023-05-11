@@ -11,5 +11,5 @@
     };
     package = pkgs.pass.withExtensions (e: with e; [pass-otp]);
   };
-  services.password-store-sync.enable = true;
+  services.password-store-sync.enable = false; # FIXME this requires `pass` every 5 minutes that run `pinentry`
 }

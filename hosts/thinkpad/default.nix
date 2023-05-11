@@ -56,7 +56,6 @@
       "qutebrowser"
       "shell"
       "slack"
-      "sway"
       "hyprland"
       "udiskie"
       "vscode"
@@ -71,6 +70,8 @@
     ];
     packages = with pkgs; [
       comma
+      dolphin-emu-beta
+      sc-controller
     ];
     extraGroups = [
       "wheel"
@@ -113,6 +114,9 @@
     #   keyMap = "us";
     useXkbConfig = true; # use xkbOptions in tty.
   };
+
+  services.joycond.enable = true; #FIXME not here
+  services.udev.packages = [pkgs.joycond];
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
