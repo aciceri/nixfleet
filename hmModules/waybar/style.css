@@ -19,10 +19,12 @@ window#waybar {
   font-size: 2rem;
 }
 
-#workspaces button.focused, #workspaces button.focused, #workspaces button:hover {
-  background: transparent;
+#workspaces button.active {
+  box-shadow: inset 0 -5px red;
+}
+
+#workspaces button.focused, #workspaces button:hover {
   box-shadow: inset 0 -5px white;
-  /* color: @theme_fg_color; */
 }
 
 #workspaces button.urgent {
