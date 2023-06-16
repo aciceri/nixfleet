@@ -4,7 +4,7 @@
     email = "andrea.ciceri@autistici.org";
   };
 in {
-  home.packages = [pkgs.gitoxide];
+  imports = [../gitui ../lazygit];
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
@@ -18,6 +18,8 @@ in {
       user.signingKey = "/home/ccr/.ssh/id_rsa";
       gpg.format = "ssh";
       commit.gpgsign = true;
+
+      core.editor = "hx";
     };
 
     userName = config.name;
@@ -35,13 +37,18 @@ in {
     };
 
     delta = {
-      enable = true;
+      enable = false; # Playing with difftastic at the moment
       options = {
         features = "decorations";
         delta = {
           line-numbers = true;
         };
       };
+    };
+
+    difftastic = {
+      enable = true;
+      background = "dark";
     };
   };
 }

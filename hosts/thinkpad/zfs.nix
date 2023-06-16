@@ -35,14 +35,14 @@
   users.users.root.initialHashedPassword = "$6$EqXfyFLxUZfpmJ8F$UH3pLcHwgLpOZwiSDhdq/iR/p.uyZZYlk6G4Q0S8BtYr3Qt2xKU56Fwv3Mgco.J0i3cx1Nm8XMfvythSuv8gh/";
 
   # TODO: remove this when it will be no more necessary
-  boot.zfs.enableUnstable = true;
-  nixpkgs.overlays = [
-    (self: super: {
-      linuxPackages_zen = super.linuxPackages_zen.extend (lpSelf: lpSuper: {
-        zfsUnstable = lpSuper.zfsUnstable.overrideAttrs (_: {
-          meta.broken = false;
-        });
-      });
-    })
-  ];
+  # boot.zfs.enableUnstable = true;
+  # nixpkgs.overlays = [
+  #   (self: super: {
+  #     linuxPackages_zen = super.linuxPackages_zen.extend (lpSelf: lpSuper: {
+  #       zfsUnstable = lpSuper.zfsUnstable.overrideAttrs (_: {
+  #         meta.broken = false;
+  #       });
+  #     });
+  #   })
+  # ];
 }

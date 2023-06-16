@@ -57,12 +57,17 @@ in {
       exec-once = ${config.programs.waybar.package}/bin/waybar
       exec-once = ${config.services.mako.package}/bin/mako
       exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
+      exec-once = ${config.programs.thunderbird.package}/bin/thunderbird
 
       windowrulev2 = tile, class:^(Spotify)$
       windowrulev2 = workspace 9, class:^(Spotify)$
+      windowrulev2 = workspace 8, class:thunderbird
 
-      bind = SUPER , F, exec, firefox
-      bind = SUPER , RETURN, exec, ${config.programs.kitty.package}/bin/kitty ${config.programs.kitty.package}/bin/kitty +kitten ssh mothership.fleet
+      bind = SUPER, b, exec, firefox
+      bind = SUPER SHIFT, b , exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet firefox
+      bind = SUPER SHIFT, RETURN, exec, ${config.programs.kitty.package}/bin/kitty ssh mothership.fleet
+      bind = SUPER, m, exec, ${config.programs.kitty.package}/bin/kitty mosh mothership.fleet
+      bind = SUPER, RETURN, exec, ${config.programs.kitty.package}/bin/kitty
       bind = SUPER, x, exec, emacsclient -c
       bind = SUPER, y, exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet emacsclient -c
       bind = SUPER, d, exec, ${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0
@@ -116,14 +121,14 @@ in {
 
           rounding = 4
           blur = true
-          blur_size = 3
+          blur_size = 8
           blur_passes = 1
           blur_new_optimizations = true
 
           drop_shadow = true
           shadow_range = 4
           shadow_render_power = 3
-          col.shadow = rgba(1a1a1aee)
+          col.shadow = rgba(a8cfee11)
       }
 
       animations {

@@ -30,10 +30,10 @@
     agenix.url = "github:ryantm/agenix";
     comma.url = "github:nix-community/comma";
     rock5b.url = "github:aciceri/rock5b-nixos";
-    # ccrEmacs.url = "github:aciceri/emacs";
-    ccrEmacs.url = "/home/ccr/.config/emacs";
+    ccrEmacs.url = "github:aciceri/emacs";
+    # ccrEmacs.url = "/home/ccr/.config/emacs";
     hyprland = {
-      url = "github:hyprwm/hyprland";
+      url = "github:hyprwm/hyprland/v0.26.0";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
     hyprpaper = {

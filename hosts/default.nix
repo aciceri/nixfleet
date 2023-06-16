@@ -20,6 +20,11 @@
             type = lib.types.str;
             default = "x86_64-linux";
           };
+          colmena = lib.mkOption {
+            description = "Set colmena.<host>";
+            type = lib.types.attrs;
+            default = {};
+          };
           secrets = lib.mkOption {
             description = "List of secrets names in the `secrets` folder";
             type = lib.types.attrsOf (lib.types.submodule ({name, ...}: {
@@ -79,6 +84,7 @@
         config.overlays = with inputs; [
           agenix.overlays.default
           comma.overlays.default
+          helix.overlays.default
           nur.overlay
         ];
       }));
@@ -169,6 +175,7 @@
         secrets = {
           "thinkpad-wireguard-private-key" = {};
           "cachix-personal-token".owner = "ccr";
+          "autistici-password".owner = "ccr";
         };
       };
       rock5b = {
@@ -180,6 +187,7 @@
         secrets = {
           "rock5b-wireguard-private-key" = {};
         };
+        colmena.deployment.buildOnTarget = true;
       };
       pbp = {
         system = "aarch64-linux";
@@ -239,10 +247,12 @@
           nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) self.nixosConfigurations;
         };
       }
-      // builtins.mapAttrs (name: config: {
-        imports = config._module.args.modules;
-        deployment.targetHost = "${name}.fleet";
-      })
-      self.nixosConfigurations;
+      // builtins.mapAttrs (name: host:
+        lib.recursiveUpdate {
+          imports = self.nixosConfigurations.${name}._module.args.modules;
+          deployment.targetHost = "${name}.fleet";
+        }
+        host.colmena)
+      config.fleet.hosts;
   };
 }

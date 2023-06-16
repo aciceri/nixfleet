@@ -19,6 +19,7 @@
     "nix-serve"
     "cgit"
     "docker"
+    "binfmt"
   ];
 
   ccr = {
@@ -32,6 +33,7 @@
       "shell"
       "xdg"
       "git-workspace"
+      "firefox" # used with waypipe
     ];
     packages = with pkgs; [
       comma
@@ -59,7 +61,7 @@
 
   nixpkgs.config.joypixels.acceptLicense = true;
 
-  environment.systemPackages = with pkgs; [waypipe firefox];
+  environment.systemPackages = with pkgs; [waypipe];
 
   home-manager.users.ccr.gtk = {
     enable = true;

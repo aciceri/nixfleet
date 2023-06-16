@@ -12,7 +12,6 @@
         format = "gpt";
         partitions = [
           {
-            type = "partition";
             name = "ESP";
             start = "0";
             end = "960MiB";
@@ -25,7 +24,6 @@
             };
           }
           {
-            type = "partition";
             name = "zfs";
             start = "1GiB";
             end = "100%";
@@ -45,7 +43,6 @@
         format = "gpt";
         partitions = [
           {
-            type = "partition";
             name = "zfs";
             start = "1GiB";
             end = "100%";
@@ -69,7 +66,7 @@
       options.acltype = "posix";
       datasets = {
         root = {
-          zfs_type = "filesystem";
+          type = "zfs_fs";
           options = {
             mountpoint = "legacy";
             autotrim = "on";

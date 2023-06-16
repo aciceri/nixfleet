@@ -25,17 +25,17 @@
     initial-config = fleetFlake.inputs.nixos-generators.nixosGenerate {
       system = "x86_64-linux";
       modules = [
-        fleetFlake.inputs.nixos-vscode-server.nixosModule
+        # fleetFlake.inputs.nixos-vscode-server.nixosModule
         ({
           modulesPath,
           lib,
           config,
           ...
         }: {
-          services.vscode-server = {
-            enable = true;
-            enableFHS = true;
-          };
+          # services.vscode-server = {
+          #   enable = true;
+          #   enableFHS = true;
+          # };
           system.build.qcow = lib.mkForce (import "${toString modulesPath}/../lib/make-disk-image.nix" {
             inherit lib config pkgs;
             diskSize = 50 * 1024;

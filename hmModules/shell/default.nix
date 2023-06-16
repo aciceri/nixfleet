@@ -76,7 +76,7 @@
           case_sensitive: false # set to true to enable case-sensitive completions
           quick: true  # set this to false to prevent auto-selecting completions when only one remains
           partial: true  # set this to false to prevent partial filling of the prompt
-          algorithm: "prefix"  # prefix or fuzzy
+          algorithm: "fuzzy"  # prefix or fuzzy
           external: {
             enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
             max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
@@ -87,8 +87,8 @@
           metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
           format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
         }
+        buffer_editor: "${config.programs.helix.package}/bin/helix"
       }
-      let-env TERM = "screen"
     '';
   };
 
@@ -145,6 +145,7 @@
     thefuck
     htop-vim
     dig.dnsutils
+    lsof
     zsh-completions
     nix-zsh-completions
     carapace # used by nushell

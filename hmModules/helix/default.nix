@@ -1,13 +1,12 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: {
   programs.helix = {
     enable = true;
     settings = {
-      theme = "onedark";
+      theme = "dracula";
       editor = {
         indent-guides.render = true;
         cursor-shape = {
@@ -15,7 +14,10 @@
           normal = "block";
           select = "underline";
         };
+        true-color = true; # to make colors coherent when in ssh
       };
     };
   };
+  home.sessionVariables.EDITOR = lib.mkForce "${config.programs.helix.package}/bin/helix";
+  programs.nushell.environmentVariables.EDITOR = lib.mkForce config.home.sessionVariables.EDITOR;
 }

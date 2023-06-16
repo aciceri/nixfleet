@@ -9,6 +9,7 @@ in
     "hydra-admin-password.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "hydra-github-token.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "cache-private-key.age".publicKeys = [ccr-ssh ccr-gpg mothership];
+    "autistici-password.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];
 
     # WireGuard
     "thinkpad-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];

@@ -28,7 +28,7 @@
         # fx_cast # TODO make PR to rycee NUR repo
       ];
       settings = {
-        "browser.startup.homepage" = "https://google.com";
+        "browser.startup.homepage" = "https://google.it";
         "browser.search.region" = "IT";
         "browser.search.isUS" = false;
         "distribution.searchplugins.defaultLocale" = "it-IT";
@@ -45,6 +45,19 @@
           urls = [
             {
               template = "https://search.privatevoid.net/search";
+              params = [
+                {
+                  name = "q";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+        };
+        "Google IT" = {
+          urls = [
+            {
+              template = "https://www.google.it/search";
               params = [
                 {
                   name = "q";

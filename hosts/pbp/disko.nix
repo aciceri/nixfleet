@@ -9,7 +9,6 @@ _: {
         partitions = [
           {
             name = "root";
-            type = "partition";
             start = "1MiB";
             end = "-4G";
             part-type = "primary";
@@ -22,7 +21,6 @@ _: {
           }
           {
             name = "swap";
-            type = "partition";
             start = "-4G";
             end = "100%";
             part-type = "primary";
@@ -42,7 +40,6 @@ _: {
         format = "gpt";
         partitions = [
           {
-            type = "partition";
             name = "ESP";
             start = "1MiB";
             end = "1024MiB";
@@ -55,7 +52,6 @@ _: {
           }
           {
             name = "home";
-            type = "partition";
             start = "1024MiB";
             end = "100%";
             part-type = "primary";
