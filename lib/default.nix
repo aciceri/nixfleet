@@ -8,7 +8,7 @@
     hosts = {
       thinkpad = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDZMyLFfuBeDfPLn8WL6JazYpYq3oVvCdD4ktyt915TL";
       mothership = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlepPWHE9GvQIBcAQBQPd80oiePSPxGDnMdqpdEqx6I";
-      rock5b = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+pPzPomBOf2eiC26HYrJb9+hlA0pnYPtv2eRYLfOAG";
+      rock5b = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOj/9N6A/tGAg3bMYsD3d3Ctacguf5OQkoZlnaBqMjVi";
       pbp = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFF05LScu9m5BXMlFAT1g+g/AkAi7kvq1dY6W3Rzqq3f";
     };
   };
