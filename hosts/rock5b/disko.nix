@@ -33,63 +33,67 @@ in {
           ];
         };
       };
-      #   hd1 = {
-      #     type = "disk";
-      #     device = hd1;
-      #     content = {
-      #       type = "table";
-      #       format = "gpt";
-      #       partitions = [
-      #         {
-      #           name = "primary";
-      #           start = "0";
-      #           end = "100%";
-      #           content = {
-      #             type = "lvm_pv";
-      #             vg = "pool";
-      #           };
-      #         }
-      #       ];
-      #     };
-      #   };
-      #   hd2 = {
-      #     type = "disk";
-      #     device = hd2;
-      #     content = {
-      #       type = "table";
-      #       format = "gpt";
-      #       partitions = [
-      #         {
-      #           name = "primary";
-      #           start = "0";
-      #           end = "100%";
-      #           content = {
-      #             type = "lvm_pv";
-      #             vg = "pool";
-      #           };
-      #         }
-      #       ];
-      #     };
-      #   };
-      # };
-      # lvm_vg = {
-      #   pool = {
-      #     type = "lvm_vg";
-      #     lvs = {
-      #       root = {
-      #         size = "100M";
-      #         lvm_type = "mirror";
-      #         content = {
-      #           type = "filesystem";
-      #           format = "ext4";
-      #           mountpoint = "/mnt/raid";
-      #           mountOptions = [
-      #             "defaults"
-      #           ];
-      #         };
-      #       };
-      #     };
-      #   };
+      hd1 = {
+        type = "disk";
+        device = hd1;
+        content = {
+          type = "table";
+          format = "gpt";
+          partitions = [
+            {
+              name = "primary";
+              start = "0";
+              end = "100%";
+              content = {
+                type = "mdraid";
+                name = "raid1";
+              };
+            }
+          ];
+        };
+      };
+      hd2 = {
+        type = "disk";
+        device = hd2;
+        content = {
+          type = "table";
+          format = "gpt";
+          partitions = [
+            {
+              name = "primary";
+              start = "0";
+              end = "100%";
+              content = {
+                type = "mdraid";
+                name = "raid1";
+              };
+            }
+          ];
+        };
+      };
+    };
+
+    mdadm = {
+      raid1 = {
+        type = "mdadm";
+        level = 1;
+        content = {
+          type = "table";
+          format = "gpt";
+          partitions = [
+            {
+              name = "primary";
+              start = "0";
+              end = "100%";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/mnt/raid";
+              };
+            }
+          ];
+        };
+      };
     };
   };
 }
