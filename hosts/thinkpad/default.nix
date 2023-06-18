@@ -44,7 +44,7 @@
       "element"
       # "thunderbird"
       "aerc"
-      "emacs"
+      # "emacs"
       "firefox"
       "git"
       "gpg"

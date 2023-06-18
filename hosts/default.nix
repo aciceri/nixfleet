@@ -168,7 +168,7 @@
           hyprland.nixosModules.default
         ];
         extraHmModules = with inputs; [
-          ccrEmacs.hmModules.default
+          # ccrEmacs.hmModules.default
           hyprland.homeManagerModules.default
         ];
         overlays = [inputs.nil.overlays.default];
@@ -197,13 +197,13 @@
           disko.nixosModules.disko
         ];
         extraHmModules = [
-          inputs.ccrEmacs.hmModules.default
+          # inputs.ccrEmacs.hmModules.default
         ];
         secrets = {
           "pbp-wireguard-private-key" = {};
         };
       };
-      hs = {};
+      # hs = {};
       mothership = {
         extraModules = with inputs; [
           disko.nixosModules.disko
@@ -211,7 +211,7 @@
           # hydra.nixosModules.hydra
         ];
         extraHmModules = [
-          inputs.ccrEmacs.hmModules.default
+          # inputs.ccrEmacs.hmModules.default
           {
             # TODO: remove after https://github.com/nix-community/home-manager/pull/3811
             imports = let

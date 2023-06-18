@@ -27,7 +27,7 @@
     enable = true;
     autologin = true;
     modules = [
-      "emacs"
+      # "emacs"
       "git"
       "gpg"
       "helix"
