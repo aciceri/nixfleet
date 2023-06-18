@@ -1,5 +1,5 @@
 {
-  modulesPath,
+  # modulesPath,
   fleetModules,
   lib,
   pkgs,
@@ -13,13 +13,14 @@
     "mosh"
     "ccr"
     "nix"
-    "vm-sala"
+    # "vm-sala"
     "vm-mara"
-    "hydra"
+    # "hydra"
+    "hercules-ci"
     "nix-serve"
     "cgit"
     "docker"
-    "binfmt"
+    # "binfmt"
   ];
 
   ccr = {

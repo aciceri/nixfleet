@@ -55,7 +55,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
-    hydra.url = "github:NixOS/hydra";
+    # hydra.url = "github:NixOS/hydra";
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     helix.url = "github:helix-editor/helix";
     nil.url = "github:oxalica/nil";

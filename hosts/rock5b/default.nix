@@ -14,6 +14,7 @@
       "wireguard-client"
       "minidlna"
       "transmission"
+      "hercules-ci"
     ]
     ++ [
       ./disko.nix

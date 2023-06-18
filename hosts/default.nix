@@ -186,6 +186,7 @@
         ];
         secrets = {
           "rock5b-wireguard-private-key" = {};
+          "hercules-ci-join-token".owner = "hercules-ci-agent";
         };
         colmena.deployment.buildOnTarget = true;
       };
@@ -207,7 +208,7 @@
         extraModules = with inputs; [
           disko.nixosModules.disko
           nix-serve-ng.nixosModules.default
-          hydra.nixosModules.hydra
+          # hydra.nixosModules.hydra
         ];
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
@@ -227,9 +228,10 @@
           "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "magit-forge-github-token".owner = "ccr";
-          "hydra-admin-password".owner = "root";
-          "hydra-github-token".group = "hydra";
+          # "hydra-admin-password".owner = "root";
+          # "hydra-github-token".group = "hydra";
           "cache-private-key".owner = "nix-serve";
+          "hercules-ci-join-token".owner = "hercules-ci-agent";
         };
       };
     };
