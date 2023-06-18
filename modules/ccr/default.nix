@@ -44,6 +44,8 @@
   };
 
   config = lib.mkIf config.ccr.enable {
+    ccr.extraGroups = ["wheel" "fuse" "networkmanager" "dialout"];
+
     users.users.ccr = {
       uid = 1000;
       inherit (config.ccr) hashedPassword;

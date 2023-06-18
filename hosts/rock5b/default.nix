@@ -12,6 +12,8 @@
       "ssh"
       "ccr"
       "wireguard-client"
+      "minidlna"
+      "transmission"
     ]
     ++ [
       ./disko.nix

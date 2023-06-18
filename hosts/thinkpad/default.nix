@@ -27,7 +27,7 @@
       "qmk-udev"
       "ssh"
       "mosh"
-      "transmission"
+      # "transmission"
       "udisks2"
       "xdg"
       "nix-development"
