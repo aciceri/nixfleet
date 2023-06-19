@@ -15,6 +15,7 @@
       "minidlna"
       "transmission"
       "hercules-ci"
+      "bubbleupnp"
     ]
     ++ [
       ./disko.nix
