@@ -92,20 +92,20 @@
         inputs.hercules-ci-effects.flakeModule
       ];
       systems = ["x86_64-linux" "aarch64-linux"];
-      herculesCI.ciSystems = ["x86_64-linux"];
+      herculesCI.ciSystems = ["x86_64-linux" "aarch64-linux"];
     });
   nixConfig = {
     extra-substituters = [
+      "https://cache.aciceri.dev"
       "https://nix-community.cachix.org"
       "https://rock5b-nixos.cachix.org"
       "https://helix.cachix.org"
-      "https://cache.aciceri.dev"
     ];
     extra-trusted-public-keys = [
+      "cache.aciceri.dev:4e9sFjWPUOjGwTJE98PXinJJZLwPz0m5nKsAe63MY3E="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "rock5b-nixos.cachix.org-1:bXHDewFS0d8pT90A+/YZan/3SjcyuPZ/QRgRSuhSPnA="
       "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
-      "cache.aciceri.dev:4e9sFjWPUOjGwTJE98PXinJJZLwPz0m5nKsAe63MY3E="
     ];
   };
 }

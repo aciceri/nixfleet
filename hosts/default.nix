@@ -191,19 +191,19 @@
         };
         colmena.deployment.buildOnTarget = true;
       };
-      pbp = {
-        system = "aarch64-linux";
-        extraModules = with inputs; [
-          nixosHardware.nixosModules.pine64-pinebook-pro
-          disko.nixosModules.disko
-        ];
-        extraHmModules = [
-          # inputs.ccrEmacs.hmModules.default
-        ];
-        secrets = {
-          "pbp-wireguard-private-key" = {};
-        };
-      };
+      # pbp = {
+      #   system = "aarch64-linux";
+      #   extraModules = with inputs; [
+      #     nixosHardware.nixosModules.pine64-pinebook-pro
+      #     disko.nixosModules.disko
+      #   ];
+      #   extraHmModules = [
+      #     # inputs.ccrEmacs.hmModules.default
+      #   ];
+      #   secrets = {
+      #     "pbp-wireguard-private-key" = {};
+      #   };
+      # };
       # hs = {};
       mothership = {
         extraModules = with inputs; [
