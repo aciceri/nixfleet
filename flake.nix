@@ -92,9 +92,7 @@
         inputs.hercules-ci-effects.flakeModule
       ];
       systems = ["x86_64-linux" "aarch64-linux"];
-      herculesCI = {...}: {
-        ciSystems = ["x86_64-linux" "aarch64-linux"];
-      };
+      herculesCI.ciSystems = ["x86_64-linux"];
     });
   nixConfig = {
     extra-substituters = [
