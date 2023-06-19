@@ -8,9 +8,8 @@
     settings = {
       concurrentTasks = 8;
       clusterJoinTokenPath = config.age.secrets.hercules-ci-join-token.path;
-      # Don't need using private caches, if I would ever need remember to use agenix!
-      binaryCachesPath = pkgs.writeText "binary-caches-path" (builtins.toJSON {});
-      # secretsJsonPath = config.hci-secrets.hci-mlabs-haskell.target;
+      binaryCachesPath = config.age.secrets.hercules-ci-binary-caches.path;
+      # secretsJsonPath = config.hercules-ci-secrets.path;
     };
   };
 }

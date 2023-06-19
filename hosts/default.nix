@@ -187,6 +187,7 @@
         secrets = {
           "rock5b-wireguard-private-key" = {};
           "hercules-ci-join-token".owner = "hercules-ci-agent";
+          "hercules-ci-binary-caches".owner = "hercules-ci-agent";
         };
         colmena.deployment.buildOnTarget = true;
       };
@@ -232,6 +233,7 @@
           # "hydra-github-token".group = "hydra";
           "cache-private-key".owner = "nix-serve";
           "hercules-ci-join-token".owner = "hercules-ci-agent";
+          "hercules-ci-binary-caches".owner = "hercules-ci-agent";
         };
       };
     };
