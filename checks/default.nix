@@ -29,7 +29,7 @@
       inherit (self.nixosConfigurations) thinkpad mothership;
     };
     aarch64-linux = {
-      inherit (self.nixosConfigurations) pbp rock5b;
+      inherit (self.nixosConfigurations) rock5b; #pbp;
     };
   };
 }
