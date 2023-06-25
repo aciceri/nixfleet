@@ -188,6 +188,7 @@
           "rock5b-wireguard-private-key" = {};
           "hercules-ci-join-token".owner = "hercules-ci-agent";
           "hercules-ci-binary-caches".owner = "hercules-ci-agent";
+          # "aws-credentials" = {};
         };
         colmena.deployment.buildOnTarget = true;
       };
@@ -208,7 +209,7 @@
       mothership = {
         extraModules = with inputs; [
           disko.nixosModules.disko
-          nix-serve-ng.nixosModules.default
+          # nix-serve-ng.nixosModules.default
           # hydra.nixosModules.hydra
         ];
         extraHmModules = [
@@ -234,6 +235,8 @@
           "cache-private-key".owner = "nix-serve";
           "hercules-ci-join-token".owner = "hercules-ci-agent";
           "hercules-ci-binary-caches".owner = "hercules-ci-agent";
+          # "minio-credentials".owner = "minio";
+          # "aws-credentials" = {};
         };
       };
     };

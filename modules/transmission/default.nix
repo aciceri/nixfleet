@@ -12,6 +12,11 @@
       rpc-whitelist-enabled = false;
       rpc-host-whitelist-enabled = false;
 
+      rpc-authentication-required = true;
+      rpc-username = "andrea";
+      # Generated with https://github.com/tomwijnroks/transmission-pwgen
+      rpc-password = "{9d03dda3243ebddfa44b0bebe099f611941e2fc31/0vvwdP";
+
       upload-slots-per-torrent = 1000;
 
       alt-speed-up = 1000; # 1MB/s

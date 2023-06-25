@@ -20,6 +20,8 @@
     "nix-serve"
     "cgit"
     "docker"
+    # "minio"
+    "proxy"
     # "binfmt"
   ];
 

@@ -12,6 +12,8 @@ in
     "autistici-password.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];
     "hercules-ci-join-token.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
     "hercules-ci-binary-caches.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
+    "minio-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership];
+    "aws-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
 
     # WireGuard
     "thinkpad-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];
