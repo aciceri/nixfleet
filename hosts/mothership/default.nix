@@ -15,6 +15,7 @@
     "nix"
     # "vm-sala"
     "vm-mara"
+    # "vm-ubuntu"
     # "hydra"
     "hercules-ci"
     "nix-serve"
@@ -23,13 +24,14 @@
     # "minio"
     "proxy"
     # "binfmt"
+    "xdg"
   ];
 
   ccr = {
     enable = true;
     autologin = true;
     modules = [
-      # "emacs"
+      "emacs"
       "git"
       "gpg"
       "helix"
@@ -61,6 +63,8 @@
       serif = ["DejaVu Serif"];
     };
   };
+
+  environment.enableAllTerminfo = true;
 
   nixpkgs.config.joypixels.acceptLicense = true;
 

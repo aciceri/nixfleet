@@ -4,8 +4,8 @@
     openRPCPort = true;
     openPeerPorts = true;
     settings = {
-      download-dir = "/mnt/raid/torrent";
-      incomplete-dir = "/mnt/raid/torrent/.incomplete";
+      download-dir = "/mnt/hd/torrent";
+      incomplete-dir = "/mnt/hd/torrent/.incomplete";
 
       rpc-bind-address = "0.0.0.0";
       peer-port = 51413; # Forward both TCP and UDP on router traffic from router
@@ -36,8 +36,8 @@
   ];
 
   systemd.tmpfiles.rules = [
-    "d /mnt/raid/torrent 770 transmission transmission"
-    "d /mnt/raid/torrent/.incomplete 770 transmission transmission"
+    "d /mnt/hd/torrent 770 transmission transmission"
+    "d /mnt/hd/torrent/.incomplete 770 transmission transmission"
   ];
 
   ccr.extraGroups = ["transmission"];

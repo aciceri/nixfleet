@@ -3,8 +3,9 @@
 
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
-    nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-22.11";
+    # nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgsUnstable.follows = "hyprland/nixpkgs";
+    nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
       url = "github:nix-community/home-manager";
@@ -30,11 +31,10 @@
     agenix.url = "github:ryantm/agenix";
     comma.url = "github:nix-community/comma";
     rock5b.url = "github:aciceri/rock5b-nixos";
-    # ccrEmacs.url = "github:aciceri/emacs";
+    ccrEmacs.url = "github:aciceri/emacs";
     # ccrEmacs.url = "/home/ccr/.config/emacs";
     hyprland = {
-      url = "github:hyprwm/hyprland/v0.26.0";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
+      url = "github:hyprwm/hyprland";
     };
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
@@ -77,6 +77,7 @@
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
     hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
+    # nixpkgsImmich.url = "github:oddlama/nixpkgs/init-immich";
   };
 
   outputs = inputs @ {flakeParts, ...}:
@@ -95,17 +96,11 @@
       herculesCI.ciSystems = ["x86_64-linux" "aarch64-linux"];
     });
   nixConfig = {
-    # extra-substituters = [
-    #   "ssh-ng://root@cache.aciceri.dev"
-    #   "https://nix-community.cachix.org"
-    #   "https://rock5b-nixos.cachix.org"
-    #   "https://helix.cachix.org"
-    # ];
-    # extra-trusted-public-keys = [
-    #   "cache.aciceri.dev-1:aNP6f+rRTuDHi/45L1VBzlGchuj54/mI2N/22qTWgzE="
-    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    #   "rock5b-nixos.cachix.org-1:bXHDewFS0d8pT90A+/YZan/3SjcyuPZ/QRgRSuhSPnA="
-    #   "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
-    # ];
+    extra-substituters = [
+      "https://hyprland.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
   };
 }

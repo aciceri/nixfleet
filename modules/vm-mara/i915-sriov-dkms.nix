@@ -12,8 +12,8 @@
     src = fetchFromGitHub {
       owner = "strongtz";
       repo = "i915-sriov-dkms";
-      rev = version;
-      sha256 = "sha256-LNKDNi7oEhO3FY47oKYbg8wt+268GlBVxQpHdNLNrwM=";
+      rev = "db4e8ccd9bd31fad79361e27afc032487426fe6a";
+      hash = "sha256-WCDwy39jpnc2wkM/883gFwChVD7wAP2nCR8Aw+CfDw8=";
     };
 
     nativeBuildInputs = kernel.moduleBuildDependencies;

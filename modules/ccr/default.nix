@@ -52,9 +52,11 @@
       description = "Andrea Ciceri";
       isNormalUser = true;
       inherit (config.ccr) extraGroups;
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
       openssh.authorizedKeys.keys = config.ccr.authorizedKeys;
     };
+
+    programs.zsh.enable = true;
 
     services.getty.autologinUser =
       if config.ccr.autologin

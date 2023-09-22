@@ -32,6 +32,8 @@
       "xdg"
       "nix-development"
       "clamav"
+      "waydroid"
+      # "gnome-keyring"
     ];
 
   ccr = {
@@ -42,12 +44,14 @@
       "digikam"
       "discord"
       "element"
+      # "nheko"
       # "thunderbird"
       "aerc"
-      # "emacs"
+      "emacs"
       "firefox"
       "git"
       "gpg"
+      "gnome-keyring"
       "helix"
       "mopidy"
       "mpv"
@@ -68,11 +72,14 @@
       "lutris"
       "wine"
       "remmina"
+      "whatsapp"
+      # "pantalaimon"
     ];
     packages = with pkgs; [
       comma
       dolphin-emu-beta
       sc-controller
+      libreoffice
     ];
     extraGroups = [
       "wheel"
@@ -173,7 +180,7 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 5000];
+  networking.firewall.allowedTCPPorts = [8000];
   # networking.firewall.allowedUDPPorts = [ 5000 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

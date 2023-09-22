@@ -48,7 +48,9 @@
       lib.mapAttrs'
       (name: value: {
         inherit name;
-        value = pkgs.callPackage "${self}/packages/${name}" {};
+        value = pkgs.callPackage "${self}/packages/${name}" {
+          pkgsStable = inputs.nixpkgsStable.legacyPackages.${system};
+        };
       })
       (lib.filterAttrs
         (_: type: type == "directory")

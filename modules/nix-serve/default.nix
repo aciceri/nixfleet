@@ -15,8 +15,8 @@ in {
   config = {
     services.nix-serve = {
       enable = true;
-      secretKeyFile = config.age.secrets.cache-private-key.path;
-      # Public key: cache.aciceri.dev-1:aNP6f+rRTuDHi/45L1VBzlGchuj54/mI2N/22qTWgzE=
+      # secretKeyFile = config.age.secrets.cache-private-key.path;
+      # Public key: cache.aciceri.dev-1B:aNP6f+BrRTuDHi/45L1VBzlGchuj54/mI2N/22qTWgzE=
     };
     services.nginx.virtualHosts."${cfg.domain}" = {
       forceSSL = true;

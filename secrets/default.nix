@@ -3,7 +3,7 @@ let
 in
   with keys.hosts;
   with keys.users; {
-    "cachix-personal-token.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad];
+    "cachix-personal-token.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad rock5b];
     "magit-forge-github-token.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad];
     "git-workspace-tokens.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad];
     "hydra-admin-password.age".publicKeys = [ccr-ssh ccr-gpg mothership];
@@ -14,6 +14,8 @@ in
     "hercules-ci-binary-caches.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
     "minio-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "aws-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
+    "nextcloud-admin-pass.age".publicKeys = [ccr-ssh ccr-gpg rock5b];
+    "home-planimetry.age".publicKeys = [ccr-ssh ccr-gpg rock5b];
 
     # WireGuard
     "thinkpad-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];

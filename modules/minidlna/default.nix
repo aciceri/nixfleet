@@ -6,7 +6,7 @@
       friendly_name = config.networking.hostName;
       inotify = "yes";
       media_dir = [
-        "/mnt/raid/torrent"
+        "/mnt/torrent"
       ];
     };
   };

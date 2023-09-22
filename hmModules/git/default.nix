@@ -19,7 +19,7 @@ in {
       gpg.format = "ssh";
       commit.gpgsign = true;
 
-      core.editor = "hx";
+      core.editor = "emacsclient";
     };
 
     userName = config.name;
@@ -37,7 +37,7 @@ in {
     };
 
     delta = {
-      enable = false; # Playing with difftastic at the moment
+      enable = false;
       options = {
         features = "decorations";
         delta = {
@@ -50,5 +50,9 @@ in {
       enable = true;
       background = "dark";
     };
+
+    diff-so-fancy.enable = false;
   };
+
+  home.packages = with pkgs; [delta];
 }

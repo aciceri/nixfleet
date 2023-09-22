@@ -141,7 +141,10 @@
               ({config, ...}: {
                 home-manager.users."${user}" = {
                   imports = extraHmModules;
-                  _module.args.age = config.age or {};
+                  _module.args = {
+                    age = config.age or {};
+                    fleetFlake = self;
+                  };
                 };
               })
             ]))
@@ -168,7 +171,7 @@
           hyprland.nixosModules.default
         ];
         extraHmModules = with inputs; [
-          # ccrEmacs.hmModules.default
+          ccrEmacs.hmModules.default
           hyprland.homeManagerModules.default
         ];
         overlays = [inputs.nil.overlays.default];
@@ -188,6 +191,9 @@
           "rock5b-wireguard-private-key" = {};
           "hercules-ci-join-token".owner = "hercules-ci-agent";
           "hercules-ci-binary-caches".owner = "hercules-ci-agent";
+          "cachix-personal-token".owner = "ccr";
+          "home-planimetry".owner = "hass";
+          # "nextcloud-admin-pass".owner = "nextcloud";
           # "aws-credentials" = {};
         };
         colmena.deployment.buildOnTarget = true;
@@ -213,13 +219,12 @@
           # hydra.nixosModules.hydra
         ];
         extraHmModules = [
-          # inputs.ccrEmacs.hmModules.default
+          inputs.ccrEmacs.hmModules.default
           {
             # TODO: remove after https://github.com/nix-community/home-manager/pull/3811
             imports = let
               hmModules = "${inputs.homeManagerGitWorkspace}/modules";
             in [
-              "${hmModules}/programs/git-workspace.nix"
               "${hmModules}/services/git-workspace.nix"
             ];
           }
@@ -232,7 +237,7 @@
           "magit-forge-github-token".owner = "ccr";
           # "hydra-admin-password".owner = "root";
           # "hydra-github-token".group = "hydra";
-          "cache-private-key".owner = "nix-serve";
+          # "cache-private-key".owner = "nix-serve";
           "hercules-ci-join-token".owner = "hercules-ci-agent";
           "hercules-ci-binary-caches".owner = "hercules-ci-agent";
           # "minio-credentials".owner = "minio";

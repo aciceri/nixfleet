@@ -9,6 +9,16 @@
     ${pkgs.grim}/bin/grim -t png -g "$coords" "$filename"
     wl-copy -t image/png < $filename
   '';
+  hyprland = config.wayland.windowManager.hyprland.package;
+  switchMonitorScript = pkgs.writeShellScript "switch-monitor.sh" ''
+    if [[ "$(${hyprland}/bin/hyprctl monitors) | grep '\sDP-[0-9]+'" ]]; then
+      if [[ $1 == "open" ]]; then
+        ${hyprland}/bin/hyprctl keyword monitor "eDP-1,1920x1080,3760x230,1"
+      else
+        ${hyprland}/bin/hyprctl keyword monitor "eDP-1,disable"
+      fi
+    fi
+  '';
 in {
   imports = [
     ./hyprpaper.nix
@@ -17,6 +27,7 @@ in {
     ../mako
     ../gammastep
     ../kitty
+    ../wezterm
   ];
 
   home.packages = with pkgs; [wl-clipboard];
@@ -41,6 +52,33 @@ in {
     };
   };
 
+  services.kanshi = {
+    enable = false;
+    systemdTarget = "hyprland-session.target";
+    profiles = {
+      undocked = {
+        outputs = [
+          {
+            status = "enable";
+            criteria = "eDP-1";
+          }
+        ];
+      };
+      docked = {
+        outputs = [
+          {
+            status = "disable";
+            criteria = "eDP-1";
+          }
+          {
+            status = "enable";
+            criteria = "DP-1";
+          }
+        ];
+      };
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
@@ -50,24 +88,31 @@ in {
         }
       }
 
-      monitor = DP-2, 1920x1200, 0x0, 1, transform, 3
-      monitor = DP-1, 2560x1440, 1200x320, 1
+      # monitor = DP-2, 1920x1200, 0x0, 1, transform, 3
+      # monitor = DP-1, 2560x1440, 1200x320, 1
+      # monitor = eDP-1, 1920x1080, 3760x230, 1
+
+      monitor = DP-2, 2560x1440, 1200x320, 1
       monitor = eDP-1, 1920x1080, 3760x230, 1
 
-      exec-once = ${config.programs.waybar.package}/bin/waybar
+      bindl=,switch:off:Lid Switch,exec,${switchMonitorScript} open
+      bindl=,switch:on:Lid Switch,exec,${switchMonitorScript} close
+
       exec-once = ${config.services.mako.package}/bin/mako
       exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
-      exec-once = ${config.programs.thunderbird.package}/bin/thunderbird
 
       windowrulev2 = tile, class:^(Spotify)$
       windowrulev2 = workspace 9, class:^(Spotify)$
-      windowrulev2 = workspace 8, class:thunderbird
+      windowrulev2 = tile, class:^(fluffychat)$
+      windowrulev2 = workspace 8, class:^(fluffychat)$
+      windowrulev2 = tile, class:^(WhatsApp for Linux)$
+      windowrulev2 = workspace 7, class:^(WhatsApp for Linux)$
 
       bind = SUPER, b, exec, firefox
       bind = SUPER SHIFT, b , exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet firefox
-      bind = SUPER SHIFT, RETURN, exec, ${config.programs.kitty.package}/bin/kitty ssh mothership.fleet
-      bind = SUPER, m, exec, ${config.programs.kitty.package}/bin/kitty mosh mothership.fleet
-      bind = SUPER, RETURN, exec, ${config.programs.kitty.package}/bin/kitty
+      bind = SUPER SHIFT, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm ssh mothership.fleet
+      bind = SUPER, m, exec, ${config.programs.wezterm.package}/bin/wezterm start -- mosh mothership.fleet
+      bind = SUPER, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm
       bind = SUPER, x, exec, emacsclient -c
       bind = SUPER, y, exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet emacsclient -c
       bind = SUPER, d, exec, ${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0
@@ -120,10 +165,10 @@ in {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
           rounding = 4
-          blur = true
-          blur_size = 8
-          blur_passes = 1
-          blur_new_optimizations = true
+          # blur = true
+          # blur_size = 8
+          # blur_passes = 1
+          # blur_new_optimizations = true
 
           drop_shadow = true
           shadow_range = 4
