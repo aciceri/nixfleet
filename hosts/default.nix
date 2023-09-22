@@ -141,7 +141,10 @@
               ({config, ...}: {
                 home-manager.users."${user}" = {
                   imports = extraHmModules;
-                  _module.args.age = config.age or {};
+                  _module.args = {
+                    age = config.age or {};
+                    fleetFlake = self;
+                  };
                 };
               })
             ]))
@@ -187,27 +190,32 @@
         secrets = {
           "rock5b-wireguard-private-key" = {};
           "hercules-ci-join-token".owner = "hercules-ci-agent";
+          "hercules-ci-binary-caches".owner = "hercules-ci-agent";
+          "cachix-personal-token".owner = "ccr";
+          "home-planimetry".owner = "hass";
+          # "nextcloud-admin-pass".owner = "nextcloud";
+          # "aws-credentials" = {};
         };
         colmena.deployment.buildOnTarget = true;
       };
-      pbp = {
-        system = "aarch64-linux";
-        extraModules = with inputs; [
-          nixosHardware.nixosModules.pine64-pinebook-pro
-          disko.nixosModules.disko
-        ];
-        extraHmModules = [
-          inputs.ccrEmacs.hmModules.default
-        ];
-        secrets = {
-          "pbp-wireguard-private-key" = {};
-        };
-      };
-      hs = {};
+      # pbp = {
+      #   system = "aarch64-linux";
+      #   extraModules = with inputs; [
+      #     nixosHardware.nixosModules.pine64-pinebook-pro
+      #     disko.nixosModules.disko
+      #   ];
+      #   extraHmModules = [
+      #     # inputs.ccrEmacs.hmModules.default
+      #   ];
+      #   secrets = {
+      #     "pbp-wireguard-private-key" = {};
+      #   };
+      # };
+      # hs = {};
       mothership = {
         extraModules = with inputs; [
           disko.nixosModules.disko
-          nix-serve-ng.nixosModules.default
+          # nix-serve-ng.nixosModules.default
           # hydra.nixosModules.hydra
         ];
         extraHmModules = [
@@ -217,7 +225,6 @@
             imports = let
               hmModules = "${inputs.homeManagerGitWorkspace}/modules";
             in [
-              "${hmModules}/programs/git-workspace.nix"
               "${hmModules}/services/git-workspace.nix"
             ];
           }
@@ -230,8 +237,11 @@
           "magit-forge-github-token".owner = "ccr";
           # "hydra-admin-password".owner = "root";
           # "hydra-github-token".group = "hydra";
-          "cache-private-key".owner = "nix-serve";
+          # "cache-private-key".owner = "nix-serve";
           "hercules-ci-join-token".owner = "hercules-ci-agent";
+          "hercules-ci-binary-caches".owner = "hercules-ci-agent";
+          # "minio-credentials".owner = "minio";
+          # "aws-credentials" = {};
         };
       };
     };

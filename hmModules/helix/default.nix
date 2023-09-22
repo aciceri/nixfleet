@@ -18,6 +18,6 @@
       };
     };
   };
-  home.sessionVariables.EDITOR = lib.mkForce "${config.programs.helix.package}/bin/helix";
-  programs.nushell.environmentVariables.EDITOR = lib.mkForce config.home.sessionVariables.EDITOR;
+  # home.sessionVariables.EDITOR = lib.mkForce "${config.programs.helix.package}/bin/helix";
+  # programs.nushell.environmentVariables.EDITOR = lib.mkForce config.home.sessionVariables.EDITOR;
 }

@@ -12,9 +12,16 @@
       "ssh"
       "ccr"
       "wireguard-client"
-      "minidlna"
+      # "minidlna"
+      "mediatomb"
       "transmission"
       "hercules-ci"
+      # "bubbleupnp"
+      # "nextcloud"
+      "home-assistant"
+      # "immich"
+      "adguard-home"
+      # "mount-hetzner-box"
     ]
     ++ [
       ./disko.nix
@@ -53,6 +60,12 @@
   #     '';
   #   in ["credentials=${credentials},x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s"];
   # };
+
+  fileSystems."/mnt/hd" = {
+    device = "/dev/disk/by-id/ata-WDC_WD10EADS-22M2B0_WD-WCAV52709550-part1";
+    fsType = "ext4";
+    options = ["nofail"];
+  };
 
   environment.systemPackages = with pkgs; [
     # kodi-rock5b

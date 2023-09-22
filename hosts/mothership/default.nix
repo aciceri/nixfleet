@@ -15,12 +15,16 @@
     "nix"
     # "vm-sala"
     "vm-mara"
+    # "vm-ubuntu"
     # "hydra"
     "hercules-ci"
     "nix-serve"
     "cgit"
     "docker"
+    # "minio"
+    "proxy"
     # "binfmt"
+    "xdg"
   ];
 
   ccr = {
@@ -59,6 +63,8 @@
       serif = ["DejaVu Serif"];
     };
   };
+
+  environment.enableAllTerminfo = true;
 
   nixpkgs.config.joypixels.acceptLicense = true;
 

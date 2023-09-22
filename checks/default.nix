@@ -26,10 +26,10 @@
     build = _: nc: nc.config.system.build.toplevel;
   in {
     x86_64-linux = lib.mapAttrs build {
-      inherit (self.nixosConfigurations) hs thinkpad mothership;
+      inherit (self.nixosConfigurations) thinkpad mothership;
     };
     aarch64-linux = {
-      inherit (self.nixosConfigurations) pbp rock5b;
+      inherit (self.nixosConfigurations) rock5b; #pbp;
     };
   };
 }

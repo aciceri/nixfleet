@@ -1,12 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  fleetFlake,
+  ...
+}: {
   programs.waybar = {
-    package = pkgs.waybar.overrideAttrs (old: {
-      mesonFlags = old.mesonFlags ++ ["-Dexperimental=true"];
-      patchPhase = ''
-        sed -i -e 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
-      '';
-    });
+    # package = fleetFlake.packages.${pkgs.system}.waybar-hyprland;
     enable = true;
+    systemd = {
+      enable = true;
+    };
     style = builtins.readFile ./style.css;
     settings = {
       mainBar = {
@@ -17,7 +20,7 @@
 
         modules-left = [
           "wlr/mode"
-          "wlr/workspaces"
+          "hyprland/workspaces"
         ];
         modules-center = ["wlr/window"];
         modules-right = [
@@ -31,7 +34,7 @@
           "clock"
         ];
 
-        "wlr/workspaces" = {
+        "hyprland/workspaces" = {
           all-outputs = true;
           disable-scroll-wraparound = true;
           # format = "{icon}";
@@ -56,8 +59,8 @@
           format = "{capacity}% {icon}";
           format-alt = "{time} {icon}";
           format-charging = "{capacity}% ";
-          format-icons = ["" "" "" "" ""];
-          format-plugged = "{capacity}% ";
+          format-icons = [" " " " " " " " " "];
+          format-plugged = "{capacity}%  ";
           states = {
             critical = 15;
             warning = 30;
@@ -76,9 +79,9 @@
           interval = 1;
           format-alt = "{ifname}: {ipaddr}/{cidr}";
           format-disconnected = "Disconnected ⚠";
-          format-ethernet = "{ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
+          format-ethernet = "{ifname}: {ipaddr}/{cidr} 󰈀  up: {bandwidthUpBits} down: {bandwidthDownBits}";
           format-linked = "{ifname} (No IP) ";
-          format-wifi = "{essid} ({signalStrength}%) ";
+          format-wifi = "{essid} ({signalStrength}%)   {ipaddr}/{cidr} up: {bandwidthUpBits} down: {bandwidthDownBits}";
         };
         pulseaudio = {
           format = "{volume}% {icon} {format_source}";
@@ -86,9 +89,9 @@
           format-bluetooth-muted = " {icon} {format_source}";
           format-icons = {
             car = "";
-            default = ["" "" ""];
+            default = [" " " " " "];
             handsfree = "";
-            headphones = "";
+            headphones = " ";
             headset = "";
             phone = "";
             portable = "";
@@ -108,4 +111,7 @@
       };
     };
   };
+
+  # waybar needs the hyprctl binary in PATH when started in hyprland
+  systemd.user.services.waybar.Service.Environment = "PATH=${lib.makeBinPath [pkgs.hyprland]}";
 }

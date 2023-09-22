@@ -4,7 +4,8 @@
     settings = {
       git.paging = {
         colorArg = "always";
-        useConfig = true;
+        useConfig = false;
+        # pager = "${pkgs.diff-so-fancy}/bin/diff-so-fancy";
         pager = "${pkgs.delta}/bin/delta --dark --paging=never";
       };
     };

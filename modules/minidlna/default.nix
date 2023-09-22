@@ -6,14 +6,11 @@
       friendly_name = config.networking.hostName;
       inotify = "yes";
       media_dir = [
-        "/mnt/raid"
+        "/mnt/torrent"
       ];
     };
   };
 
-  systemd.tmpfiles.rules = [
-    "d /mnt/raid/film 770 minidlna minidlna"
-  ];
-
   ccr.extraGroups = ["minidlna"];
+  users.users.minidlna.extraGroups = ["transmission"];
 }

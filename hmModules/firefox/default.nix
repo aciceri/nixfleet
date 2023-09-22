@@ -19,13 +19,9 @@
         privacy-badger
         ublock-origin
         tridactyl
-        octotree
-        octolinker
-        org-capture
         browserpass
         # bypass-paywalls-clean
         ghosttext # or edit-with-emacs?
-        # fx_cast # TODO make PR to rycee NUR repo
       ];
       settings = {
         "browser.startup.homepage" = "https://google.it";

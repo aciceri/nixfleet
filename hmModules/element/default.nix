@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.element-desktop];
+  home.packages = [pkgs.schildichat-desktop];
 
   systemd.user.services.element-desktop = {
     Install.WantedBy = ["graphical-session.target"];
@@ -10,7 +10,7 @@
     };
 
     Service = {
-      ExecStart = "${pkgs.element-desktop}/bin/element-desktop";
+      ExecStart = "${pkgs.schildichat-desktop}/bin/schildichat-desktop";
       Restart = "on-failure";
       RestartSec = 3;
     };

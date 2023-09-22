@@ -41,7 +41,7 @@
 
   # Playing with it sometimes
   programs.nushell = {
-    enable = true;
+    enable = false;
     configFile.text = ''
       let carapace_completer = {|spans|
          carapace $spans.0 nushell $spans | from json
@@ -93,7 +93,7 @@
   };
 
   programs.zsh = {
-    enable = false; # Disabled in favor on nushell but still here for posterity
+    enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
     enableSyntaxHighlighting = true;
@@ -117,17 +117,42 @@
         "thefuck"
       ];
     };
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = pkgs.fetchFromGitHub {
+          owner = "Aloxaf";
+          repo = "fzf-tab";
+          rev = "c2b4aa5ad2532cca91f23908ac7f00efb7ff09c9";
+          sha256 = "sha256-gvZp8P3quOtcy1Xtt1LAW1cfZ/zCtnAmnWqcwrKel6w=";
+        };
+      }
+      {
+        name = "fzf-tab";
+        src = pkgs.fetchFromGitHub {
+          owner = "Aloxaf";
+          repo = "fzf-tab";
+          rev = "c2b4aa5ad2532cca91f23908ac7f00efb7ff09c9";
+          sha256 = "sha256-gvZp8P3quOtcy1Xtt1LAW1cfZ/zCtnAmnWqcwrKel6w=";
+        };
+      }
+      {
+        name = "fast-syntax-highlighting";
+        src = pkgs.fetchFromGitHub {
+          owner = "zdharma-continuum";
+          repo = "fast-syntax-highlighting";
+          rev = "13d7b4e63468307b6dcb2dadf6150818f242cbff";
+          sha256 = "sha256-AmsexwVombgVmRvl4O9Kd/WbnVJHPTXETxBv18PDHz4=";
+        };
+      }
+    ];
     shellAliases = {
       "cat" = "bat";
-      "emw" = "emacsclient -c";
-      "emnw" = "emacsclient -c -nw";
-      "pass-clone" = "[ -d .password-store ] && echo 'Password store archive already exists' || git clone git@git.sr.ht:~zrsk/pass ~/.password-store";
-      "getpass" = "pass show $(find .password-store/ -name \"*.gpg\" | sed \"s/\\.password-store\\/\\(.*\\)\\.gpg$/\\1/g\" | fzf) | wl-copy; ((sleep 60 && wl-copy --clear) &)";
-      "n" = "nom";
+      "em" = "TERM=wezterm emacsclient -nw";
     };
-    loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec sway";
+    loginExtra = "[[ -z $DISPLAY && $TTY = /dev/tty1 ]] && exec dbus-run-session Hyprland";
     envExtra = ''
-      [ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' # for Emacs TRAMP mode
+      # [ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' # for Emacs TRAMP mode
     '';
     initExtra = ''
       export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
@@ -149,6 +174,8 @@
     zsh-completions
     nix-zsh-completions
     carapace # used by nushell
+    nil # TODO probably not best place
+    terraform-lsp # TODO probably not best place
     # nom # FIXME disable on aarch64-linux, breaks everything :(
   ];
 }

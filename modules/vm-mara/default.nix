@@ -1,5 +1,5 @@
 {
-  # config,
+  config,
   pkgs,
   # lib,
   # fleetFlake,
@@ -29,12 +29,27 @@
     ];
   };
 
-  # boot.kernelParams = [
-  #   "intel_iommu=on"
-  #   # "iommu=pt"
-  #   "i915.enable_guc=3"
-  #   "i915.max_vfs=7"
-  # ];
+  hardware.opengl.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
+  boot = {
+    initrd.kernelModules = [
+      "vfio_pci"
+      "vfio"
+      "vfio_iommu_type1"
+      "vfio_virqfd"
+
+      # "i915"
+    ];
+  };
+
+  boot.kernelParams = [
+    "intel_iommu=on"
+    "vfio-pci.ids=8086:4680"
+    # "iommu=pt"
+    "i915.enable_guc=3"
+    "i915.max_vfs=7"
+  ];
 
   # boot.blacklistedKernelModules = ["i915"];
 
@@ -47,9 +62,9 @@
   #   (config.boot.kernelPackages.callPackage ./i915-sriov-dkms.nix {} )
   # ];
 
-  # boot.initrd.availableKernelModules = [
-  #   "i915"
-  # ];
+  boot.initrd.availableKernelModules = [
+    # "i915"
+  ];
 
   # boot.initrd.kernelModules = [
   #   "i915"
@@ -94,9 +109,9 @@
     # }
   ];
 
-  # boot.kernel.sysctl = {
-  #   "devices/pci0000:00/0000:00:02.0/sriov_numvfs" = 7;
-  # };
+  boot.kernel.sysctl = {
+    "devices/pci0000:00/0000:00:02.0/sriov_numvfs" = 7;
+  };
 
   # -vnc :0 \
   # -audiodev alsa,id=snd0,out.try-poll=off -device ich9-intel-hda -device hda-output,audiodev=snd0 \
@@ -112,7 +127,7 @@
 
         qemu-system-x86_64 \
           -enable-kvm \
-          -cpu host,kvm=on,hv-vendor_id="GenuineIntel" \
+          -cpu host,kvm=off,hv-spinlocks=819,hv-vapic=on,hv-relaxed=on,hv-vendor-id="IrisXE" \
           -smp 4 \
           -m 8192 \
           -nic user,model=virtio-net-pci,hostfwd=tcp::3389-:3389,hostfwd=tcp::47989-:47989,hostfwd=tcp::47990-:47990,hostfwd=tcp::47984-:47984,hostfwd=tcp::48010-:48010,hostfwd=udp::47998-:47988,hostfwd=udp::47999-:47999,hostfwd=udp::48000-:48000,hostfwd=udp::48002-:48002,hostfwd=udp::48003-:48003,hostfwd=udp::48004-:48004,hostfwd=udp::48005-:48005,hostfwd=udp::48006-:48006,hostfwd=udp::48007-:48007,hostfwd=udp::48008-:48008,hostfwd=udp::48009-:48009,hostfwd=udp::48010-:48010 \
@@ -121,7 +136,9 @@
           -device usb-tablet \
           -vnc :0 \
           -nographic \
-          -drive file=/var/lib/vm-mara/w10.qcow2
+          -vga none \
+          -drive file=/var/lib/vm-mara/w10.qcow2 \
+          -device vfio-pci,host=00:02.0,addr=03.0,x-vga=on,multifunction=on,romfile=${./adls_dmc_ver2_01.bin}
       '';
     };
   in {

@@ -8,9 +8,29 @@
     settings = {
       concurrentTasks = 8;
       clusterJoinTokenPath = config.age.secrets.hercules-ci-join-token.path;
-      # Don't need using private caches, if I would ever need remember to use agenix!
-      binaryCachesPath = pkgs.writeText "binary-caches-path" (builtins.toJSON {});
-      # secretsJsonPath = config.hci-secrets.hci-mlabs-haskell.target;
+      binaryCachesPath = config.age.secrets.hercules-ci-binary-caches.path;
+      # secretsJsonPath = config.hercules-ci-secrets.path;
     };
   };
+
+  # Popola /var/lib/hercules-ci-agent/.ssh/ e /root/ con chiavi in grado di accedere root@cache.aciceri.dev
+
+  # systemd.tmpfiles.rules = [
+  #   "d ${config.users.users.root.home}/.aws 770 root root"
+  #   "d ${config.users.users.hercules-ci-agent.home}/.aws 770 hercules-ci-agent hercules-ci-agent"
+  # ];
+
+  # system.activationScripts.aws-credentials = ''
+  #   install ${config.age.secrets.aws-credentials.path} \
+  #     ${config.users.users.hercules-ci-agent.home}/.aws/credentials \
+  #     -D \
+  #     --owner=hercules-ci-agent \
+  #     --group=hercules-ci-agent \
+  #     --mode=770
+
+  #   install \
+  #     ${config.age.secrets.aws-credentials.path} \
+  #     -D \
+  #     ${config.users.users.root.home}/.aws/credentials
+  # '';
 }

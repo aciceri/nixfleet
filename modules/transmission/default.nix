@@ -4,13 +4,18 @@
     openRPCPort = true;
     openPeerPorts = true;
     settings = {
-      download-dir = "/mnt/raid/torrent";
-      incomplete-dir = "/mnt/raid/torrent/.incomplete";
+      download-dir = "/mnt/hd/torrent";
+      incomplete-dir = "/mnt/hd/torrent/.incomplete";
 
       rpc-bind-address = "0.0.0.0";
       peer-port = 51413; # Forward both TCP and UDP on router traffic from router
       rpc-whitelist-enabled = false;
       rpc-host-whitelist-enabled = false;
+
+      rpc-authentication-required = true;
+      rpc-username = "andrea";
+      # Generated with https://github.com/tomwijnroks/transmission-pwgen
+      rpc-password = "{9d03dda3243ebddfa44b0bebe099f611941e2fc31/0vvwdP";
 
       upload-slots-per-torrent = 1000;
 
@@ -31,8 +36,8 @@
   ];
 
   systemd.tmpfiles.rules = [
-    "d /mnt/raid/torrent 770 transmission transmission"
-    "d /mnt/raid/torrent/.incomplete 770 transmission transmission"
+    "d /mnt/hd/torrent 770 transmission transmission"
+    "d /mnt/hd/torrent/.incomplete 770 transmission transmission"
   ];
 
   ccr.extraGroups = ["transmission"];
