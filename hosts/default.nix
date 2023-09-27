@@ -168,17 +168,24 @@
       thinkpad = {
         extraModules = with inputs; [
           nixosHardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-          hyprland.nixosModules.default
         ];
         extraHmModules = with inputs; [
           ccrEmacs.hmModules.default
-          hyprland.homeManagerModules.default
+          {
+            # TODO: remove after https://github.com/nix-community/home-manager/pull/3811
+            imports = let
+              hmModules = "${inputs.homeManagerGitWorkspace}/modules";
+            in [
+              "${hmModules}/services/git-workspace.nix"
+            ];
+          }
         ];
         overlays = [inputs.nil.overlays.default];
         secrets = {
           "thinkpad-wireguard-private-key" = {};
           "cachix-personal-token".owner = "ccr";
           "autistici-password".owner = "ccr";
+          "git-workspace-tokens".owner = "ccr";
         };
       };
       rock5b = {

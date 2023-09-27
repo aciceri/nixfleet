@@ -24,9 +24,9 @@
         ];
         modules-center = ["wlr/window"];
         modules-right = [
+          "network"
           "tray"
           "pulseaudio"
-          "network"
           "cpu"
           "memory"
           "temperature"

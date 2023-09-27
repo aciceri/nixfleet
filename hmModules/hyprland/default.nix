@@ -26,7 +26,7 @@ in {
     ../swayidle
     ../mako
     ../gammastep
-    ../kitty
+    # ../kitty
     ../wezterm
   ];
 
@@ -88,12 +88,9 @@ in {
         }
       }
 
-      # monitor = DP-2, 1920x1200, 0x0, 1, transform, 3
-      # monitor = DP-1, 2560x1440, 1200x320, 1
-      # monitor = eDP-1, 1920x1080, 3760x230, 1
-
-      monitor = DP-2, 2560x1440, 1200x320, 1
+      # monitor = DP-2, 2560x1440, 1200x320, 1, mirror
       monitor = eDP-1, 1920x1080, 3760x230, 1
+      monitor = DP-1, 1920x1080, 0x0, 1, mirror, eDP-1
 
       bindl=,switch:off:Lid Switch,exec,${switchMonitorScript} open
       bindl=,switch:on:Lid Switch,exec,${switchMonitorScript} close
@@ -183,12 +180,12 @@ in {
 
           bezier = myBezier, 0.05, 0.9, 0.1, 1.05
 
-          animation = windows, 1, 7, myBezier
-          animation = windowsOut, 1, 7, default, popin 80%
-          animation = border, 1, 10, default
-          animation = borderangle, 1, 8, default
-          animation = fade, 1, 7, default
-          animation = workspaces, 1, 6, default
+          animation = windows, 1, 3, myBezier
+          animation = windowsOut, 1, 3, default, popin 80%
+          animation = border, 1, 5, default
+          animation = borderangle, 1, 4, default
+          animation = fade, 1, 3, default
+          animation = workspaces, 1, 3, default
       }
     '';
   };

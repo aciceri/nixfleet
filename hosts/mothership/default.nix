@@ -14,7 +14,7 @@
     "ccr"
     "nix"
     # "vm-sala"
-    "vm-mara"
+    # "vm-mara"
     # "vm-ubuntu"
     # "hydra"
     "hercules-ci"
@@ -23,8 +23,9 @@
     "docker"
     # "minio"
     "proxy"
-    # "binfmt"
+    "binfmt"
     "xdg"
+    # "remote-xfce"
   ];
 
   ccr = {
