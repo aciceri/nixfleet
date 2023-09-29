@@ -109,7 +109,8 @@ in {
       bind = SUPER SHIFT, b , exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet firefox
       bind = SUPER SHIFT, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm ssh mothership.fleet
       bind = SUPER, m, exec, ${config.programs.wezterm.package}/bin/wezterm start -- mosh mothership.fleet
-      bind = SUPER, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm
+      # bind = SUPER, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm
+      bind = SUPER, RETURN, exec, emacsclient -c --eval "(ccr/start-eshell)"
       bind = SUPER, x, exec, emacsclient -c
       bind = SUPER, y, exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet emacsclient -c
       bind = SUPER, d, exec, ${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0

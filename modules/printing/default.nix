@@ -11,7 +11,7 @@
   hardware.sane.enable = true;
 
   services.paperless = {
-    enable = true;
+    enable = false;
     passwordFile = builtins.toFile "password" "admin";
   };
 
