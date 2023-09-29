@@ -26,7 +26,7 @@ in {
     ../swayidle
     ../mako
     ../gammastep
-    ../kitty
+    # ../kitty
     ../wezterm
   ];
 

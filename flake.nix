@@ -3,8 +3,7 @@
 
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
-    # nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgsUnstable.follows = "hyprland/nixpkgs";
+    nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
@@ -33,13 +32,6 @@
     rock5b.url = "github:aciceri/rock5b-nixos";
     ccrEmacs.url = "github:aciceri/emacs";
     # ccrEmacs.url = "/home/ccr/.config/emacs";
-    hyprland = {
-      url = "github:hyprwm/hyprland";
-    };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
-    };
     colmena = {
       url = "github:zhaofengli/colmena";
       inputs = {
@@ -77,7 +69,6 @@
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
     hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
-    # nixpkgsImmich.url = "github:oddlama/nixpkgs/init-immich";
   };
 
   outputs = inputs @ {flakeParts, ...}:
@@ -99,12 +90,5 @@
       ];
     });
 
-  nixConfig = {
-    extra-substituters = [
-      "https://hyprland.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
-  };
+  nixConfig = {};
 }

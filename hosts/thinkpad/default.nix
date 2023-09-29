@@ -40,13 +40,14 @@
     enable = true;
     autologin = true;
     modules = [
+      "git-workspace"
       "cura"
       "digikam"
       "discord"
       "element"
       # "nheko"
       # "thunderbird"
-      "aerc"
+      # "aerc"
       "emacs"
       "firefox"
       "git"
@@ -74,6 +75,7 @@
       "remmina"
       "whatsapp"
       # "pantalaimon"
+      # "moonlight"
     ];
     packages = with pkgs; [
       comma
