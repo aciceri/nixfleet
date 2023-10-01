@@ -28,6 +28,7 @@
         (final: _: {
           inherit (disko.packages.${final.system}) disko;
           inherit (self.packages.${final.system}) deploy;
+          inherit (llm-workflow-engine.packages.${final.system}) llm-workflow-engine;
         })
       ];
     };

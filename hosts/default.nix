@@ -81,12 +81,14 @@
             default = "ccr";
           };
         };
-        config.overlays = with inputs; [
-          agenix.overlays.default
-          comma.overlays.default
-          helix.overlays.default
-          nur.overlay
-        ];
+        config.overlays = with inputs;
+          [
+            agenix.overlays.default
+            comma.overlays.default
+            helix.overlays.default
+            nur.overlay
+          ]
+          ++ config.fleet.overlays;
       }));
       default = {};
     };
@@ -186,6 +188,7 @@
           "cachix-personal-token".owner = "ccr";
           "autistici-password".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
+          "chatgpt-token".owner = "ccr";
         };
       };
       rock5b = {
@@ -249,6 +252,7 @@
           "hercules-ci-binary-caches".owner = "hercules-ci-agent";
           # "minio-credentials".owner = "minio";
           # "aws-credentials" = {};
+          "chatgpt-token".owner = "ccr";
         };
       };
     };

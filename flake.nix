@@ -69,6 +69,7 @@
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
     hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
+    llm-workflow-engine.url = "github:davHau/llm-workflow-engine";
   };
 
   outputs = inputs @ {flakeParts, ...}:

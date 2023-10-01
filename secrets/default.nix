@@ -16,6 +16,7 @@ in
     "aws-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
     "nextcloud-admin-pass.age".publicKeys = [ccr-ssh ccr-gpg rock5b];
     "home-planimetry.age".publicKeys = [ccr-ssh ccr-gpg rock5b];
+    "chatgpt-token.age".publicKeys = [ccr-ssh ccr-gpg thinkpad mothership];
 
     # WireGuard
     "thinkpad-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];
