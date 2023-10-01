@@ -46,6 +46,7 @@
       "inputs": {
         "emacs-overlay": "emacs-overlay",
         "extra-package-agenix-el": "extra-package-agenix-el",
+        "extra-package-chatgpt": "extra-package-chatgpt",
         "extra-package-combobulate": "extra-package-combobulate",
         "extra-package-dracula-theme": "extra-package-dracula-theme",
         "extra-package-indent-bars": "extra-package-indent-bars",
@@ -54,11 +55,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1695376716,
-        "narHash": "sha256-2BmSjPbrJMQZZGRRkwILFxtDLYbkgFUCmrEv9qBDgbQ=",
+        "lastModified": 1696121822,
+        "narHash": "sha256-D/o2X0VMFZFUpL2ee/qxnSVVhLIRZwOX2ApobkY+wUw=",
         "owner": "aciceri",
         "repo": "emacs",
-        "rev": "2f02170401205c5473d720a9c781fd32a43f68d1",
+        "rev": "aec2cf70f1d70037a9cf90f1962d93d7a10e685f",
         "type": "github"
       },
       "original": {
@@ -375,6 +376,22 @@
         "type": "github"
       }
     },
+    "extra-package-chatgpt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694351403,
+        "narHash": "sha256-ZQyPKe9olIaxYGoHJwEwsmfnYnVWCPt6o8ImY6rE3gY=",
+        "owner": "joshcho",
+        "repo": "ChatGPT.el",
+        "rev": "b31337e541eb7df169ae17f7bb26b459e6d6a5ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joshcho",
+        "repo": "ChatGPT.el",
+        "type": "github"
+      }
+    },
     "extra-package-combobulate": {
       "flake": false,
       "locked": {
@@ -394,16 +411,16 @@
     "extra-package-dracula-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1695368802,
-        "narHash": "sha256-i/xIb8jYONVNxADFcU5HVKhejkL+Ou6NlF92QTMFyiY=",
-        "owner": "dracula",
-        "repo": "emacs",
-        "rev": "dabe74904036717b06546c382df6e77a28921cff",
+        "lastModified": 1695902551,
+        "narHash": "sha256-uP3icMS0MP4j1Y7ivpMQZv0jLRh7CaRpG8NCn3vLnbE=",
+        "owner": "aciceri",
+        "repo": "dracula-emacs",
+        "rev": "25c2623e65817b5902b7ef74d1e8bafafa9d5a48",
         "type": "github"
       },
       "original": {
-        "owner": "dracula",
-        "repo": "emacs",
+        "owner": "aciceri",
+        "repo": "dracula-emacs",
         "type": "github"
       }
     },
