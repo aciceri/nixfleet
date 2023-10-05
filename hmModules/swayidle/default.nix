@@ -11,8 +11,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "jirutka";
         repo = "swaylock-effects";
-        rev = "a7691b86dabe5241c7292c7b8d0551d579ba1848";
-        sha256 = "sha256-GN+cxzC11Dk1nN9wVWIyv+rCrg4yaHnCePRYS1c4JTk=";
+        rev = "7c5681ce96587ce3090c6698501faeccdfdc157d";
+        sha256 = "sha256-09Kq90wIIF9lPjiY2anf9MSgi/EqeXKXW1mFmhxA/aM";
       };
     });
     swaylockWithArgs = pkgs.writeScriptBin "swaylockWithArgs" ''
