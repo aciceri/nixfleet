@@ -48,6 +48,7 @@
         "extra-package-agenix-el": "extra-package-agenix-el",
         "extra-package-chatgpt": "extra-package-chatgpt",
         "extra-package-combobulate": "extra-package-combobulate",
+        "extra-package-copilot": "extra-package-copilot",
         "extra-package-dracula-theme": "extra-package-dracula-theme",
         "extra-package-indent-bars": "extra-package-indent-bars",
         "extra-package-nix-ts-mode": "extra-package-nix-ts-mode",
@@ -55,11 +56,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1696121822,
-        "narHash": "sha256-D/o2X0VMFZFUpL2ee/qxnSVVhLIRZwOX2ApobkY+wUw=",
+        "lastModified": 1696548100,
+        "narHash": "sha256-BVUfuzpIVrpAImF6s1E1U6v57AQh3C9Y0ZbbJ+W0NiU=",
         "owner": "aciceri",
         "repo": "emacs",
-        "rev": "aec2cf70f1d70037a9cf90f1962d93d7a10e685f",
+        "rev": "06fe3622e036160d00e8d487a491bf9b2bee9c84",
         "type": "github"
       },
       "original": {
@@ -405,6 +406,22 @@
       "original": {
         "owner": "mickeynp",
         "repo": "combobulate",
+        "type": "github"
+      }
+    },
+    "extra-package-copilot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694588237,
+        "narHash": "sha256-7LKB2JoYAVu5i23ZKBVZPe6azCItHK/tlBNPgFXxztc=",
+        "owner": "zerolfx",
+        "repo": "copilot.el",
+        "rev": "421703f5dd5218ec2a3aa23ddf09d5f13e5014c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zerolfx",
+        "repo": "copilot.el",
         "type": "github"
       }
     },
