@@ -64,6 +64,10 @@
         type = "path";
         path = fleetFlake.inputs.nixpkgsUnstable;
       };
+      nixfleet.to = {
+        type = "path";
+        path = "/home/ccr/projects/aciceri/nixfleet";
+      };
     };
   };
 }
