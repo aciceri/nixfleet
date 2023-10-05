@@ -38,7 +38,7 @@
 
   ccr = {
     enable = true;
-    autologin = true;
+    autologin = false; # FIXME make true again after that getty autologins only for tty1
     modules = [
       "git-workspace"
       "cura"
