@@ -82,112 +82,121 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
-      input {
-        touchpad {
-          disable_while_typing = true # set to true while playing
-        }
-      }
+           input {
+             touchpad {
+               disable_while_typing = true # set to true while playing
+             }
+           }
 
-      # monitor = DP-2, 2560x1440, 1200x320, 1, mirror
-      monitor = eDP-1, 1920x1080, 3760x230, 1
-      monitor = DP-1, 1920x1080, 0x0, 1, mirror, eDP-1
+           monitor = DP-2, 2560x1440, 1200x320, 1
+           monitor = eDP-1, 1920x1080, 3760x230, 1
+           # monitor = DP-1, 1920x1080, 0x0, 1, mirror, eDP-1
 
-      bindl=,switch:off:Lid Switch,exec,${switchMonitorScript} open
-      bindl=,switch:on:Lid Switch,exec,${switchMonitorScript} close
+           bindl=,switch:off:Lid Switch,exec,${switchMonitorScript} open
+           bindl=,switch:on:Lid Switch,exec,${switchMonitorScript} close
 
-      exec-once = ${config.services.mako.package}/bin/mako
-      exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
+           exec-once = ${config.services.mako.package}/bin/mako
+           exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
 
-      windowrulev2 = tile, class:^(Spotify)$
-      windowrulev2 = workspace 9, class:^(Spotify)$
-      windowrulev2 = tile, class:^(fluffychat)$
-      windowrulev2 = workspace 8, class:^(fluffychat)$
-      windowrulev2 = tile, class:^(WhatsApp for Linux)$
-      windowrulev2 = workspace 7, class:^(WhatsApp for Linux)$
+           windowrulev2 = tile, class:^(Spotify)$
+           windowrulev2 = workspace 9, class:^(Spotify)$
+           windowrulev2 = tile, class:^(fluffychat)$
+           windowrulev2 = workspace 8, class:^(fluffychat)$
+           windowrulev2 = tile, class:^(WhatsApp for Linux)$
+           windowrulev2 = workspace 7, class:^(WhatsApp for Linux)$
 
-      bind = SUPER, b, exec, firefox
-      bind = SUPER SHIFT, b , exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet firefox
-      bind = SUPER SHIFT, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm ssh mothership.fleet
-      bind = SUPER, m, exec, ${config.programs.wezterm.package}/bin/wezterm start -- mosh mothership.fleet
-      # bind = SUPER, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm
-      bind = SUPER, RETURN, exec, emacsclient -c --eval "(ccr/start-eshell)"
-      bind = SUPER, x, exec, emacsclient -c
-      bind = SUPER, y, exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet emacsclient -c
-      bind = SUPER, d, exec, ${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0
-      bind = SUPER, s, exec, ${screenshotScript}
-      bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
-      bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
+           bind = SUPER, b, exec, firefox
+           bind = SUPER SHIFT, b , exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet firefox
+           bind = SUPER SHIFT, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm ssh mothership.fleet
+           bind = SUPER, m, exec, ${config.programs.wezterm.package}/bin/wezterm start -- mosh mothership.fleet
+           # bind = SUPER, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm
+           bind = SUPER, t, exec, ${config.programs.wezterm.package}/bin/wezterm
+           bind = SUPER, RETURN, exec, emacsclient -c --eval "(ccr/start-eshell)"
+           bind = SUPER, x, exec, emacsclient -c
+           bind = SUPER, y, exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet emacsclient -c
+           bind = SUPER, d, exec, ${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0
+           bind = SUPER, s, exec, ${screenshotScript}
+           bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
+           bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
 
-      bind = SUPER SHIFT, q, killactive
-      bind = SUPER SHIFT, f, fullscreen, 0
-      bind = SUPER SHIFT, e, exit
+           bind = SUPER SHIFT, q, killactive
+           bind = SUPER SHIFT, f, fullscreen, 0
+           bind = SUPER SHIFT, e, exit
 
-      bind = SUPER, h, movefocus, l
-      bind = SUPER, l, movefocus, r
-      bind = SUPER, k, movefocus, u
-      bind = SUPER, j, movefocus, d
+           bind = SUPER, h, movefocus, l
+           bind = SUPER, l, movefocus, r
+           bind = SUPER, k, movefocus, u
+           bind = SUPER, j, movefocus, d
 
-      bind = SUPER SHIFT, h, movewindow, l
-      bind = SUPER SHIFT, l, movewindow, r
-      bind = SUPER SHIFT, k, movewindow, u
-      bind = SUPER SHIFT, j ,movewindow, d
+           bind = SUPER SHIFT, h, movewindow, l
+           bind = SUPER SHIFT, l, movewindow, r
+           bind = SUPER SHIFT, k, movewindow, u
+           bind = SUPER SHIFT, j ,movewindow, d
 
-      bind = SUPER, p, movecurrentworkspacetomonitor, r
-      bind = SUPER, o, movecurrentworkspacetomonitor, l
+           bind = SUPER, p, movecurrentworkspacetomonitor, r
+           bind = SUPER, o, movecurrentworkspacetomonitor, l
 
-      bindm=ALT,mouse:272,movewindow
+           bindm=ALT,mouse:272,movewindow
 
-      bind = SUPER, 1, workspace, 1
-      bind = SUPER, 2, workspace, 2
-      bind = SUPER, 3, workspace, 3
-      bind = SUPER, 4, workspace, 4
-      bind = SUPER, 5, workspace, 5
-      bind = SUPER, 6, workspace, 6
-      bind = SUPER, 7, workspace, 7
-      bind = SUPER, 8, workspace, 8
-      bind = SUPER, 9, workspace, 9
-      bind = SUPER, 0, workspace, 10
+           bind = SUPER, 1, workspace, 1
+           bind = SUPER, 2, workspace, 2
+           bind = SUPER, 3, workspace, 3
+           bind = SUPER, 4, workspace, 4
+           bind = SUPER, 5, workspace, 5
+           bind = SUPER, 6, workspace, 6
+           bind = SUPER, 7, workspace, 7
+           bind = SUPER, 8, workspace, 8
+           bind = SUPER, 9, workspace, 9
+           bind = SUPER, 0, workspace, 10
 
-      bind = SUPER SHIFT, 1, movetoworkspace, 1
-      bind = SUPER SHIFT, 2, movetoworkspace, 2
-      bind = SUPER SHIFT, 3, movetoworkspace, 3
-      bind = SUPER SHIFT, 4, movetoworkspace, 4
-      bind = SUPER SHIFT, 5, movetoworkspace, 5
-      bind = SUPER SHIFT, 6, movetoworkspace, 6
-      bind = SUPER SHIFT, 7, movetoworkspace, 7
-      bind = SUPER SHIFT, 8, movetoworkspace, 8
-      bind = SUPER SHIFT, 9, movetoworkspace, 9
-      bind = SUPER SHIFT, 0, movetoworkspace, 10
+           bind = SUPER SHIFT, 1, movetoworkspace, 1
+           bind = SUPER SHIFT, 2, movetoworkspace, 2
+           bind = SUPER SHIFT, 3, movetoworkspace, 3
+           bind = SUPER SHIFT, 4, movetoworkspace, 4
+           bind = SUPER SHIFT, 5, movetoworkspace, 5
+           bind = SUPER SHIFT, 6, movetoworkspace, 6
+           bind = SUPER SHIFT, 7, movetoworkspace, 7
+           bind = SUPER SHIFT, 8, movetoworkspace, 8
+           bind = SUPER SHIFT, 9, movetoworkspace, 9
+           bind = SUPER SHIFT, 0, movetoworkspace, 10
 
-      decoration {
-          # See https://wiki.hyprland.org/Configuring/Variables/ for more
+           general {
+             gaps_in = 0
+             gaps_out = 0
+             border_size = 1
+      col.active_border = rgba(AF8D61FF) rgba(CEB153FF) rgba(7B8387FF) 45deg
+             col.inactive_border = rgba(AF8D6166)
+           }
 
-          rounding = 4
-          # blur = true
-          # blur_size = 8
-          # blur_passes = 1
-          # blur_new_optimizations = true
+           decoration {
+               # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-          drop_shadow = true
-          shadow_range = 4
-          shadow_render_power = 3
-          col.shadow = rgba(a8cfee11)
-      }
+               rounding = 2
+               # blur = true
+               # blur_size = 8
+               # blur_passes = 1
+               # blur_new_optimizations = true
 
-      animations {
-          enabled = true
+               drop_shadow = true
+               shadow_range = 4
+               shadow_render_power = 3
+               col.shadow = rgba(a8cfee11)
+           }
 
-          # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+           animations {
+               enabled = true
 
-          bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+               # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
-          animation = windows, 1, 3, myBezier
-          animation = windowsOut, 1, 3, default, popin 80%
-          animation = border, 1, 5, default
-          animation = borderangle, 1, 4, default
-          animation = fade, 1, 3, default
-          animation = workspaces, 1, 3, default
-      }
+               bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+
+               animation = windows, 1, 3, myBezier
+               animation = windowsOut, 1, 3, default, popin 80%
+               animation = border, 1, 5, default
+               animation = borderangle, 1, 4, default
+               animation = fade, 1, 3, default
+               animation = workspaces, 1, 3, default
+           }
     '';
   };
 }
