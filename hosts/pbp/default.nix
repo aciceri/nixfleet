@@ -12,34 +12,43 @@
       "common"
       "ssh"
       "ccr"
-      "mara"
-      "xfce"
+      # "mara"
+      # "xfce"
       "battery"
       "printing"
       "wireguard-client"
     ];
 
-  ccr.enable = true;
-  mara = {
+  ccr = {
     enable = true;
     modules = [
       "shell"
       "mpv"
-      "firefox"
+      # "firefox"
       "git"
-      "chrome"
-      "udiskie"
-    ];
-    packages = with pkgs; [
-      remmina
-      rdesktop
-      freerdp
+      # "chrome"
+      # "udiskie"
+      # "emacs"
     ];
   };
+  # mara = {
+  #   enable = true;
+  #   modules = [
+  #     "shell"
+  #     "mpv"
+  #     "firefox"
+  #     "git"
+  #     "chrome"
+  #     "udiskie"
+  #   ];
+  #   packages = with pkgs; [
+  #     remmina
+  #     rdesktop
+  #     freerdp
+  #   ];
+  # };
 
-  home-manager.users.mara = {
+  home-manager.users.ccr = {
     programs.chromium.package = lib.mkForce pkgs.chromium;
   };
-
-  i18n.defaultLocale = lib.mkForce "it_IT.UTF-8";
 }

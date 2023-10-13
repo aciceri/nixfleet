@@ -1,37 +1,37 @@
 _: {
   disk = {
-    emmc = {
-      device = "/dev/mmcblk2";
-      type = "disk";
-      content = {
-        type = "table";
-        format = "gpt";
-        partitions = [
-          {
-            name = "root";
-            start = "1MiB";
-            end = "-4G";
-            part-type = "primary";
-            bootable = false;
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-            };
-          }
-          {
-            name = "swap";
-            start = "-4G";
-            end = "100%";
-            part-type = "primary";
-            content = {
-              type = "swap";
-              randomEncryption = true;
-            };
-          }
-        ];
-      };
-    };
+    # emmc = {
+    #   device = "/dev/mmcblk2";
+    #   type = "disk";
+    #   content = {
+    #     type = "table";
+    #     format = "gpt";
+    #     partitions = [
+    #       {
+    #         name = "root";
+    #         start = "1MiB";
+    #         end = "-4G";
+    #         part-type = "primary";
+    #         bootable = false;
+    #         content = {
+    #           type = "filesystem";
+    #           format = "ext4";
+    #           mountpoint = "/";
+    #         };
+    #       }
+    #       {
+    #         name = "swap";
+    #         start = "-4G";
+    #         end = "100%";
+    #         part-type = "primary";
+    #         content = {
+    #           type = "swap";
+    #           randomEncryption = true;
+    #         };
+    #       }
+    #     ];
+    #   };
+    # };
     ssd = {
       device = "/dev/nvme0n1";
       type = "disk";
@@ -51,15 +51,25 @@ _: {
             };
           }
           {
-            name = "home";
+            name = "root";
             start = "1024MiB";
-            end = "100%";
+            end = "-8G";
             part-type = "primary";
             bootable = false;
             content = {
               type = "filesystem";
               format = "ext4";
-              mountpoint = "/home";
+              mountpoint = "/";
+            };
+          }
+          {
+            name = "swap";
+            start = "-8G";
+            end = "100%";
+            part-type = "primary";
+            content = {
+              type = "swap";
+              randomEncryption = true;
             };
           }
         ];

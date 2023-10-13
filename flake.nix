@@ -51,6 +51,7 @@
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     helix.url = "github:helix-editor/helix";
     nil.url = "github:oxalica/nil";
+    nixd.url = "github:nix-community/nixd";
     nom.url = "github:maralorn/nix-output-monitor";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -69,7 +70,7 @@
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
     hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
-    llm-workflow-engine.url = "github:davHau/llm-workflow-engine";
+    dream2nix.url = "github:nix-community/dream2nix";
   };
 
   outputs = inputs @ {flakeParts, ...}:

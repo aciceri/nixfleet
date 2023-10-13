@@ -175,9 +175,10 @@
     nix-zsh-completions
     carapace # used by nushell
     nil # TODO probably not best place
+    nixd # TODO probably not best place
     terraform-lsp # TODO probably not best place
     python3Packages.jedi-language-server # TODO probably not best place
-    # TODO probably not best place
+    cntr # TODO probably not best place
     # nom # FIXME disable on aarch64-linux, breaks everything :(
   ];
 }
