@@ -3,7 +3,7 @@ let
 in
   with keys.hosts;
   with keys.users; {
-    "cachix-personal-token.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad rock5b];
+    "cachix-personal-token.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad rock5b pbp];
     "magit-forge-github-token.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad];
     "git-workspace-tokens.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad];
     "hydra-admin-password.age".publicKeys = [ccr-ssh ccr-gpg mothership];
