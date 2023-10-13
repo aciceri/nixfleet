@@ -23,12 +23,13 @@
         deadnix.overlays.default
         statix.overlays.default
         nil.overlays.default
+        nixd.overlays.default
         alejandra.overlays.default
         colmena.overlays.default
         (final: _: {
           inherit (disko.packages.${final.system}) disko;
           inherit (self.packages.${final.system}) deploy;
-          inherit (llm-workflow-engine.packages.${final.system}) llm-workflow-engine;
+          inherit (self.packages.${final.system}) llm-workflow-engine;
         })
       ];
     };
@@ -51,6 +52,7 @@
         inherit name;
         value = pkgs.callPackage "${self}/packages/${name}" {
           pkgsStable = inputs.nixpkgsStable.legacyPackages.${system};
+          dream2nix = inputs.dream2nix;
         };
       })
       (lib.filterAttrs
