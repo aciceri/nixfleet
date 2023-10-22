@@ -14,7 +14,7 @@
 
     modules = lib.mkOption {
       type = with lib.types; listOf str;
-      default = ["shell" "git" "nix-index"];
+      default = [];
     };
 
     packages = lib.mkOption {
@@ -45,6 +45,7 @@
 
   config = lib.mkIf config.ccr.enable {
     ccr.extraGroups = ["wheel" "fuse" "networkmanager" "dialout"];
+    ccr.modules = ["shell" "git" "nix-index"];
 
     users.users.ccr = {
       uid = 1000;
@@ -52,11 +53,11 @@
       description = "Andrea Ciceri";
       isNormalUser = true;
       inherit (config.ccr) extraGroups;
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
       openssh.authorizedKeys.keys = config.ccr.authorizedKeys;
     };
 
-    programs.zsh.enable = true;
+    programs.fish.enable = true;
 
     services.getty.autologinUser =
       if config.ccr.autologin
