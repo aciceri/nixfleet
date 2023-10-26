@@ -209,6 +209,7 @@
     nixd # TODO probably not best place
     terraform-lsp # TODO probably not best place
     python3Packages.jedi-language-server # TODO probably not best place
+    nodePackages.typescript-language-server # TODO probably not best place
     cntr # TODO probably not best place
     # nom # FIXME disable on aarch64-linux, breaks everything :(
   ];
