@@ -3,6 +3,7 @@
     enable = true;
     extraConfig = ''
       return {
+        enable_wayland = false; -- https://github.com/wez/wezterm/issues/4483
         font = wezterm.font_with_fallback {
           {
             family = 'Iosevka Comfy',

@@ -1,4 +1,8 @@
-{age, ...}: {
+{
+  age,
+  username,
+  ...
+}: {
   services.git-workspace = {
     enable = true;
     frequency = "04:00:00";
@@ -9,7 +13,7 @@
           {
             provider = "github";
             name = "aciceri";
-            path = "/home/ccr/projects";
+            path = "/home/${username}/projects";
             skips_forks = false;
           }
         ];
@@ -19,7 +23,7 @@
           {
             provider = "github";
             name = "mlabs-haskell";
-            path = "/home/ccr/projects";
+            path = "/home/${username}/projects";
             skip_forks = false;
           }
         ];
@@ -29,7 +33,7 @@
           {
             provider = "github";
             name = "EthereansOS";
-            path = "/home/ccr/projects";
+            path = "/home/${username}/projects";
             skip_forks = false;
           }
         ];

@@ -1,14 +1,13 @@
 {
-  config,
-  lib,
   pkgs,
+  config,
   ...
 }: {
-  virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
-  users.users.ccr.extraGroups = ["docker"];
+  users.users.${config.ccr.username}.extraGroups = ["docker"];
   environment.systemPackages = with pkgs; [
     docker-compose
     podman-compose
   ];
+  ccr.extraGroups = ["docker"];
 }

@@ -20,14 +20,21 @@
       # "nextcloud"
       "home-assistant"
       # "immich"
-      "adguard-home"
+      # "adguard-home"
       # "mount-hetzner-box"
+      "cloudflare-dyndns"
+      "rock5b-proxy"
+      "invidious"
+      "searx"
+      "rock5b-samba"
     ]
     ++ [
       ./disko.nix
     ];
 
   ccr.enable = true;
+
+  networking.firewall.enable = lib.mkForce false;
 
   services.rock5b-fan-control.enable = true;
 

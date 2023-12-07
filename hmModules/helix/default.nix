@@ -1,8 +1,4 @@
 {
-  config,
-  lib,
-  ...
-}: {
   programs.helix = {
     enable = true;
     settings = {
@@ -18,6 +14,4 @@
       };
     };
   };
-  # home.sessionVariables.EDITOR = lib.mkForce "${config.programs.helix.package}/bin/helix";
-  # programs.nushell.environmentVariables.EDITOR = lib.mkForce config.home.sessionVariables.EDITOR;
 }

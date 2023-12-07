@@ -1,6 +1,8 @@
 {
   pkgs,
   dream2nix,
+  projectRoot,
+  packagePath,
   fetchFromGitHub,
   ...
 }: let
@@ -24,9 +26,8 @@
     version = "0.18.2";
 
     paths = {
-      projectRoot = ./.;
-      projectRootFile = "flake.nix";
-      package = ./.;
+      inherit projectRoot;
+      package = packagePath;
     };
 
     mkDerivation = {

@@ -6,5 +6,6 @@ in {
     wallpaper = eDP-1,${wallpaper}
     wallpaper = DP-1,${wallpaper}
     wallpaper = DP-2,${wallpaper}
+    wallpaper = HDMI-A-1,${wallpaper}
   '';
 }

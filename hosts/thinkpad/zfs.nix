@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   boot.supportedFilesystems = ["zfs"];
@@ -22,6 +23,7 @@
     mount /boot/efi
   '';
   boot.loader.grub.extraInstallCommands = ''
+    export PATH=$PATH:${lib.makeBinPath [pkgs.coreutils]}
     ESP_MIRROR=$(mktemp -d)
     cp -r /boot/efi/EFI $ESP_MIRROR
     for i in /boot/efis/*; do

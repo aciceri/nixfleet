@@ -3,20 +3,21 @@ let
 in
   with keys.hosts;
   with keys.users; {
-    "cachix-personal-token.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad rock5b pbp];
+    "cachix-personal-token.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad rock5b pbp picard];
     "magit-forge-github-token.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad];
-    "git-workspace-tokens.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad];
+    "git-workspace-tokens.age".publicKeys = [ccr-ssh ccr-gpg mothership thinkpad picard];
     "hydra-admin-password.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "hydra-github-token.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "cache-private-key.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "autistici-password.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];
-    "hercules-ci-join-token.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
-    "hercules-ci-binary-caches.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
+    "hercules-ci-join-token.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b picard];
+    "hercules-ci-binary-caches.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b picard];
     "minio-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "aws-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
     "nextcloud-admin-pass.age".publicKeys = [ccr-ssh ccr-gpg rock5b];
     "home-planimetry.age".publicKeys = [ccr-ssh ccr-gpg rock5b];
-    "chatgpt-token.age".publicKeys = [ccr-ssh ccr-gpg thinkpad mothership];
+    "chatgpt-token.age".publicKeys = [ccr-ssh ccr-gpg thinkpad mothership picard];
+    "cloudflare-dyndns-api-token.age".publicKeys = [ccr-ssh ccr-gpg rock5b];
 
     # WireGuard
     "thinkpad-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];

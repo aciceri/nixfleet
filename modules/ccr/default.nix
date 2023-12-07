@@ -5,55 +5,74 @@
   fleetHmModules,
   fleetFlake,
   ...
-}: {
+}: let
+  cfg = config.ccr;
+  inherit (lib) types;
+in {
   options.ccr = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
+    enable = lib.mkEnableOption "ccr";
+
+    username = lib.mkOption {
+      type = types.str;
+      default = "ccr";
+    };
+
+    description = lib.mkOption {
+      type = types.str;
+      default = "Andrea Ciceri";
+    };
+
+    shell = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.fish;
     };
 
     modules = lib.mkOption {
-      type = with lib.types; listOf str;
+      type = types.listOf types.str;
       default = [];
     };
 
     packages = lib.mkOption {
-      type = with lib.types; listOf package;
+      type = types.listOf types.package;
       default = [];
     };
 
     autologin = lib.mkOption {
-      type = lib.types.bool;
+      type = types.bool;
       default = false;
     };
 
     authorizedKeys = lib.mkOption {
-      type = with lib.types; listOf str;
+      type = types.listOf types.str;
       default = builtins.attrValues (import "${fleetFlake}/lib").keys.users;
     };
 
     hashedPassword = lib.mkOption {
-      type = lib.types.str;
+      type = types.str;
       default = "$6$JGOefuRk7kL$fK9.5DFnLLoW08GL4eKRyf958jyZdw//hLMaz4pp28jJuSFb24H6R3dgt1.sMs0huPY85rludSw4dnQJG5xSw1"; # mkpasswd -m sha-512
     };
 
     extraGroups = lib.mkOption {
-      type = with lib.types; listOf str;
-      default = ["wheel" "fuse" "networkmanager" "dialout"];
+      type = types.listOf types.str;
+      default = {};
+    };
+
+    extraModules = lib.mkOption {
+      type = types.listOf types.deferredModule;
+      default = [];
     };
   };
 
-  config = lib.mkIf config.ccr.enable {
-    ccr.extraGroups = ["wheel" "fuse" "networkmanager" "dialout"];
+  config = lib.mkIf cfg.enable {
+    # FIXME shouldn't set these groups by default
+    ccr.extraGroups = ["wheel" "fuse" "video" "dialout" "systemd-journal" "camera"];
     ccr.modules = ["shell" "git" "nix-index"];
 
-    users.users.ccr = {
+    users.users.${cfg.username} = {
+      inherit (config.ccr) hashedPassword extraGroups description;
       uid = 1000;
-      inherit (config.ccr) hashedPassword;
-      description = "Andrea Ciceri";
       isNormalUser = true;
-      inherit (config.ccr) extraGroups;
-      shell = pkgs.fish;
+      shell = cfg.shell;
       openssh.authorizedKeys.keys = config.ccr.authorizedKeys;
     };
 
@@ -61,22 +80,24 @@
 
     services.getty.autologinUser =
       if config.ccr.autologin
-      then "ccr"
+      then cfg.username
       else null;
 
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    home-manager.users.ccr = {
+    home-manager.users.${cfg.username} = {
       imports =
-        fleetHmModules config.ccr.modules
+        fleetHmModules cfg.modules
         ++ [
           {
             _module.args = {
               inherit (config.age) secrets;
+              inherit (cfg) username;
             };
           }
-        ];
-      home.packages = config.ccr.packages;
+        ]
+        ++ cfg.extraModules;
+      home.packages = cfg.packages;
       home.stateVersion = config.system.stateVersion;
     };
   };

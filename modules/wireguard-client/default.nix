@@ -6,6 +6,7 @@
   networking.firewall = {
     allowedUDPPorts = [51820];
   };
+  networking.firewall.trustedInterfaces = ["wg0"];
   networking.wireguard.interfaces = {
     wg0 = {
       ips = ["${(import "${fleetFlake}/lib").ips."${config.networking.hostName}"}/32"];

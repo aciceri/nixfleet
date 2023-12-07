@@ -3,28 +3,14 @@
   secrets,
   ...
 }: {
-  # home.packages = with pkgs; [mu];
-  # programs.mbsync.enable = true;
-  # programs.msmtp.enable = true;
-  # programs.notmuch = {
-  #   enable = true;
-  #   hooks = {
-  #     preNew = "mbsync --all";
-  #   };
-  # };
-  # services = {
-  #   mbsync = {
-  #     enable = false;
-  #     # FIXME this requires `pass` every 5 minutes that run `pinentry`
-  #     frequency = "*:0/15";
-  #     preExec = "${pkgs.isync}/bin/mbsync -Ha";
-  #     # First time run: mu init --maildir ~/.mail --my-address andrea.ciceri@autistici.org
-  #     # TODO Nixify this
-  #     postExec = "${pkgs.mu}/bin/mu index";
-  #   };
-  # };
+  programs.mbsync.enable = true;
+  programs.msmtp.enable = true;
+  programs.notmuch = {
+    enable = true;
+    hooks.preNew = "mbsync --all";
+  };
+  services.mbsync.enable = true;
   accounts.email = {
-    # maildirBasePath = ".mail";
     accounts.autistici = {
       address = "andrea.ciceri@autistici.org";
       gpg = {
@@ -35,12 +21,12 @@
         host = "mail.autistici.org";
         port = 993;
       };
-      # mbsync = {
-      #   enable = true;
-      #   create = "maildir";
-      # };
-      # msmtp.enable = true;
-      # notmuch.enable = true;
+      mbsync = {
+        enable = true;
+        create = "maildir";
+      };
+      msmtp.enable = true;
+      notmuch.enable = true;
       primary = true;
       realName = "Andrea Ciceri";
       signature = {

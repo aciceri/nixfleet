@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   services.fprintd = {
     enable = false; # temporarily disable
   };

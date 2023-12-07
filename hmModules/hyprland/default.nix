@@ -88,9 +88,7 @@ in {
              }
            }
 
-           monitor = DP-2, 2560x1440, 1200x320, 1
-           monitor = eDP-1, 1920x1080, 3760x230, 1
-           # monitor = DP-1, 1920x1080, 0x0, 1, mirror, eDP-1
+           monitor = HDMI-A-1, 2560x1440, 0x0, 1
 
            bindl=,switch:off:Lid Switch,exec,${switchMonitorScript} open
            bindl=,switch:on:Lid Switch,exec,${switchMonitorScript} close

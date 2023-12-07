@@ -4,7 +4,7 @@
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
     nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
       url = "github:nix-community/home-manager";
@@ -28,45 +28,11 @@
     };
     nur.url = "github:nix-community/NUR";
     agenix.url = "github:ryantm/agenix";
-    comma.url = "github:nix-community/comma";
     rock5b.url = "github:aciceri/rock5b-nixos";
     ccrEmacs.url = "github:aciceri/emacs";
     # ccrEmacs.url = "/home/ccr/.config/emacs";
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs = {
-        nixpkgs.follows = "nixpkgsUnstable";
-        stable.follows = "nixpkgsStable";
-      };
-    };
-    nix-serve-ng = {
-      url = "github:aristanetworks/nix-serve-ng";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
-    };
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
-    };
-    # hydra.url = "github:NixOS/hydra";
-    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
-    helix.url = "github:helix-editor/helix";
-    nil.url = "github:oxalica/nil";
-    nixd.url = "github:nix-community/nixd";
-    nom.url = "github:maralorn/nix-output-monitor";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
-    };
-    statix = {
-      url = "github:nerdypepper/statix";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
-    };
-    deadnix = {
-      url = "github:astro/deadnix";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
-    };
-    alejandra = {
-      url = "github:kamadorueda/alejandra";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
     hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";

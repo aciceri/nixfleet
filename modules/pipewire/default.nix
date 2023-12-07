@@ -1,0 +1,3 @@
+{
+  services.pipewire.enable = true;
+}

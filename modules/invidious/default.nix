@@ -1,0 +1,3 @@
+{
+  services.invidious.enable = true;
+}

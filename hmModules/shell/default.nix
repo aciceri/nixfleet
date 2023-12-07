@@ -119,7 +119,6 @@
     '';
     shellAliases = {
       "cat" = "bat";
-      "em" = "TERM=wezterm emacsclient -nw";
     };
   };
 

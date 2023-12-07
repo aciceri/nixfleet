@@ -18,14 +18,7 @@
       type = lib.types.listOf overlayType;
       default = with inputs; [
         agenix.overlays.default
-        comma.overlays.default
         nur.overlay
-        deadnix.overlays.default
-        statix.overlays.default
-        nil.overlays.default
-        nixd.overlays.default
-        alejandra.overlays.default
-        colmena.overlays.default
         (final: _: {
           inherit (disko.packages.${final.system}) disko;
           inherit (self.packages.${final.system}) deploy;
@@ -53,6 +46,8 @@
         value = pkgs.callPackage "${self}/packages/${name}" {
           pkgsStable = inputs.nixpkgsStable.legacyPackages.${system};
           dream2nix = inputs.dream2nix;
+          projectRoot = self.outPath;
+          packagePath = "packages/${name}";
         };
       })
       (lib.filterAttrs

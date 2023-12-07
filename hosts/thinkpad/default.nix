@@ -33,6 +33,7 @@
       "nix-development"
       "clamav"
       "waydroid"
+      "buildboot-nix"
       # "gnome-keyring"
     ];
 
@@ -45,6 +46,7 @@
       "digikam"
       "discord"
       "element"
+      "email"
       # "nheko"
       # "thunderbird"
       # "aerc"
@@ -54,7 +56,7 @@
       "gpg"
       "gnome-keyring"
       "helix"
-      "mopidy"
+      # "mopidy"
       "mpv"
       "openscad"
       "password-store"
@@ -79,7 +81,6 @@
     ];
     packages = with pkgs; [
       comma
-      dolphin-emu-beta
       sc-controller
       libreoffice
     ];
@@ -218,4 +219,6 @@
     Sunshine
     KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
   '';
+
+  services.teamviewer.enable = true;
 }

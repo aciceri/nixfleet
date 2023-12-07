@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  username,
+  ...
+}: {
   programs.firefox = {
     enable = true;
     package =
@@ -9,19 +13,14 @@
       })
       .override {
         cfg = {
-          enableTridactylNative = true;
-          enableBrowserpass = true;
-          enableFXCastBridge = pkgs.system == "x86_64-linux";
+          nativeMessagingHosts.packages = [pkgs.trydactyl-native pkgs.fs-cast-bridge];
         };
       };
-    profiles.ccr = {
+    profiles.${username} = {
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
         ublock-origin
         tridactyl
-        browserpass
-        # bypass-paywalls-clean
-        ghosttext # or edit-with-emacs?
       ];
       settings = {
         "browser.startup.homepage" = "https://google.it";
@@ -31,29 +30,15 @@
         "general.useragent.locale" = "it-IT";
         "browser.bookmarks.showMobileBookmarks" = true;
         "browser.download.folderList" = 2;
-        "browser.download.lastDir" = "/home/ccr/downloads/";
+        "browser.download.lastDir" = "/home/${username}/Downloads/";
         "browser.shell.checkDefaultBrowser" = false;
       };
       search.force = true;
-      search.default = "Google";
       search.engines = {
         "Searx" = {
           urls = [
             {
-              template = "https://search.privatevoid.net/search";
-              params = [
-                {
-                  name = "q";
-                  value = "{searchTerms}";
-                }
-              ];
-            }
-          ];
-        };
-        "Google IT" = {
-          urls = [
-            {
-              template = "https://www.google.it/search";
+              template = "https://search.aciceri.dev/search";
               params = [
                 {
                   name = "q";

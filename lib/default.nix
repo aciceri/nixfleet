@@ -11,6 +11,7 @@
       mothership = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlepPWHE9GvQIBcAQBQPd80oiePSPxGDnMdqpdEqx6I";
       rock5b = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDlpd0GhZv0NyDQBTJ130JfC5/r+PvdkHIOaGssm8cPG";
       pbp = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFF05LScu9m5BXMlFAT1g+g/AkAi7kvq1dY6W3Rzqq3f";
+      picard = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ1+1z1IsLVJ6aGarMgzw3NbmFKcpYVgdUjl7xDsewxT";
     };
   };
   ips = {

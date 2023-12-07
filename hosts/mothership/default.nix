@@ -22,7 +22,7 @@
     "cgit"
     "docker"
     # "minio"
-    "proxy"
+    "mothership-proxy"
     "binfmt"
     "xdg"
     # "remote-xfce"

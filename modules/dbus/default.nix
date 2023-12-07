@@ -1,4 +1,4 @@
 {pkgs, ...}: {
-  services.dbus.packages = with pkgs; [dconf];
+  services.dbus.packages = [pkgs.dconf];
   programs.dconf.enable = true;
 }

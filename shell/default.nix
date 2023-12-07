@@ -15,6 +15,7 @@
         disko
         deploy
         colmena
+        nixos-anywhere
       ];
       shellHook = ''
         export RULES="$(git rev-parse --show-toplevel)/secrets/default.nix";
