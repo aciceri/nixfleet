@@ -12,6 +12,7 @@ in
     "autistici-password.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];
     "hercules-ci-join-token.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b picard];
     "hercules-ci-binary-caches.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b picard];
+    "hercules-ci-secrets-json.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b picard];
     "minio-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "aws-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership rock5b];
     "nextcloud-admin-pass.age".publicKeys = [ccr-ssh ccr-gpg rock5b];
