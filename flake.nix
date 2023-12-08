@@ -40,7 +40,7 @@
   };
 
   outputs = inputs @ {flakeParts, ...}:
-    flakeParts.lib.mkFlake {inherit inputs;} ({lib, ...}: {
+    flakeParts.lib.mkFlake {inherit inputs;} {
       imports = [
         # TODO export modules as flake outputs
         # ./modules
@@ -49,14 +49,10 @@
         ./packages
         ./shell
         ./checks
-        inputs.hercules-ci-effects.flakeModule
+        ./ci
       ];
       systems = ["x86_64-linux" "aarch64-linux"];
-      herculesCI.ciSystems = [
-        "x86_64-linux"
-        # "aarch64-linux"
-      ];
-    });
+    };
 
   nixConfig = {};
 }
