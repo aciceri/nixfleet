@@ -116,6 +116,8 @@ in {
            bind = SUPER, s, exec, ${screenshotScript}
            bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
            bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
+           bind = SUPER, code:60, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
+           bind = SUPER, code:59, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
 
            bind = SUPER SHIFT, q, killactive
            bind = SUPER SHIFT, f, fullscreen, 0
