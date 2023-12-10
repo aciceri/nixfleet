@@ -30,6 +30,7 @@
           "cpu"
           "memory"
           "temperature"
+          "backlight"
           "battery"
           "clock"
         ];
@@ -106,7 +107,13 @@
           critical-threshold = 80;
           format = "{temperatureC}°C {icon}";
           format-icons = ["" "" ""];
-          hwmon-path = "/sys/class/thermal/thermal_zone4/temp";
+          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input"; # picard FIXME
+          # hwmon-path = "/sys/class/thermal/thermal_zone4/temp"; # thinkpad
+        };
+        backlight = {
+          device = "ddcci2";
+          format = "{percent}% {icon}";
+          format-icons = ["" ""];
         };
       };
     };
