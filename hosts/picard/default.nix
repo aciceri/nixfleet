@@ -66,7 +66,12 @@
     "usbhid"
     "r8169"
   ];
-  boot.kernelModules = ["kvm-amd"];
+  boot.kernelModules = [
+    "kvm-amd"
+    "ddci"
+    "ddcci-backlight"
+  ];
+  boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot = {
