@@ -52,6 +52,7 @@
       "lutris"
       "wine"
       "cura"
+      "chrome"
     ];
     extraGroups = [];
   };
