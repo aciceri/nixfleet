@@ -5,11 +5,8 @@
   ...
 }: {
   programs.waybar = {
-    # package = fleetFlake.packages.${pkgs.system}.waybar-hyprland;
     enable = true;
-    systemd = {
-      enable = true;
-    };
+    systemd.enable = true;
     style = builtins.readFile ./style.css;
     settings = {
       mainBar = {
@@ -80,9 +77,9 @@
           interval = 1;
           format-alt = "{ifname}: {ipaddr}/{cidr}";
           format-disconnected = "Disconnected ⚠";
-          format-ethernet = "{ifname}: {ipaddr}/{cidr} 󰈀  up: {bandwidthUpBits} down: {bandwidthDownBits}";
+          format-ethernet = "{ifname}: {ipaddr}/{cidr} 󰈀  up: {bandwidthUpBits:>4} down: {bandwidthDownBits:>4}";
           format-linked = "{ifname} (No IP) ";
-          format-wifi = "{essid} ({signalStrength}%)   {ipaddr}/{cidr} up: {bandwidthUpBits} down: {bandwidthDownBits}";
+          format-wifi = "{essid} ({signalStrength}%)   {ipaddr}/{cidr} up: {bandwidthUpBits:>4} down: {bandwidthDownBits:>4}";
         };
         pulseaudio = {
           format = "{volume}% {icon} {format_source}";
@@ -113,7 +110,7 @@
         backlight = {
           device = "ddcci2";
           format = "{percent}% {icon}";
-          format-icons = ["" ""];
+          format-icons = [" " " "];
         };
       };
     };
