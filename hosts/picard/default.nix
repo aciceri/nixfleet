@@ -25,6 +25,7 @@
       "virt-manager"
       "ssh-initrd"
       "hercules-ci"
+      "printing"
     ]
     ++ [
       ./disko.nix

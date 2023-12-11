@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   services.avahi.enable = true;
   # Important to resolve .local domains of printers, otherwise you get an error
   # like  "Impossible to connect to XXX.local: Name or service not known"
@@ -11,6 +6,7 @@
   hardware.sane.enable = true;
 
   services.paperless = {
+    # work in progress
     enable = false;
     passwordFile = builtins.toFile "password" "admin";
   };
