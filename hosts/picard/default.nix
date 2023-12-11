@@ -26,6 +26,7 @@
       "ssh-initrd"
       "hercules-ci"
       "printing"
+      "pam"
     ]
     ++ [
       ./disko.nix
