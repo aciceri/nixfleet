@@ -24,11 +24,6 @@
             type = lib.types.str;
             default = "x86_64-linux";
           };
-          colmena = lib.mkOption {
-            description = "Set colmena.<host>";
-            type = lib.types.attrs;
-            default = {};
-          };
           secrets = lib.mkOption {
             description = "List of secrets names in the `secrets` folder";
             type = lib.types.attrsOf (lib.types.submodule ({name, ...}: {
