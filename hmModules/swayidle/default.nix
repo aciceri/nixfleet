@@ -43,13 +43,17 @@
       }
       {
         event = "lock";
-        command = "lock";
+        command = swaylockCommand;
       }
     ];
     timeouts = [
       {
         timeout = 600;
         command = swaylockCommand;
+      }
+      {
+        timeout = 720;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
   };
