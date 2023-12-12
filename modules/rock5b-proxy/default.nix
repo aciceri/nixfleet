@@ -35,14 +35,14 @@
         proxyPass = "http://localhost:${builtins.toString config.services.invidious.port}";
       };
     };
-    "sevenofnix.aciceri.dev" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://10.1.1.2:${builtins.toString config.services.buildbot-master.port}";
-        proxyWebsockets = true;
-      };
-    };
+    # "sevenofnix.aciceri.dev" = {
+    #   forceSSL = true;
+    #   enableACME = true;
+    #   locations."/" = {
+    #     proxyPass = "http://10.1.1.2:${builtins.toString config.services.buildbot-master.port}";
+    #     proxyWebsockets = true;
+    #   };
+    # };
   };
 
   # services.oauth2_proxy = {
