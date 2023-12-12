@@ -85,6 +85,23 @@
         "git-workspace-tokens".owner = "ccr";
       };
     };
+
+    sisko = {
+      system = "aarch64-linux";
+      extraModules = with inputs; [
+        disko.nixosModules.disko
+        rock5b.nixosModules.default
+      ];
+      secrets = {
+        "sisko-wireguard-private-key" = {};
+        "hercules-ci-join-token".owner = "hercules-ci-agent";
+        "hercules-ci-binary-caches".owner = "hercules-ci-agent";
+        "hercules-ci-secrets-json".owner = "hercules-ci-agent";
+        "cachix-personal-token".owner = "ccr";
+        "home-planimetry".owner = "hass";
+        "cloudflare-dyndns-api-token" = {};
+      };
+    };
   };
 
   flake.nixosConfigurations =
