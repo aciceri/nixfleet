@@ -3,7 +3,4 @@ A complete, declarative and reproducible configuration of my entire Nix fleet.
 
 ** Current status
 
-#+html: <img src="https://img.shields.io/github/actions/workflow/status/aciceri/nixfleet/check.yaml?label=nix%20flake%20check&logo=nixos"/>
-#+html: <img src="https://img.shields.io/github/actions/workflow/status/aciceri/nixfleet/build-thinkpad.yaml?label=thinkpad&logo=nixos" />
-#+html: <img src="https://img.shields.io/github/actions/workflow/status/aciceri/nixfleet/build-hs.yaml?label=hs&logo=nixos" />
-#+html: <img src="https://img.shields.io/github/actions/workflow/status/aciceri/nixfleet/build-pbp.yaml?label=pbp&logo=nixos" />
+#+html: <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhercules-ci.com%2Fapi%2Fv1%2Fjobs%3Fsite%3Dgithub%26account%3Daciceri%26project%3Dnixfleet%26latest%3D1&query=%24%5B0%5D.jobs%5B0%5D.jobStatus&style=flat-square&label=Hercules%20CI&link=https%3A%2F%2Fhercules-ci.com%2Fgithub%2Faciceri%2Fnixfleet">
