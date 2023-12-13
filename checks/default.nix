@@ -29,7 +29,7 @@
       inherit (self.nixosConfigurations) picard;
     };
     aarch64-linux = {
-      inherit (self.nixosConfigurations) rock5b; #pbp;
+      inherit (self.nixosConfigurations) sisko; #pbp;
     };
   };
 }
