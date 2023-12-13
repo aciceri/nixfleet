@@ -8,7 +8,7 @@
       "common"
       "ssh"
       "ccr"
-      "wireguard-client"
+      "wireguard-server"
       # "minidlna"
       "mediatomb"
       "transmission"

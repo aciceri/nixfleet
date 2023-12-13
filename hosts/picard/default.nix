@@ -27,6 +27,7 @@
       "hercules-ci"
       "printing"
       "pam"
+      "wireguard-client"
     ]
     ++ [
       ./disko.nix

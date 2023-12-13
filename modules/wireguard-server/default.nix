@@ -1,61 +1,22 @@
 {
-  pkgs,
   config,
-  fleetFlake,
   lib,
+  vpn,
   ...
 }: {
+  imports = [../wireguard-common];
+
   networking.nat.enable = true;
-  networking.nat.externalInterface = "enp5s0"; # mothership network interface, shouldn't be hardcoded here
-  networking.nat.internalInterfaces = ["wg0"];
-  networking.firewall = {
-    allowedUDPPorts = [51820];
-    interfaces.wg0 = {
-      allowedUDPPortRanges = [
-        {
-          from = 0;
-          to = 65535;
-        }
-      ];
-      allowedTCPPortRanges = [
-        {
-          from = 0;
-          to = 65535;
-        }
-      ];
-    };
-  };
 
-  networking.wireguard.interfaces = {
-    wg0 = {
-      ips = ["10.100.0.1/24"];
+  networking.firewall.allowedUDPPorts = [config.networking.wireguard.interfaces.wg0.listenPort]; # FIXME move this to wireguard-server
 
-      listenPort = 51820;
-
-      postSetup = ''
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
-      '';
-
-      postShutdown = ''
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
-      '';
-
-      privateKeyFile = config.age.secrets."${config.networking.hostName}-wireguard-private-key".path;
-
-      peers = let
-        publicKeys = {
-          thinkpad = "g8wId6Rl0olRFRtAnQ046ihPRYFCtMxOJ+/Z9ARwIxI=";
-          oneplus6t = "O6/tKaA8Hs7OEqi15hV4RwviR6vyCTMYv6ZlhsI+tnI=";
-          rock5b = "bc5giljukT1+ChbbyTLdOfejfR3c8RZ4XoXmQM54nTY=";
-          pbp = "jvfAfQ2ykBndpnoLQTBJzDOhpjMOtIyCufEw+BxMxSc=";
-          babbo = "mb1BsvGurWVA6s3uXP1hdEi3YPpzM0vtXD/7Vfsw2HI=";
-        };
-        mkPeer = hostname: {
-          publicKey = publicKeys."${hostname}";
-          allowedIPs = ["${(import "${fleetFlake}/lib").ips."${hostname}"}/32"];
-        };
-      in
-        builtins.map mkPeer (lib.mapAttrsToList (hostname: _: hostname) publicKeys);
-    };
+  networking.wireguard.interfaces.wg0 = {
+    ips = ["${vpn.${config.networking.hostName}.ip}/24"];
+    peers =
+      lib.mapAttrsToList (hostname: vpnConfig: {
+        publicKey = vpnConfig.publicKey;
+        allowedIPs = ["${vpnConfig.ip}/32"];
+      })
+      vpn;
   };
 }

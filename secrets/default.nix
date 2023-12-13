@@ -21,8 +21,6 @@ in
     "cloudflare-dyndns-api-token.age".publicKeys = [ccr-ssh ccr-gpg sisko];
 
     # WireGuard
-    "thinkpad-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];
-    "mothership-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg mothership];
+    "picard-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg picard];
     "sisko-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg sisko];
-    "pbp-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg pbp];
   }

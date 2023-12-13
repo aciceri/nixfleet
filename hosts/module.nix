@@ -8,7 +8,9 @@
   config,
   inputs,
   ...
-}: {
+}: let
+  cfg = config.fleet;
+in {
   options.fleet = {
     hosts = lib.mkOption {
       description = "Host configuration";
@@ -23,6 +25,16 @@
             description = "NixOS architecture (a.k.a. system)";
             type = lib.types.str;
             default = "x86_64-linux";
+          };
+          vpn = {
+            ip = lib.mkOption {
+              description = "Wireguard VPN ip";
+              type = lib.types.str;
+            };
+            publicKey = lib.mkOption {
+              description = "Wireguard public key";
+              type = lib.types.str;
+            };
           };
           secrets = lib.mkOption {
             description = "List of secrets names in the `secrets` folder";
@@ -84,8 +96,23 @@
           [
             nur.overlay
           ]
-          ++ config.fleet.overlays;
+          ++ cfg.overlays;
       }));
+      default = {};
+    };
+    vpnExtra = lib.mkOption {
+      type = lib.types.attrsOf (lib.types.submodule {
+        options = {
+          ip = lib.mkOption {
+            description = "Wireguard VPN ip";
+            type = lib.types.str;
+          };
+          publicKey = lib.mkOption {
+            description = "Wireguard public key";
+            type = lib.types.str;
+          };
+        };
+      });
       default = {};
     };
     _mkNixosConfiguration = lib.mkOption {
@@ -100,12 +127,6 @@
               ({lib, ...}: {
                 networking.hostName = lib.mkForce hostname;
                 nixpkgs.overlays = config.overlays;
-                networking.hosts =
-                  lib.mapAttrs' (hostname: ip: {
-                    name = ip;
-                    value = ["${hostname}.fleet"];
-                  })
-                  (import "${self}/lib").ips;
               })
               "${self.outPath}/hosts/${hostname}"
             ]
@@ -156,6 +177,7 @@
             fleetModules = builtins.map (moduleName: "${self.outPath}/modules/${moduleName}");
             fleetHmModules = builtins.map (moduleName: "${self.outPath}/hmModules/${moduleName}");
             fleetFlake = self;
+            vpn = cfg.vpnExtra // (lib.mapAttrs (_: host: host.vpn) cfg.hosts);
           };
         };
     };

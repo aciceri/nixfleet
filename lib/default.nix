@@ -14,12 +14,4 @@
       picard = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ1+1z1IsLVJ6aGarMgzw3NbmFKcpYVgdUjl7xDsewxT";
     };
   };
-  ips = {
-    mothership = "10.100.0.1";
-    thinkpad = "10.100.0.2";
-    oneplus6t = "10.100.0.3";
-    sisko = "10.100.0.4";
-    pbp = "10.100.0.5";
-    babbo = "10.100.0.6";
-  };
 }
