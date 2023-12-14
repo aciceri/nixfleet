@@ -56,6 +56,7 @@
       "wine"
       "cura"
       "chrome"
+      "email"
     ];
     extraGroups = [];
   };

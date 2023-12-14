@@ -9,7 +9,7 @@ in
     "hydra-admin-password.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "hydra-github-token.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "cache-private-key.age".publicKeys = [ccr-ssh ccr-gpg mothership];
-    "autistici-password.age".publicKeys = [ccr-ssh ccr-gpg thinkpad];
+    "autistici-password.age".publicKeys = [ccr-ssh ccr-gpg thinkpad picard];
     "hercules-ci-join-token.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko picard];
     "hercules-ci-binary-caches.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko picard];
     "hercules-ci-secrets-json.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko picard];

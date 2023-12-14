@@ -89,6 +89,7 @@
           "hercules-ci-binary-caches".owner = "hercules-ci-agent";
           "hercules-ci-secrets-json".owner = "hercules-ci-agent";
           "git-workspace-tokens".owner = "ccr";
+          "autistici-password".owner = "ccr";
         };
       };
 
