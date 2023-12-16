@@ -5,12 +5,6 @@
   services.avahi.nssmdns = true;
   hardware.sane.enable = true;
 
-  services.paperless = {
-    # work in progress
-    enable = false;
-    passwordFile = builtins.toFile "password" "admin";
-  };
-
   services.printing = {
     enable = true;
     drivers = [

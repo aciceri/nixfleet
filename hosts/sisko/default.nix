@@ -24,6 +24,7 @@
       "invidious"
       "searx"
       "rock5b-samba"
+      "paperless"
     ]
     ++ [
       ./disko.nix
