@@ -57,6 +57,7 @@
       "cura"
       "chrome"
       "email"
+      "digikam"
     ];
     extraGroups = [];
   };
