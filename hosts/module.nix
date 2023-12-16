@@ -26,6 +26,11 @@ in {
             type = lib.types.str;
             default = "x86_64-linux";
           };
+          nixpkgs = lib.mkOption {
+            description = "Used nixpkgs";
+            type = lib.types.anything;
+            default = inputs.nixpkgsUnstable;
+          };
           vpn = {
             ip = lib.mkOption {
               description = "Wireguard VPN ip";
@@ -120,7 +125,7 @@ in {
       type = lib.types.functionTo (lib.types.functionTo lib.types.attrs); # TODO improve this type
       internal = true;
       default = hostname: config:
-        inputs.nixpkgsUnstable.lib.nixosSystem {
+        config.nixpkgs.lib.nixosSystem {
           inherit (config) system;
           modules =
             [
