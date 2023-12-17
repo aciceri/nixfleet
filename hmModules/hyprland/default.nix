@@ -88,7 +88,8 @@ in {
              }
            }
 
-           monitor = HDMI-A-1, 2560x1440, 0x0, 1
+           monitor = HDMI-A-1, 2560x1440, 0x0, 1 # picard
+           monitor = eDP-1, 1920x1080, 0x0, 1 # kirk
 
            bindl=,switch:off:Lid Switch,exec,${switchMonitorScript} open
            bindl=,switch:on:Lid Switch,exec,${switchMonitorScript} close

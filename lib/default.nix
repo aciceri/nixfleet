@@ -7,7 +7,7 @@
       hercules-ci-agent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGPupm00BiveTIYF6CNwuMijF5VvEaPDMjvt+vMlAy+N hercules-ci-agent";
     };
     hosts = {
-      thinkpad = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDZMyLFfuBeDfPLn8WL6JazYpYq3oVvCdD4ktyt915TL";
+      kirk = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAH49KzayIro3L1bteR7nwupMM/vKlDh05t5/DFD9/uz";
       mothership = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlepPWHE9GvQIBcAQBQPd80oiePSPxGDnMdqpdEqx6I";
       sisko = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDlpd0GhZv0NyDQBTJ130JfC5/r+PvdkHIOaGssm8cPG";
       pbp = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFF05LScu9m5BXMlFAT1g+g/AkAi7kvq1dY6W3Rzqq3f";

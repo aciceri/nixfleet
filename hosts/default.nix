@@ -68,6 +68,27 @@
       #     "chatgpt-token".owner = "ccr";
       #   };
       # };
+      kirk = {
+        vpn = {
+          ip = "10.100.0.3";
+          publicKey = "GrCpICbC25FQ+7JXgOJ9btvZp8YI/uecyBXx9IevsBo=";
+        };
+        extraModules = [
+          inputs.disko.nixosModules.disko
+          inputs.nixosHardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+        ];
+        extraHmModules = [
+          inputs.ccrEmacs.hmModules.default
+          "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
+        ];
+        secrets = {
+          "kirk-wireguard-private-key" = {};
+          "chatgpt-token".owner = "ccr";
+          "cachix-personal-token".owner = "ccr";
+          "git-workspace-tokens".owner = "ccr";
+          "autistici-password".owner = "ccr";
+        };
+      };
 
       picard = {
         vpn = {
