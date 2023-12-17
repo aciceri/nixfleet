@@ -11,11 +11,11 @@ My main workstation, a self built home computer. Not always online but I run an 
 The NixOS configuration is quite vast and cover many different things but the main characteristics are:
 - Hyprland as window manager (so wayland)
 - My workflows are heavily based on Emacs which is started as daemon. My terminal is Emacs (Eat). I access my password manager with Emacs. My git client is Emacs (Magit). I manage notes with Emacs (org). Sometimes I also use it for programming...
-  Everything Emacs related is configured in [[this separate flake][https://github.com/aciceri/emacs/]].
+  Everything Emacs related is configured in [[https://github.com/aciceri/emacs][this separate flake]]
 - As browser I use firefox (with trydactyl)
 
 ** Sisko
-A [[Radxa Rock 5B][https://wiki.radxa.com/Rock5/hardware/5b]] i.e. a relatively powerful ARM SBC I use as home server, it hosts:
+A [[https://wiki.radxa.com/Rock5/hardware/5b][Radxa Rock 5B]] i.e. a relatively powerful ARM SBC I use as home server, it hosts:
 - SMB for sharing storage
 - Transmission for downloading torrents
 - Mediatomb as DLNA server
@@ -23,7 +23,7 @@ A [[Radxa Rock 5B][https://wiki.radxa.com/Rock5/hardware/5b]] i.e. a relatively 
 - Home assistant to manage my home
 - A Wireguard server all the other hosts connect to
 
-It's not connected to external displays then I dont' run anything graphical on it. While waiting that the the board is supported by mainline Linux I'm using [[this my flake][https://github.com/aciceri/rock5b-nixos]] that provides everything needed to run NixOS on it (like kernel's derivations).
+It's not connected to external displays then I dont' run anything graphical on it. While waiting that the the board is supported by mainline Linux I'm using [[https://github.com/aciceri/rock5b-nixos][this my flake]] that provides everything needed to run NixOS on it (like kernel's derivations).
 
 ** Kirk
 It's my laptop (Thinkpad X1 gen 7) and mobile worksation I use when out of home. The idea is having something very similar to ~picard~.
