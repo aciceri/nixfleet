@@ -1,6 +1,45 @@
 * NixFleet
+#+html: <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhercules-ci.com%2Fapi%2Fv1%2Fjobs%3Fsite%3Dgithub%26account%3Daciceri%26project%3Dnixfleet%26latest%3D1&query=%24%5B0%5D.jobs%5B0%5D.jobStatus&style=flat-square&label=Hercules%20CI&link=https%3A%2F%2Fhercules-ci.com%2Fgithub%2Faciceri%2Fnixfleet">
+
+
 A complete, declarative and reproducible configuration of my entire Nix fleet.
 
-** Current status
+* Hosts
+** Picard
+My main workstation, a self built home computer. Not always online but I run an Hercules CI agent on it because it's the most powerful machine I have (Ryzen 9 7900x).
 
-#+html: <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhercules-ci.com%2Fapi%2Fv1%2Fjobs%3Fsite%3Dgithub%26account%3Daciceri%26project%3Dnixfleet%26latest%3D1&query=%24%5B0%5D.jobs%5B0%5D.jobStatus&style=flat-square&label=Hercules%20CI&link=https%3A%2F%2Fhercules-ci.com%2Fgithub%2Faciceri%2Fnixfleet">
+The NixOS configuration is quite vast and cover many different things but the main characteristics are:
+- Hyprland as window manager (so wayland)
+- My workflows are heavily based on Emacs which is started as daemon. My terminal is Emacs (Eat). I access my password manager with Emacs. My git client is Emacs (Magit). I manage notes with Emacs (org). Sometimes I also use it for programming...
+  Everything Emacs related is configured in [[this separate flake][https://github.com/aciceri/emacs/]].
+- As browser I use firefox (with trydactyl)
+
+** Sisko
+A [[Radxa Rock 5B][https://wiki.radxa.com/Rock5/hardware/5b]] i.e. a relatively powerful ARM SBC I use as home server, it hosts:
+- SMB for sharing storage
+- Transmission for downloading torrents
+- Mediatomb as DLNA server
+- an Hercules CI agent (for ~aarch64-linux~ then, I don't use it often)
+- Home assistant to manage my home
+- A Wireguard server all the other hosts connect to
+
+It's not connected to external displays then I dont' run anything graphical on it. While waiting that the the board is supported by mainline Linux I'm using [[this my flake][https://github.com/aciceri/rock5b-nixos]] that provides everything needed to run NixOS on it (like kernel's derivations).
+
+** Kirk
+It's my laptop (Thinkpad X1 gen 7) and mobile worksation I use when out of home. The idea is having something very similar to ~picard~.
+
+** Oneplus 6T
+I don't run NixOS on it (I know I could!) but it's part of the same VPN and sometimes I access my machines from it using Nix on Droid, I should create a Nix on Droid configuration and add it to this flake probably.
+
+
+I've other hosts in the ~hosts~ directory (which are commented out) but I don't use them very often. As soon as I will use them again I'll re-integrate them in this repositoru and I wil add a brief description in this README.
+
+* CI
+All of this flake's outputs are continuosly built using Hercules CI. If the ~picard~ host is switched off when I commit something then the derivations will be built when it becomes online again.
+There is also a ~flake-update~ effect that creates a PR with bumped inputs every day.
+
+Between my plans there is adding a cache.
+
+* TODO How this works
+
+Please notice that while his repo was originally created starting from a digga template but I stopped using it since years. Unfotunately GitHub keeps showing it.
