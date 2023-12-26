@@ -38,6 +38,16 @@
           }
         ];
       };
+      adcazzum = {
+        provider = [
+          {
+            provider = "github";
+            name = "adcazzum";
+            path = "/home/${username}/projects";
+            skip_forks = false;
+          }
+        ];
+      };
     };
   };
 }
