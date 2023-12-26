@@ -11,7 +11,7 @@
     updateBranch = "updated-flake-lock";
     createPullRequest = true;
     autoMergeMethod = null;
-    baseMerge.enable = true;
+    # baseMerge.enable = true;
     when = {
       minute = 45;
       hour = 13;
