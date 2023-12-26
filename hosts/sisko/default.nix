@@ -17,14 +17,14 @@
       # "nextcloud"
       "home-assistant"
       # "immich"
-      # "adguard-home"
-      # "mount-hetzner-box"
+      "adguard-home"
       "cloudflare-dyndns"
       "rock5b-proxy"
       "invidious"
       "searx"
       "rock5b-samba"
       "paperless"
+      "restic"
     ]
     ++ [
       ./disko.nix

@@ -28,6 +28,8 @@
       "printing"
       "pam"
       "wireguard-client"
+      "restic"
+      "binfmt"
     ]
     ++ [
       ./disko.nix
@@ -60,6 +62,7 @@
       "digikam"
     ];
     extraGroups = [];
+    backupPaths = [];
   };
 
   boot.kernelParams = ["ip=dhcp"];

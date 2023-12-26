@@ -19,6 +19,7 @@ in
     "home-planimetry.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "chatgpt-token.age".publicKeys = [ccr-ssh ccr-gpg kirk mothership picard];
     "cloudflare-dyndns-api-token.age".publicKeys = [ccr-ssh ccr-gpg sisko];
+    "restic-hetzner-password.age".publicKeys = [ccr-ssh ccr-gpg picard sisko];
 
     # WireGuard
     "picard-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg picard];

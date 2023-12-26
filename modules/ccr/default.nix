@@ -61,12 +61,19 @@ in {
       type = types.listOf types.deferredModule;
       default = [];
     };
+
+    backupPaths = lib.mkOption {
+      type = types.listOf types.str;
+      default = [];
+    };
   };
 
   config = lib.mkIf cfg.enable {
     # FIXME shouldn't set these groups by default
     ccr.extraGroups = ["wheel" "fuse" "video" "dialout" "systemd-journal" "camera"];
     ccr.modules = ["shell" "git" "nix-index"];
+
+    backup.paths = cfg.backupPaths;
 
     users.users.${cfg.username} = {
       inherit (config.ccr) hashedPassword extraGroups description;

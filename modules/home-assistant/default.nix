@@ -159,6 +159,10 @@ in {
     };
   };
 
+  backup.paths = [
+    "/var/lib/hass"
+  ];
+
   # virtualisation.oci-containers = {
   #   backend = "podman";
   #   containers.homeassistant = {

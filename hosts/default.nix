@@ -111,6 +111,7 @@
           "hercules-ci-secrets-json".owner = "hercules-ci-agent";
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
+          "restic-hetzner-password" = {};
         };
       };
 
@@ -132,6 +133,7 @@
           "cachix-personal-token".owner = "ccr";
           "home-planimetry".owner = "hass";
           "cloudflare-dyndns-api-token" = {};
+          "restic-hetzner-password" = {};
         };
       };
     };
