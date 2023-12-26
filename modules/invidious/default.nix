@@ -1,3 +1,6 @@
 {
-  services.invidious.enable = true;
+  services.invidious = {
+    enable = true;
+    port = 3001;
+  };
 }
