@@ -5,17 +5,12 @@
 }: {
   programs.firefox = {
     enable = true;
-    package =
-      (pkgs.wrapFirefox pkgs.firefox-unwrapped {
-        extraPolicies = {
-          ExtensionSettings = {};
-        };
-      })
-      .override {
-        cfg = {
-          nativeMessagingHosts.packages = [pkgs.trydactyl-native pkgs.fs-cast-bridge];
-        };
+    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+      extraPolicies = {
+        ExtensionSettings = {};
       };
+      nativeMessagingHosts = [pkgs.tridactyl-native pkgs.fx-cast-bridge];
+    };
     profiles.${username} = {
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
