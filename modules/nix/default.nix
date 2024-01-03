@@ -53,6 +53,10 @@
         type = "path";
         path = "/home/${config.ccr.username}/projects/aciceri/nixfleet";
       };
+      ccrEmacs.to = {
+        type = "path";
+        path = "/home/${config.ccr.username}/.config/emacs";
+      };
     };
   };
 }
