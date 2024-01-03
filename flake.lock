@@ -653,6 +653,27 @@
         "type": "github"
       }
     },
+    "homeManagerSwayNC": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgsUnstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1693438012,
+        "narHash": "sha256-lna00DqThxBf8tPHK9MTvDpA1wMNwKzSKkZ2dWHEu+c=",
+        "owner": "rhoriguchi",
+        "repo": "home-manager",
+        "rev": "095b525475e0ef0d5d5767014dc7755ce34963d9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rhoriguchi",
+        "ref": "swaync",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "kernel-src": {
       "flake": false,
       "locked": {
@@ -1110,6 +1131,7 @@
         "hercules-ci-effects": "hercules-ci-effects_2",
         "homeManager": "homeManager",
         "homeManagerGitWorkspace": "homeManagerGitWorkspace",
+        "homeManagerSwayNC": "homeManagerSwayNC",
         "nixosHardware": "nixosHardware",
         "nixpkgsStable": "nixpkgsStable",
         "nixpkgsUnstable": "nixpkgsUnstable",

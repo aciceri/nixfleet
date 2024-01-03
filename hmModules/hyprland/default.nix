@@ -24,7 +24,8 @@ in {
     ./hyprpaper.nix
     ../waybar
     ../swayidle
-    ../mako
+    # ../mako
+    ../swaync
     ../gammastep
     # ../kitty
     ../wezterm
