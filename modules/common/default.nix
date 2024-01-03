@@ -5,6 +5,7 @@
 }: {
   imports = fleetModules [
     "nix"
+    "auto-upgrade"
   ];
 
   hardware.i2c.enable = true;
