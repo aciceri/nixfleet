@@ -35,11 +35,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1703637785,
-        "narHash": "sha256-HAlop90nA/gbd5Z0bXgMfNnn+SDggsg8+NlF6RsCGSk=",
+        "lastModified": 1704281501,
+        "narHash": "sha256-S6cqsEO0XLeY3Pe5/KDXBFg8HeHPyw+Ws2+YXuIahRI=",
         "owner": "aciceri",
         "repo": "emacs",
-        "rev": "d64f306db7668bc6b297607389118e96db8ac0ff",
+        "rev": "7c50bad7bb947d2ee6a94ac1f6dee7109f2b5377",
         "type": "github"
       },
       "original": {
