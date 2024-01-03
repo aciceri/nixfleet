@@ -26,6 +26,7 @@
       "printing"
       "pam"
       "wireguard-client"
+      "restic"
     ]
     ++ [
       ./disko.nix
@@ -58,6 +59,7 @@
       "digikam"
     ];
     extraGroups = [];
+    backupPaths = [];
   };
 
   boot.initrd.kernelModules = ["i915"];

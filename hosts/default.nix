@@ -88,6 +88,7 @@
           "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
+          "restic-hetzner-password" = {};
         };
       };
 
