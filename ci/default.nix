@@ -13,7 +13,7 @@
     autoMergeMethod = null;
     baseMerge = {
       enable = true;
-      mergeMethod = "rebase";
+      method = "rebase";
     };
     when = {
       minute = 45;
