@@ -10,7 +10,7 @@
     enable = true;
     updateBranch = "updated-flake-lock";
     createPullRequest = true;
-    autoMergeMethod = null;
+    autoMergeMethod = "rebase";
     baseMerge = {
       enable = true;
       method = "rebase";
