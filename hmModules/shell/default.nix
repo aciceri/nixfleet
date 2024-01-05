@@ -111,9 +111,6 @@
   programs.fish = {
     enable = true;
     shellInit = ''
-      if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]
-        exec dbus-run-session Hyprland
-      end
       fish_config theme choose "dracula"
       export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
     '';
