@@ -126,7 +126,7 @@
         };
         extraModules = with inputs; [
           disko.nixosModules.disko
-          rock5b.nixosModules.default
+          # rock5b.nixosModules.default
         ];
         secrets = {
           "sisko-wireguard-private-key" = {};

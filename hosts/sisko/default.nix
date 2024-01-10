@@ -1,6 +1,7 @@
 {
   fleetModules,
   pkgs,
+  lib,
   ...
 }: {
   imports =
@@ -20,19 +21,40 @@
       "adguard-home"
       "cloudflare-dyndns"
       "rock5b-proxy"
-      "invidious"
+      # "invidious"
       "searx"
       "rock5b-samba"
       "paperless"
       "restic"
+      "syncthing"
     ]
     ++ [
       ./disko.nix
     ];
 
+  # FIXME why is this needed?
+  nixpkgs.config.permittedInsecurePackages = ["openssl-1.1.1w"];
+
+  # boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_testing;
+  # TODO change to collabora fork, it should work
+  boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_testing.override {
+    argsOverride = {
+      src = pkgs.fetchFromGitHub {
+        owner = "K900";
+        repo = "linux";
+        rev = "708bb9891e6454a26fc6f2a62148ec95562121bb";
+        sha256 = "sha256-cyspY5BzKRVne28oYWU8VxzkIgokycmgI9/pYGRBSv0=";
+      };
+      version = "6.7-rc8";
+      modDirVersion = "6.7.0-rc8";
+    };
+  });
+
+  powerManagement.cpuFreqGovernor = "schedutil";
+
   ccr.enable = true;
 
-  services.rock5b-fan-control.enable = true;
+  # services.rock5b-fan-control.enable = true;
 
   nixpkgs.hostPlatform = "aarch64-linux";
 
