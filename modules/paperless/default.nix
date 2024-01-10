@@ -7,7 +7,7 @@
     passwordFile = builtins.toFile "paperless-initial-password" "paperless";
     mediaDir = "/mnt/hd/paperless/media";
     consumptionDir = "/mnt/hd/paperless/consume";
-    extraConfig = {
+    settings = {
       PAPERLESS_OCR_LANGUAGE = "ita+eng";
       PAPERLESS_CONSUMER_IGNORE_PATTERN = builtins.toJSON [".DS_STORE/*" "desktop.ini"];
       PAPERLESS_OCR_USER_ARGS = builtins.toJSON {
