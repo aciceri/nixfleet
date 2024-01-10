@@ -31,6 +31,7 @@
       "restic"
       "binfmt"
       "greetd"
+      "syncthing"
     ]
     ++ [
       ./disko.nix
