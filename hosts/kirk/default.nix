@@ -20,13 +20,13 @@
       "xdg"
       "pipewire"
       "nix-development"
-      "waydroid"
       "virt-manager"
       "ssh-initrd"
       "printing"
       "pam"
       "wireguard-client"
       "restic"
+      "greetd"
     ]
     ++ [
       ./disko.nix
