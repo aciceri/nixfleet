@@ -27,6 +27,7 @@
       "wireguard-client"
       "restic"
       "greetd"
+      "syncthing"
     ]
     ++ [
       ./disko.nix
@@ -82,7 +83,7 @@
   networking.hostId = "3a7683ae";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # or ondemand?
+  powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   hardware.opengl = {
