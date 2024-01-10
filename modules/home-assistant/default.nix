@@ -32,13 +32,13 @@ in {
     enable = true;
     openFirewall = true;
     package = pkgs.home-assistant.overrideAttrs (old: {
-      doInstallCheck = false;
-      prePatch =
-        ''
-          rm -rf homeassistant/components/smartthings
-          cp -r ${smartthings-fork}/custom_components/smartthings homeassistant/components/smartthings
-        ''
-        + old.prePatch;
+      # doInstallCheck = false;
+      # prePatch =
+      #   ''
+      #     rm -rf homeassistant/components/smartthings
+      #     cp -r ${smartthings-fork}/custom_components/smartthings homeassistant/components/smartthings
+      #   ''
+      #   + old.prePatch;
     });
     extraComponents = [
       # components required to complete the onboarding
