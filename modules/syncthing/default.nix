@@ -23,26 +23,24 @@
               "tcp://sisko.fleet"
             ];
           };
+          kirk = {
+            id = "OVPXSCE-XFKCBJ2-A4SKJRI-DYBZ6CV-U2OFNA2-ALHOPW5-PPMHOIQ-5TG2HAJ";
+            addresses = [
+              "tcp://kirk.fleet"
+            ];
+          };
         };
         folders = {
           org = {
             path =
               {
                 picard = "/home/${config.ccr.username}/org";
-                sisko = "/mnt/hd/org";
+                sisko = "/home/${config.ccr.username}/org";
+                kirk = "/home/${config.ccr.username}/org";
               }
               .${config.networking.hostName};
-            devices = ["picard" "sisko"];
+            devices = ["picard" "sisko" "kirk"];
           };
-          # "Documents" = {         # Name of folder in Syncthing, also the folder ID
-          #   path = "/home/myusername/Documents";    # Which folder to add to Syncthing
-          #   devices = [ "device1" "device2" ];      # Which devices to share the folder with
-          # };
-          # "Example" = {
-          #   path = "/home/myusername/Example";
-          #   devices = [ "device1" ];
-          #   ignorePerms = false;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
-          # };
         };
       };
     };
