@@ -196,6 +196,7 @@
   home.packages = with pkgs; [
     thefuck
     htop-vim
+    bottom
     dig.dnsutils
     lsof
     zsh-completions
