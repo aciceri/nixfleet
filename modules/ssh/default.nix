@@ -1,6 +1,12 @@
 {fleetFlake, ...}: {
   services = {
-    sshd.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "prohibit-password";
+      };
+    };
 
     fail2ban = {
       enable = true;
