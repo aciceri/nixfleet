@@ -3,6 +3,8 @@
     enable = true;
     openRPCPort = true;
     openPeerPorts = true;
+    # FIXME remove after https://github.com/NixOS/nixpkgs/issues/279049
+    webHome = "${config.services.transmission.package}/share/transmission/web";
     settings = {
       download-dir = "/mnt/hd/torrent";
       incomplete-dir = "/mnt/hd/torrent/.incomplete";
