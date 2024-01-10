@@ -21,7 +21,7 @@
       "adguard-home"
       "cloudflare-dyndns"
       "rock5b-proxy"
-      # "invidious"
+      "invidious"
       "searx"
       "rock5b-samba"
       "paperless"
