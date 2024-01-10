@@ -95,7 +95,6 @@ in {
            bindl=,switch:off:Lid Switch,exec,${switchMonitorScript} open
            bindl=,switch:on:Lid Switch,exec,${switchMonitorScript} close
 
-           exec-once = ${config.services.mako.package}/bin/mako
            exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
 
            windowrulev2 = tile, class:^(Spotify)$
