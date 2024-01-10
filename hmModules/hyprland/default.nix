@@ -31,7 +31,7 @@ in {
     ../wezterm
   ];
 
-  home.packages = with pkgs; [wl-clipboard];
+  home.packages = with pkgs; [wl-clipboard waypipe];
 
   systemd.user.sessionVariables = {
     NIXOS_OZONE_WL = "1";
