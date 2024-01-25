@@ -18,7 +18,7 @@
         nixos-anywhere
       ];
       shellHook = ''
-        export RULES="$(git rev-parse --show-toplevel)/secrets/default.nix";
+        export RULES="$(git rev-parse --show-toplevel)/secrets/secrets.nix";
         ${config.pre-commit.installationScript}
       '';
     };
