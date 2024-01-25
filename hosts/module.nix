@@ -141,7 +141,7 @@ in {
                 allSecrets = lib.mapAttrs' (name: value: {
                   name = lib.removeSuffix ".age" name;
                   inherit value;
-                }) (import "${self.outPath}/secrets");
+                }) (import "${self.outPath}/secrets/secrets.nix");
                 filteredSecrets =
                   lib.filterAttrs
                   (name: _: builtins.hasAttr name config.secrets)
