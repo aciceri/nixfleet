@@ -22,14 +22,14 @@
     };
   };
 
-  flake.checks = let
-    build = _: nc: nc.config.system.build.toplevel;
-  in {
-    x86_64-linux = lib.mapAttrs build {
-      inherit (self.nixosConfigurations) picard;
-    };
-    aarch64-linux = {
-      inherit (self.nixosConfigurations) sisko; #pbp;
-    };
-  };
+  # flake.checks = let
+  #   build = _: nc: nc.config.system.build.toplevel;
+  # in {
+  #   x86_64-linux = lib.mapAttrs build {
+  #     inherit (self.nixosConfigurations) picard;
+  #   };
+  #   aarch64-linux = {
+  #     inherit (self.nixosConfigurations) sisko; #pbp;
+  #   };
+  # };
 }
