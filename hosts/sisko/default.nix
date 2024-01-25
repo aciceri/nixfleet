@@ -27,6 +27,7 @@
       "paperless"
       "restic"
       "syncthing"
+      "minio"
     ]
     ++ [
       ./disko.nix
@@ -36,17 +37,17 @@
   nixpkgs.config.permittedInsecurePackages = ["openssl-1.1.1w"];
 
   # boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_testing;
-  # TODO change to collabora fork, it should work
   boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_testing.override {
     argsOverride = {
-      src = pkgs.fetchFromGitHub {
-        owner = "K900";
+      src = pkgs.fetchFromGitLab {
+        domain = "gitlab.collabora.com";
+        owner = "hardware-enablement/rockchip-3588";
         repo = "linux";
-        rev = "708bb9891e6454a26fc6f2a62148ec95562121bb";
-        sha256 = "sha256-cyspY5BzKRVne28oYWU8VxzkIgokycmgI9/pYGRBSv0=";
+        rev = "b07290444a7fb5cf56a5200d2bad7f927e77e8b8";
+        sha256 = "sha256-ruD9+vRwFQOXf5PWB+QxtA8DWfOcIydD0nSekoQTqWw=";
       };
-      version = "6.7-rc8";
-      modDirVersion = "6.7.0-rc8";
+      version = "6.7";
+      modDirVersion = "6.7.0";
     };
   });
 
