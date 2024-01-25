@@ -13,8 +13,8 @@ in
     "hercules-ci-join-token.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko picard];
     "hercules-ci-binary-caches.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko picard];
     "hercules-ci-secrets-json.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko picard];
-    "minio-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership];
-    "aws-credentials.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko];
+    "minio-credentials.age".publicKeys = [ccr-ssh ccr-gpg picard sisko];
+    "aws-credentials.age".publicKeys = [ccr-ssh ccr-gpg picard sisko];
     "nextcloud-admin-pass.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "home-planimetry.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "chatgpt-token.age".publicKeys = [ccr-ssh ccr-gpg kirk mothership picard];
