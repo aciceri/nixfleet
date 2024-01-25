@@ -54,7 +54,7 @@
         ./hosts
         ./packages
         ./shell
-        # ./checks
+        ./checks
         ./ci
       ];
       systems = ["x86_64-linux" "aarch64-linux"];
