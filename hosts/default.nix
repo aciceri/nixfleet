@@ -115,6 +115,7 @@
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
           "restic-hetzner-password" = {};
+          "aws-credentials".owner = "hercules-ci-agent";
         };
       };
 
@@ -137,6 +138,8 @@
           "home-planimetry".owner = "hass";
           "cloudflare-dyndns-api-token" = {};
           "restic-hetzner-password" = {};
+          "minio-credentials".owner = "minio";
+          "aws-credentials".owner = "hercules-ci-agent";
         };
       };
     };
