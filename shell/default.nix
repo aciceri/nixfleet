@@ -9,6 +9,7 @@
       buildInputs = with pkgs; [
         git
         agenix
+        age
         deadnix
         statix
         alejandra
