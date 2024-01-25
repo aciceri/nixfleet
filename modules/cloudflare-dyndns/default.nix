@@ -10,6 +10,7 @@
       "search.aciceri.dev"
       "invidious.aciceri.dev"
       "vpn.aciceri.dev"
+      "cache.aciceri.dev"
     ];
     apiTokenFile = config.age.secrets.cloudflare-dyndns-api-token.path;
   };
