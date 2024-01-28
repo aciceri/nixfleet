@@ -66,8 +66,8 @@
     };
 
     distributedBuilds = true;
-    buildMachines = [
-      {
+    buildMachines =
+      (lib.lists.optional (config.networking.hostName == "picard") {
         hostName = "sisko.fleet";
         system = "aarch64-linux";
         maxJobs = 4;
@@ -75,8 +75,8 @@
         protocol = "ssh-ng";
         sshUser = "root";
         sshKey = "/home/${config.ccr.username}/.ssh/id_rsa";
-      }
-      {
+      })
+      ++ (lib.lists.optional (config.networking.hostName == "picard") {
         hostName = "mac.staging.mlabs.city";
         system = "x86_64-darwin";
         maxJobs = 4;
@@ -84,7 +84,6 @@
         protocol = "ssh-ng";
         sshUser = "root";
         sshKey = "/home/${config.ccr.username}/.ssh/id_rsa";
-      }
-    ];
+      });
   };
 }

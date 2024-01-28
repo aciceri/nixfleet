@@ -201,7 +201,8 @@
     lsof
     zsh-completions
     nix-zsh-completions
-    carapace # used by nushell
+    comma
+    # carapace # used by nushell
     nil # TODO probably not best place
     nixd # TODO probably not best place
     terraform-lsp # TODO probably not best place
