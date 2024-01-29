@@ -43,6 +43,7 @@
     };
     hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
     dream2nix.url = "github:nix-community/dream2nix";
+    hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent";
   };
 
   outputs = inputs @ {flakeParts, ...}:

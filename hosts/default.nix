@@ -99,6 +99,7 @@
         };
         extraModules = [
           inputs.disko.nixosModules.disko
+          # inputs.hercules-ci-agent.nixosModules.agent-service
         ];
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
@@ -127,6 +128,7 @@
         };
         extraModules = with inputs; [
           disko.nixosModules.disko
+          # inputs.hercules-ci-agent.nixosModules.agent-service;
           # rock5b.nixosModules.default
         ];
         secrets = {
