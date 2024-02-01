@@ -16,7 +16,7 @@
       ];
       netrc-file = "/etc/nix/netrc";
       substituters = [
-        "https://cache.aciceri.dev"
+        "s3://cache?profile=default&region=eu-south-1&scheme=https&endpoint=cache.aciceri.dev"
       ];
       trusted-public-keys = [
         "cache.aciceri.dev~1:nJMfcBnYieY2WMbYDG0s9S5qUhU+V4RPL+X9zcxXxZY="
