@@ -2,7 +2,7 @@
   services.cloudflare-dyndns = {
     enable = true;
     ipv4 = true;
-    ipv6 = true;
+    ipv6 = false; # not anymore 😭
     domains = [
       # "sevenofnix.aciceri.dev"
       "home.aciceri.dev"
