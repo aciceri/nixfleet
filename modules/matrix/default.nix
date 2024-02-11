@@ -33,16 +33,21 @@ in {
   services.postgresql = {
     enable = true;
     initialScript = pkgs.writeText "synapse-init.sql" ''
-           CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
-           CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
-             TEMPLATE template0
-      LC_COLLATE = "C"
-             LC_CTYPE = "C";
+      CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
+      CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+        TEMPLATE template0
+        LC_COLLATE = "C"
+        LC_CTYPE = "C";
     '';
   };
 
+  systemd.tmpfiles.rules = [
+    "d ${config.services.matrix-synapse.dataDir} 770 matrix-synapse matrix-synapse"
+  ];
+
   services.matrix-synapse = {
     enable = true;
+    dataDir = "/mnt/hd/matrix-synapse";
     settings = {
       server_name = "aciceri.dev";
       public_baseurl = "https://matrix.aciceri.dev";
@@ -66,7 +71,7 @@ in {
   };
 
   backup.paths = [
-    "/var/lib/matrix-synapse"
+    config.services.matrix-synapse.dataDir
     "/var/backup/postgresql/matrix-synapse.sql.gz"
   ];
 

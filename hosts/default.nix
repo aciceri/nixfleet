@@ -117,6 +117,7 @@
           "autistici-password".owner = "ccr";
           "restic-hetzner-password" = {};
           "aws-credentials".owner = "hercules-ci-agent";
+          "forgejo-runners-token".owner = "forgejo-runners";
         };
       };
 

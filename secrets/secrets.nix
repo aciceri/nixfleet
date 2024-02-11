@@ -22,6 +22,7 @@ in
     "restic-hetzner-password.age".publicKeys = [ccr-ssh ccr-gpg picard sisko kirk];
     "hass-ssh-key.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "matrix-registration-shared-secret.age".publicKeys = [ccr-ssh ccr-gpg sisko];
+    "forgejo-runners-token.age".publicKeys = [ccr-ssh ccr-gpg picard];
 
     # WireGuard
     "picard-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg picard];

@@ -29,6 +29,7 @@
       "syncthing"
       "minio"
       "matrix"
+      "forgejo"
     ]
     ++ [
       ./disko.nix

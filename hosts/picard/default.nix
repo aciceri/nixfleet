@@ -34,6 +34,7 @@
       "greetd"
       "syncthing"
       "hass-poweroff"
+      "forgejo-runners"
     ]
     ++ [
       ./disko.nix
