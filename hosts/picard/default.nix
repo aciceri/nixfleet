@@ -2,6 +2,7 @@
   fleetModules,
   lib,
   config,
+  pkgs,
   ...
 }: {
   imports =
@@ -32,6 +33,7 @@
       "binfmt"
       "greetd"
       "syncthing"
+      "hass-poweroff"
     ]
     ++ [
       ./disko.nix

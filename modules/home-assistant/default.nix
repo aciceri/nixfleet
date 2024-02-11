@@ -21,12 +21,6 @@
     rev = "9a40a2fa09b0f74aee0b278e2858f5600b3487a9";
     hash = "sha256-i+82EUamV1Fhwhb1vhRqn9aA9dJ0FxSSMD734domyhw=";
   };
-  localtuya = pkgs.fetchFromGitHub {
-    owner = "rospogrigio";
-    repo = "localtuya";
-    rev = "f06e4848e67997edfa696aa9a89372fb17077bd0";
-    hash = "sha256-hA/1FxH0wfM0jz9VqGCT95rXlrWjxV5oIkSiBf0G0ac=";
-  };
 in {
   services.home-assistant = {
     enable = true;
@@ -58,6 +52,7 @@ in {
       "webostv"
       "media_player"
       "wyoming"
+      "wake_on_lan"
     ];
     extraPackages = python3Packages:
       with python3Packages; [
@@ -99,6 +94,18 @@ in {
       #     data.mac = "20:28:bc:74:14:c2";
       #   };
       # }];
+      wake_on_lan = {};
+      switch = [
+        {
+          name = "Picard";
+          platform = "wake_on_lan";
+          mac = "74:56:3c:37:17:bd"; # this shouldn't be public
+          host = "picard.fleet";
+          turn_off.service = "shell_command.turn_off_picard";
+        }
+      ];
+      shell_command.turn_off_picard = ''${pkgs.openssh}/bin/ssh -i /var/lib/hass/.ssh/id_ed25519 -o StrictHostKeyChecking=no hass@picard.fleet "exec sudo \$(readlink \$(which systemctl)) poweroff"'';
+      # shell_command.turn_off_picard = ''whoami'';
     };
   };
 
@@ -114,10 +121,12 @@ in {
   systemd.tmpfiles.rules = [
     "d ${config.services.home-assistant.configDir}/custom_components 770 hass hass"
     "L+ ${config.services.home-assistant.configDir}/custom_components/pun_sensor - - - - ${pun_sensor}/custom_components/pun_sensor"
-    "L+ ${config.services.home-assistant.configDir}/custom_components/cozy_life - - - - ${cozy_life}/custom_components/cozylife"
-    "L+ ${config.services.home-assistant.configDir}/custom_components/localtuya - - - - ${localtuya}/custom_components/localtuya"
+
+    "d ${config.services.home-assistant.configDir}/.ssh 770 hass hass"
+    "C ${config.services.home-assistant.configDir}/.ssh/id_ed25519 700 hass hass - ${config.age.secrets.hass-ssh-key.path}"
+
     "d ${config.services.home-assistant.configDir}/www 770 hass hass"
-    "C ${config.services.home-assistant.configDir}/www/home.png - - - - ${config.age.secrets.home-planimetry.path}"
+    "C ${config.services.home-assistant.configDir}/www/home.png 770 hass hass - - ${config.age.secrets.home-planimetry.path}"
   ];
 
   networking.firewall.interfaces."wg0" = {
