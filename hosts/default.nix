@@ -142,6 +142,8 @@
           "restic-hetzner-password" = {};
           "minio-credentials".owner = "minio";
           "aws-credentials".owner = "hercules-ci-agent";
+          "hass-ssh-key".owner = "hass";
+          "matrix-registration-shared-secret".owner = "matrix-synapse";
         };
       };
     };

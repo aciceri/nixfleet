@@ -28,6 +28,7 @@
       "restic"
       "syncthing"
       "minio"
+      "matrix"
     ]
     ++ [
       ./disko.nix

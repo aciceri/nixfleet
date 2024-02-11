@@ -4,13 +4,15 @@
     ipv4 = true;
     ipv6 = false; # not anymore 😭
     domains = [
-      # "sevenofnix.aciceri.dev"
+      "aciceri.dev"
+      "git.aciceri.dev"
       "home.aciceri.dev"
       "torrent.aciceri.dev"
       "search.aciceri.dev"
       "invidious.aciceri.dev"
       "vpn.aciceri.dev"
       "cache.aciceri.dev"
+      "matrix.aciceri.dev"
     ];
     apiTokenFile = config.age.secrets.cloudflare-dyndns-api-token.path;
   };

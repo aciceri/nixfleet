@@ -20,6 +20,8 @@ in
     "chatgpt-token.age".publicKeys = [ccr-ssh ccr-gpg kirk mothership picard];
     "cloudflare-dyndns-api-token.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "restic-hetzner-password.age".publicKeys = [ccr-ssh ccr-gpg picard sisko kirk];
+    "hass-ssh-key.age".publicKeys = [ccr-ssh ccr-gpg sisko];
+    "matrix-registration-shared-secret.age".publicKeys = [ccr-ssh ccr-gpg sisko];
 
     # WireGuard
     "picard-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg picard];
