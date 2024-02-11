@@ -106,6 +106,6 @@
   # TODO move away from here (how can the interface name be retrieved programmatically?)
   networking.interfaces.enp11s0.wakeOnLan = {
     enable = true;
-    policy = ["broadcast" "magic"];
+    policy = ["magic"];
   };
 }
