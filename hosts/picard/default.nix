@@ -35,6 +35,8 @@
       "syncthing"
       "hass-poweroff"
       "forgejo-runners"
+      "teamviewer"
+      "macos-ventura"
     ]
     ++ [
       ./disko.nix

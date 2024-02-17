@@ -10,5 +10,5 @@
     docker-compose
     podman-compose
   ];
-  ccr.extraGroups = ["docker"];
+  ccr.extraGroups = ["docker" "podman"];
 }

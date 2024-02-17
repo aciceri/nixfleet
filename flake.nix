@@ -44,6 +44,18 @@
     hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
     dream2nix.url = "github:nix-community/dream2nix";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent";
+    nix-fast-build = {
+      url = "github:Mic92/nix-fast-build";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
+    nixThePlanet = {
+      url = "github:aciceri/NixThePlanet/nix-in-darwin";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
+    nixDarwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
   };
 
   outputs = inputs @ {flakeParts, ...}:

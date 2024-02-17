@@ -8,6 +8,9 @@
   imports = [./module.nix];
 
   fleet = {
+    darwinHosts.archer = {
+    };
+
     hosts = {
       # thinkpad = {
       #   extraModules = with inputs; [
@@ -99,6 +102,7 @@
         };
         extraModules = [
           inputs.disko.nixosModules.disko
+          inputs.nixThePlanet.nixosModules.macos-ventura
           # inputs.hercules-ci-agent.nixosModules.agent-service
         ];
         extraHmModules = [
@@ -117,7 +121,7 @@
           "autistici-password".owner = "ccr";
           "restic-hetzner-password" = {};
           "aws-credentials".owner = "hercules-ci-agent";
-          "forgejo-runners-token".owner = "forgejo-runners";
+          "forgejo-runners-token".owner = "nixuser";
         };
       };
 
@@ -145,6 +149,7 @@
           "aws-credentials".owner = "hercules-ci-agent";
           "hass-ssh-key".owner = "hass";
           "matrix-registration-shared-secret".owner = "matrix-synapse";
+          "matrix-sliding-sync-secret".owner = "matrix-synapse";
         };
       };
     };
@@ -161,4 +166,9 @@
     lib.mapAttrs
     config.fleet._mkNixosConfiguration
     config.fleet.hosts;
+
+  flake.darwinConfigurations =
+    lib.mapAttrs
+    config.fleet._mkDarwinConfiguration
+    config.fleet.darwinHosts;
 }

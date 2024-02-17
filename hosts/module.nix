@@ -8,10 +8,46 @@
   config,
   inputs,
   ...
-}: let
+} @ flakePartsArgs: let
   cfg = config.fleet;
 in {
   options.fleet = {
+    darwinHosts = lib.mkOption {
+      type = lib.types.attrsOf (lib.types.submodule ({name, ...}: {
+        options = {
+          name = lib.mkOption {
+            description = "Host name";
+            type = lib.types.strMatching "^$|^[[:alnum:]]([[:alnum:]_-]{0,61}[[:alnum:]])?$";
+            default = name;
+          };
+          system = lib.mkOption {
+            description = "NixOS architecture (a.k.a. system)";
+            type = lib.types.str;
+            default = "x86_64-darwin";
+          };
+          nixpkgs = lib.mkOption {
+            description = "Used nixpkgs";
+            type = lib.types.anything;
+            default = inputs.nixpkgsUnstable;
+          };
+          extraModules = lib.mkOption {
+            description = "Extra NixOS modules";
+            type = lib.types.listOf lib.types.deferredModule;
+            default = [];
+          };
+          overlays = lib.mkOption {
+            description = "Enabled Nixpkgs overlays";
+            type = lib.types.listOf (lib.mkOptionType {
+              name = "nixpkgs-overlay";
+              description = "nixpkgs overlay";
+              check = lib.isFunction;
+              merge = lib.mergeOneOption;
+            });
+            default = [];
+          };
+        };
+      }));
+    };
     hosts = lib.mkOption {
       description = "Host configuration";
       type = lib.types.attrsOf (lib.types.submodule ({name, ...}: {
@@ -183,7 +219,28 @@ in {
             fleetHmModules = builtins.map (moduleName: "${self.outPath}/hmModules/${moduleName}");
             fleetFlake = self;
             vpn = cfg.vpnExtra // (lib.mapAttrs (_: host: host.vpn) cfg.hosts);
+            inherit (flakePartsArgs.config.allSystems.${config.system}.allModuleArgs.config._module.args) inputs';
           };
+        };
+    };
+    _mkDarwinConfiguration = lib.mkOption {
+      description = "Function returning a proper Darwin configuration";
+      type = lib.types.functionTo (lib.types.functionTo lib.types.attrs); # TODO improve this type
+      internal = true;
+      default = hostname: config:
+        inputs.nixDarwin.lib.darwinSystem {
+          modules = [
+            ({
+              lib,
+              pkgs,
+              ...
+            }: {
+              networking.hostName = lib.mkForce hostname;
+              nixpkgs.overlays = config.overlays;
+              nixpkgs.hostPlatform = config.system;
+            })
+            "${self.outPath}/hosts/${hostname}"
+          ];
         };
     };
   };

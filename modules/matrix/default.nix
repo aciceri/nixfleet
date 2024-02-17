@@ -4,7 +4,10 @@
   pkgs,
   ...
 }: let
-  clientConfig."m.homeserver".base_url = "https://matrix.aciceri.dev";
+  clientConfig = {
+    "m.homeserver".base_url = "https://matrix.aciceri.dev";
+    "org.matrix.msc3575.proxy".url = "https://syncv3.matrix.aciceri.dev";
+  };
   serverConfig."m.server" = "matrix.aciceri.dev:443";
   mkWellKnown = data: ''
     default_type application/json;
@@ -48,6 +51,7 @@ in {
   services.matrix-synapse = {
     enable = true;
     dataDir = "/mnt/hd/matrix-synapse";
+    configureRedisLocally = true;
     settings = {
       server_name = "aciceri.dev";
       public_baseurl = "https://matrix.aciceri.dev";
@@ -78,5 +82,19 @@ in {
   services.postgresqlBackup = {
     enable = true;
     databases = ["matrix-synapse"];
+  };
+
+  services.matrix-sliding-sync = {
+    enable = true;
+    environmentFile = config.age.secrets.matrix-sliding-sync-secret.path;
+    settings = {
+      SYNCV3_SERVER = "http://localhost:8008";
+    };
+  };
+
+  services.nginx.virtualHosts."syncv3.matrix.aciceri.dev" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/".proxyPass = config.services.matrix-sliding-sync.settings.SYNCV3_SERVER;
   };
 }

@@ -21,8 +21,8 @@
 
       upload-slots-per-torrent = 1000;
 
-      alt-speed-up = 1000; # 1MB/s
-      alt-speed-down = 2000; # 3MB/s
+      alt-speed-up = 300000; # 300MB/s
+      alt-speed-down = 500000; # 500MB/s
       alt-speed-time-enabled = true;
       alt-speed-time-begin = 540; # 9AM, minutes after midnight
       alt-speed-time-end = 1380; # 11PM
