@@ -238,6 +238,7 @@ in {
               networking.hostName = lib.mkForce hostname;
               nixpkgs.overlays = config.overlays;
               # nixpkgs.hostPlatform = config.system;
+              nixpkgs.hostPlatform = "x86_64-darwin";
             })
             "${self.outPath}/hosts/${hostname}"
           ];
