@@ -41,7 +41,7 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
-    hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
+    hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects/fix-darwin-ciSystems";
     dream2nix.url = "github:nix-community/dream2nix";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent";
     nix-fast-build = {
