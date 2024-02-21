@@ -237,7 +237,7 @@ in {
             }: {
               networking.hostName = lib.mkForce hostname;
               nixpkgs.overlays = config.overlays;
-              nixpkgs.hostPlatform = config.system;
+              # nixpkgs.hostPlatform = config.system;
             })
             "${self.outPath}/hosts/${hostname}"
           ];
