@@ -29,7 +29,7 @@
       alt-speed-time-day = 127; # all days, bitmap, 0111110 is weekends and 1000001 is weekdays
 
       ratio-limit-enabled = true;
-      ratio-limit = 2;
+      ratio-limit = 100; # I am a generous god
     };
   };
 
