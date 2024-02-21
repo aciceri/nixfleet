@@ -9,5 +9,5 @@
 
   services.nix-daemon.enable = true;
 
-  nixpkgs.localSystem = "x86_64-darwin";
+  # nixpkgs.localSystem = "x86_64-darwin";
 }
