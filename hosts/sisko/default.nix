@@ -33,21 +33,23 @@
 
   # FIXME why is this needed?
   nixpkgs.config.permittedInsecurePackages = ["openssl-1.1.1w"];
-
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_testing;
   # boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_testing;
-  boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_testing.override {
-    argsOverride = {
-      src = pkgs.fetchFromGitLab {
-        domain = "gitlab.collabora.com";
-        owner = "hardware-enablement/rockchip-3588";
-        repo = "linux";
-        rev = "b07290444a7fb5cf56a5200d2bad7f927e77e8b8";
-        sha256 = "sha256-ruD9+vRwFQOXf5PWB+QxtA8DWfOcIydD0nSekoQTqWw=";
-      };
-      version = "6.7";
-      modDirVersion = "6.7.0";
-    };
-  });
+  # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_testing.override {
+  #   argsOverride = {
+  #     src = pkgs.fetchFromGitLab {
+  #       domain = "gitlab.collabora.com";
+  #       owner = "hardware-enablement/rockchip-3588";
+  #       repo = "linux";
+  #       rev = "b07290444a7fb5cf56a5200d2bad7f927e77e8b8";
+  #       sha256 = "sha256-ruD9+vRwFQOXf5PWB+QxtA8DWfOcIydD0nSekoQTqWw=";
+  #     };
+  #     version = "6.7";
+  #     modDirVersion = "6.7.0";
+  #   };
+  # });
+
+  system.stateVersion = "24.05";
 
   powerManagement.cpuFreqGovernor = "schedutil";
 
@@ -60,9 +62,20 @@
   swapDevices = [];
 
   boot.loader = {
-    grub.enable = false;
-    generic-extlinux-compatible.enable = true;
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = false;
   };
+
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "ahci"
+  ];
+
+  boot.kernelParams = [
+    "console=ttyS0,1500000"
+    "console=tty1"
+  ];
 
   # fileSystems."/mnt/film" = {
   #   device = "//ccr.ydns.eu/film";
