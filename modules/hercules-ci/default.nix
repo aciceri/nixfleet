@@ -4,7 +4,7 @@
     settings = {
       concurrentTasks = "auto";
       clusterJoinTokenPath = config.age.secrets.hercules-ci-join-token.path;
-      binaryCachesPath = config.age.secrets.hercules-ci-binary-caches.path;
+      # binaryCachesPath = config.age.secrets.hercules-ci-binary-caches.path;
       secretsJsonPath = config.age.secrets.hercules-ci-secrets-json.path;
     };
   };
