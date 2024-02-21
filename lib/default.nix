@@ -9,7 +9,7 @@
     hosts = {
       kirk = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAH49KzayIro3L1bteR7nwupMM/vKlDh05t5/DFD9/uz";
       mothership = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlepPWHE9GvQIBcAQBQPd80oiePSPxGDnMdqpdEqx6I";
-      sisko = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDlpd0GhZv0NyDQBTJ130JfC5/r+PvdkHIOaGssm8cPG";
+      sisko = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPBaKPx0HsJpGmMT//vo2GXvGh4ULoItq49ltCMzVw4";
       pbp = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFF05LScu9m5BXMlFAT1g+g/AkAi7kvq1dY6W3Rzqq3f";
       picard = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ1+1z1IsLVJ6aGarMgzw3NbmFKcpYVgdUjl7xDsewxT";
     };
