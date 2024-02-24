@@ -47,7 +47,7 @@ in {
     };
 
     difftastic = {
-      enable = true;
+      enable = false; # it gives problem with `magit-todos` in emacs
       background = "dark";
     };
 
