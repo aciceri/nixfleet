@@ -8,7 +8,7 @@
     stateDir = "/mnt/hd/forgejo";
     settings = {
       DEFAULT = {
-        RUN_MODE = "dev";
+        RUN_MODE = "prod"; # set to prod for better logs (worse performance)
         APP_NAME = "git.aciceri.dev";
       };
       session.COOKIE_SECURE = true;
