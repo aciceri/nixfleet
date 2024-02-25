@@ -3,7 +3,6 @@
   services.paperless = {
     enable = true;
     address = "0.0.0.0";
-    user = config.ccr.username;
     passwordFile = builtins.toFile "paperless-initial-password" "paperless";
     mediaDir = "/mnt/hd/paperless/media";
     consumptionDir = "/mnt/hd/paperless/consume";
@@ -16,4 +15,8 @@
       };
     };
   };
+
+  backup.paths = [
+    config.services.paperless.dataDir
+  ];
 }
