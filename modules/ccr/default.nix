@@ -71,7 +71,7 @@ in {
   config = lib.mkIf cfg.enable {
     # FIXME shouldn't set these groups by default
     ccr.extraGroups = ["wheel" "fuse" "video" "dialout" "systemd-journal" "camera"];
-    ccr.modules = ["shell" "git" "nix-index"];
+    ccr.modules = ["shell" "git" "nix-index" "btop"];
 
     backup.paths = cfg.backupPaths;
 
