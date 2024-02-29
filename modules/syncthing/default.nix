@@ -18,7 +18,7 @@
             ];
           };
           sisko = {
-            id = "NGNL7PC-RBSW33U-OQIQDHJ-K2MHEDW-4RJ6H47-CV3YLFZ-VMIMC6A-KHQWSQN";
+            id = "L5RAQXR-6U3ANNK-UJJ5AVN-37VKQRB-UK6HXSU-NN3V6HF-JNZEVA5-NI6UEAP";
             addresses = [
               "tcp://sisko.fleet"
             ];
@@ -37,6 +37,16 @@
                 picard = "/home/${config.ccr.username}/org";
                 sisko = "/home/${config.ccr.username}/org";
                 kirk = "/home/${config.ccr.username}/org";
+              }
+              .${config.networking.hostName};
+            devices = ["picard" "sisko" "kirk"];
+          };
+          sync = {
+            path =
+              {
+                picard = "/home/${config.ccr.username}/sync";
+                sisko = "/home/${config.ccr.username}/sync";
+                kirk = "/home/${config.ccr.username}/sync";
               }
               .${config.networking.hostName};
             devices = ["picard" "sisko" "kirk"];
