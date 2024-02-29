@@ -1,5 +1,4 @@
 {config, ...}: {
-  networking.firewall.allowedTCPPorts = [config.services.paperless.port]; # TODO remov
   services.paperless = {
     enable = true;
     address = "0.0.0.0";
