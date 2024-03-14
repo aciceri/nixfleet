@@ -8,7 +8,7 @@
 }: let
   storeDeps = pkgs.runCommand "store-deps" {} ''
     mkdir -p $out/bin
-    for dir in ${toString [pkgs.coreutils pkgs.findutils pkgs.gnugrep pkgs.gawk pkgs.git pkgs.nix pkgs.bash pkgs.jq pkgs.nodejs inputs'.nix-fast-build.packages.nix-fast-build]}; do
+    for dir in ${toString [pkgs.coreutils pkgs.findutils pkgs.gnugrep pkgs.gawk pkgs.git pkgs.nix pkgs.bash pkgs.jq pkgs.nodejs inputs'.nix-fast-build.packages.nix-fast-build pkgs.curl pkgs.tea]}; do
       for bin in "$dir"/bin/*; do
         ln -s "$bin" "$out/bin/$(basename "$bin")"
       done
@@ -50,10 +50,14 @@ in
           emptypassword='$6$1ero.LwbisiU.h3D$GGmnmECbPotJoPQ5eoSTD6tTjKnSWZcjHoVTkxFLZP17W9hRi/XkmCiAMOfWruUwy8gMjINrBMNODc7cYEo4K.'
           useradd --prefix $(pwd) -p "$emptypassword" -m -d /tmp -u "$userid" -g "$groupid" -G nixuser nixuser
 
+          echo -n "access-tokens = " > etc/nix/access-tokens
+          cat ${config.age.secrets.forgejo-nix-access-tokens.path} >> etc/nix/access-tokens
+
           cat <<NIX_CONFIG > etc/nix/nix.conf
           accept-flake-config = true
           experimental-features = nix-command flakes
           post-build-hook = ${pushToCache}
+          include access-tokens
           NIX_CONFIG
 
           cat <<NSSWITCH > etc/nsswitch.conf
