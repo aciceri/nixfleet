@@ -204,7 +204,6 @@
     comma
     # carapace # used by nushell
     nil # TODO probably not best place
-    nixd # TODO probably not best place
     terraform-lsp # TODO probably not best place
     python3Packages.jedi-language-server # TODO probably not best place
     nodePackages.typescript-language-server # TODO probably not best place
