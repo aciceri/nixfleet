@@ -28,6 +28,16 @@
           }
         ];
       };
+      mlabs-ai = {
+        provider = [
+          {
+            provider = "github";
+            name = "mlabs-ai";
+            path = "/home/${username}/projects";
+            skip_forks = false;
+          }
+        ];
+      };
       ethereansos = {
         provider = [
           {
