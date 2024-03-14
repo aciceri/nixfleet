@@ -36,7 +36,9 @@
       "hass-poweroff"
       "forgejo-runners"
       "teamviewer"
-      "macos-ventura"
+      # "macos-ventura"
+      # "sunshine"
+      "mount-rock5b"
     ]
     ++ [
       ./disko.nix
@@ -68,6 +70,9 @@
       "email"
       "digikam"
       "dolphin"
+      "tor-browser"
+      "kicad"
+      "monero"
     ];
     extraGroups = [];
     backupPaths = [];
@@ -94,6 +99,8 @@
     enable = true;
     configurationLimit = 20;
   };
+
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_7;
 
   networking.hostId = "5b02e763";
 
