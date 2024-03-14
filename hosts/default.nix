@@ -122,11 +122,13 @@
           "restic-hetzner-password" = {};
           "aws-credentials".owner = "hercules-ci-agent";
           "forgejo-runners-token".owner = "nixuser";
+          "forgejo-nix-access-tokens".owner = "nixuser";
         };
       };
 
       sisko = {
         system = "aarch64-linux";
+        nixpkgs = inputs.nixpkgsUnstableForSisko; # using more recent `nixpkgsUnstable` it fails to restart
         vpn = {
           ip = "10.100.0.1";
           publicKey = "bc5giljukT1+ChbbyTLdOfejfR3c8RZ4XoXmQM54nTY=";
@@ -150,6 +152,7 @@
           "hass-ssh-key".owner = "hass";
           "matrix-registration-shared-secret".owner = "matrix-synapse";
           "matrix-sliding-sync-secret".owner = "matrix-synapse";
+          "autistici-password".owner = "forgejo";
         };
       };
     };
