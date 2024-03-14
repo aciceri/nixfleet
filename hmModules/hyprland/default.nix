@@ -55,7 +55,7 @@ in {
   };
 
   services.kanshi = {
-    enable = false;
+    enable = true;
     systemdTarget = "hyprland-session.target";
     profiles = {
       undocked = {
