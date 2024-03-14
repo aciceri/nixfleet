@@ -1,6 +1,7 @@
 {
   fleetModules,
   lib,
+  pkgs,
   ...
 }: {
   imports =
@@ -28,6 +29,7 @@
       "restic"
       "greetd"
       "syncthing"
+      "mount-rock5b"
     ]
     ++ [
       ./disko.nix
@@ -73,6 +75,8 @@
   boot.kernelModules = [
     "kvm-intel"
   ];
+
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_7;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot = {
