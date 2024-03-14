@@ -21,6 +21,47 @@
     rev = "9a40a2fa09b0f74aee0b278e2858f5600b3487a9";
     hash = "sha256-i+82EUamV1Fhwhb1vhRqn9aA9dJ0FxSSMD734domyhw=";
   };
+  tuya-device-sharing-sdk = ps:
+    ps.callPackage (
+      {
+        lib,
+        buildPythonPackage,
+        fetchPypi,
+        requests,
+        paho-mqtt,
+        cryptography,
+      }: let
+        pname = "tuya-device-sharing-sdk";
+        version = "0.2.0";
+      in
+        buildPythonPackage {
+          inherit pname version;
+
+          src = fetchPypi {
+            inherit pname version;
+            hash = "sha256-fu8zh59wlnxtstNbNL8mIm10tiXy22oPbi6oUy5x8c8=";
+          };
+
+          postPatch = ''
+            touch requirements.txt
+          '';
+
+          doCheck = false;
+
+          propagatedBuildInputs = [
+            requests
+            paho-mqtt
+            cryptography
+          ];
+
+          meta = with lib; {
+            description = "Tuya Device Sharing SDK";
+            homepage = "https://github.com/tuya/tuya-device-sharing-sdk";
+            license = licenses.mit;
+            maintainers = with maintainers; [aciceri];
+          };
+        }
+    ) {};
 in {
   services.home-assistant = {
     enable = true;
@@ -59,6 +100,7 @@ in {
         # used by pun_sensor
         holidays
         beautifulsoup4
+        (tuya-device-sharing-sdk python3Packages) # remove after https://github.com/NixOS/nixpkgs/pull/294706/
       ];
     config = {
       default_config = {};
