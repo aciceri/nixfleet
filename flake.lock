@@ -40,14 +40,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1710278059,
-        "narHash": "sha256-OMmXmA4sDBxxhZBdV0BUr7/x8lRZiSsmJ1YmIOb3k44=",
-        "path": "/home/ccr/.config/emacs",
-        "type": "path"
+        "lastModified": 1710336635,
+        "narHash": "sha256-tEc3mD8LNujcm94BigiJZTGulCCGOhpXoNebQGzezLA=",
+        "ref": "refs/heads/master",
+        "rev": "845e682dc294373370efd5b6db99c48a65070a89",
+        "revCount": 165,
+        "type": "git",
+        "url": "https://git.aciceri.dev/aciceri/emacs.git"
       },
       "original": {
-        "id": "ccrEmacs",
-        "type": "indirect"
+        "type": "git",
+        "url": "https://git.aciceri.dev/aciceri/emacs.git"
       }
     },
     "darwin": {

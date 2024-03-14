@@ -35,7 +35,7 @@
     nur.url = "github:nix-community/NUR";
     agenix.url = "github:ryantm/agenix";
     rock5b.url = "github:aciceri/rock5b-nixos";
-    ccrEmacs.url = "ccrEmacs";
+    ccrEmacs.url = "git+https://git.aciceri.dev/aciceri/emacs.git";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgsUnstable";

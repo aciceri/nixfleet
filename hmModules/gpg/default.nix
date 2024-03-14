@@ -16,7 +16,6 @@
       allow-loopback-pinentry
       pinentry-program ${pinentryRofi}/bin/pinentry-rofi-with-env
     '';
-    pinentryFlavor = null;
   };
 
   programs.gpg = {
