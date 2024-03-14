@@ -1,7 +1,7 @@
 {
   fleetModules,
   pkgs,
-  lib,
+  config,
   ...
 }: {
   imports =
@@ -24,7 +24,7 @@
       "restic"
       "syncthing"
       "minio"
-      "matrix"
+      # "matrix"
       "forgejo"
     ]
     ++ [
@@ -73,8 +73,8 @@
   ];
 
   boot.kernelParams = [
-    "console=ttyS0,1500000"
     "console=tty1"
+    "console=ttyS0,1500000"
   ];
 
   # fileSystems."/mnt/film" = {
