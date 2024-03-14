@@ -9,7 +9,7 @@ in
     "hydra-admin-password.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "hydra-github-token.age".publicKeys = [ccr-ssh ccr-gpg mothership];
     "cache-private-key.age".publicKeys = [ccr-ssh ccr-gpg mothership];
-    "autistici-password.age".publicKeys = [ccr-ssh ccr-gpg kirk picard];
+    "autistici-password.age".publicKeys = [ccr-ssh ccr-gpg kirk picard sisko];
     "hercules-ci-join-token.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko picard];
     "hercules-ci-binary-caches.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko picard];
     "hercules-ci-secrets-json.age".publicKeys = [ccr-ssh ccr-gpg mothership sisko picard];
@@ -24,6 +24,7 @@ in
     "matrix-registration-shared-secret.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "matrix-sliding-sync-secret.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "forgejo-runners-token.age".publicKeys = [ccr-ssh ccr-gpg picard];
+    "forgejo-nix-access-tokens.age".publicKeys = [ccr-ssh ccr-gpg picard];
 
     # WireGuard
     "picard-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg picard];
