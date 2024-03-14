@@ -4,6 +4,7 @@
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
     nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgsUnstableForSisko.url = "github:NixOS/nixpkgs/0e74ca98a74bc7270d28838369593635a5db3260";
     nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
@@ -34,14 +35,12 @@
     nur.url = "github:nix-community/NUR";
     agenix.url = "github:ryantm/agenix";
     rock5b.url = "github:aciceri/rock5b-nixos";
-    # ccrEmacs.url = "ccrEmacs";
-    ccrEmacs.url = "github:aciceri/emacs";
-    # ccrEmacs.url = "/home/ccr/.config/emacs";
+    ccrEmacs.url = "ccrEmacs";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
-    hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects/fix-darwin-ciSystems";
+    hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
     dream2nix.url = "github:nix-community/dream2nix";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent";
     nix-fast-build = {
