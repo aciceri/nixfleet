@@ -60,6 +60,7 @@
       "chrome"
       "email"
       "digikam"
+      "discord"
     ];
     extraGroups = [];
     backupPaths = [];
