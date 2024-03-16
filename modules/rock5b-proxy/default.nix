@@ -35,6 +35,13 @@
         proxyPass = "http://localhost:${builtins.toString config.services.invidious.port}";
       };
     };
+    "ipc.aciceri.dev" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://picard.fleet:8545";
+      };
+    };
     # "sevenofnix.aciceri.dev" = {
     #   forceSSL = true;
     #   enableACME = true;
