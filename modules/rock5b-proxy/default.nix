@@ -35,6 +35,13 @@
         proxyPass = "http://localhost:${builtins.toString config.services.invidious.port}";
       };
     };
+    # "jellyfin.aciceri.dev" = {
+    #   forceSSL = true;
+    #   enableACME = true;
+    #   locations."/" = {
+    #     proxyPass = "http://localhost:8096";
+    #   };
+    # };
     # "sevenofnix.aciceri.dev" = {
     #   forceSSL = true;
     #   enableACME = true;
