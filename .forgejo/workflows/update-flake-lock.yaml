@@ -1,35 +1,35 @@
-name: update-flake-lock
-on:
-  schedule:
-    - cron: '0 15 * * *' # daily at 15:00
+# name: update-flake-lock
+# on:
+#   schedule:
+#     - cron: '0 15 * * *' # daily at 15:00
 
-jobs:
-  lockfile:
-    runs-on: nix
-    steps:
-      - uses: actions/checkout@v4
-        name: Checkout repository
-        with:
-          token: ${{secrets.SEVENOFNINE_TOKEN}}
-      - name: Create new branch from the checked out one
-        run: git switch -c update-flake-lock
-      - name: Configure git as `Seven of Nix`
-        run: |
-          git config --global user.email "sevenofnine@stronzi.org"
-          git config --global user.name "Seven of Nine"
-      - name: Update flake's lockfile and create commit
-        run: nix flake update --commit-lock-file
-      - name: Push commit to the `update-flake-lock` remote branch
-        run: git push origin --force update-flake-lock # sevenOfNix needs write access to the repository
-      - name: Login as `Seven of Nix`
-        run: |
-          tea logins add --token ${{secrets.SEVENOFNINE_TOKEN}} --url https://git.aciceri.dev
-          tea logins default git.aciceri.dev
-      - name: Create the pull request
-        run: |
-          tea pulls create \
-            --repo "$GITHUB_REPOSITORY" \
-            --title "Update flake's lockfile" \
-            --description "Check the commit description for inputs deltas" \
-            --assignees aciceri \
-            || echo "PR already existing" 
+# jobs:
+#   lockfile:
+#     runs-on: nix
+#     steps:
+#       - uses: actions/checkout@v4
+#         name: Checkout repository
+#         with:
+#           token: ${{secrets.SEVENOFNINE_TOKEN}}
+#       - name: Create new branch from the checked out one
+#         run: git switch -c update-flake-lock
+#       - name: Configure git as `Seven of Nix`
+#         run: |
+#           git config --global user.email "sevenofnine@stronzi.org"
+#           git config --global user.name "Seven of Nine"
+#       - name: Update flake's lockfile and create commit
+#         run: nix flake update --commit-lock-file
+#       - name: Push commit to the `update-flake-lock` remote branch
+#         run: git push origin --force update-flake-lock # sevenOfNix needs write access to the repository
+#       - name: Login as `Seven of Nix`
+#         run: |
+#           tea logins add --token ${{secrets.SEVENOFNINE_TOKEN}} --url https://git.aciceri.dev
+#           tea logins default git.aciceri.dev
+#       - name: Create the pull request
+#         run: |
+#           tea pulls create \
+#             --repo "$GITHUB_REPOSITORY" \
+#             --title "Update flake's lockfile" \
+#             --description "Check the commit description for inputs deltas" \
+#             --assignees aciceri \
+#             || echo "PR already existing" 

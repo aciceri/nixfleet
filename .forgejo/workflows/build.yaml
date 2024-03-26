@@ -1,11 +1,11 @@
-on:
-  push:
-    branches: ["*"]
-jobs:
-  test:
-    runs-on: nix
-    steps:
-      - uses: actions/checkout@v4
-        name: Checkout repository
-      - name: Build with nix
-        run: nix-fast-build --no-nom --systems "x86_64-linux aarch64-linux"
+# on:
+#   push:
+#     branches: ["*"]
+# jobs:
+#   test:
+#     runs-on: nix
+#     steps:
+#       - uses: actions/checkout@v4
+#         name: Checkout repository
+#       - name: Build with nix
+#         run: nix-fast-build --no-nom --systems "x86_64-linux aarch64-linux"
