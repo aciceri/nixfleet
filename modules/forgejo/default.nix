@@ -5,7 +5,6 @@
 }: {
   services.forgejo = {
     enable = true;
-    stateDir = "/mnt/hd/forgejo";
     settings = {
       DEFAULT = {
         RUN_MODE = "prod"; # set to prod for better logs (worse performance)
