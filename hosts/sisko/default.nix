@@ -26,6 +26,7 @@
       "minio"
       # "matrix"
       "forgejo"
+      # "jellyfin"
     ]
     ++ [
       ./disko.nix
