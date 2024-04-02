@@ -29,6 +29,12 @@
               "tcp://kirk.fleet"
             ];
           };
+          onplus6t = {
+            id = "76BJ2ZE-FPFDWUZ-3UZIENZ-TS6YBGG-EZSF6UE-GLHRBQ2-KTHTRMI-3JWNRAT";
+            addresses = [
+              "tcp://oneplus6t.fleet"
+            ];
+          };
         };
         folders = {
           org = {
@@ -39,7 +45,7 @@
                 kirk = "/home/${config.ccr.username}/org";
               }
               .${config.networking.hostName};
-            devices = ["picard" "sisko" "kirk"];
+            devices = ["picard" "sisko" "kirk" "onplus6t"];
           };
           sync = {
             path =
