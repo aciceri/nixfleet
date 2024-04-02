@@ -39,6 +39,7 @@
       # "macos-ventura"
       # "sunshine"
       "mount-rock5b"
+      "adb"
     ]
     ++ [
       ./disko.nix
