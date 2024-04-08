@@ -30,6 +30,7 @@
       "greetd"
       "syncthing"
       "mount-rock5b"
+      "adb"
     ]
     ++ [
       ./disko.nix
