@@ -6,6 +6,7 @@
   imports = [../wireguard-common];
 
   networking.wireguard.interfaces.wg0 = {
+    mtu = 1200;
     ips = ["${vpn.${config.networking.hostName}.ip}/32"];
     peers = [
       {
