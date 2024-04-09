@@ -18,7 +18,8 @@ jobs:
           git config --global user.email "sevenofnine@stronzi.org"
           git config --global user.name "Seven of Nine"
       - name: Update flake's lockfile and create commit
-        run: nix flake update --commit-lock-file#       - name: Push commit to the `update-flake-lock` remote branch
+        run: nix flake update --commit-lock-file
+      - name: Push commit to the `update-flake-lock` remote branch
         run: git push origin --force update-flake-lock # sevenOfNix needs write access to the repository
       - name: Login as `Seven of Nix`
         run: |
