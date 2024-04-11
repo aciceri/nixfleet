@@ -48,6 +48,42 @@ in {
         };
       }));
     };
+    nixOnDroidHosts = lib.mkOption {
+      type = lib.types.attrsOf (lib.types.submodule ({name, ...}: {
+        options = {
+          name = lib.mkOption {
+            description = "Host name";
+            type = lib.types.strMatching "^$|^[[:alnum:]]([[:alnum:]_-]{0,61}[[:alnum:]])?$";
+            default = name;
+          };
+          system = lib.mkOption {
+            description = "NixOS architecture (a.k.a. system)";
+            type = lib.types.str;
+            default = "aarch64-linux";
+          };
+          nixpkgs = lib.mkOption {
+            description = "Used nixpkgs";
+            type = lib.types.anything;
+            default = inputs.nixpkgsUnstable;
+          };
+          extraModules = lib.mkOption {
+            description = "Extra NixOS modules";
+            type = lib.types.listOf lib.types.deferredModule;
+            default = [];
+          };
+          overlays = lib.mkOption {
+            description = "Enabled Nixpkgs overlays";
+            type = lib.types.listOf (lib.mkOptionType {
+              name = "nixpkgs-overlay";
+              description = "nixpkgs overlay";
+              check = lib.isFunction;
+              merge = lib.mergeOneOption;
+            });
+            default = [];
+          };
+        };
+      }));
+    };
     hosts = lib.mkOption {
       description = "Host configuration";
       type = lib.types.attrsOf (lib.types.submodule ({name, ...}: {
@@ -243,5 +279,41 @@ in {
           ];
         };
     };
+
+    _mkNixOnDroidConfiguration = lib.mkOption {
+      description = "Function returning a proper nix-on-droid configuration";
+      type = lib.types.functionTo (lib.types.functionTo lib.types.attrs); # TODO improve this type
+      internal = true;
+      default = hostname: config:
+        inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+          modules = [
+            ({
+              lib,
+              pkgs,
+              ...
+            }: {
+              nixpkgs.overlays = config.overlays;
+            })
+            "${self.outPath}/hosts/${hostname}"
+          ];
+        };
+    };
+  };
+
+  config = {
+    flake.nixosConfigurations =
+      lib.mapAttrs
+      config.fleet._mkNixosConfiguration
+      config.fleet.hosts;
+
+    flake.darwinConfigurations =
+      lib.mapAttrs
+      config.fleet._mkDarwinConfiguration
+      config.fleet.darwinHosts;
+
+    flake.nixOnDroidConfigurations =
+      lib.mapAttrs
+      config.fleet._mkNixOnDroidConfiguration
+      config.fleet.nixOnDroidHosts;
   };
 }
