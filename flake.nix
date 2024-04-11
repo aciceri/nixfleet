@@ -55,6 +55,7 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
+    nix-on-droid.url = "github:nix-community/nix-on-droid";
   };
 
   outputs = inputs @ {flakeParts, ...}:

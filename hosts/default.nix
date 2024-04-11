@@ -8,8 +8,9 @@
   imports = [./module.nix];
 
   fleet = {
-    darwinHosts.archer = {
-    };
+    darwinHosts.archer = {};
+
+    nixOnDroidHosts.janeway = {};
 
     hosts = {
       # thinkpad = {
@@ -164,14 +165,4 @@
       };
     };
   };
-
-  flake.nixosConfigurations =
-    lib.mapAttrs
-    config.fleet._mkNixosConfiguration
-    config.fleet.hosts;
-
-  flake.darwinConfigurations =
-    lib.mapAttrs
-    config.fleet._mkDarwinConfiguration
-    config.fleet.darwinHosts;
 }
