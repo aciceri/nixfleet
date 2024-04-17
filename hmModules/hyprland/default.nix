@@ -84,125 +84,127 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
-             input {
-               touchpad {
-                 disable_while_typing = true # set to true while playing
-               }
-             }
+      $mod = SUPER
 
-             monitor = HDMI-A-1, 2560x1440, 0x0, 1 # picard
-             monitor = eDP-1, 1920x1080, 0x0, 1 # kirk
+      input {
+        touchpad {
+          disable_while_typing = true # set to true while playing
+        }
+      }
 
-             bindl=,switch:off:Lid Switch,exec,${switchMonitorScript} open
-             bindl=,switch:on:Lid Switch,exec,${switchMonitorScript} close
+      monitor = HDMI-A-1, 2560x1440, 0x0, 1 # picard
+      monitor = eDP-1, 1920x1080, 0x0, 1 # kirk
 
-             exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
+      bindl=,switch:off:Lid Switch,exec,${switchMonitorScript} open
+      bindl=,switch:on:Lid Switch,exec,${switchMonitorScript} close
 
-             windowrulev2 = tile, class:^(Spotify)$
-             windowrulev2 = workspace 9, class:^(Spotify)$
-             windowrulev2 = tile, class:^(fluffychat)$
-             windowrulev2 = workspace 8, class:^(fluffychat)$
-             windowrulev2 = tile, class:^(WhatsApp for Linux)$
-             windowrulev2 = workspace 7, class:^(WhatsApp for Linux)$
-             windowrulev2 = float, title:^(floating)$
+      exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
 
-             bind = SUPER, b, exec, firefox
-             bind = SUPER SHIFT, b , exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet firefox
-             bind = SUPER SHIFT, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm ssh mothership.fleet
-             bind = SUPER, m, exec, ${config.programs.wezterm.package}/bin/wezterm start -- mosh mothership.fleet
-             bind = SUPER, t, exec, ${config.programs.wezterm.package}/bin/wezterm
-             bind = SUPER, RETURN, exec, emacsclient -c --eval "(ccr/start-eshell)"
-             bind = SUPER, x, exec, emacsclient -c
-             bind = SUPER SHIFT, n, exec, emacsclient --eval '(ccr/org-capture "n")' -c -F '((name . "floating"))'
-             bind = SUPER SHIFT, w, exec, emacsclient --eval '(ccr/org-capture "j")' -c -F '((name . "floating"))'
-             bind = SUPER, y, exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh picard.fleet emacsclient -c
-             bind = SUPER, d, exec, ${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0
-             bind = SUPER, s, exec, ${screenshotScript}
-             bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
-             bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
-             bind = SUPER, code:60, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
-             bind = SUPER, code:59, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
-      bind = SUPER SHIFT, t, exec, ${config.services.swaync.package}/bin/swaync-client -t
+      windowrulev2 = tile, class:^(Spotify)$
+      windowrulev2 = workspace 9, class:^(Spotify)$
+      windowrulev2 = tile, class:^(fluffychat)$
+      windowrulev2 = workspace 8, class:^(fluffychat)$
+      windowrulev2 = tile, class:^(WhatsApp for Linux)$
+      windowrulev2 = workspace 7, class:^(WhatsApp for Linux)$
+      windowrulev2 = float, title:^(floating)$
+
+      bind = $mod, b, exec, firefox
+      bind = $mod SHIFT, b , exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet firefox
+      bind = $mod SHIFT, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm ssh mothership.fleet
+      bind = $mod, m, exec, ${config.programs.wezterm.package}/bin/wezterm start -- mosh mothership.fleet
+      bind = $mod, t, exec, ${config.programs.wezterm.package}/bin/wezterm
+      bind = $mod, RETURN, exec, emacsclient -c --eval "(ccr/start-eshell)"
+      bind = $mod, x, exec, emacsclient -c
+      bind = $mod SHIFT, n, exec, emacsclient --eval '(ccr/org-capture "n")' -c -F '((name . "floating"))'
+      bind = $mod SHIFT, w, exec, emacsclient --eval '(ccr/org-capture "j")' -c -F '((name . "floating"))'
+      bind = $mod, y, exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh picard.fleet emacsclient -c
+      bind = $mod, d, exec, ${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0
+      bind = $mod, s, exec, ${screenshotScript}
+      bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
+      bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
+      bind = $mod, code:60, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
+      bind = $mod, code:59, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
+      bind = $mod SHIFT, t, exec, ${config.services.swaync.package}/bin/swaync-client -t
 
 
-             bind = SUPER SHIFT, q, killactive
-             bind = SUPER SHIFT, f, fullscreen, 0
-             bind = SUPER SHIFT, e, exit
+      bind = $mod SHIFT, q, killactive
+      bind = $mod SHIFT, f, fullscreen, 0
+      bind = $mod SHIFT, e, exit
 
-             bind = SUPER, h, movefocus, l
-             bind = SUPER, l, movefocus, r
-             bind = SUPER, k, movefocus, u
-             bind = SUPER, j, movefocus, d
+      bind = $mod, h, movefocus, l
+      bind = $mod, l, movefocus, r
+      bind = $mod, k, movefocus, u
+      bind = $mod, j, movefocus, d
 
-             bind = SUPER SHIFT, h, movewindow, l
-             bind = SUPER SHIFT, l, movewindow, r
-             bind = SUPER SHIFT, k, movewindow, u
-             bind = SUPER SHIFT, j ,movewindow, d
+      bind = $mod SHIFT, h, movewindow, l
+      bind = $mod SHIFT, l, movewindow, r
+      bind = $mod SHIFT, k, movewindow, u
+      bind = $mod SHIFT, j ,movewindow, d
 
-             bind = SUPER, p, movecurrentworkspacetomonitor, r
-             bind = SUPER, o, movecurrentworkspacetomonitor, l
+      bind = $mod, p, movecurrentworkspacetomonitor, r
+      bind = $mod, o, movecurrentworkspacetomonitor, l
 
-             bindm=ALT,mouse:272,movewindow
+      bindm=ALT,mouse:272,movewindow
 
-             bind = SUPER, 1, workspace, 1
-             bind = SUPER, 2, workspace, 2
-             bind = SUPER, 3, workspace, 3
-             bind = SUPER, 4, workspace, 4
-             bind = SUPER, 5, workspace, 5
-             bind = SUPER, 6, workspace, 6
-             bind = SUPER, 7, workspace, 7
-             bind = SUPER, 8, workspace, 8
-             bind = SUPER, 9, workspace, 9
-             bind = SUPER, 0, workspace, 10
+      bind = $mod, 1, workspace, 1
+      bind = $mod, 2, workspace, 2
+      bind = $mod, 3, workspace, 3
+      bind = $mod, 4, workspace, 4
+      bind = $mod, 5, workspace, 5
+      bind = $mod, 6, workspace, 6
+      bind = $mod, 7, workspace, 7
+      bind = $mod, 8, workspace, 8
+      bind = $mod, 9, workspace, 9
+      bind = $mod, 0, workspace, 10
 
-             bind = SUPER SHIFT, 1, movetoworkspace, 1
-             bind = SUPER SHIFT, 2, movetoworkspace, 2
-             bind = SUPER SHIFT, 3, movetoworkspace, 3
-             bind = SUPER SHIFT, 4, movetoworkspace, 4
-             bind = SUPER SHIFT, 5, movetoworkspace, 5
-             bind = SUPER SHIFT, 6, movetoworkspace, 6
-             bind = SUPER SHIFT, 7, movetoworkspace, 7
-             bind = SUPER SHIFT, 8, movetoworkspace, 8
-             bind = SUPER SHIFT, 9, movetoworkspace, 9
-             bind = SUPER SHIFT, 0, movetoworkspace, 10
+      bind = $mod SHIFT, 1, movetoworkspace, 1
+      bind = $mod SHIFT, 2, movetoworkspace, 2
+      bind = $mod SHIFT, 3, movetoworkspace, 3
+      bind = $mod SHIFT, 4, movetoworkspace, 4
+      bind = $mod SHIFT, 5, movetoworkspace, 5
+      bind = $mod SHIFT, 6, movetoworkspace, 6
+      bind = $mod SHIFT, 7, movetoworkspace, 7
+      bind = $mod SHIFT, 8, movetoworkspace, 8
+      bind = $mod SHIFT, 9, movetoworkspace, 9
+      bind = $mod SHIFT, 0, movetoworkspace, 10
 
-             general {
-               gaps_in = 0
-               gaps_out = 0
-               border_size = 1
+      general {
+        gaps_in = 0
+        gaps_out = 0
+        border_size = 1
         col.active_border = rgba(AF8D61FF) rgba(CEB153FF) rgba(7B8387FF) 45deg
-               col.inactive_border = rgba(AF8D6166)
-             }
+        col.inactive_border = rgba(AF8D6166)
+      }
 
-             decoration {
-                 # See https://wiki.hyprland.org/Configuring/Variables/ for more
+      decoration {
+        # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-                 rounding = 2
-                 # blur = true
-                 # blur_size = 8
-                 # blur_passes = 1
-                 # blur_new_optimizations = true
+        rounding = 2
+        # blur = true
+        # blur_size = 8
+        # blur_passes = 1
+        # blur_new_optimizations = true
 
-                 drop_shadow = true
-                 shadow_range = 4
-                 shadow_render_power = 3
-                 col.shadow = rgba(a8cfee11)
-             }
+        drop_shadow = true
+        shadow_range = 4
+        shadow_render_power = 3
+        col.shadow = rgba(a8cfee11)
+      }
 
-             animations {
-                 enabled = true
+      animations {
+        enabled = true
 
-                 # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
-                 bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+        bezier = myBezier, 0.05, 0.9, 0.1, 1.05
 
-                 animation = windows, 1, 3, myBezier
-                 animation = windowsOut, 1, 3, default, popin 80%
-                 animation = border, 1, 5, default
-                 animation = borderangle, 1, 4, default
-                 animation = fade, 1, 3, default
-                 animation = workspaces, 1, 3, default
-             }
+        animation = windows, 1, 3, myBezier
+        animation = windowsOut, 1, 3, default, popin 80%
+        animation = border, 1, 5, default
+        animation = borderangle, 1, 4, default
+        animation = fade, 1, 3, default
+        animation = workspaces, 1, 3, default
+      }
     '';
   };
 }
