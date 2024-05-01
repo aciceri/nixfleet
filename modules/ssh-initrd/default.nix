@@ -33,6 +33,6 @@
     };
   };
 
-  boot.initrd.systemd.additionalUpstreamUnits = ["debug-shell.service"];
-  boot.kernelParams = ["rd.systemd.debug_shell"];
+  # boot.initrd.systemd.additionalUpstreamUnits = ["debug-shell.service"];
+  # boot.kernelParams = ["rd.systemd.debug_shell"];
 }
