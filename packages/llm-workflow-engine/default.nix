@@ -9,8 +9,8 @@
   src = fetchFromGitHub {
     owner = "llm-workflow-engine";
     repo = "llm-workflow-engine";
-    rev = "a6b1e59d350dae210d37cdfd2050a3b79f19ab14";
-    hash = "sha256-foG3g63Yx5QtNcBP5aOnkmqOWsj0tX3EOHq3Il5WE+M=";
+    rev = "v0.18.10";
+    hash = "sha256-q9tCPQvGtufSL+E0h5gB0pA1CaKB9nUL1Hf5cmImZz8";
   };
   module = {
     config,
@@ -23,7 +23,7 @@
     ];
 
     name = "llm-workflow-engine";
-    version = "0.18.2";
+    version = "0.18.10";
 
     paths = {
       inherit projectRoot;
@@ -46,7 +46,7 @@
     };
 
     pip = {
-      pypiSnapshotDate = "2023-09-29";
+      pypiSnapshotDate = "2024-04-25";
       requirementsFiles = [
         "${src}/requirements.txt"
       ];
