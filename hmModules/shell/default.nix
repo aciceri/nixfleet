@@ -3,6 +3,7 @@
   lib,
   pkgs,
   age,
+  fleetFlake,
   ...
 }: {
   programs.bat.enable = true;
@@ -203,6 +204,7 @@
     comma
     # carapace # used by nushell
     nil # TODO probably not best place
+    fleetFlake.inputs.nixd.packages.${pkgs.system}.nixd # TODO probably not best place
     terraform-lsp # TODO probably not best place
     python3Packages.jedi-language-server # TODO probably not best place
     nodePackages.typescript-language-server # TODO probably not best place
