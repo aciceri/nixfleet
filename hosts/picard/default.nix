@@ -74,6 +74,7 @@
       "tor-browser"
       "kicad"
       "monero"
+      "zulip"
     ];
     extraGroups = [];
     backupPaths = [];
@@ -101,7 +102,8 @@
     configurationLimit = 20;
   };
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_7;
+  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   networking.hostId = "5b02e763";
 
