@@ -18,12 +18,14 @@
         "@wheel"
       ];
       netrc-file = "/etc/nix/netrc";
-      # substituters = [
-      #   "s3://cache?profile=default&region=eu-south-1&scheme=https&endpoint=cache.aciceri.dev"
-      # ];
-      # trusted-public-keys = [
-      #   "cache.aciceri.dev~1:nJMfcBnYieY2WMbYDG0s9S5qUhU+V4RPL+X9zcxXxZY="
-      # ];
+      substituters = [
+        #   "s3://cache?profile=default&region=eu-south-1&scheme=https&endpoint=cache.aciceri.dev"
+        "https://cache.iog.io"
+      ];
+      trusted-public-keys = [
+        #   "cache.aciceri.dev~1:nJMfcBnYieY2WMbYDG0s9S5qUhU+V4RPL+X9zcxXxZY="
+        "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      ];
     };
 
     extraOptions = ''
