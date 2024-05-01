@@ -56,6 +56,7 @@
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
     nix-on-droid.url = "github:nix-community/nix-on-droid";
+    nixd.url = "github:nix-community/nixd";
   };
 
   outputs = inputs @ {flakeParts, ...}:
