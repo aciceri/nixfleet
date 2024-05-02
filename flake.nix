@@ -16,11 +16,6 @@
       url = "github:aciceri/home-manager/git-workspace";
       inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
-    # TODO: remove after https://github.com/nix-community/home-manager/pull/4249
-    homeManagerSwayNC = {
-      url = "github:rhoriguchi/home-manager/swaync";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgsUnstable";

@@ -84,7 +84,6 @@
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
-          "${inputs.homeManagerSwayNC}/modules/services/swaync.nix"
         ];
         secrets = {
           "kirk-wireguard-private-key" = {};
@@ -109,7 +108,6 @@
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
-          "${inputs.homeManagerSwayNC}/modules/services/swaync.nix"
         ];
         secrets = {
           "picard-wireguard-private-key" = {};
