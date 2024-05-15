@@ -4,6 +4,7 @@
   pkgs,
   fleetHmModules,
   fleetFlake,
+  vpn,
   ...
 }: let
   cfg = config.ccr;
@@ -100,6 +101,8 @@ in {
             _module.args = {
               inherit (config.age) secrets;
               inherit (cfg) username;
+              inherit vpn;
+              hostname = config.networking.hostName;
             };
           }
         ]
