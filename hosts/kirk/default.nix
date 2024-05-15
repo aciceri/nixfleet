@@ -78,7 +78,7 @@
     "kvm-intel"
   ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_7;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot = {
