@@ -30,6 +30,7 @@ in {
     ../gammastep
     # ../kitty
     ../wezterm
+    ../wayvnc
   ];
 
   home.packages = with pkgs; [wl-clipboard waypipe];
