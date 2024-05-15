@@ -2,6 +2,7 @@
   fleetModules,
   lib,
   pkgs,
+  config,
   ...
 }: {
   imports =
@@ -62,6 +63,8 @@
       "email"
       "digikam"
       "discord"
+      "remmina"
+      "zulip"
     ];
     extraGroups = [];
     backupPaths = [];
