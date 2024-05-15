@@ -206,6 +206,7 @@ in {
                 nixpkgs.overlays = config.overlays;
               })
               "${self.outPath}/hosts/${hostname}"
+              inputs.lix-module.nixosModules.default
             ]
             ++ (lib.optionals (config.secrets != []) [
               inputs.agenix.nixosModules.default

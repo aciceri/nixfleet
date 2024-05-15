@@ -8,7 +8,8 @@
   nix = {
     optimise.automatic = true;
 
-    package = pkgs.nixVersions.latest;
+    # Commented out otherwise Lix is not set
+    # package = pkgs.nixVersions.latest;
 
     settings = {
       auto-optimise-store = true;
@@ -21,10 +22,12 @@
       substituters = [
         #   "s3://cache?profile=default&region=eu-south-1&scheme=https&endpoint=cache.aciceri.dev"
         "https://cache.iog.io"
+        "https://cache.lix.systems"
       ];
       trusted-public-keys = [
         #   "cache.aciceri.dev~1:nJMfcBnYieY2WMbYDG0s9S5qUhU+V4RPL+X9zcxXxZY="
         "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+        "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
       ];
     };
 

@@ -52,6 +52,15 @@
     };
     nix-on-droid.url = "github:nix-community/nix-on-droid";
     nixd.url = "github:nix-community/nixd";
+    lix = {
+      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
+    };
   };
 
   outputs = inputs @ {flakeParts, ...}:
