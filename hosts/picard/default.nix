@@ -40,6 +40,7 @@
       # "sunshine"
       "mount-rock5b"
       "adb"
+      "guix"
     ]
     ++ [
       ./disko.nix
@@ -75,6 +76,8 @@
       "kicad"
       "monero"
       "zulip"
+      "teams"
+      "obs-studio"
     ];
     extraGroups = [];
     backupPaths = [];
