@@ -14,7 +14,7 @@
     };
 
     Service = {
-      ExecStart = "${lib.getExe pkgs.wayvnc "wayvnc"} ${vpn.${hostname}.ip} 5900";
+      ExecStart = "${lib.getExe' pkgs.wayvnc "wayvnc"} ${vpn.${hostname}.ip} 5900";
       Restart = "on-failure";
       RestartSec = 3;
     };
