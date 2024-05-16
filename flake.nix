@@ -27,7 +27,8 @@
         nixpkgs-stable.follows = "nixpkgsStable";
       };
     };
-    nur.url = "github:nix-community/NUR";
+    # FIXME go back to master after nltch's repository is re-added
+    nur.url = "github:nix-community/NUR/324a5f3b9fbfdb77336dc9fa1c0a02f33a6acf6d";
     agenix.url = "github:ryantm/agenix";
     rock5b.url = "github:aciceri/rock5b-nixos";
     ccrEmacs.url = "git+https://git.aciceri.dev/aciceri/emacs.git";
