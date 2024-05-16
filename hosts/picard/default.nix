@@ -94,27 +94,16 @@
   ];
   boot.kernelModules = [
     "kvm-amd"
-    "ddci"
+    "ddcci"
     "ddcci-backlight"
+    "i2c-dev" # needed?
   ];
 
-  # fix to support linux 6.8
-  # FIXME check https://github.com/NixOS/nixpkgs/pull/297430
-  boot.extraModulePackages = let
-    ddci-driver = config.boot.kernelPackages.ddcci-driver.overrideAttrs (_: {
-      patches = [
-        (pkgs.fetchpatch {
-          url = "https://gitlab.com/Sweenu/ddcci-driver-linux/-/commit/7f851f5fb8fbcd7b3a93aaedff90b27124e17a7e.patch";
-          sha256 = "sha256-Y1ktYaJTd9DtT/mwDqtjt/YasW9cVm0wI43wsQhl7Bg=";
-        })
-      ];
-    });
-  in [ddci-driver];
+  boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
 
   systemd.services.ddcci = {
     serviceConfig.Type = "oneshot";
     script = ''
-      sleep 20
       echo 'ddcci 0x37' > /sys/bus/i2c/devices/i2c-2/new_device
     '';
   };
