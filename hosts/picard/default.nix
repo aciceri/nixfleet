@@ -78,6 +78,7 @@
       "zulip"
       "teams"
       "obs-studio"
+      "calibre"
     ];
     extraGroups = [];
     backupPaths = [];
