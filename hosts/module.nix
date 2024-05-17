@@ -103,6 +103,11 @@ in {
             type = lib.types.anything;
             default = inputs.nixpkgsUnstable;
           };
+          homeManager = lib.mkOption {
+            description = "Used home-manager";
+            type = lib.types.anything;
+            default = inputs.homeManager;
+          };
           vpn = {
             ip = lib.mkOption {
               description = "Wireguard VPN ip";
@@ -206,7 +211,6 @@ in {
                 nixpkgs.overlays = config.overlays;
               })
               "${self.outPath}/hosts/${hostname}"
-              inputs.lix-module.nixosModules.default
             ]
             ++ (lib.optionals (config.secrets != []) [
               inputs.agenix.nixosModules.default
@@ -234,7 +238,7 @@ in {
               user = config.extraHmModulesUser;
               extraHmModules = config.extraHmModules;
             in [
-              inputs.homeManager.nixosModule
+              config.homeManager.nixosModule
               ({
                 config,
                 pkgs,

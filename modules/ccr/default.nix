@@ -5,6 +5,7 @@
   fleetHmModules,
   fleetFlake,
   vpn,
+  options,
   ...
 }: let
   cfg = config.ccr;
@@ -69,46 +70,49 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    # FIXME shouldn't set these groups by default
-    ccr.extraGroups = ["wheel" "fuse" "video" "dialout" "systemd-journal" "camera"];
-    ccr.modules = ["shell" "git" "nix-index" "btop"];
+  config = lib.mkIf cfg.enable (lib.mkMerge [
+    (lib.optionalAttrs (builtins.hasAttr "backup" options) {
+      backup.paths = cfg.backupPaths;
+    })
+    {
+      # FIXME shouldn't set these groups by default
+      ccr.extraGroups = ["wheel" "fuse" "video" "dialout" "systemd-journal" "camera"];
+      ccr.modules = ["shell" "git" "nix-index" "btop"];
 
-    backup.paths = cfg.backupPaths;
+      users.users.${cfg.username} = {
+        inherit (config.ccr) hashedPassword extraGroups description;
+        uid = 1000;
+        isNormalUser = true;
+        shell = cfg.shell;
+        openssh.authorizedKeys.keys = config.ccr.authorizedKeys;
+      };
 
-    users.users.${cfg.username} = {
-      inherit (config.ccr) hashedPassword extraGroups description;
-      uid = 1000;
-      isNormalUser = true;
-      shell = cfg.shell;
-      openssh.authorizedKeys.keys = config.ccr.authorizedKeys;
-    };
+      programs.fish.enable = true;
 
-    programs.fish.enable = true;
+      services.getty.autologinUser =
+        if config.ccr.autologin
+        then cfg.username
+        else null;
 
-    services.getty.autologinUser =
-      if config.ccr.autologin
-      then cfg.username
-      else null;
-
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
-    home-manager.users.${cfg.username} = {
-      imports =
-        fleetHmModules cfg.modules
-        ++ [
-          {
-            _module.args = {
-              inherit (config.age) secrets;
-              inherit (cfg) username;
-              inherit vpn;
-              hostname = config.networking.hostName;
-            };
-          }
-        ]
-        ++ cfg.extraModules;
-      home.packages = cfg.packages;
-      home.stateVersion = config.system.stateVersion;
-    };
-  };
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.${cfg.username} = {
+        imports =
+          fleetHmModules cfg.modules
+          ++ [
+            {
+              _module.args = {
+                inherit (config.age) secrets;
+                inherit (cfg) username;
+                inherit vpn;
+                hostname = config.networking.hostName;
+              };
+            }
+          ]
+          ++ cfg.extraModules;
+        home.packages = cfg.packages;
+        home.stateVersion = config.system.stateVersion;
+      };
+    }
+  ]);
 }

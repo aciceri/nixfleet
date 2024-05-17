@@ -17,7 +17,7 @@ in
     "aws-credentials.age".publicKeys = [ccr-ssh ccr-gpg picard sisko];
     "nextcloud-admin-pass.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "home-planimetry.age".publicKeys = [ccr-ssh ccr-gpg sisko];
-    "chatgpt-token.age".publicKeys = [ccr-ssh ccr-gpg kirk mothership picard];
+    "chatgpt-token.age".publicKeys = [ccr-ssh ccr-gpg kirk mothership picard deltaflyer];
     "cloudflare-dyndns-api-token.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "restic-hetzner-password.age".publicKeys = [ccr-ssh ccr-gpg picard sisko kirk];
     "hass-ssh-key.age".publicKeys = [ccr-ssh ccr-gpg sisko];
@@ -30,4 +30,5 @@ in
     "picard-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg picard];
     "sisko-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "kirk-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg kirk];
+    "deltaflyer-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg deltaflyer];
   }

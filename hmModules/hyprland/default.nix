@@ -25,12 +25,10 @@ in {
     ./hyprpaper.nix
     ../waybar
     ../swayidle
-    # ../mako
-    ../swaync
     ../gammastep
-    # ../kitty
     ../wezterm
     ../wayvnc
+    ../foot
   ];
 
   home.packages = with pkgs; [wl-clipboard waypipe];
@@ -55,32 +53,32 @@ in {
     };
   };
 
-  services.kanshi = {
-    enable = true;
-    systemdTarget = "hyprland-session.target";
-    profiles = {
-      undocked = {
-        outputs = [
-          {
-            status = "enable";
-            criteria = "eDP-1";
-          }
-        ];
-      };
-      docked = {
-        outputs = [
-          {
-            status = "disable";
-            criteria = "eDP-1";
-          }
-          {
-            status = "enable";
-            criteria = "DP-1";
-          }
-        ];
-      };
-    };
-  };
+  # services.kanshi = {
+  #   enable = true;
+  #   systemdTarget = "hyprland-session.target";
+  #   profiles = {
+  #     undocked = {
+  #       outputs = [
+  #         {
+  #           status = "enable";
+  #           criteria = "eDP-1";
+  #         }
+  #       ];
+  #     };
+  #     docked = {
+  #       outputs = [
+  #         {
+  #           status = "disable";
+  #           criteria = "eDP-1";
+  #         }
+  #         {
+  #           status = "enable";
+  #           criteria = "DP-1";
+  #         }
+  #       ];
+  #     };
+  #   };
+  # };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -110,10 +108,7 @@ in {
       windowrulev2 = float, title:^(floating)$
 
       bind = $mod, b, exec, firefox
-      bind = $mod SHIFT, b , exec, ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet firefox
-      bind = $mod SHIFT, RETURN, exec, ${config.programs.wezterm.package}/bin/wezterm ssh mothership.fleet
-      bind = $mod, m, exec, ${config.programs.wezterm.package}/bin/wezterm start -- mosh mothership.fleet
-      bind = $mod, t, exec, ${config.programs.wezterm.package}/bin/wezterm
+      bind = $mod, t, exec, ${lib.getExe config.programs.wezterm.package}
       bind = $mod, RETURN, exec, emacsclient -c --eval "(ccr/start-eshell)"
       bind = $mod, x, exec, emacsclient -c
       bind = $mod SHIFT, n, exec, emacsclient --eval '(ccr/org-capture "n")' -c -F '((name . "floating"))'
@@ -125,7 +120,6 @@ in {
       bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
       bind = $mod, code:60, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%
       bind = $mod, code:59, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-
-      bind = $mod SHIFT, t, exec, ${config.services.swaync.package}/bin/swaync-client -t
 
 
       bind = $mod SHIFT, q, killactive

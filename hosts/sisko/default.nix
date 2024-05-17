@@ -1,6 +1,7 @@
 {
   fleetModules,
   pkgs,
+  fleetFlake,
   config,
   ...
 }: {
@@ -34,19 +35,23 @@
 
   # FIXME why is this needed?
   nixpkgs.config.permittedInsecurePackages = ["openssl-1.1.1w"];
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_testing;
+  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
   # boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_testing;
-  # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_testing.override {
+  boot.kernelPackages = let
+    pkgs = fleetFlake.inputs.nixpkgsUnstableForSisko.legacyPackages.aarch64-linux;
+  in
+    pkgs.linuxPackagesFor pkgs.linux_testing;
+  # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_9.override {
   #   argsOverride = {
   #     src = pkgs.fetchFromGitLab {
   #       domain = "gitlab.collabora.com";
   #       owner = "hardware-enablement/rockchip-3588";
   #       repo = "linux";
-  #       rev = "b07290444a7fb5cf56a5200d2bad7f927e77e8b8";
-  #       sha256 = "sha256-ruD9+vRwFQOXf5PWB+QxtA8DWfOcIydD0nSekoQTqWw=";
+  #       rev = "23bb9c65a88c114bbe945b7ef5366bb02d3d9b80";
+  #       sha256 = "sha256-6TygOl5r7/N2jlcPznWlvJfVVeXKSR8yMoGuTDbIdTA=";
   #     };
-  #     version = "6.7";
-  #     modDirVersion = "6.7.0";
+  #     version = "6.9";
+  #     modDirVersion = "6.9.0";
   #   };
   # });
 

@@ -9,7 +9,7 @@
       extraPolicies = {
         ExtensionSettings = {};
       };
-      nativeMessagingHosts = [pkgs.tridactyl-native pkgs.fx-cast-bridge];
+      nativeMessagingHosts = [pkgs.tridactyl-native];
     };
     profiles.${username} = {
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [

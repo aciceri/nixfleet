@@ -2,7 +2,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "dracula";
+      theme = "catppuccin_mocha";
       editor = {
         indent-guides.render = true;
         cursor-shape = {

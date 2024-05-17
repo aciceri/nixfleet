@@ -72,6 +72,30 @@
       #     "chatgpt-token".owner = "ccr";
       #   };
       # };
+
+      deltaflyer = {
+        nixpkgs = let
+          # keep in sync with https://github.com/NixOS/mobile-nixos/blob/development/pkgs.nix
+          rev = "44d0940ea560dee511026a53f0e2e2cde489b4d4";
+        in
+          builtins.getFlake "github:NixOS/nixpkgs/${rev}";
+        extraHmModules = [
+          inputs.ccrEmacs.hmModules.default
+        ];
+        vpn = {
+          ip = "10.100.0.5";
+          publicKey = "6bzmBx2b5yzMdW0aK0KapoBesNcxTv5+qdo+pGmG+jc=";
+        };
+        homeManager = builtins.getFlake "github:nix-community/home-manager/670d9ecc3e46a6e3265c203c2d136031a3d3548e";
+        extraModules = [
+          (import "${inputs.mobile-nixos}/lib/configuration.nix" {device = "oneplus-fajita";})
+        ];
+        secrets = {
+          "deltaflyer-wireguard-private-key" = {};
+          "chatgpt-token".owner = "ccr";
+        };
+      };
+
       kirk = {
         vpn = {
           ip = "10.100.0.3";
@@ -80,6 +104,7 @@
         extraModules = [
           inputs.disko.nixosModules.disko
           inputs.nixosHardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+          inputs.lix-module.nixosModules.default
         ];
         extraHmModules = [
           inputs.ccrEmacs.hmModules.default
@@ -103,6 +128,7 @@
         extraModules = [
           inputs.disko.nixosModules.disko
           inputs.nixThePlanet.nixosModules.macos-ventura
+          inputs.lix-module.nixosModules.default
           # inputs.hercules-ci-agent.nixosModules.agent-service
         ];
         extraHmModules = [
@@ -127,13 +153,13 @@
 
       sisko = {
         system = "aarch64-linux";
-        nixpkgs = inputs.nixpkgsUnstableForSisko; # using more recent `nixpkgsUnstable` it fails to restart
         vpn = {
           ip = "10.100.0.1";
           publicKey = "bc5giljukT1+ChbbyTLdOfejfR3c8RZ4XoXmQM54nTY=";
         };
         extraModules = with inputs; [
           disko.nixosModules.disko
+          # lix-module.nixosModules.default
           # inputs.hercules-ci-agent.nixosModules.agent-service;
           # rock5b.nixosModules.default
         ];
