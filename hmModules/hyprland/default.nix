@@ -26,8 +26,9 @@ in {
     ../waybar
     ../swayidle
     ../gammastep
-    ../wezterm
+    # ../wezterm
     ../wayvnc
+    ../swaync
     ../foot
   ];
 
@@ -108,7 +109,7 @@ in {
       windowrulev2 = float, title:^(floating)$
 
       bind = $mod, b, exec, firefox
-      bind = $mod, t, exec, ${lib.getExe config.programs.wezterm.package}
+      bind = $mod, t, exec, foot
       bind = $mod, RETURN, exec, emacsclient -c --eval "(ccr/start-eshell)"
       bind = $mod, x, exec, emacsclient -c
       bind = $mod SHIFT, n, exec, emacsclient --eval '(ccr/org-capture "n")' -c -F '((name . "floating"))'

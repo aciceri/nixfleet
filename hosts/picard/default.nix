@@ -55,6 +55,7 @@
       "helix"
       "shell"
       "element"
+      "zmkbatx"
       "emacs"
       "firefox"
       "gpg"

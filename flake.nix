@@ -66,6 +66,7 @@
       url = "github:NixOS/mobile-nixos";
       flake = false;
     };
+    arion.url = "github:hercules-ci/arion";
   };
 
   outputs = inputs @ {flakeParts, ...}:

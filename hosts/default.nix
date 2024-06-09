@@ -159,6 +159,7 @@
         };
         extraModules = with inputs; [
           disko.nixosModules.disko
+          arion.nixosModules.arion
           # lix-module.nixosModules.default
           # inputs.hercules-ci-agent.nixosModules.agent-service;
           # rock5b.nixosModules.default

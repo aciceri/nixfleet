@@ -28,6 +28,7 @@
       # "matrix"
       "forgejo"
       # "jellyfin"
+      "immich"
     ]
     ++ [
       ./disko.nix

@@ -15,6 +15,7 @@
       "matrix.aciceri.dev"
       "syncv3.matrix.aciceri.dev"
       "jellyfin.aciceri.dev"
+      "photos.aciceri.dev"
     ];
     apiTokenFile = config.age.secrets.cloudflare-dyndns-api-token.path;
   };
