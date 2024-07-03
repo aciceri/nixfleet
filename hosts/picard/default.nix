@@ -80,6 +80,7 @@
       "teams"
       "obs-studio"
       "calibre"
+      "reinstall-magisk-on-lineage"
     ];
     extraGroups = [];
     backupPaths = [];
