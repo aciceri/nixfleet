@@ -2,18 +2,18 @@
   config,
   lib,
   pkgs,
+  fleetFlake,
   ...
 }: let
   sshdTmpDirectory = "${config.user.home}/sshd-tmp";
   sshdDirectory = "${config.user.home}/sshd";
-  pathToPubKey = "/mnt/sdcard/Download/picard_host_key.pub";
   port = 8022;
 in {
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
   environment.etcBackupExtension = ".bak";
 
   # Read the changelog before changing this value
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   # Set up nix for flakes
   nix.extraOptions = ''
@@ -23,9 +23,25 @@ in {
   # Set your time zone
   time.timeZone = "Europe/Rome";
 
-  build.activation.sshd = ''
+  home-manager.config = {pkgs, ...}: {
+    home.stateVersion = "24.05";
+    _module.args = {
+      hostname = "janeway";
+      age.secrets = {};
+    };
+    imports = [../../hmModules/shell];
+  };
+
+  build.activation.sshd = let
+    keys = (builtins.import ../../lib).keys;
+    inherit (keys) hosts users;
+  in ''
     $DRY_RUN_CMD mkdir $VERBOSE_ARG --parents "${config.user.home}/.ssh"
-    $DRY_RUN_CMD cat ${pathToPubKey} > "${config.user.home}/.ssh/authorized_keys"
+    $DRY_RUN_CMD echo ${hosts.picard} > "${config.user.home}/.ssh/authorized_keys"
+    $DRY_RUN_CMD echo ${hosts.sisko} >> "${config.user.home}/.ssh/authorized_keys"
+    $DRY_RUN_CMD echo ${hosts.kirk} >> "${config.user.home}/.ssh/authorized_keys"
+    $DRY_RUN_CMD echo ${users.ccr-ssh} >> "${config.user.home}/.ssh/authorized_keys"
+    $DRY_RUN_CMD echo ${users.ccr-gpg} >> "${config.user.home}/.ssh/authorized_keys"
 
     if [[ ! -d "${sshdDirectory}" ]]; then
       $DRY_RUN_CMD rm $VERBOSE_ARG --recursive --force "${sshdTmpDirectory}"
@@ -41,16 +57,18 @@ in {
     fi
   '';
 
-  environment.packages = [
-    pkgs.vim
+  environment.packages = let
+    inherit (fleetFlake.inputs.ccrEmacs.packages.aarch64-linux) ccrEmacs;
+  in [
     pkgs.bottom
     pkgs.helix
     pkgs.stress
     pkgs.openssh
     pkgs.git
+    pkgs.btop
+    ccrEmacs
     (pkgs.writeScriptBin "sshd-start" ''
       #!${pkgs.runtimeShell}
-
       echo "Starting sshd in non-daemonized way on port ${toString port}"
       ${pkgs.openssh}/bin/sshd -f "${sshdDirectory}/sshd_config" -D
     '')

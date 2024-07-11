@@ -291,6 +291,7 @@ in {
       internal = true;
       default = hostname: config:
         inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+          pkgs = inputs.nixpkgsUnstable.legacyPackages.aarch64-linux;
           modules = [
             ({
               lib,
@@ -298,6 +299,7 @@ in {
               ...
             }: {
               nixpkgs.overlays = config.overlays;
+              _module.args.fleetFlake = self;
             })
             "${self.outPath}/hosts/${hostname}"
           ];
