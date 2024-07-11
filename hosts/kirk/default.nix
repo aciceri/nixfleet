@@ -32,7 +32,6 @@
       "syncthing"
       "mount-rock5b"
       "adb"
-      "calibre"
     ]
     ++ [
       ./disko.nix
@@ -66,6 +65,7 @@
       "discord"
       "remmina"
       "zulip"
+      "calibre"
     ];
     extraGroups = [];
     backupPaths = [];
