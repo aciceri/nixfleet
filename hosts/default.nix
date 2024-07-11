@@ -176,8 +176,8 @@
           "minio-credentials".owner = "minio";
           "aws-credentials".owner = "hercules-ci-agent";
           "hass-ssh-key".owner = "hass";
-          "matrix-registration-shared-secret".owner = "matrix-synapse";
-          "matrix-sliding-sync-secret".owner = "matrix-synapse";
+          # "matrix-registration-shared-secret".owner = "matrix-synapse";
+          # "matrix-sliding-sync-secret".owner = "matrix-synapse";
           "autistici-password".owner = "forgejo";
         };
       };
