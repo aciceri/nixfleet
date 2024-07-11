@@ -29,10 +29,10 @@
               "tcp://kirk.fleet"
             ];
           };
-          onplus6t = {
+          onplus8t = {
             id = "76BJ2ZE-FPFDWUZ-3UZIENZ-TS6YBGG-EZSF6UE-GLHRBQ2-KTHTRMI-3JWNRAT";
             addresses = [
-              "tcp://oneplus6t.fleet"
+              "tcp://oneplus8t.fleet"
             ];
           };
         };

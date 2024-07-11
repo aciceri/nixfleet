@@ -184,7 +184,7 @@
     };
 
     vpnExtra = {
-      oneplus6t = {
+      oneplus8t = {
         ip = "10.100.0.4";
         publicKey = "9ccx4C4xvPC6lPgTZAHDSfK4FS2BP2i4D57u9IZjw18=";
       };
