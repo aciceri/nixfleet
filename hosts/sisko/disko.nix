@@ -7,6 +7,10 @@ let
   # old_hd = "/dev/disk/by-id/ata-WDC_WD5000AAKX-08U6AA0_WD-WCC2E5TR40FU";
 in {
   disko.devices = {
+    nodev."/" = {
+      fsType = "tmpfs";
+      mountOptions = ["size=1024M" "defaults" "mode=755"];
+    };
     disk = {
       ssd = {
         device = ssd;
@@ -17,20 +21,35 @@ in {
             ESP = {
               label = "ESP";
               type = "EF00";
-              size = "1G";
+              size = "1024M";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
               };
             };
-            root = {
-              label = "root";
-              size = "100%";
+            nixroot = {
+              size = "100G";
               content = {
                 type = "filesystem";
                 format = "ext4";
-                mountpoint = "/";
+                mountpoint = "/nix";
+              };
+            };
+            persist = {
+              size = "100G";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/persist";
+              };
+            };
+            tmp = {
+              end = "0";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/tmp";
               };
             };
           };

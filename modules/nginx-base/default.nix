@@ -16,4 +16,8 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
   };
+
+  environment.persistence."/persist".directories = [
+    "/var/lib/acme"
+  ];
 }

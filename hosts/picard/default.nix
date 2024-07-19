@@ -32,7 +32,7 @@
       "restic"
       "binfmt"
       "greetd"
-      "syncthing"
+      # "syncthing"
       "hass-poweroff"
       "forgejo-runners"
       "teamviewer"

@@ -160,6 +160,7 @@
         extraModules = with inputs; [
           disko.nixosModules.disko
           arion.nixosModules.arion
+          impermanence.nixosModules.impermanence
           # lix-module.nixosModules.default
           # inputs.hercules-ci-agent.nixosModules.agent-service;
           # rock5b.nixosModules.default
@@ -173,8 +174,8 @@
           "home-planimetry".owner = "hass";
           "cloudflare-dyndns-api-token" = {};
           "restic-hetzner-password" = {};
-          "minio-credentials".owner = "minio";
-          "aws-credentials".owner = "hercules-ci-agent";
+          # "minio-credentials".owner = "minio";
+          # "aws-credentials".owner = "hercules-ci-agent";
           "hass-ssh-key".owner = "hass";
           # "matrix-registration-shared-secret".owner = "matrix-synapse";
           # "matrix-sliding-sync-secret".owner = "matrix-synapse";

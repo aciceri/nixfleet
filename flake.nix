@@ -68,6 +68,7 @@
       flake = false;
     };
     arion.url = "github:hercules-ci/arion";
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = inputs @ {flakeParts, ...}:

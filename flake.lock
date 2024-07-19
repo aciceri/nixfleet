@@ -852,6 +852,21 @@
         "type": "github"
       }
     },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1719091691,
+        "narHash": "sha256-AxaLX5cBEcGtE02PeGsfscSb/fWMnyS7zMWBXQWDKbE=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "23c1f06316b67cb5dabdfe2973da3785cfe9c34a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
+      }
+    },
     "kernel-src": {
       "flake": false,
       "locked": {
@@ -1653,6 +1668,7 @@
         "hercules-ci-effects": "hercules-ci-effects_3",
         "homeManager": "homeManager",
         "homeManagerGitWorkspace": "homeManagerGitWorkspace",
+        "impermanence": "impermanence",
         "lix": "lix",
         "lix-module": "lix-module",
         "mobile-nixos": "mobile-nixos",

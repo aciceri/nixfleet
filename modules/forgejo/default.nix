@@ -29,15 +29,11 @@
         SHOW_FOOTER_VERSION = false;
       };
     };
-    mailerPasswordFile = config.age.secrets.autistici-password.path;
+    secrets.mailer.PASSWD = config.age.secrets.autistici-password.path;
     dump.enable = true;
   };
 
-  systemd.tmpfiles.rules = [
-    "d ${config.services.forgejo.stateDir} 770 forgejo forgejo"
-  ];
-
-  backup.paths = [
+  environment.persistence."/persist".directories = [
     config.services.forgejo.stateDir
   ];
 

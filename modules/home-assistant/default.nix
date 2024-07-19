@@ -210,8 +210,8 @@ in {
     };
   };
 
-  backup.paths = [
-    "/var/lib/hass"
+  environment.persistence."/persist".directories = [
+    config.services.home-assistant.configDir
   ];
 
   # virtualisation.oci-containers = {
