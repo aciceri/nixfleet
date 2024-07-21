@@ -94,6 +94,7 @@ in {
       "media_player"
       "wyoming"
       "wake_on_lan"
+      "prometheus"
     ];
     extraPackages = python3Packages:
       with python3Packages; [
@@ -148,6 +149,9 @@ in {
       ];
       shell_command.turn_off_picard = ''${pkgs.openssh}/bin/ssh -i /var/lib/hass/.ssh/id_ed25519 -o StrictHostKeyChecking=no hass@picard.fleet "exec sudo \$(readlink \$(which systemctl)) poweroff"'';
       # shell_command.turn_off_picard = ''whoami'';
+      prometheus = {
+        namespace = "hass";
+      };
     };
   };
 

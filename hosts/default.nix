@@ -172,6 +172,8 @@
           "hercules-ci-secrets-json".owner = "hercules-ci-agent";
           "cachix-personal-token".owner = "ccr";
           "home-planimetry".owner = "hass";
+          "home-assistant-token".owner = "prometheus";
+          "grafana-password".owner = "grafana";
           "cloudflare-dyndns-api-token" = {};
           "restic-hetzner-password" = {};
           # "minio-credentials".owner = "minio";

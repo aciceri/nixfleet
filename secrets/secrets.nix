@@ -17,10 +17,12 @@ in
     "aws-credentials.age".publicKeys = [ccr-ssh ccr-gpg picard sisko];
     "nextcloud-admin-pass.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "home-planimetry.age".publicKeys = [ccr-ssh ccr-gpg sisko];
+    "home-assistant-token.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "chatgpt-token.age".publicKeys = [ccr-ssh ccr-gpg kirk mothership picard deltaflyer];
     "cloudflare-dyndns-api-token.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "restic-hetzner-password.age".publicKeys = [ccr-ssh ccr-gpg picard sisko kirk];
     "hass-ssh-key.age".publicKeys = [ccr-ssh ccr-gpg sisko];
+    "grafana-password.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "matrix-registration-shared-secret.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "matrix-sliding-sync-secret.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "forgejo-runners-token.age".publicKeys = [ccr-ssh ccr-gpg picard];

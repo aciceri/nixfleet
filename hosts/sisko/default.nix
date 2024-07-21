@@ -29,13 +29,16 @@
       "forgejo"
       # # "jellyfin"
       # "immich"
+      "prometheus"
+      "grafana"
+      "prometheus-exporters"
+      "loki"
+      "promtail"
     ]
     ++ [
       ./disko.nix
     ];
 
-  # FIXME why is this needed?
-  nixpkgs.config.permittedInsecurePackages = ["openssl-1.1.1w"];
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
   # boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_testing;
   boot.kernelPackages = let
@@ -94,6 +97,7 @@
       "/var/log"
       "/var/lib/containers"
       "/var/lib/postgresql"
+      "/home/${config.ccr.username}/.ssh"
     ];
     files = [
       "/etc/machine-id"

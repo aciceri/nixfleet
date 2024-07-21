@@ -41,6 +41,7 @@
       "mount-rock5b"
       "adb"
       "guix"
+      "prometheus-exporters"
     ]
     ++ [
       ./disko.nix
