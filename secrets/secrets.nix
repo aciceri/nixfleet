@@ -27,6 +27,7 @@ in
     "matrix-sliding-sync-secret.age".publicKeys = [ccr-ssh ccr-gpg sisko];
     "forgejo-runners-token.age".publicKeys = [ccr-ssh ccr-gpg picard];
     "forgejo-nix-access-tokens.age".publicKeys = [ccr-ssh ccr-gpg picard];
+    "garmin-collector-environment.age".publicKeys = [ccr-ssh ccr-gpg sisko];
 
     # WireGuard
     "picard-wireguard-private-key.age".publicKeys = [ccr-ssh ccr-gpg picard];
