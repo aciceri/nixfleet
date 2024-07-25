@@ -42,6 +42,7 @@
       "adb"
       "guix"
       "prometheus-exporters"
+      "promtail"
     ]
     ++ [
       ./disko.nix
