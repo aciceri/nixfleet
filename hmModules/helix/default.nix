@@ -13,5 +13,19 @@
         true-color = true; # to make colors coherent when in ssh
       };
     };
+    languages = {
+      language = [
+        {
+          name = "nix";
+          language-servers = ["nixd"];
+        }
+      ];
+      language-servers = [
+        {
+          name = "nixd";
+          command = "nixd";
+        }
+      ];
+    };
   };
 }
