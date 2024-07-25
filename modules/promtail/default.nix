@@ -11,7 +11,7 @@
     };
     clients = [
       {
-        url = "http://sisko.fleet:${builtins.toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
+        url = "http://sisko.fleet:${builtins.toString config.services.loki.configuration.server.http_listen_port or 3100}/loki/api/v1/push";
       }
     ];
     positions = {
