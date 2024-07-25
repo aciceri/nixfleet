@@ -3,6 +3,12 @@
 in {
   services.prometheus = {
     enable = true;
+    pushgateway = {
+      enable = true;
+      web = {
+        listen-address = "sisko.fleet:9094";
+      };
+    };
     checkConfig = false; # Otherwise it will fail because it cannot access bearer_token_file
     webExternalUrl = "https://status.aciceri.dev";
     globalConfig.scrape_interval = "10s";
@@ -18,10 +24,66 @@ in {
         ];
       }
       {
+        job_name = "pushgateway";
+        static_configs = [
+          {
+            targets = [cfg.pushgateway.web.listen-address];
+          }
+        ];
+      }
+      {
         job_name = "node";
         static_configs = [
           {
             targets = builtins.map (host: "${host}.fleet:9100") ["sisko" "picard"];
+          }
+        ];
+      }
+      {
+        job_name = "wireguard";
+        static_configs = [
+          {
+            targets = builtins.map (host: "${host}.fleet:9586") ["picard"];
+          }
+        ];
+      }
+      {
+        job_name = "zfs";
+        static_configs = [
+          {
+            targets = builtins.map (host: "${host}.fleet:9134") ["picard"];
+          }
+        ];
+      }
+      {
+        job_name = "restic";
+        static_configs = [
+          {
+            targets = builtins.map (host: "${host}.fleet:9753") ["sisko"];
+          }
+        ];
+      }
+      {
+        job_name = "postgres";
+        static_configs = [
+          {
+            targets = builtins.map (host: "${host}.fleet:9187") ["sisko"];
+          }
+        ];
+      }
+      {
+        job_name = "nginx";
+        static_configs = [
+          {
+            targets = builtins.map (host: "${host}.fleet:9117") ["sisko"];
+          }
+        ];
+      }
+      {
+        job_name = "smartctl";
+        static_configs = [
+          {
+            targets = builtins.map (host: "${host}.fleet:9633") ["sisko"];
           }
         ];
       }
