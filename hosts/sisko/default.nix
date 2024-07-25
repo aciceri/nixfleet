@@ -34,6 +34,7 @@
       "prometheus-exporters"
       "loki"
       "promtail"
+      "garmin-collector"
       "restic"
       # "immich"
     ]
