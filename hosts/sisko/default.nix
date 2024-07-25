@@ -34,6 +34,8 @@
       "prometheus-exporters"
       "loki"
       "promtail"
+      "restic"
+      # "immich"
     ]
     ++ [
       ./disko.nix
