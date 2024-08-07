@@ -14,6 +14,13 @@ in {
         admin_user = "andrea";
         admin_password = "$__file{${config.age.secrets.grafana-password.path}}";
       };
+      smtp = {
+        enabled = true;
+        host = "smtp.autistici.org:587";
+        user = "andrea.ciceri@autistici.org";
+        from_address = "andrea.ciceri@autistici.org";
+        password = "$__file{${config.age.secrets.autistici-password.path}}";
+      };
     };
   };
   environment.persistence."/persist".directories = [

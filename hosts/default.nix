@@ -181,7 +181,11 @@
           "hass-ssh-key".owner = "hass";
           # "matrix-registration-shared-secret".owner = "matrix-synapse";
           # "matrix-sliding-sync-secret".owner = "matrix-synapse";
-          "autistici-password".owner = "forgejo";
+          "autistici-password" = {
+            # FIXME terrible, should create a third ad-hoc group
+            owner = "grafana";
+            group = "forgejo";
+          };
           "garmin-collector-environment".owner = "garmin-collector";
         };
       };
