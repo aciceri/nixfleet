@@ -120,7 +120,7 @@
   boot.tmp.cleanOnBoot = true;
 
   fileSystems."/mnt/hd" = {
-    device = "/dev/disk/by-id/ata-WDC_WD10EADS-22M2B0_WD-WCAV52709550-part1";
+    device = "/dev/disk/by-id/ata-WDC_WD5000AAKX-08U6AA0_WD-WCC2E5TR40FU-part1";
     fsType = "ext4";
     options = ["nofail"];
   };
