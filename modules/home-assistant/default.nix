@@ -12,14 +12,20 @@
   pun_sensor = pkgs.fetchFromGitHub {
     owner = "virtualdj";
     repo = "pun_sensor";
-    rev = "19f270b353594ab536f9dc42adf31427e7a81562";
-    hash = "sha256-3pL+8CXzjmR54Ff9qLhHzC/C+uns0qWEgJFHv+K4MFs=";
+    rev = "51b216fab5c0d454d66060647c36e81bebfaf059";
+    hash = "sha256-bGVJx3bObXdf4AiC6bDvafs53NGS2aufRcTUmXy8nAI=";
   };
   cozy_life = pkgs.fetchFromGitHub {
     owner = "yangqian";
     repo = "hass-cozylife";
     rev = "9a40a2fa09b0f74aee0b278e2858f5600b3487a9";
     hash = "sha256-i+82EUamV1Fhwhb1vhRqn9aA9dJ0FxSSMD734domyhw=";
+  };
+  garmin_connect = pkgs.fetchFromGitHub {
+    owner = "cyberjunky";
+    repo = "home-assistant-garmin_connect";
+    rev = "d42edcabc67ba6a7f960e849c8aaec1aabef87c0";
+    hash = "sha256-KqbP6TpH9B0/AjtsW5TcWSNgUhND+w8rO6X8fHqtsDI=";
   };
   tuya-device-sharing-sdk = ps:
     ps.callPackage (
@@ -102,6 +108,9 @@ in {
         holidays
         beautifulsoup4
         (tuya-device-sharing-sdk python3Packages) # remove after https://github.com/NixOS/nixpkgs/pull/294706/
+        getmac
+        garminconnect
+        tzlocal
       ];
     config = {
       default_config = {};
@@ -166,7 +175,8 @@ in {
 
   systemd.tmpfiles.rules = [
     "d ${config.services.home-assistant.configDir}/custom_components 770 hass hass"
-    "L+ ${config.services.home-assistant.configDir}/custom_components/pun_sensor - - - - ${pun_sensor}/custom_components/pun_sensor"
+    "C+ ${config.services.home-assistant.configDir}/custom_components/pun_sensor 770 hass hass - ${pun_sensor}/custom_components/pun_sensor"
+    "C+ ${config.services.home-assistant.configDir}/custom_components/garmin_connect 770 hass hass - ${garmin_connect}/custom_components/garmin_connect"
 
     "d ${config.services.home-assistant.configDir}/.ssh 770 hass hass"
     "C ${config.services.home-assistant.configDir}/.ssh/id_ed25519 700 hass hass - ${config.age.secrets.hass-ssh-key.path}"
