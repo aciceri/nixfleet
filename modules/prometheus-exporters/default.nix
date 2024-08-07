@@ -49,7 +49,7 @@ in {
     nginx = mkFor ["sisko"] {
       enable = true;
     };
-    smartctl = mkFor ["sisko"] {
+    smartctl = mkFor ["sisko" "picard"] {
       enable = true;
     };
   };
