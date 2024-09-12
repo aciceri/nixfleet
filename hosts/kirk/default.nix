@@ -32,6 +32,7 @@
       "syncthing"
       "mount-rock5b"
       "adb"
+      "binfmt"
     ]
     ++ [
       ./disko.nix
