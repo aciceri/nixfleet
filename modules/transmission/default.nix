@@ -45,4 +45,8 @@
   ];
 
   ccr.extraGroups = ["transmission"];
+
+  environment.persistence."/persist".directories = [
+    config.services.transmission.home
+  ];
 }

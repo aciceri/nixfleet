@@ -1,14 +1,13 @@
 # heavily based on https://discourse.nixos.org/t/gitea-nix-actions-runner-setup/35279
 {
   config,
-  inputs',
   pkgs,
   lib,
   ...
 }: let
   storeDeps = pkgs.runCommand "store-deps" {} ''
     mkdir -p $out/bin
-    for dir in ${toString [pkgs.coreutils pkgs.findutils pkgs.gnugrep pkgs.gawk pkgs.git pkgs.nix pkgs.bash pkgs.jq pkgs.nodejs inputs'.nix-fast-build.packages.nix-fast-build pkgs.curl pkgs.tea]}; do
+    for dir in ${with pkgs; builtins.toString [coreutils findutils gnugrep gawk git nix bash jq nodejs nix-fast-build curl tea]}; do
       for bin in "$dir"/bin/*; do
         ln -s "$bin" "$out/bin/$(basename "$bin")"
       done

@@ -13,7 +13,7 @@
     Service = {
       CPUSchedulingPolicy = "idle";
       IOSchedulingClass = "idle";
-      ExecStart = "${pkgs.nix-index}/bin/nix-index --nixpkgs ${fleetFlake.inputs.nixpkgsUnstable}";
+      ExecStart = "${pkgs.nix-index}/bin/nix-index --nixpkgs ${fleetFlake.inputs.nixpkgs}";
     };
   };
 

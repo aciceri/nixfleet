@@ -12,11 +12,6 @@
       nativeMessagingHosts = [pkgs.tridactyl-native];
     };
     profiles.${username} = {
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        privacy-badger
-        ublock-origin
-        tridactyl
-      ];
       settings = {
         "browser.startup.homepage" = "https://google.it";
         "browser.search.region" = "IT";

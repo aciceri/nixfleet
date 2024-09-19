@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  fleetFlake,
   ...
 }: {
   programs.waybar = {

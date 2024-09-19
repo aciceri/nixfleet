@@ -4,56 +4,42 @@
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
     # FIXME remove constraint
-    nixpkgsUnstable.url = "github:NixOS/nixpkgs/2893f56de08021cffd9b6b6dfc70fd9ccd51eb60";
-    nixpkgsUnstableForSisko.url = "github:NixOS/nixpkgs/0e74ca98a74bc7270d28838369593635a5db3260";
-    nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    # nixpkgsForSisko.url = "github:NixOS/nixpkgs/0e74ca98a74bc7270d28838369593635a5db3260";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # TODO: remove after https://github.com/nix-community/home-manager/pull/3811
     homeManagerGitWorkspace = {
       url = "github:aciceri/home-manager/git-workspace";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgsUnstable";
-        nixpkgs-stable.follows = "nixpkgsStable";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    # FIXME go back to master after nltch's repository is re-added
-    nur.url = "github:nix-community/NUR/324a5f3b9fbfdb77336dc9fa1c0a02f33a6acf6d";
     agenix.url = "github:ryantm/agenix";
     rock5b.url = "github:aciceri/rock5b-nixos";
-    ccrEmacs.url = "git+https://git.aciceri.dev/aciceri/emacs.git";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
     dream2nix.url = "github:nix-community/dream2nix";
-    hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent";
-    nix-fast-build = {
-      url = "github:Mic92/nix-fast-build";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
-    };
     nixThePlanet = {
       url = "github:aciceri/NixThePlanet/nix-in-darwin";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixDarwin = {
       url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-on-droid.url = "github:nix-community/nix-on-droid";
-    nixd.url = "github:nix-community/nixd";
     lix = {
       url = "git+https://git@git.lix.systems/lix-project/lix";
       flake = false;
@@ -61,14 +47,14 @@
     lix-module = {
       url = "git+https://git.lix.systems/lix-project/nixos-module";
       inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgsUnstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     mobile-nixos = {
       url = "github:NixOS/mobile-nixos";
       flake = false;
     };
-    arion.url = "github:hercules-ci/arion";
     impermanence.url = "github:nix-community/impermanence";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = inputs @ {flakeParts, ...}:
@@ -81,7 +67,6 @@
         ./packages
         ./shell
         ./checks
-        ./ci
       ];
       systems = ["x86_64-linux" "aarch64-linux"];
     };

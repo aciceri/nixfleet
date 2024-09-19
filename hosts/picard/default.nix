@@ -29,7 +29,6 @@
       "printing"
       "pam"
       "wireguard-client"
-      "restic"
       "binfmt"
       "greetd"
       # "syncthing"
@@ -37,7 +36,7 @@
       "forgejo-runners"
       "teamviewer"
       # "macos-ventura"
-      # "sunshine"
+      "sunshine"
       "mount-rock5b"
       "adb"
       "guix"
@@ -58,7 +57,8 @@
       "shell"
       "element"
       "zmkbatx"
-      "emacs"
+      "tremotesf"
+      # "emacs"
       "firefox"
       "gpg"
       "mpv"
@@ -83,6 +83,7 @@
       "obs-studio"
       "calibre"
       "reinstall-magisk-on-lineage"
+      "vscode-server"
     ];
     extraGroups = [];
     backupPaths = [];
@@ -104,7 +105,18 @@
     "i2c-dev" # needed?
   ];
 
-  boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+  # https://github.com/NixOS/nixpkgs/issues/328909
+  boot.extraModulePackages = [
+    (config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
+      patches = [];
+      src = pkgs.fetchFromGitLab {
+        owner = "${old.pname}-linux";
+        repo = "${old.pname}-linux";
+        rev = "7853cbfc28bc62e87db79f612568b25315397dd0";
+        hash = "sha256-QImfvYzMqyrRGyrS6I7ERYmteaTijd8ZRnC6+bA9OyM=";
+      };
+    }))
+  ];
 
   systemd.services.ddcci = {
     serviceConfig.Type = "oneshot";

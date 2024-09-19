@@ -19,7 +19,6 @@
         type = lib.types.listOf overlayType;
         default = with inputs; [
           agenix.overlays.default
-          nur.overlay
           (final: _: {
             inherit (disko.packages.${final.system}) disko;
             inherit (self.packages.${final.system}) deploy;
@@ -46,7 +45,7 @@
     _module.args.pkgs =
       lib.foldl
       (legacyPackages: legacyPackages.extend)
-      inputs.nixpkgsUnstable.legacyPackages.${system}
+      inputs.nixpkgs.legacyPackages.${system}
       config.fleet.overlays;
 
     packages =

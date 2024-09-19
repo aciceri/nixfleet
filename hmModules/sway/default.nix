@@ -30,7 +30,7 @@
       font.name = "Sans,Symbols Nerd Font";
       iconTheme = {
         name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
+        package = pkgs.adwaita-icon-theme;
       };
     };
 

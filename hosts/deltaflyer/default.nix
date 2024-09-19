@@ -1,9 +1,7 @@
 {
   fleetModules,
-  config,
   lib,
   pkgs,
-  fleetFlake,
   ...
 }: {
   imports =

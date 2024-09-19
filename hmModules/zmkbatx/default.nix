@@ -6,11 +6,10 @@
   home.packages = [pkgs.zmkBATx];
 
   systemd.user.services.zmkBATx = {
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = ["graphical-session.target" "waybar.service"];
 
     Unit = {
       Description = "zmkBATx";
-      PartOf = ["graphical-session.target"];
     };
 
     Service = {

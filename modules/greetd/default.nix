@@ -13,6 +13,15 @@
         Exec=Hyprland
       '';
     })
+    (pkgs.writeTextFile {
+      name = "xorg-session.desktop";
+      destination = "/cosmic-session.desktop";
+      text = ''
+        [Desktop Entry]
+        Name=Cosmic
+        Exec=cosmic-session
+      '';
+    })
   ];
 in {
   services.greetd = {

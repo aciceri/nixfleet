@@ -28,7 +28,7 @@ in {
           nixpkgs = lib.mkOption {
             description = "Used nixpkgs";
             type = lib.types.anything;
-            default = inputs.nixpkgsUnstable;
+            default = inputs.nixpkgs;
           };
           extraModules = lib.mkOption {
             description = "Extra NixOS modules";
@@ -64,7 +64,7 @@ in {
           nixpkgs = lib.mkOption {
             description = "Used nixpkgs";
             type = lib.types.anything;
-            default = inputs.nixpkgsUnstable;
+            default = inputs.nixpkgs;
           };
           extraModules = lib.mkOption {
             description = "Extra NixOS modules";
@@ -101,7 +101,7 @@ in {
           nixpkgs = lib.mkOption {
             description = "Used nixpkgs";
             type = lib.types.anything;
-            default = inputs.nixpkgsUnstable;
+            default = inputs.nixpkgs;
           };
           homeManager = lib.mkOption {
             description = "Used home-manager";
@@ -174,11 +174,7 @@ in {
             default = "ccr";
           };
         };
-        config.overlays = with inputs;
-          [
-            nur.overlay
-          ]
-          ++ cfg.overlays;
+        config.overlays = with inputs; cfg.overlays;
       }));
       default = {};
     };
@@ -260,7 +256,6 @@ in {
             fleetHmModules = builtins.map (moduleName: "${self.outPath}/hmModules/${moduleName}");
             fleetFlake = self;
             vpn = cfg.vpnExtra // (lib.mapAttrs (_: host: host.vpn) cfg.hosts);
-            inherit (flakePartsArgs.config.allSystems.${config.system}.allModuleArgs.config._module.args) inputs';
           };
         };
     };
@@ -291,7 +286,7 @@ in {
       internal = true;
       default = hostname: config:
         inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-          pkgs = inputs.nixpkgsUnstable.legacyPackages.aarch64-linux;
+          pkgs = inputs.nixpkgs.legacyPackages.aarch64-linux;
           modules = [
             ({
               lib,

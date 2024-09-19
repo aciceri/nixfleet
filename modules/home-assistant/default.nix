@@ -27,53 +27,12 @@
     rev = "d42edcabc67ba6a7f960e849c8aaec1aabef87c0";
     hash = "sha256-KqbP6TpH9B0/AjtsW5TcWSNgUhND+w8rO6X8fHqtsDI=";
   };
-  tuya-device-sharing-sdk = ps:
-    ps.callPackage (
-      {
-        lib,
-        buildPythonPackage,
-        fetchPypi,
-        requests,
-        paho-mqtt,
-        cryptography,
-      }: let
-        pname = "tuya-device-sharing-sdk";
-        version = "0.2.0";
-      in
-        buildPythonPackage {
-          inherit pname version;
-
-          src = fetchPypi {
-            inherit pname version;
-            hash = "sha256-fu8zh59wlnxtstNbNL8mIm10tiXy22oPbi6oUy5x8c8=";
-          };
-
-          postPatch = ''
-            touch requirements.txt
-          '';
-
-          doCheck = false;
-
-          propagatedBuildInputs = [
-            requests
-            paho-mqtt
-            cryptography
-          ];
-
-          meta = with lib; {
-            description = "Tuya Device Sharing SDK";
-            homepage = "https://github.com/tuya/tuya-device-sharing-sdk";
-            license = licenses.mit;
-            maintainers = with maintainers; [aciceri];
-          };
-        }
-    ) {};
 in {
   services.home-assistant = {
     enable = true;
     openFirewall = true;
     package = pkgs.home-assistant.overrideAttrs (old: {
-      # doInstallCheck = false;
+      doInstallCheck = false;
       # prePatch =
       #   ''
       #     rm -rf homeassistant/components/smartthings
@@ -107,7 +66,7 @@ in {
         # used by pun_sensor
         holidays
         beautifulsoup4
-        (tuya-device-sharing-sdk python3Packages) # remove after https://github.com/NixOS/nixpkgs/pull/294706/
+        tuya-device-sharing-sdk
         getmac
         garminconnect
         tzlocal

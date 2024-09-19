@@ -8,7 +8,7 @@
   mkFor = hosts: lib.mkIf (builtins.elem hostname hosts);
 in {
   services.prometheus.exporters = {
-    node = mkFor ["sisko" "picard"] {
+    node = mkFor ["sisko" "picard" "kirk"] {
       enable = true;
       enabledCollectors = [
         "cpu"
@@ -34,10 +34,10 @@ in {
       ];
       extraFlags = ["--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi"];
     };
-    wireguard = mkFor ["sisko" "picard"] {
+    wireguard = mkFor ["sisko" "picard" "kirk"] {
       enable = true;
     };
-    zfs = mkFor ["picard"] {
+    zfs = mkFor ["picard" "kirk"] {
       enable = true;
     };
     # restic = mkFor ["sisko"] {
@@ -49,7 +49,7 @@ in {
     nginx = mkFor ["sisko"] {
       enable = true;
     };
-    smartctl = mkFor ["sisko" "picard"] {
+    smartctl = mkFor ["sisko" "picard" "kirk"] {
       enable = true;
     };
   };

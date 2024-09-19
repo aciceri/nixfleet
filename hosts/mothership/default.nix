@@ -71,13 +71,6 @@
 
   environment.systemPackages = with pkgs; [waypipe];
 
-  home-manager.users.ccr.gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
-    };
-  };
   programs.dconf.enable = true;
 
   programs.mosh.enable = true;

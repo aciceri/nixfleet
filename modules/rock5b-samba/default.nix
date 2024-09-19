@@ -10,17 +10,17 @@
     samba = {
       enable = true;
       securityType = "user";
-      extraConfig = ''
-        workgroup = WORKGROUP
-        server string = rock5b
-        netbios name = rock5b
-        security = user
-        map to guest = bad user
-        vfs objects = recycle
-        recycle:repository = .recycle
-        recycle:keeptree = yes
-        recycle:versions = yes
-      '';
+      settings.global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "rock5b";
+        "netbios name" = "rock5b";
+        "security" = "user";
+        "map to guest" = "bad user";
+        "vfs objects" = "recycle";
+        "recycle:repository" = ".recycle";
+        "recycle:keeptree" = "yes";
+        "recycle:versions" = "yes";
+      };
       shares = {
         torrent = {
           path = "/mnt/hd/torrent";

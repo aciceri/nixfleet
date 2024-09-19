@@ -1,6 +1,7 @@
 {
   programs.helix = {
     enable = true;
+    defaultEditor = true;
     settings = {
       theme = "catppuccin_mocha";
       editor = {
@@ -11,6 +12,10 @@
           select = "underline";
         };
         true-color = true; # to make colors coherent when in ssh
+        # inline-diagnostic = {
+        #   cursor-line = "hint";
+        #   other-lines = "error";
+        # };
       };
     };
     languages = {
@@ -19,13 +24,26 @@
           name = "nix";
           language-servers = ["nixd"];
         }
-      ];
-      language-servers = [
         {
-          name = "nixd";
-          command = "nixd";
+          name = "markdown";
+          language-servers = ["zk"];
+        }
+        {
+          name = "typescript";
+          language-servers = ["vtsls"];
         }
       ];
+      language-server = {
+        nixd.command = "nixd";
+        vtsls = {
+          command = "vtsls";
+          args = ["--stdio"];
+        };
+        zk = {
+          command = "zk";
+          args = ["lsp"];
+        };
+      };
     };
   };
 }

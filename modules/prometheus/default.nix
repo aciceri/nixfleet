@@ -35,7 +35,7 @@ in {
         job_name = "node";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9100") ["sisko" "picard"];
+            targets = builtins.map (host: "${host}.fleet:9100") ["sisko" "picard" "kirk"];
           }
         ];
       }
@@ -43,7 +43,7 @@ in {
         job_name = "wireguard";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9586") ["picard"];
+            targets = builtins.map (host: "${host}.fleet:9586") ["picard" "kirk"];
           }
         ];
       }
@@ -51,7 +51,7 @@ in {
         job_name = "zfs";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9134") ["picard"];
+            targets = builtins.map (host: "${host}.fleet:9134") ["picard" "kirk"];
           }
         ];
       }
@@ -83,7 +83,7 @@ in {
         job_name = "smartctl";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9633") ["sisko"];
+            targets = builtins.map (host: "${host}.fleet:9633") ["sisko" "kirk" "picard"];
           }
         ];
       }

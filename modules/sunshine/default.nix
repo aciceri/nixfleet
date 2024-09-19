@@ -1,21 +1,13 @@
 {
-  services.xserver = {
+  services.sunshine = {
     enable = true;
-    videoDrivers = ["amdgpu"];
-
-    # displayManager.gdm.enable = true;
-    # displayManager.defaultSession = "gnome";
-
-    # displayManager.autoLogin.enable = true;
-    # displayManager.autoLogin.user = "sunshine"; # user must exists
-
-    # desktopManager.gnome.enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
   };
-
-  users.users.sunshine = {
-    isSystemUser = true;
-    group = "sunshine";
+  hardware = {
+    bluetooth.input.General = {
+      ClassicBondedOnly = false;
+    };
   };
-
-  users.groups.sunshine = {};
 }

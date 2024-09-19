@@ -80,7 +80,7 @@
         in
           builtins.getFlake "github:NixOS/nixpkgs/${rev}";
         extraHmModules = [
-          inputs.ccrEmacs.hmModules.default
+          # inputs.ccrEmacs.hmModules.default
         ];
         vpn = {
           ip = "10.100.0.5";
@@ -107,7 +107,7 @@
           inputs.lix-module.nixosModules.default
         ];
         extraHmModules = [
-          inputs.ccrEmacs.hmModules.default
+          # inputs.ccrEmacs.hmModules.default
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
         ];
         secrets = {
@@ -132,8 +132,9 @@
           # inputs.hercules-ci-agent.nixosModules.agent-service
         ];
         extraHmModules = [
-          inputs.ccrEmacs.hmModules.default
+          # inputs.ccrEmacs.hmModules.default
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
+          inputs.vscode-server.nixosModules.home
         ];
         secrets = {
           "picard-wireguard-private-key" = {};
@@ -159,7 +160,6 @@
         };
         extraModules = with inputs; [
           disko.nixosModules.disko
-          arion.nixosModules.arion
           impermanence.nixosModules.impermanence
           # lix-module.nixosModules.default
           # inputs.hercules-ci-agent.nixosModules.agent-service;

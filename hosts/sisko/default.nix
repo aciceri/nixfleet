@@ -37,17 +37,18 @@
       "garmin-collector"
       "restic"
       # "immich"
+      "atuin"
     ]
     ++ [
       ./disko.nix
     ];
 
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
-  # boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_testing;
-  boot.kernelPackages = let
-    pkgs = fleetFlake.inputs.nixpkgsUnstableForSisko.legacyPackages.aarch64-linux;
-  in
-    pkgs.linuxPackagesFor pkgs.linux_testing;
+  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_6_10;
+  # boot.kernelPackages = let
+  #   pkgs = fleetFlake.inputs.nixpkgsForSisko.legacyPackages.aarch64-linux;
+  # in
+  #   pkgs.linuxPackagesFor pkgs.linux_testing;
   # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_9.override {
   #   argsOverride = {
   #     src = pkgs.fetchFromGitLab {

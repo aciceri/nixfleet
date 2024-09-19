@@ -4,17 +4,6 @@
   ...
 }: {
   services.swayidle = let
-    # Downgraded due to
-    # https://github.com/mortie/swaylock-effects/issues/95
-    # swaylock-effects = pkgs.swaylock-effects.overrideAttrs (_: {
-    #   version = "jirutka-master";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "jirutka";
-    #     repo = "swaylock-effects";
-    #     rev = "7c5681ce96587ce3090c6698501faeccdfdc157d";
-    #     sha256 = "sha256-09Kq90wIIF9lPjiY2anf9MSgi/EqeXKXW1mFmhxA/aM";
-    #   };
-    # });
     swaylockWithArgs = pkgs.writeScriptBin "swaylockWithArgs" ''
       ${pkgs.swaylock-effects}/bin/swaylock \
         --daemonize \
@@ -30,7 +19,6 @@
         --line-color 00000000 \
         --inside-color 00000088 \
         --separator-color 00000000 \
-        --grace 2 \
         --fade-in 0.2
     '';
     swaylockCommand = "${swaylockWithArgs}/bin/swaylockWithArgs";

@@ -1,7 +1,11 @@
-{pkgs, ...}: let
-  spotify-adblock = pkgs.nur.repos.nltch.spotify-adblock;
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  spotify-adblocked = pkgs.callPackage ../../packages/spotify-adblocked {};
 in {
-  home.packages = [spotify-adblock];
+  home.packages = [spotify-adblocked];
 
   systemd.user.services.spotify-adblocked = {
     Install.WantedBy = ["graphical-session.target"];
@@ -12,7 +16,7 @@ in {
     };
 
     Service = {
-      ExecStart = "${spotify-adblock}/bin/spotify";
+      ExecStart = lib.getExe spotify-adblocked;
       Restart = "on-failure";
       RestartSec = 3;
     };

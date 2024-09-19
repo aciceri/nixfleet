@@ -1,9 +1,7 @@
 {
-  config,
   lib,
   pkgs,
   age,
-  fleetFlake,
   hostname,
   ...
 }: {
@@ -29,6 +27,24 @@
   programs.ssh = {
     enable = true;
     controlMaster = "auto";
+  };
+
+  systemd.user.services.atuind = {
+    Unit.Description = "Atuin daemon";
+    Install = {WantedBy = ["default.target"];};
+    Service.ExecStart = "${lib.getExe pkgs.atuin} daemon";
+  };
+
+  programs.atuin = {
+    enable = true;
+    settings = {
+      daemon.enabled = true;
+      auto_sync = true;
+      sync_frequency = "5m";
+      sync_address = "http://sisko.fleet:8889";
+      search_mode = "fuzzy";
+      style = "compact";
+    };
   };
 
   # programs.starship = {
@@ -222,10 +238,10 @@
       nix-zsh-completions
       comma
       carapace # used by nushell
+      neovim
     ]
     ++ (lib.optionals (builtins.elem hostname ["kirk" "picard"]) [
-      nil # TODO probably not best place
-      (fleetFlake.inputs.nixd.packages.${pkgs.system}.nixd) # TODO probably not best place
+      nixd # TODO probably not the best place
       terraform-lsp # TODO probably not best place
       python3Packages.jedi-language-server # TODO probably not best place
       nodePackages.typescript-language-server # TODO probably not best place
