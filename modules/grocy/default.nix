@@ -2,10 +2,11 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   nixpkgs.overlays = [
-    (self: super: {
-      grocy = super.grocy.overrideAttrs (old: {
+    (_self: super: {
+      grocy = super.grocy.overrideAttrs (_old: {
         meta.broken = false;
         version = "4.0.1";
         src = pkgs.fetchFromGitHub {

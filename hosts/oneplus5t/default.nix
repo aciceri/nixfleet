@@ -1,9 +1,7 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
-}: {
+}:
+{
   signing.enable = true;
 
   # apps.prebuilt = {

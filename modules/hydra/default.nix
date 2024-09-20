@@ -3,58 +3,63 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.services.my-hydra;
-  toSpec = {
-    name,
-    owner,
-    ...
-  }: let
-    spec = {
-      enabled = 1;
-      hidden = false;
-      description = "Declarative specification jobset automatically generated";
-      checkinterval = 120;
-      schedulingshares = 10000;
-      enableemail = false;
-      emailoverride = "";
-      keepnr = 1;
-      nixexprinput = "src";
-      nixexprpath = "jobsets.nix";
-      inputs = {
-        src = {
-          type = "path";
-          value = pkgs.writeTextFile {
-            name = "src";
-            text = builtins.readFile ./jobsets.nix;
-            destination = "/jobsets.nix";
-          };
-          emailresponsible = false;
-        };
-        repoInfoPath = {
-          type = "path";
-          value = pkgs.writeTextFile {
-            name = "repo";
-            text = builtins.toJSON {
-              inherit name owner;
+  toSpec =
+    {
+      name,
+      owner,
+      ...
+    }:
+    let
+      spec = {
+        enabled = 1;
+        hidden = false;
+        description = "Declarative specification jobset automatically generated";
+        checkinterval = 120;
+        schedulingshares = 10000;
+        enableemail = false;
+        emailoverride = "";
+        keepnr = 1;
+        nixexprinput = "src";
+        nixexprpath = "jobsets.nix";
+        inputs = {
+          src = {
+            type = "path";
+            value = pkgs.writeTextFile {
+              name = "src";
+              text = builtins.readFile ./jobsets.nix;
+              destination = "/jobsets.nix";
             };
+            emailresponsible = false;
           };
-          emailresponsible = false;
-        };
-        prs = {
-          type = "githubpulls";
-          value = "${owner} ${name}";
-          emailresponsible = false;
+          repoInfoPath = {
+            type = "path";
+            value = pkgs.writeTextFile {
+              name = "repo";
+              text = builtins.toJSON {
+                inherit name owner;
+              };
+            };
+            emailresponsible = false;
+          };
+          prs = {
+            type = "githubpulls";
+            value = "${owner} ${name}";
+            emailresponsible = false;
+          };
         };
       };
-    };
-    drv = pkgs.writeTextFile {
-      name = "hydra-jobset-specification-${name}";
-      text = builtins.toJSON spec;
-      destination = "/spec.json";
-    };
-  in "${drv}";
-in {
+      drv = pkgs.writeTextFile {
+        name = "hydra-jobset-specification-${name}";
+        text = builtins.toJSON spec;
+        destination = "/spec.json";
+      };
+    in
+    "${drv}";
+in
+{
   imports = [
     ./config.nix
     ../nginx-base
@@ -66,35 +71,40 @@ in {
       default = "hydra.aciceri.dev";
     };
     repos = lib.mkOption {
-      type = lib.types.attrsOf (lib.types.submodule ({
-        name,
-        config,
-        ...
-      }: {
-        options = {
-          name = lib.mkOption {
-            type = lib.types.str;
-            default = name;
-          };
-          owner = lib.mkOption {
-            type = lib.types.str;
-            default = "aciceri";
-          };
-          description = lib.mkOption {
-            type = lib.types.str;
-            default = config.homepage;
-          };
-          homepage = lib.mkOption {
-            type = lib.types.str;
-            default = "https://github.com/${config.owner}/${config.name}";
-          };
-          reportStatus = lib.mkOption {
-            type = lib.types.bool;
-            default = true;
-          };
-        };
-      }));
-      default = {};
+      type = lib.types.attrsOf (
+        lib.types.submodule (
+          {
+            name,
+            config,
+            ...
+          }:
+          {
+            options = {
+              name = lib.mkOption {
+                type = lib.types.str;
+                default = name;
+              };
+              owner = lib.mkOption {
+                type = lib.types.str;
+                default = "aciceri";
+              };
+              description = lib.mkOption {
+                type = lib.types.str;
+                default = config.homepage;
+              };
+              homepage = lib.mkOption {
+                type = lib.types.str;
+                default = "https://github.com/${config.owner}/${config.name}";
+              };
+              reportStatus = lib.mkOption {
+                type = lib.types.bool;
+                default = true;
+              };
+            };
+          }
+        )
+      );
+      default = { };
     };
   };
 
@@ -115,28 +125,38 @@ in {
           include ${config.age.secrets.hydra-github-token.path}
           </github_authorization>
         ''
-        + (lib.concatMapStrings (repo:
-          lib.optionalString repo.reportStatus
-          ''
+        + (lib.concatMapStrings (
+          repo:
+          lib.optionalString repo.reportStatus ''
             <githubstatus>
               jobs = ${repo.name}.*
               excludeBuildFromContext = 1
               useShortContext = 1
             </githubstatus>
-          '') (builtins.attrValues cfg.repos));
+          ''
+        ) (builtins.attrValues cfg.repos));
     };
 
     systemd.services.hydra-setup = {
       description = "Hydra CI setup";
       serviceConfig.Type = "oneshot";
       serviceConfig.RemainAfterExit = true;
-      wantedBy = ["multi-user.target"];
-      requires = ["hydra-init.service"];
-      after = ["hydra-init.service"];
-      environment = builtins.removeAttrs (config.systemd.services.hydra-init.environment) ["PATH"];
+      wantedBy = [ "multi-user.target" ];
+      requires = [ "hydra-init.service" ];
+      after = [ "hydra-init.service" ];
+      environment = builtins.removeAttrs (config.systemd.services.hydra-init.environment) [ "PATH" ];
       script =
         ''
-          PATH=$PATH:${lib.makeBinPath (with pkgs; [yq-go curl config.services.hydra.package])}
+          PATH=$PATH:${
+            lib.makeBinPath (
+              with pkgs;
+              [
+                yq-go
+                curl
+                config.services.hydra.package
+              ]
+            )
+          }
           PASSWORD="$(cat ${config.age.secrets.hydra-admin-password.path})"
           if [ ! -e ~hydra/.setup-is-complete ]; then
             hydra-create-user admin \

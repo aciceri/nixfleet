@@ -2,14 +2,15 @@
   pkgs,
   username,
   ...
-}: {
+}:
+{
   programs.firefox = {
     enable = true;
     package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
       extraPolicies = {
-        ExtensionSettings = {};
+        ExtensionSettings = { };
       };
-      nativeMessagingHosts = [pkgs.tridactyl-native];
+      nativeMessagingHosts = [ pkgs.tridactyl-native ];
     };
     profiles.${username} = {
       settings = {

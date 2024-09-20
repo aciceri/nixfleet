@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   nixpkgsImmich = builtins.getFlake "github:NixOS/nixpkgs/c0ee4c1770aa1ef998c977c4cc653a07ec95d9bf";
-in {
+in
+{
   containers.nextcloud = {
     nixpkgs = nixpkgsImmich;
     autoStart = true;
@@ -9,15 +11,14 @@ in {
     # localAddress = "192.168.100.11";
     # hostAddress6 = "fc00::1";
     # localAddress6 = "fc00::2";
-    config = {
-      config,
-      pkgs,
-      lib,
-      ...
-    }: {
-      services.immich = {
-        enable = true;
+    config =
+      {
+        ...
+      }:
+      {
+        services.immich = {
+          enable = true;
+        };
       };
-    };
   };
 }

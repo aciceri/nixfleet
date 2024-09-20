@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   cfg = config.services.grafana;
-in {
+in
+{
   services.grafana = {
     enable = true;
     settings = {

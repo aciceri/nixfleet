@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.dolphin-emu];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.dolphin-emu ];
 }

@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.cloudflare-dyndns = {
     enable = true;
     ipv4 = true;

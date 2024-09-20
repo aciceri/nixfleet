@@ -4,19 +4,20 @@
   fleetFlake,
   config,
   ...
-}: {
+}:
+{
   users.users.garmin-collector = {
     isSystemUser = true;
     group = "garmin-collector";
-    extraGroups = ["garmin-collector"];
+    extraGroups = [ "garmin-collector" ];
     home = "/var/lib/garmin-collector";
   };
 
-  users.groups.garmin-collector = {};
+  users.groups.garmin-collector = { };
 
   systemd.services.garmin-collector = {
     description = "Garmin collector pushing to Prometheus Pushgateway";
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
     environment = {
       PUSHGATEWAY_ADDRESS = config.services.prometheus.pushgateway.web.listen-address;
     };
@@ -32,7 +33,7 @@
   };
 
   systemd.timers."garmin-collector" = {
-    wantedBy = ["timers.target"];
+    wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "5m";
       OnUnitActiveSec = "4h";

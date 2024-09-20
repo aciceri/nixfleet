@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   conf = {
     server = {
       http_listen_port = 28183;
@@ -11,7 +12,9 @@
     };
     clients = [
       {
-        url = "http://sisko.fleet:${builtins.toString config.services.loki.configuration.server.http_listen_port or 3100}/loki/api/v1/push";
+        url = "http://sisko.fleet:${
+          builtins.toString config.services.loki.configuration.server.http_listen_port or 3100
+        }/loki/api/v1/push";
       }
     ];
     positions = {
@@ -29,7 +32,7 @@
         };
         relabel_configs = [
           {
-            source_labels = ["__journal__systemd_unit"];
+            source_labels = [ "__journal__systemd_unit" ];
             target_label = "unit";
           }
         ];
@@ -38,12 +41,13 @@
   };
   configFile = pkgs.writeTextFile {
     name = "promtail.yaml";
-    text = lib.generators.toYAML {} conf;
+    text = lib.generators.toYAML { } conf;
   };
-in {
+in
+{
   systemd.services.promtail = {
     description = "Promtail service for Loki";
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
       ExecStart = ''

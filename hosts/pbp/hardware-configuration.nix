@@ -3,11 +3,12 @@
   lib,
   pkgs,
   ...
-}: {
-  disko.devices = import ./disko.nix {};
+}:
+{
+  disko.devices = import ./disko.nix { };
 
   boot = {
-    initrd.availableKernelModules = ["usbhid"];
+    initrd.availableKernelModules = [ "usbhid" ];
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];

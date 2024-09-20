@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   reinstall-magisk-on-lineage = pkgs.stdenv.mkDerivation {
     name = "reinstall-magisk-on-lineage";
     version = "git";
@@ -21,6 +22,7 @@
         --replace-fail "paste_yours_here" "\"\$1\""
     '';
   };
-in {
-  home.packages = [reinstall-magisk-on-lineage];
+in
+{
+  home.packages = [ reinstall-magisk-on-lineage ];
 }

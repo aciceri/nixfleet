@@ -1,15 +1,18 @@
 let
-  emmc = "/dev/disk/by-id/mmc-SLD64G_0xf6be3ba0";
   ssd = "/dev/disk/by-id/ata-CT240BX300SSD1_1739E1042F3C";
-  # hd1 = "/dev/disk/by-id/ata-WDC_WD10EADS-22M2B0_WD-WCAV52709550";
-  # hd2 = "/dev/disk/by-id/ata-WDC_WD10EADX-22TDHB0_WD-WCAV5V359530";
-  hd = "/dev/disk/by-id/ata-WDC_WD10EADS-22M2B0_WD-WCAV52709550-part1";
-  # old_hd = "/dev/disk/by-id/ata-WDC_WD5000AAKX-08U6AA0_WD-WCC2E5TR40FU";
-in {
+in
+# hd1 = "/dev/disk/by-id/ata-WDC_WD10EADS-22M2B0_WD-WCAV52709550";
+# hd2 = "/dev/disk/by-id/ata-WDC_WD10EADX-22TDHB0_WD-WCAV5V359530";
+# old_hd = "/dev/disk/by-id/ata-WDC_WD5000AAKX-08U6AA0_WD-WCC2E5TR40FU";
+{
   disko.devices = {
     nodev."/" = {
       fsType = "tmpfs";
-      mountOptions = ["size=1024M" "defaults" "mode=755"];
+      mountOptions = [
+        "size=1024M"
+        "defaults"
+        "mode=755"
+      ];
     };
     disk = {
       ssd = {

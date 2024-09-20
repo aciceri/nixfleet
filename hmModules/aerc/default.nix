@@ -1,5 +1,5 @@
 {
-  imports = [../email];
+  imports = [ ../email ];
   config = {
     accounts.email.accounts = {
       autistici.aerc = {

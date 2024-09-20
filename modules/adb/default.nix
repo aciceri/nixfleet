@@ -1,4 +1,4 @@
 {
   programs.adb.enable = true;
-  ccr.extraGroups = ["adbusers"];
+  ccr.extraGroups = [ "adbusers" ];
 }

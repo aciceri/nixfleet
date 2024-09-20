@@ -1,9 +1,8 @@
 {
   config,
-  options,
-  lib,
   ...
-}: {
+}:
+{
   system.autoUpgrade = {
     enable = false;
     flake = "github:aciceri/nixfleet#${config.networking.hostName}";

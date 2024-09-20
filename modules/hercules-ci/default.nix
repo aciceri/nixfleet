@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.hercules-ci-agent = {
     enable = true;
     settings = {

@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.teams-for-linux];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.teams-for-linux ];
 }

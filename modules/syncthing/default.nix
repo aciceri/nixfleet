@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services = {
     syncthing = {
       enable = true;
@@ -45,7 +46,12 @@
                 kirk = "/home/${config.ccr.username}/org";
               }
               .${config.networking.hostName};
-            devices = ["picard" "sisko" "kirk" "oneplus8t"];
+            devices = [
+              "picard"
+              "sisko"
+              "kirk"
+              "oneplus8t"
+            ];
           };
           sync = {
             path =
@@ -55,7 +61,11 @@
                 kirk = "/home/${config.ccr.username}/sync";
               }
               .${config.networking.hostName};
-            devices = ["picard" "sisko" "kirk"];
+            devices = [
+              "picard"
+              "sisko"
+              "kirk"
+            ];
           };
         };
       };

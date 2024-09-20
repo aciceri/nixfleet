@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.avahi = {
     enable = true;
     # Important to resolve .local domains of printers, otherwise you get an error
@@ -11,7 +12,7 @@
   services.printing = {
     enable = true;
     drivers = [
-      (pkgs.callPackage ./driver.nix {})
+      (pkgs.callPackage ./driver.nix { })
     ];
   };
 }

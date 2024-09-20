@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   cfg = config.services.loki;
-in {
+in
+{
   services.loki = {
     enable = true;
     configuration = {

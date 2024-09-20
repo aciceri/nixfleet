@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   screenshotScript = pkgs.writeShellScriptBin "screenshot.sh" ''
     filename="$HOME/shots/$(date --iso-8601=seconds).png"
     coords="$(${pkgs.slurp}/bin/slurp)"
@@ -19,7 +20,8 @@
       fi
     fi
   '';
-in {
+in
+{
   imports = [
     ./hyprpaper.nix
     ../waybar

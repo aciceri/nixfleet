@@ -1,6 +1,5 @@
 {
-  description =
-    "A complete, declarative, and reproducible configuration of my entire Nix fleet";
+  description = "A complete, declarative, and reproducible configuration of my entire Nix fleet";
 
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
@@ -58,7 +57,8 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = inputs@{ flakeParts, ... }:
+  outputs =
+    inputs@{ flakeParts, ... }:
     flakeParts.lib.mkFlake { inherit inputs; } {
       imports = [
         # TODO export modules as flake outputs
@@ -69,6 +69,9 @@
         ./shell
         ./checks
       ];
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
     };
 }

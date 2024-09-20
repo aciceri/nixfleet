@@ -1,10 +1,10 @@
 {
-  config,
   pkgs,
   lib,
   ...
-}: {
-  boot.supportedFilesystems = ["zfs"];
+}:
+{
+  boot.supportedFilesystems = [ "zfs" ];
   networking.hostId = "adf0b5e7";
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = false;
@@ -23,7 +23,7 @@
     mount /boot/efi
   '';
   boot.loader.grub.extraInstallCommands = ''
-    export PATH=$PATH:${lib.makeBinPath [pkgs.coreutils]}
+    export PATH=$PATH:${lib.makeBinPath [ pkgs.coreutils ]}
     ESP_MIRROR=$(mktemp -d)
     cp -r /boot/efi/EFI $ESP_MIRROR
     for i in /boot/efis/*; do

@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.openscad];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.openscad ];
 }

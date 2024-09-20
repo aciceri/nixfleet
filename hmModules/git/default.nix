@@ -2,13 +2,18 @@
   pkgs,
   username,
   ...
-}: let
+}:
+let
   config = {
     name = "Andrea Ciceri";
     email = "andrea.ciceri@autistici.org";
   };
-in {
-  imports = [../gitui ../lazygit];
+in
+{
+  imports = [
+    ../gitui
+    ../lazygit
+  ];
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;

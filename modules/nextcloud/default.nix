@@ -2,14 +2,13 @@
   config,
   pkgs,
   ...
-}: let
-  cfg = config.services.nextcloud;
-in {
+}:
+{
   systemd.tmpfiles.rules = [
     "d /mnt/raid/nextcloud 770 nextcloud nextcloud"
   ];
 
-  ccr.extraGroups = ["nextcloud"];
+  ccr.extraGroups = [ "nextcloud" ];
 
   services.nextcloud = {
     enable = true;
@@ -23,5 +22,5 @@ in {
     };
   };
 
-  networking.firewall.allowedTCPPorts = [80];
+  networking.firewall.allowedTCPPorts = [ 80 ];
 }

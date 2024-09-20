@@ -11,5 +11,5 @@
     ];
   };
 
-  users.users.mediatomb.extraGroups = ["transmission"];
+  users.users.mediatomb.extraGroups = [ "transmission" ];
 }

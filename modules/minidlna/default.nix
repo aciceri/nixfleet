@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.minidlna = {
     enable = true;
     openFirewall = true;
@@ -11,6 +12,6 @@
     };
   };
 
-  ccr.extraGroups = ["minidlna"];
-  users.users.minidlna.extraGroups = ["transmission"];
+  ccr.extraGroups = [ "minidlna" ];
+  users.users.minidlna.extraGroups = [ "transmission" ];
 }

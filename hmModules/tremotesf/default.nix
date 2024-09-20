@@ -2,11 +2,12 @@
   pkgs,
   lib,
   ...
-}: {
-  home.packages = [pkgs.tremotesf];
+}:
+{
+  home.packages = [ pkgs.tremotesf ];
 
   systemd.user.services.tremotesf = {
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = [ "graphical-session.target" ];
 
     Unit = {
       Description = "tremotesf";

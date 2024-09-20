@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   sessions = builtins.concatStringsSep ":" [
     (pkgs.writeTextFile {
       name = "xorg-session.desktop";
@@ -23,7 +24,8 @@
       '';
     })
   ];
-in {
+in
+{
   services.greetd = {
     enable = true;
     vt = 2;

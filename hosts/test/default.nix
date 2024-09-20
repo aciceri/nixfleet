@@ -1,10 +1,8 @@
 {
   fleetModules,
-  lib,
-  config,
-  pkgs,
   ...
-}: {
+}:
+{
   imports =
     fleetModules [
       "common"

@@ -2,11 +2,10 @@
 # Minimum config used to enable Plasma Mobile.
 #
 {
-  config,
   lib,
-  pkgs,
   ...
-}: {
+}:
+{
   mobile.beautification = {
     silentBoot = lib.mkDefault false;
     splash = lib.mkDefault false;

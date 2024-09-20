@@ -1,10 +1,10 @@
 {
   fleetModules,
   pkgs,
-  fleetFlake,
   config,
   ...
-}: {
+}:
+{
   imports =
     fleetModules [
       "common"
@@ -71,7 +71,7 @@
 
   nixpkgs.hostPlatform = "aarch64-linux";
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -128,7 +128,7 @@
   fileSystems."/mnt/hd" = {
     device = "/dev/disk/by-id/ata-WDC_WD5000AAKX-08U6AA0_WD-WCC2E5TR40FU-part1";
     fsType = "ext4";
-    options = ["nofail"];
+    options = [ "nofail" ];
   };
 
   environment.systemPackages = with pkgs; [

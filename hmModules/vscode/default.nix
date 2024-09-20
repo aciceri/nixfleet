@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.vscode = {
     enable = true;
     # For a few reasons sometimes I'm forced to use VSCode and I don't have time to nixifiy even its configuration.

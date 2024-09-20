@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   cfg = config.services.prometheus;
-in {
+in
+{
   services.prometheus = {
     enable = true;
     pushgateway = {
@@ -19,7 +21,9 @@ in {
         bearer_token_file = config.age.secrets.home-assistant-token.path;
         static_configs = [
           {
-            targets = ["sisko.fleet:${builtins.toString config.services.home-assistant.config.http.server_port}"];
+            targets = [
+              "sisko.fleet:${builtins.toString config.services.home-assistant.config.http.server_port}"
+            ];
           }
         ];
       }
@@ -27,7 +31,7 @@ in {
         job_name = "pushgateway";
         static_configs = [
           {
-            targets = [cfg.pushgateway.web.listen-address];
+            targets = [ cfg.pushgateway.web.listen-address ];
           }
         ];
       }
@@ -35,7 +39,11 @@ in {
         job_name = "node";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9100") ["sisko" "picard" "kirk"];
+            targets = builtins.map (host: "${host}.fleet:9100") [
+              "sisko"
+              "picard"
+              "kirk"
+            ];
           }
         ];
       }
@@ -43,7 +51,10 @@ in {
         job_name = "wireguard";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9586") ["picard" "kirk"];
+            targets = builtins.map (host: "${host}.fleet:9586") [
+              "picard"
+              "kirk"
+            ];
           }
         ];
       }
@@ -51,7 +62,10 @@ in {
         job_name = "zfs";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9134") ["picard" "kirk"];
+            targets = builtins.map (host: "${host}.fleet:9134") [
+              "picard"
+              "kirk"
+            ];
           }
         ];
       }
@@ -59,7 +73,7 @@ in {
         job_name = "restic";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9753") ["sisko"];
+            targets = builtins.map (host: "${host}.fleet:9753") [ "sisko" ];
           }
         ];
       }
@@ -67,7 +81,7 @@ in {
         job_name = "postgres";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9187") ["sisko"];
+            targets = builtins.map (host: "${host}.fleet:9187") [ "sisko" ];
           }
         ];
       }
@@ -75,7 +89,7 @@ in {
         job_name = "nginx";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9117") ["sisko"];
+            targets = builtins.map (host: "${host}.fleet:9117") [ "sisko" ];
           }
         ];
       }
@@ -83,7 +97,11 @@ in {
         job_name = "smartctl";
         static_configs = [
           {
-            targets = builtins.map (host: "${host}.fleet:9633") ["sisko" "kirk" "picard"];
+            targets = builtins.map (host: "${host}.fleet:9633") [
+              "sisko"
+              "kirk"
+              "picard"
+            ];
           }
         ];
       }

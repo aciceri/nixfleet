@@ -1,13 +1,14 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # home.packages = [pkgs.schildichat-desktop];
-  home.packages = [pkgs.element-desktop-wayland];
+  home.packages = [ pkgs.element-desktop-wayland ];
 
   systemd.user.services.element-desktop = {
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = [ "graphical-session.target" ];
 
     Unit = {
       Description = "Element";
-      PartOf = ["graphical-session.target"];
+      PartOf = [ "graphical-session.target" ];
     };
 
     Service = {

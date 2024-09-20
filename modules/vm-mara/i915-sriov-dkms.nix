@@ -2,9 +2,9 @@
   stdenv,
   kernel,
   fetchFromGitHub,
-  runCommand,
   ...
-}: let
+}:
+let
   m = stdenv.mkDerivation rec {
     name = "i915-sriov-dkms";
     version = "4d89a1d5ba8c66308e3276c5297eda838c70cc31";
@@ -22,32 +22,29 @@
       export sourceRoot=$(pwd)/source
     '';
 
-    makeFlags =
-      kernel.makeFlags
-      ++ [
-        "-C"
-        "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-        "M=$(sourceRoot)"
-        "KVER=${kernel.version}"
-      ];
+    makeFlags = kernel.makeFlags ++ [
+      "-C"
+      "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+      "M=$(sourceRoot)"
+      "KVER=${kernel.version}"
+    ];
 
     # installPhase = ''
     # install -D i915.ko $out/lib/modules/${kernel.modDirVersion}/kernel/drivers/gpu/drm/i915/i915.ko
     # '';
 
-    installFlags = ["INSTALL_MOD_PATH=${placeholder "out"}"];
+    installFlags = [ "INSTALL_MOD_PATH=${placeholder "out"}" ];
 
-    installTargets = ["modules_install"];
+    installTargets = [ "modules_install" ];
 
     enableParallelBuilding = true;
 
     # meta.priority = -10;
   };
 in
-  m
+m
 # in runCommand "test" {} ''
 #   # mkdir -p $out/lib/modules/6.1.30/kernel/drivers/gpu/drm/i915
 #   mkdir -p $out/lib/modules/6.1.30/extra
 #   cp ${m}/lib/modules/6.1.30/extra/i915.ko.xz $out/lib/modules/6.1.30/extra/foo.ko.xz
 # ''
-

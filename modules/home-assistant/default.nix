@@ -2,24 +2,13 @@
   pkgs,
   config,
   ...
-}: let
-  smartthings-fork = pkgs.fetchFromGitHub {
-    owner = "veista";
-    repo = "smartthings";
-    rev = "ba1a6f33c6ac37d81f4263073571628803e79697";
-    sha256 = "sha256-X3SYkg0B5pzEich7/4iUmlADJneVuT8HTVnIiC7odRE=";
-  };
+}:
+let
   pun_sensor = pkgs.fetchFromGitHub {
     owner = "virtualdj";
     repo = "pun_sensor";
     rev = "51b216fab5c0d454d66060647c36e81bebfaf059";
     hash = "sha256-bGVJx3bObXdf4AiC6bDvafs53NGS2aufRcTUmXy8nAI=";
-  };
-  cozy_life = pkgs.fetchFromGitHub {
-    owner = "yangqian";
-    repo = "hass-cozylife";
-    rev = "9a40a2fa09b0f74aee0b278e2858f5600b3487a9";
-    hash = "sha256-i+82EUamV1Fhwhb1vhRqn9aA9dJ0FxSSMD734domyhw=";
   };
   garmin_connect = pkgs.fetchFromGitHub {
     owner = "cyberjunky";
@@ -27,11 +16,12 @@
     rev = "d42edcabc67ba6a7f960e849c8aaec1aabef87c0";
     hash = "sha256-KqbP6TpH9B0/AjtsW5TcWSNgUhND+w8rO6X8fHqtsDI=";
   };
-in {
+in
+{
   services.home-assistant = {
     enable = true;
     openFirewall = true;
-    package = pkgs.home-assistant.overrideAttrs (old: {
+    package = pkgs.home-assistant.overrideAttrs (_old: {
       doInstallCheck = false;
       # prePatch =
       #   ''
@@ -61,8 +51,8 @@ in {
       "wake_on_lan"
       "prometheus"
     ];
-    extraPackages = python3Packages:
-      with python3Packages; [
+    extraPackages =
+      python3Packages: with python3Packages; [
         # used by pun_sensor
         holidays
         beautifulsoup4
@@ -72,10 +62,13 @@ in {
         tzlocal
       ];
     config = {
-      default_config = {};
+      default_config = { };
       http = {
         use_x_forwarded_for = true;
-        trusted_proxies = ["127.0.0.1" "::1"];
+        trusted_proxies = [
+          "127.0.0.1"
+          "::1"
+        ];
       };
       # ffmpeg = {};
       # camera = [
@@ -105,7 +98,7 @@ in {
       #     data.mac = "20:28:bc:74:14:c2";
       #   };
       # }];
-      wake_on_lan = {};
+      wake_on_lan = { };
       switch = [
         {
           name = "Picard";
@@ -164,7 +157,7 @@ in {
     containers = {
       whisper = {
         image = "rhasspy/wyoming-whisper:latest";
-        ports = ["10300:10300"];
+        ports = [ "10300:10300" ];
         cmd = [
           "--model"
           "medium-int8"
@@ -174,7 +167,7 @@ in {
       };
       piper = {
         image = "rhasspy/wyoming-piper:latest";
-        ports = ["10200:10200"];
+        ports = [ "10200:10200" ];
         cmd = [
           "--voice"
           "it_IT-riccardo-x_low"

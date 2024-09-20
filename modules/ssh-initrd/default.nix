@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # For unlocking the disk connect using ssh and type
   # systemctl start initrd-nixos-activation
   boot.initrd = {

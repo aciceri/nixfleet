@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.steam-run];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.steam-run ];
 }

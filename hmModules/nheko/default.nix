@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.nheko];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.nheko ];
 
   # systemd.user.services.nheko = {
   #   Install.WantedBy = ["graphical-session.target"];

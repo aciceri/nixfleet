@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.monero-gui];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.monero-gui ];
 }

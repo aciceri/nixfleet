@@ -1,14 +1,14 @@
 {
-  imports = [../email];
+  imports = [ ../email ];
   config = {
     accounts.email.accounts = {
       autistici.thunderbird = {
         enable = true;
-        profiles = ["default"];
+        profiles = [ "default" ];
       };
       mlabs.thunderbird = {
         enable = true;
-        profiles = ["default"];
+        profiles = [ "default" ];
       };
     };
     programs.thunderbird = {

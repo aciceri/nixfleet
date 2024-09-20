@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -18,7 +19,7 @@
           "wlr/mode"
           "hyprland/workspaces"
         ];
-        modules-center = ["wlr/window"];
+        modules-center = [ "wlr/window" ];
         modules-right = [
           "network"
           "tray"
@@ -46,9 +47,13 @@
           # sort-by-number = true;
         };
 
-        "wlr/mode" = {tooltip = false;};
+        "wlr/mode" = {
+          tooltip = false;
+        };
 
-        "wlr/window" = {max_length = 50;};
+        "wlr/window" = {
+          max_length = 50;
+        };
         tray = {
           spacing = 10;
         };
@@ -56,7 +61,13 @@
           format = "{capacity}% {icon}";
           format-alt = "{time} {icon}";
           format-charging = "{capacity}% ";
-          format-icons = [" " " " " " " " " "];
+          format-icons = [
+            " "
+            " "
+            " "
+            " "
+            " "
+          ];
           format-plugged = "{capacity}%  ";
           states = {
             critical = 15;
@@ -71,7 +82,9 @@
           format = "{usage}% ";
           tooltip = false;
         };
-        memory = {format = "{}% ";};
+        memory = {
+          format = "{}% ";
+        };
         network = {
           interval = 1;
           format-alt = "{ifname}: {ipaddr}/{cidr}";
@@ -86,7 +99,11 @@
           format-bluetooth-muted = " {icon} {format_source}";
           format-icons = {
             car = "";
-            default = [" " " " " "];
+            default = [
+              " "
+              " "
+              " "
+            ];
             handsfree = "";
             headphones = " ";
             headset = "";
@@ -98,23 +115,32 @@
           format-source-muted = "";
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
-        "wlr/mode" = {format = ''<span style="italic">{}</span>'';};
+        "wlr/mode" = {
+          format = ''<span style="italic">{}</span>'';
+        };
         temperature = {
           critical-threshold = 80;
           format = "{temperatureC}°C {icon}";
-          format-icons = ["" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+          ];
           hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input"; # picard FIXME
           # hwmon-path = "/sys/class/thermal/thermal_zone4/temp"; # thinkpad
         };
         backlight = {
           device = "ddcci2";
           format = "{percent}% {icon}";
-          format-icons = [" " " "];
+          format-icons = [
+            " "
+            " "
+          ];
         };
       };
     };
   };
 
   # waybar needs the hyprctl binary in PATH when started in hyprland
-  systemd.user.services.waybar.Service.Environment = "PATH=${lib.makeBinPath [pkgs.hyprland]}";
+  systemd.user.services.waybar.Service.Environment = "PATH=${lib.makeBinPath [ pkgs.hyprland ]}";
 }

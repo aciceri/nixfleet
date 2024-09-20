@@ -4,7 +4,8 @@
   age,
   hostname,
   ...
-}: {
+}:
+{
   programs.bat.enable = true;
 
   programs.direnv = {
@@ -31,7 +32,9 @@
 
   systemd.user.services.atuind = {
     Unit.Description = "Atuin daemon";
-    Install = {WantedBy = ["default.target"];};
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
     Service.ExecStart = "${lib.getExe pkgs.atuin} daemon";
   };
 
@@ -116,25 +119,29 @@
   xdg.configFile = {
     "dracula-theme" = {
       target = "fish/themes/dracula.theme";
-      source = let
-        theme = pkgs.fetchFromGitHub {
-          owner = "dracula";
-          repo = "fish";
-          rev = "269cd7d76d5104fdc2721db7b8848f6224bdf554";
-          hash = "sha256-Hyq4EfSmWmxwCYhp3O8agr7VWFAflcUe8BUKh50fNfY=";
-        };
-      in "${theme}/themes/Dracula\ Official.theme";
+      source =
+        let
+          theme = pkgs.fetchFromGitHub {
+            owner = "dracula";
+            repo = "fish";
+            rev = "269cd7d76d5104fdc2721db7b8848f6224bdf554";
+            hash = "sha256-Hyq4EfSmWmxwCYhp3O8agr7VWFAflcUe8BUKh50fNfY=";
+          };
+        in
+        "${theme}/themes/Dracula\ Official.theme";
     };
     "catppuccin-theme" = {
       target = "fish/themes/Catppuccin\ Mocha.theme";
-      source = let
-        theme = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "fish";
-          rev = "a3b9eb5eaf2171ba1359fe98f20d226c016568cf";
-          hash = "sha256-shQxlyoauXJACoZWtRUbRMxmm10R8vOigXwjxBhG8ng=";
-        };
-      in "${theme}/themes/Catppuccin\ Mocha.theme";
+      source =
+        let
+          theme = pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "fish";
+            rev = "a3b9eb5eaf2171ba1359fe98f20d226c016568cf";
+            hash = "sha256-shQxlyoauXJACoZWtRUbRMxmm10R8vOigXwjxBhG8ng=";
+          };
+        in
+        "${theme}/themes/Catppuccin\ Mocha.theme";
     };
   };
 
@@ -227,7 +234,8 @@
   #   '';
   # };
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       thefuck
       htop-vim
@@ -240,12 +248,18 @@
       carapace # used by nushell
       neovim
     ]
-    ++ (lib.optionals (builtins.elem hostname ["kirk" "picard"]) [
-      nixd # TODO probably not the best place
-      terraform-lsp # TODO probably not best place
-      python3Packages.jedi-language-server # TODO probably not best place
-      nodePackages.typescript-language-server # TODO probably not best place
-      cntr # TODO probably not best place
-      nom # FIXME disable on aarch64-linux, breaks everything :(
-    ]);
+    ++ (lib.optionals
+      (builtins.elem hostname [
+        "kirk"
+        "picard"
+      ])
+      [
+        nixd # TODO probably not the best place
+        terraform-lsp # TODO probably not best place
+        python3Packages.jedi-language-server # TODO probably not best place
+        nodePackages.typescript-language-server # TODO probably not best place
+        cntr # TODO probably not best place
+        nom # FIXME disable on aarch64-linux, breaks everything :(
+      ]
+    );
 }

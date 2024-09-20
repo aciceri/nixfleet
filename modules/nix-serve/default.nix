@@ -2,10 +2,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.services.my-nix-serve;
-in {
-  imports = [../nginx-base];
+in
+{
+  imports = [ ../nginx-base ];
   options.services.my-nix-serve = {
     domain = lib.mkOption {
       type = lib.types.str;

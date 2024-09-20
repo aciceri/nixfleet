@@ -1,12 +1,13 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.whatsapp-for-linux];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.whatsapp-for-linux ];
 
   systemd.user.services.whatsapp = {
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = [ "graphical-session.target" ];
 
     Unit = {
       Description = "Whatsapp";
-      PartOf = ["graphical-session.target"];
+      PartOf = [ "graphical-session.target" ];
     };
 
     Service = {

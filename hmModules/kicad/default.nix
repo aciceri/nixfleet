@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.kicad-small];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.kicad-small ];
 }

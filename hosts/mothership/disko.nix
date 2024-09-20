@@ -1,8 +1,11 @@
 {
-  lib,
-  disks ? ["/dev/nvme0n1" "/dev/nvme1n1"],
+  disks ? [
+    "/dev/nvme0n1"
+    "/dev/nvme1n1"
+  ],
   ...
-}: {
+}:
+{
   disk = {
     x = {
       type = "disk";

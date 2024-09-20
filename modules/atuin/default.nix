@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.atuin = {
     enable = true;
     openFirewall = false; # use only in the VPN

@@ -4,7 +4,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   imports =
     [
       ./hardware-configuration.nix
@@ -21,7 +22,7 @@
       "shell"
       "git"
     ];
-    packages = [];
+    packages = [ ];
     extraGroups = [
       "wheel"
       "fuse"
@@ -31,7 +32,7 @@
 
   systemd.services.standby-sdb = {
     description = "Set spindown time (sleep) for /dev/sdb ";
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.hdparm}/bin/hdparm -B 127 -S 241 /dev/sdb";
@@ -40,7 +41,7 @@
 
   systemd.services.standby-sdc = {
     description = "Set spindown time (sleep) for /dev/sdc ";
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.hdparm}/bin/hdparm -B 127 -S 241 /dev/sdc";
@@ -54,7 +55,7 @@
     isSystemUser = true;
     group = "amule";
   };
-  users.groups."amule" = {};
+  users.groups."amule" = { };
 
   services = {
     samba-wsdd = {
@@ -261,33 +262,35 @@
     };
   };
 
-  systemd.services.ydns = let
-    ydnsUpdater = pkgs.writeScriptBin "ydnsUpdater" ''
-      USER="andrea.ciceri@autistici.org"
-      PASSWORD=$(cat /home/ccr/.ydns-password)
-      DOMAIN="ccr.ydns.eu"
-      for SUBDOMAIN in "books" "music" "sync" "torrent" "gate"
-      do
-          HOST="$SUBDOMAIN.$DOMAIN"
-          ${pkgs.curl}/bin/curl --basic -u "$USER:$PASSWORD" --silent https://ydns.io/api/v1/update/?host=$HOST
-      done
-      ${pkgs.curl}/bin/curl --basic -u "$USER:$PASSWORD" --silent https://ydns.io/api/v1/update/?host=$DOMAIN
-    '';
-  in {
-    description = "YDNS IP updater";
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
-    serviceConfig = {
-      User = "root";
-      Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash ${ydnsUpdater}/bin/ydnsUpdater";
+  systemd.services.ydns =
+    let
+      ydnsUpdater = pkgs.writeScriptBin "ydnsUpdater" ''
+        USER="andrea.ciceri@autistici.org"
+        PASSWORD=$(cat /home/ccr/.ydns-password)
+        DOMAIN="ccr.ydns.eu"
+        for SUBDOMAIN in "books" "music" "sync" "torrent" "gate"
+        do
+            HOST="$SUBDOMAIN.$DOMAIN"
+            ${pkgs.curl}/bin/curl --basic -u "$USER:$PASSWORD" --silent https://ydns.io/api/v1/update/?host=$HOST
+        done
+        ${pkgs.curl}/bin/curl --basic -u "$USER:$PASSWORD" --silent https://ydns.io/api/v1/update/?host=$DOMAIN
+      '';
+    in
+    {
+      description = "YDNS IP updater";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+      serviceConfig = {
+        User = "root";
+        Type = "oneshot";
+        ExecStart = "${pkgs.bash}/bin/bash ${ydnsUpdater}/bin/ydnsUpdater";
+      };
     };
-  };
 
   systemd.services.wstunnel = {
     description = "WSTunnel";
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
     serviceConfig = {
       User = "root";
       Type = "oneshot";
@@ -297,8 +300,8 @@
 
   # TODO It seems to not work
   systemd.timers.ydnsUpdater = {
-    wantedBy = ["timers.target"];
-    partOf = ["ydnsUpdater.service"];
+    wantedBy = [ "timers.target" ];
+    partOf = [ "ydnsUpdater.service" ];
     timerConfig = {
       OnCalendar = "*-*-* *:00:00"; # hourly
       Unit = "ydnsUpdater.service";
@@ -330,13 +333,13 @@
 
   networking.nat.enable = true;
   networking.nat.externalInterface = "enp0s10";
-  networking.nat.internalInterfaces = ["wg0"];
+  networking.nat.internalInterfaces = [ "wg0" ];
 
   networking.wireguard.interfaces = {
     # "wg0" is the network interface name. You can name the interface arbitrarily.
     wg0 = {
       # Determines the IP address and subnet of the server's end of the tunnel interface.
-      ips = ["10.100.0.1/24"];
+      ips = [ "10.100.0.1/24" ];
 
       # The port that WireGuard listens to. Must be accessible by the client.
       listenPort = 51820;
@@ -366,7 +369,7 @@
           # Public key of the peer (not a file path).
           publicKey = "fCwjd75CefC9A7WqO7s3xfOk2nRcoTKfnAzDT6Lc5AA=";
           # List of IPs assigned to this peer within the tunnel subnet. Used to configure routing.
-          allowedIPs = ["10.100.0.2/32"];
+          allowedIPs = [ "10.100.0.2/32" ];
         }
       ];
     };

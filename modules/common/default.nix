@@ -2,7 +2,8 @@
   lib,
   fleetModules,
   ...
-}: {
+}:
+{
   imports = fleetModules [
     "nix"
     "auto-upgrade"

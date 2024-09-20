@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.digikam];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.digikam ];
 }

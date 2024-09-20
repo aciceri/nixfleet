@@ -4,7 +4,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports =
     fleetModules [
       "common"
@@ -85,12 +86,12 @@
       "reinstall-magisk-on-lineage"
       "vscode-server"
     ];
-    extraGroups = [];
-    backupPaths = [];
+    extraGroups = [ ];
+    backupPaths = [ ];
   };
 
-  boot.kernelParams = ["ip=dhcp"];
-  boot.initrd.kernelModules = ["amdgpu"];
+  boot.kernelParams = [ "ip=dhcp" ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -108,7 +109,7 @@
   # https://github.com/NixOS/nixpkgs/issues/328909
   boot.extraModulePackages = [
     (config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
-      patches = [];
+      patches = [ ];
       src = pkgs.fetchFromGitLab {
         owner = "${old.pname}-linux";
         repo = "${old.pname}-linux";
@@ -154,6 +155,6 @@
   # TODO move away from here (how can the interface name be retrieved programmatically?)
   networking.interfaces.enp11s0.wakeOnLan = {
     enable = true;
-    policy = ["magic"];
+    policy = [ "magic" ];
   };
 }

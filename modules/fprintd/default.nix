@@ -1,5 +1,5 @@
 {
-  imports = [../pam];
+  imports = [ ../pam ];
 
   services.fprintd = {
     enable = false; # temporarily disable

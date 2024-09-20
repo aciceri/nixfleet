@@ -1,5 +1,6 @@
-{config, ...}: {
-  imports = [../nginx-base];
+{ ... }:
+{
+  imports = [ ../nginx-base ];
   services.nginx.virtualHosts = {
     "home.aciceri.dev" = {
       forceSSL = true;

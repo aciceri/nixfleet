@@ -1,14 +1,15 @@
 {
-  config,
   pkgs,
   fleetFlake,
-  lib,
   ...
-}: {
+}:
+{
   programs.nix-index.enable = true;
 
   systemd.user.services.nix-index-update = {
-    Unit = {Description = "Update nix-index";};
+    Unit = {
+      Description = "Update nix-index";
+    };
 
     Service = {
       CPUSchedulingPolicy = "idle";
@@ -18,7 +19,9 @@
   };
 
   systemd.user.timers.nix-index-update = {
-    Unit = {Description = "Update nix-index";};
+    Unit = {
+      Description = "Update nix-index";
+    };
 
     Timer = {
       Unit = "nix-index-update.service";
@@ -26,6 +29,8 @@
       Persistent = true;
     };
 
-    Install = {WantedBy = ["timers.target"];};
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
   };
 }

@@ -1,8 +1,8 @@
 {
   pkgs,
-  config,
   ...
-}: {
+}:
+{
   # nixpkgs.config.pulseaudio = true;
   # services.xrdp = {
   #   enable = true;
@@ -16,11 +16,14 @@
   #   };
   #   displayManager.defaultSession = "xfce";
   # };
-  environment.systemPackages = with pkgs; [sunshine superTuxKart];
+  environment.systemPackages = with pkgs; [
+    sunshine
+    superTuxKart
+  ];
 
-  boot.kernelModules = ["uinput"];
+  boot.kernelModules = [ "uinput" ];
 
-  users.groups.input.members = ["ccr"];
+  users.groups.input.members = [ "ccr" ];
 
   services.udev.extraRules = ''
     KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"' |

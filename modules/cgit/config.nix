@@ -1,28 +1,31 @@
 {
-  lib,
   pkgs,
   ...
-}: let
+}:
+let
   repos-path = "/var/lib/cgit-repos";
   cgit-setup-repos =
-    pkgs.writers.writePython3 "cgit-setup-repos" {
-      libraries = with pkgs.python3Packages; [PyGithub];
-    } ''
-      from github import Github
-      from pathlib import Path
+    pkgs.writers.writePython3 "cgit-setup-repos"
+      {
+        libraries = with pkgs.python3Packages; [ PyGithub ];
+      }
+      ''
+        from github import Github
+        from pathlib import Path
 
-      c = Path("${repos-path}")
-      c.unlink(missing_ok=True)
+        c = Path("${repos-path}")
+        c.unlink(missing_ok=True)
 
-      with open(c, "w") as f:
-          for repo in Github().get_user("aciceri").get_repos():
-              f.writelines([
-                  f"repo.url={repo.name}\n"
-                  f"repo.path=/home/ccr/projects/aciceri/{repo.name}/.git\n"
-                  f"repo.desc={repo.description}\n"
-              ])
-    '';
-in {
+        with open(c, "w") as f:
+            for repo in Github().get_user("aciceri").get_repos():
+                f.writelines([
+                    f"repo.url={repo.name}\n"
+                    f"repo.path=/home/ccr/projects/aciceri/{repo.name}/.git\n"
+                    f"repo.desc={repo.description}\n"
+                ])
+      '';
+in
+{
   services.nginx.virtualHosts."git.aciceri.dev" = {
     cgit = {
       enable = true;
@@ -31,10 +34,12 @@ in {
       virtual-root = "/";
       cache-size = 1000;
       include = [
-        (builtins.toString (pkgs.writeText "cgit-extra" ''
-          source-filter=${pkgs.cgit-pink}/lib/cgit/filters/syntax-highlighting.py
-          about-filter=${pkgs.cgit-pink}/lib/cgit/filters/about-formatting.sh
-        ''))
+        (builtins.toString (
+          pkgs.writeText "cgit-extra" ''
+            source-filter=${pkgs.cgit-pink}/lib/cgit/filters/syntax-highlighting.py
+            about-filter=${pkgs.cgit-pink}/lib/cgit/filters/about-formatting.sh
+          ''
+        ))
         repos-path
       ];
     };
@@ -48,13 +53,13 @@ in {
       Type = "oneshot";
       RemainAfterExit = true;
     };
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
     script = builtins.toString cgit-setup-repos;
   };
 
   systemd.timers.cgit-setup-repos = {
-    wantedBy = ["timers.target"];
-    partOf = ["cgit-setup-repos.service"];
+    wantedBy = [ "timers.target" ];
+    partOf = [ "cgit-setup-repos.service" ];
     timerConfig = {
       OnCalendar = "*-*-* 4:00:00"; # daily at 4 AM
       Unit = "cgit-setup-repos.service";

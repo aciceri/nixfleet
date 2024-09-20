@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   sound.enable = true;
 
   hardware.pulseaudio = {
@@ -6,5 +7,5 @@
     package = pkgs.pulseaudioFull;
   };
 
-  users.extraUsers.ccr.extraGroups = ["audio"];
+  users.extraUsers.ccr.extraGroups = [ "audio" ];
 }

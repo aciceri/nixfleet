@@ -2,22 +2,25 @@
   pkgs,
   secrets,
   ...
-}: {
+}:
+{
   programs.mbsync.enable = true;
   programs.msmtp.enable = true;
   services.mbsync.enable = true;
 
-  home.file.".config/aerc/stylesets" = let
-    catppuccin-aerc = pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "aerc";
-      rev = "ca404a9f2d125ef12db40db663d43c9d94116a05";
-      hash = "sha256-OWIkHsKFts/zkrDUtbBPXHVSrHL/F0v3LB1rnlFAKmE=";
+  home.file.".config/aerc/stylesets" =
+    let
+      catppuccin-aerc = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "aerc";
+        rev = "ca404a9f2d125ef12db40db663d43c9d94116a05";
+        hash = "sha256-OWIkHsKFts/zkrDUtbBPXHVSrHL/F0v3LB1rnlFAKmE=";
+      };
+    in
+    {
+      source = "${catppuccin-aerc}/dist";
+      recursive = true;
     };
-  in {
-    source = "${catppuccin-aerc}/dist";
-    recursive = true;
-  };
 
   programs.aerc = {
     enable = true;
@@ -81,7 +84,9 @@
         "<Esc>" = ":clear<Enter>";
       };
 
-      "messages:folder=Drafts" = {"<Enter>" = ":recall<Enter>";};
+      "messages:folder=Drafts" = {
+        "<Enter>" = ":recall<Enter>";
+      };
 
       view = {
         "/" = ":toggle-key-passthrough<Enter>/";
@@ -164,8 +169,12 @@
         border-char-vertical = "┃";
         border-char-horizontal = "━";
       };
-      viewer = {always-show-mime = true;};
-      compose = {no-attachment-warning = "^[^>]*attach(ed|ment)";};
+      viewer = {
+        always-show-mime = true;
+      };
+      compose = {
+        no-attachment-warning = "^[^>]*attach(ed|ment)";
+      };
       triggers = {
         email-received = ''exec notify-send "New email from %n" "%s"'';
       };

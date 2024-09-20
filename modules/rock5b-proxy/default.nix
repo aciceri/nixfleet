@@ -1,7 +1,8 @@
-{config, ...}: {
-  imports = [../nginx-base];
+{ config, ... }:
+{
+  imports = [ ../nginx-base ];
   services.nginx.virtualHosts = {
-    localhost.listen = [{addr = "127.0.0.1";}];
+    localhost.listen = [ { addr = "127.0.0.1"; } ];
     "home.aciceri.dev" = {
       forceSSL = true;
       enableACME = true;

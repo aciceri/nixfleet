@@ -8,5 +8,5 @@ writers.writePython3Bin "garmin-collector" {
     prometheus-client
     garminconnect
   ];
-  flakeIgnore = ["E501"];
+  flakeIgnore = [ "E501" ];
 } (builtins.readFile ./garmin-collector.py)

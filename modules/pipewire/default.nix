@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   services.pipewire.enable = true;
 
   hardware.pulseaudio = {

@@ -3,7 +3,8 @@
   config,
   vpn,
   ...
-}: {
+}:
+{
   networking.firewall.interfaces.wg0 = {
     allowedUDPPortRanges = [
       {
@@ -24,11 +25,8 @@
     listenPort = 51820;
   };
 
-  networking.hosts =
-    lib.mapAttrs'
-    (hostname: vpnConfig: {
-      name = vpnConfig.ip;
-      value = ["${hostname}.fleet"];
-    })
-    vpn;
+  networking.hosts = lib.mapAttrs' (hostname: vpnConfig: {
+    name = vpnConfig.ip;
+    value = [ "${hostname}.fleet" ];
+  }) vpn;
 }

@@ -1,20 +1,20 @@
 {
-  config,
-  lib,
   pkgs,
   ...
-}: {
+}:
+{
   services.xserver = {
     enable = true;
     desktopManager.kodi = {
       enable = true;
-      package = pkgs.kodi.withPackages (ps:
-        with ps; [
+      package = pkgs.kodi.withPackages (
+        ps: with ps; [
           joystick
           youtube
           libretro
           libretro-mgba
-        ]);
+        ]
+      );
     };
     displayManager.autoLogin = {
       enable = true;
@@ -28,8 +28,8 @@
   };
 
   networking.firewall = {
-    allowedTCPPorts = [8080];
-    allowedUDPPorts = [8080];
+    allowedTCPPorts = [ 8080 ];
+    allowedUDPPorts = [ 8080 ];
   };
 
   # environment.systemPackages = with pkgs; [xboxdrv cifs-utils];

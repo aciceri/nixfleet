@@ -1,8 +1,8 @@
 {
   config,
-  pkgs,
   ...
-}: {
+}:
+{
   services.forgejo = {
     enable = true;
     settings = {
@@ -37,7 +37,7 @@
     config.services.forgejo.stateDir
   ];
 
-  imports = [../nginx-base];
+  imports = [ ../nginx-base ];
 
   services.nginx.virtualHosts = {
     "git.aciceri.dev" = {

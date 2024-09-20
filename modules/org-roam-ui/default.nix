@@ -1,10 +1,11 @@
-{...}: {
+{ ... }:
+{
   networking.firewall.interfaces."wg0" = {
     allowedTCPPorts = [
       35901
     ];
   };
-  imports = [../nginx-base];
+  imports = [ ../nginx-base ];
   services.nginx.virtualHosts = {
     "roam.aciceri.dev" = {
       forceSSL = true;

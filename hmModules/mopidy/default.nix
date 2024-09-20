@@ -1,5 +1,6 @@
 # TODO: use upstream ytmusic when updated: https://github.com/OzymandiasTheGreat/mopidy-ytmusic/issues/68
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   ytmusicapi = pkgs.python310Packages.buildPythonPackage rec {
     pname = "ytmusicapi";
     version = "0.24.0";
@@ -38,14 +39,20 @@
       python310Packages.pytube
     ];
 
-    pythonImportsCheck = ["mopidy_ytmusic"];
+    pythonImportsCheck = [ "mopidy_ytmusic" ];
 
     doCheck = false;
   };
-in {
+in
+{
   services.mopidy = {
     enable = true;
-    extensionPackages = [mopidy-ytmusic] ++ (with pkgs; [mopidy-mpd mopidy-mpris]);
+    extensionPackages =
+      [ mopidy-ytmusic ]
+      ++ (with pkgs; [
+        mopidy-mpd
+        mopidy-mpris
+      ]);
     settings = {
       mpd = {
         enabled = true;

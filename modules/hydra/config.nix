@@ -1,8 +1,8 @@
 {
   services.my-hydra.repos = {
-    emacs = {};
-    nixfleet = {};
-    trotten = {};
-    blog = {};
+    emacs = { };
+    nixfleet = { };
+    trotten = { };
+    blog = { };
   };
 }

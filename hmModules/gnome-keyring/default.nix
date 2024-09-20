@@ -1,9 +1,9 @@
 {
   pkgs,
   lib,
-  config,
   ...
-}: {
+}:
+{
   services.gnome-keyring = {
     enable = false; # Is this broken? https://github.com/nix-community/home-manager/issues/1454
     components = lib.mkForce [
@@ -12,7 +12,7 @@
     ];
   };
 
-  home.packages = [pkgs.gcr]; # Needed in PATH
+  home.packages = [ pkgs.gcr ]; # Needed in PATH
 
   # Workaround
   wayland.windowManager.hyprland.extraConfig = ''

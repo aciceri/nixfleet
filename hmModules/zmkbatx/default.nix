@@ -2,11 +2,15 @@
   pkgs,
   lib,
   ...
-}: {
-  home.packages = [pkgs.zmkBATx];
+}:
+{
+  home.packages = [ pkgs.zmkBATx ];
 
   systemd.user.services.zmkBATx = {
-    Install.WantedBy = ["graphical-session.target" "waybar.service"];
+    Install.WantedBy = [
+      "graphical-session.target"
+      "waybar.service"
+    ];
 
     Unit = {
       Description = "zmkBATx";

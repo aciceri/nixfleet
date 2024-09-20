@@ -1,10 +1,10 @@
 {
   config,
-  lib,
   pkgs,
   fleetModules,
   ...
-}: {
+}:
+{
   imports =
     [
       ./zfs.nix
@@ -97,10 +97,15 @@
     ];
   };
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   # boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -126,8 +131,8 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  services.joycond.enable = true; #FIXME not here
-  services.udev.packages = [pkgs.joycond];
+  services.joycond.enable = true; # FIXME not here
+  services.udev.packages = [ pkgs.joycond ];
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
@@ -183,7 +188,7 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [8000];
+  networking.firewall.allowedTCPPorts = [ 8000 ];
   # networking.firewall.allowedUDPPorts = [ 5000 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -214,7 +219,7 @@
     ];
   };
 
-  users.groups.input.members = ["ccr"];
+  users.groups.input.members = [ "ccr" ];
   services.udev.extraRules = ''
     Sunshine
     KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"

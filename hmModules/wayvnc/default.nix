@@ -4,13 +4,14 @@
   vpn,
   hostname,
   ...
-}: {
+}:
+{
   systemd.user.services.wayvnc = {
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = [ "graphical-session.target" ];
 
     Unit = {
       Description = "WayVNC";
-      PartOf = ["graphical-session.target"];
+      PartOf = [ "graphical-session.target" ];
     };
 
     Service = {

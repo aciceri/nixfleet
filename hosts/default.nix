@@ -1,16 +1,14 @@
 {
-  self,
-  lib,
-  config,
   inputs,
   ...
-}: {
-  imports = [./module.nix];
+}:
+{
+  imports = [ ./module.nix ];
 
   fleet = {
-    darwinHosts.archer = {};
+    darwinHosts.archer = { };
 
-    nixOnDroidHosts.janeway = {};
+    nixOnDroidHosts.janeway = { };
 
     hosts = {
       # thinkpad = {
@@ -74,10 +72,11 @@
       # };
 
       deltaflyer = {
-        nixpkgs = let
-          # keep in sync with https://github.com/NixOS/mobile-nixos/blob/development/pkgs.nix
-          rev = "44d0940ea560dee511026a53f0e2e2cde489b4d4";
-        in
+        nixpkgs =
+          let
+            # keep in sync with https://github.com/NixOS/mobile-nixos/blob/development/pkgs.nix
+            rev = "44d0940ea560dee511026a53f0e2e2cde489b4d4";
+          in
           builtins.getFlake "github:NixOS/nixpkgs/${rev}";
         extraHmModules = [
           # inputs.ccrEmacs.hmModules.default
@@ -88,10 +87,10 @@
         };
         homeManager = builtins.getFlake "github:nix-community/home-manager/670d9ecc3e46a6e3265c203c2d136031a3d3548e";
         extraModules = [
-          (import "${inputs.mobile-nixos}/lib/configuration.nix" {device = "oneplus-fajita";})
+          (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-fajita"; })
         ];
         secrets = {
-          "deltaflyer-wireguard-private-key" = {};
+          "deltaflyer-wireguard-private-key" = { };
           "chatgpt-token".owner = "ccr";
         };
       };
@@ -111,12 +110,12 @@
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
         ];
         secrets = {
-          "kirk-wireguard-private-key" = {};
+          "kirk-wireguard-private-key" = { };
           "chatgpt-token".owner = "ccr";
           "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
-          "restic-hetzner-password" = {};
+          "restic-hetzner-password" = { };
         };
       };
 
@@ -137,7 +136,7 @@
           inputs.vscode-server.nixosModules.home
         ];
         secrets = {
-          "picard-wireguard-private-key" = {};
+          "picard-wireguard-private-key" = { };
           "chatgpt-token".owner = "ccr";
           "cachix-personal-token".owner = "ccr";
           "hercules-ci-join-token".owner = "hercules-ci-agent";
@@ -145,7 +144,7 @@
           "hercules-ci-secrets-json".owner = "hercules-ci-agent";
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
-          "restic-hetzner-password" = {};
+          "restic-hetzner-password" = { };
           "aws-credentials".owner = "hercules-ci-agent";
           "forgejo-runners-token".owner = "nixuser";
           "forgejo-nix-access-tokens".owner = "nixuser";
@@ -166,7 +165,7 @@
           # rock5b.nixosModules.default
         ];
         secrets = {
-          "sisko-wireguard-private-key" = {};
+          "sisko-wireguard-private-key" = { };
           "hercules-ci-join-token".owner = "hercules-ci-agent";
           "hercules-ci-binary-caches".owner = "hercules-ci-agent";
           "hercules-ci-secrets-json".owner = "hercules-ci-agent";
@@ -174,8 +173,8 @@
           "home-planimetry".owner = "hass";
           "home-assistant-token".owner = "prometheus";
           "grafana-password".owner = "grafana";
-          "cloudflare-dyndns-api-token" = {};
-          "restic-hetzner-password" = {};
+          "cloudflare-dyndns-api-token" = { };
+          "restic-hetzner-password" = { };
           # "minio-credentials".owner = "minio";
           # "aws-credentials".owner = "hercules-ci-agent";
           "hass-ssh-key".owner = "hass";

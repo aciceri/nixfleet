@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   services.blueman.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.bluetooth = {
@@ -19,6 +20,6 @@
       };
     };
   };
-  services.dbus.packages = with pkgs; [blueman];
-  ccr.extraGroups = ["bluetooth"];
+  services.dbus.packages = with pkgs; [ blueman ];
+  ccr.extraGroups = [ "bluetooth" ];
 }

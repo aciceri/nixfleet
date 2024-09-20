@@ -2,9 +2,9 @@
   config,
   lib,
   fleetFlake,
-  pkgs,
   ...
-}: {
+}:
+{
   nix = {
     optimise.automatic = true;
 
@@ -35,7 +35,7 @@
       # deprecated-features = [ "url-literals" ];
     };
 
-    nixPath = ["nixpkgs=${fleetFlake.inputs.nixpkgs}"];
+    nixPath = [ "nixpkgs=${fleetFlake.inputs.nixpkgs}" ];
 
     extraOptions = ''
       experimental-features = nix-command flakes impure-derivations
@@ -48,7 +48,8 @@
       options = "--delete-older-than 180d";
     };
 
-    registry = lib.mkForce ({
+    registry = lib.mkForce (
+      {
         nixpkgs.to = {
           type = "path";
           path = fleetFlake.inputs.nixpkgs;
@@ -71,7 +72,8 @@
           type = "path";
           path = "/home/${config.ccr.username}/.config/emacs";
         };
-      }));
+      })
+    );
 
     distributedBuilds = true;
     buildMachines =
@@ -79,7 +81,12 @@
         hostName = "sisko.fleet";
         system = "aarch64-linux";
         maxJobs = 7;
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+        supportedFeatures = [
+          "kvm"
+          "nixos-test"
+          "big-parallel"
+          "benchmark"
+        ];
         protocol = "ssh-ng";
         sshUser = "root";
         sshKey = "/home/${config.ccr.username}/.ssh/id_rsa";
@@ -88,7 +95,12 @@
         hostName = "mac.staging.mlabs.city?remote-program=/run/current-system/sw/bin/nix-store";
         system = "x86_64-darwin";
         maxJobs = 4;
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+        supportedFeatures = [
+          "kvm"
+          "nixos-test"
+          "big-parallel"
+          "benchmark"
+        ];
         protocol = "ssh";
         sshUser = "root";
         sshKey = "/home/${config.ccr.username}/.ssh/id_rsa";

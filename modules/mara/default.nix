@@ -5,7 +5,8 @@
   fleetHmModules,
   fleetFlake,
   ...
-}: {
+}:
+{
   options.mara = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -14,12 +15,15 @@
 
     modules = lib.mkOption {
       type = with lib.types; listOf str;
-      default = ["shell" "git"];
+      default = [
+        "shell"
+        "git"
+      ];
     };
 
     packages = lib.mkOption {
       type = with lib.types; listOf package;
-      default = [];
+      default = [ ];
     };
 
     autologin = lib.mkOption {
@@ -39,7 +43,12 @@
 
     extraGroups = lib.mkOption {
       type = with lib.types; listOf str;
-      default = ["wheel" "fuse" "networkmanager" "dialout"];
+      default = [
+        "wheel"
+        "fuse"
+        "networkmanager"
+        "dialout"
+      ];
     };
   };
 
@@ -54,10 +63,7 @@
       openssh.authorizedKeys.keys = config.mara.authorizedKeys;
     };
 
-    services.getty.autologinUser =
-      if config.mara.autologin
-      then "mara"
-      else null;
+    services.getty.autologinUser = if config.mara.autologin then "mara" else null;
 
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;

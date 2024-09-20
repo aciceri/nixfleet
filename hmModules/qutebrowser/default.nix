@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (config.programs.qutebrowser) settings;
   websites = {
     searx = "https://searx.be";
@@ -16,7 +17,8 @@
     less-dark-white = "#cccccc";
     blue = "#0000ff";
   };
-in {
+in
+{
   programs.qutebrowser = {
     enable = true;
     searchEngines = with websites; {
@@ -41,7 +43,7 @@ in {
       auto_save.session = true;
       url = with websites; {
         default_page = searx;
-        start_pages = [searx];
+        start_pages = [ searx ];
       };
       editor.command = [
         "emacsclient"
@@ -108,15 +110,13 @@ in {
   };
   home.packages = with pkgs; [
     fuzzel
-    (
-      makeDesktopItem {
-        name = "qutebrowser";
-        exec = "qutebrowser %u";
-        comment = "Qutebrowser";
-        desktopName = "qutebrowser";
-        type = "Application";
-        mimeTypes = ["x-scheme-handler/https"];
-      }
-    )
+    (makeDesktopItem {
+      name = "qutebrowser";
+      exec = "qutebrowser %u";
+      comment = "Qutebrowser";
+      desktopName = "qutebrowser";
+      type = "Application";
+      mimeTypes = [ "x-scheme-handler/https" ];
+    })
   ];
 }

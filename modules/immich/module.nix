@@ -3,9 +3,9 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     hasAttr
     hasPrefix
     maintainers
@@ -31,17 +31,18 @@
 
   isServerPostgresUnix = hasPrefix "/" serverCfg.postgres.host;
   postgresEnv =
-    if isServerPostgresUnix
-    then {
-      # If passwordFile is given, this will be overwritten in ExecStart
-      DB_URL = "socket://${serverCfg.postgres.host}?dbname=${serverCfg.postgres.database}";
-    }
-    else {
-      DB_HOSTNAME = serverCfg.postgres.host;
-      DB_PORT = toString serverCfg.postgres.port;
-      DB_DATABASE_NAME = serverCfg.postgres.database;
-      DB_USERNAME = serverCfg.postgres.username;
-    };
+    if isServerPostgresUnix then
+      {
+        # If passwordFile is given, this will be overwritten in ExecStart
+        DB_URL = "socket://${serverCfg.postgres.host}?dbname=${serverCfg.postgres.database}";
+      }
+    else
+      {
+        DB_HOSTNAME = serverCfg.postgres.host;
+        DB_PORT = toString serverCfg.postgres.port;
+        DB_DATABASE_NAME = serverCfg.postgres.database;
+        DB_USERNAME = serverCfg.postgres.username;
+      };
 
   typesenseEnv =
     {
@@ -54,7 +55,8 @@
     };
 
   # Don't start a redis instance if the user sets a custom redis connection
-  enableRedis = !hasAttr "REDIS_URL" serverCfg.extraConfig && !hasAttr "REDIS_SOCKET" serverCfg.extraConfig;
+  enableRedis =
+    !hasAttr "REDIS_URL" serverCfg.extraConfig && !hasAttr "REDIS_SOCKET" serverCfg.extraConfig;
   redisServerCfg = config.services.redis.servers.immich;
   redisEnv = optionalAttrs enableRedis {
     REDIS_SOCKET = redisServerCfg.unixSocket;
@@ -69,9 +71,7 @@
 
       IMMICH_MEDIA_LOCATION = serverCfg.mediaDir;
       IMMICH_MACHINE_LEARNING_URL =
-        if serverCfg.machineLearningUrl != null
-        then serverCfg.machineLearningUrl
-        else "false";
+        if serverCfg.machineLearningUrl != null then serverCfg.machineLearningUrl else "false";
     };
 
   serverStartWrapper = program: ''
@@ -79,9 +79,10 @@
     mkdir -p ${serverCfg.mediaDir}
 
     ${optionalString (serverCfg.postgres.passwordFile != null) (
-      if isServerPostgresUnix
-      then ''export DB_URL="socket://${serverCfg.postgres.username}:$(cat ${serverCfg.postgres.passwordFile})@${serverCfg.postgres.host}?dbname=${serverCfg.postgres.database}"''
-      else "export DB_PASSWORD=$(cat ${serverCfg.postgres.passwordFile})"
+      if isServerPostgresUnix then
+        ''export DB_URL="socket://${serverCfg.postgres.username}:$(cat ${serverCfg.postgres.passwordFile})@${serverCfg.postgres.host}?dbname=${serverCfg.postgres.database}"''
+      else
+        "export DB_PASSWORD=$(cat ${serverCfg.postgres.passwordFile})"
     )}
 
     ${optionalString serverCfg.typesense.enable ''
@@ -146,30 +147,27 @@
     EnvironmentFile = mkIf (serverCfg.environmentFile != null) serverCfg.environmentFile;
 
     TemporaryFileSystem = "/:ro";
-    BindReadOnlyPaths =
-      [
-        "/nix/store"
-        "-/etc/resolv.conf"
-        "-/etc/nsswitch.conf"
-        "-/etc/hosts"
-        "-/etc/localtime"
-        "-/run/postgresql"
-      ]
-      ++ optional enableRedis redisServerCfg.unixSocket;
+    BindReadOnlyPaths = [
+      "/nix/store"
+      "-/etc/resolv.conf"
+      "-/etc/nsswitch.conf"
+      "-/etc/hosts"
+      "-/etc/localtime"
+      "-/run/postgresql"
+    ] ++ optional enableRedis redisServerCfg.unixSocket;
   };
-in {
+in
+{
   options.services.immich = {
-    enable =
-      mkEnableOption "immich"
-      // {
-        description = ''
-          Enables immich which consists of a backend server, microservices,
-          machine-learning and web ui. You can disable or reconfigure components
-          individually using the subsections.
-        '';
-      };
+    enable = mkEnableOption "immich" // {
+      description = ''
+        Enables immich which consists of a backend server, microservices,
+        machine-learning and web ui. You can disable or reconfigure components
+        individually using the subsections.
+      '';
+    };
 
-    package = mkPackageOption pkgs "immich" {};
+    package = mkPackageOption pkgs "immich" { };
 
     server = {
       mediaDir = mkOption {
@@ -179,11 +177,9 @@ in {
       };
 
       backend = {
-        enable =
-          mkEnableOption "immich backend server"
-          // {
-            default = true;
-          };
+        enable = mkEnableOption "immich backend server" // {
+          default = true;
+        };
         port = mkOption {
           type = types.port;
           default = 3001;
@@ -198,7 +194,7 @@ in {
 
         extraConfig = mkOption {
           type = types.attrs;
-          default = {};
+          default = { };
           example = {
             LOG_LEVEL = "debug";
           };
@@ -220,11 +216,9 @@ in {
       };
 
       microservices = {
-        enable =
-          mkEnableOption "immich microservices"
-          // {
-            default = true;
-          };
+        enable = mkEnableOption "immich microservices" // {
+          default = true;
+        };
 
         port = mkOption {
           type = types.port;
@@ -240,7 +234,7 @@ in {
 
         extraConfig = mkOption {
           type = types.attrs;
-          default = {};
+          default = { };
           example = {
             REVERSE_GEOCODING_PRECISION = 1;
           };
@@ -262,11 +256,9 @@ in {
       };
 
       typesense = {
-        enable =
-          mkEnableOption "typesense"
-          // {
-            default = true;
-          };
+        enable = mkEnableOption "typesense" // {
+          default = true;
+        };
 
         host = mkOption {
           type = types.str;
@@ -343,7 +335,7 @@ in {
 
       extraConfig = mkOption {
         type = types.attrs;
-        default = {};
+        default = { };
         example = {
           REDIS_SOCKET = "/run/custom-redis";
         };
@@ -365,11 +357,9 @@ in {
     };
 
     web = {
-      enable =
-        mkEnableOption "immich web frontend"
-        // {
-          default = true;
-        };
+      enable = mkEnableOption "immich web frontend" // {
+        default = true;
+      };
 
       port = mkOption {
         type = types.port;
@@ -398,7 +388,7 @@ in {
 
       extraConfig = mkOption {
         type = types.attrs;
-        default = {};
+        default = { };
         example = {
           PUBLIC_LOGIN_PAGE_MESSAGE = "My awesome Immich instance!";
         };
@@ -410,11 +400,9 @@ in {
     };
 
     machineLearning = {
-      enable =
-        mkEnableOption "immich machine-learning server"
-        // {
-          default = true;
-        };
+      enable = mkEnableOption "immich machine-learning server" // {
+        default = true;
+      };
 
       port = mkOption {
         type = types.port;
@@ -430,7 +418,7 @@ in {
 
       extraConfig = mkOption {
         type = types.attrs;
-        default = {};
+        default = { };
         example = {
           MACHINE_LEARNING_MODEL_TTL = 600;
         };
@@ -451,10 +439,10 @@ in {
     ];
 
     networking.firewall.allowedTCPPorts = mkMerge [
-      (mkIf (backendCfg.enable && backendCfg.openFirewall) [backendCfg.port])
-      (mkIf (microservicesCfg.enable && microservicesCfg.openFirewall) [microservicesCfg.port])
-      (mkIf (webCfg.enable && webCfg.openFirewall) [webCfg.port])
-      (mkIf (mlCfg.enable && mlCfg.openFirewall) [mlCfg.port])
+      (mkIf (backendCfg.enable && backendCfg.openFirewall) [ backendCfg.port ])
+      (mkIf (microservicesCfg.enable && microservicesCfg.openFirewall) [ microservicesCfg.port ])
+      (mkIf (webCfg.enable && webCfg.openFirewall) [ webCfg.port ])
+      (mkIf (mlCfg.enable && mlCfg.openFirewall) [ mlCfg.port ])
     ];
 
     services.redis.servers.immich.enable = mkIf enableRedis true;
@@ -462,15 +450,13 @@ in {
 
     systemd.services.immich-server = mkIf backendCfg.enable {
       description = "Immich backend server (Self-hosted photo and video backup solution)";
-      after =
-        [
-          "network.target"
-          "typesense.service"
-          "postgresql.service"
-          "immich-machine-learning.service"
-        ]
-        ++ optional enableRedis "redis-immich.service";
-      wantedBy = ["multi-user.target"];
+      after = [
+        "network.target"
+        "typesense.service"
+        "postgresql.service"
+        "immich-machine-learning.service"
+      ] ++ optional enableRedis "redis-immich.service";
+      wantedBy = [ "multi-user.target" ];
 
       environment =
         serverEnv
@@ -491,15 +477,13 @@ in {
 
     systemd.services.immich-microservices = mkIf microservicesCfg.enable {
       description = "Immich microservices (Self-hosted photo and video backup solution)";
-      after =
-        [
-          "network.target"
-          "typesense.service"
-          "postgresql.service"
-          "immich-machine-learning.service"
-        ]
-        ++ optional enableRedis "redis-immich.service";
-      wantedBy = ["multi-user.target"];
+      after = [
+        "network.target"
+        "typesense.service"
+        "postgresql.service"
+        "immich-machine-learning.service"
+      ] ++ optional enableRedis "redis-immich.service";
+      wantedBy = [ "multi-user.target" ];
 
       environment =
         serverEnv
@@ -524,16 +508,14 @@ in {
         "network.target"
         "immich-server.service"
       ];
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
 
-      environment =
-        {
-          NODE_ENV = "production";
-          PORT = toString webCfg.port;
-          IMMICH_SERVER_URL = webCfg.serverUrl;
-          IMMICH_API_URL_EXTERNAL = webCfg.apiUrlExternal;
-        }
-        // mapAttrs (_: toString) webCfg.extraConfig;
+      environment = {
+        NODE_ENV = "production";
+        PORT = toString webCfg.port;
+        IMMICH_SERVER_URL = webCfg.serverUrl;
+        IMMICH_API_URL_EXTERNAL = webCfg.apiUrlExternal;
+      } // mapAttrs (_: toString) webCfg.extraConfig;
 
       script = ''
         set -euo pipefail
@@ -541,68 +523,62 @@ in {
         export PUBLIC_IMMICH_API_URL_EXTERNAL=$IMMICH_API_URL_EXTERNAL
         exec ${cfg.package.web}/bin/web
       '';
-      serviceConfig =
-        commonServiceConfig
-        // {
-          DynamicUser = true;
-          User = "immich-web";
-          Group = "immich-web";
+      serviceConfig = commonServiceConfig // {
+        DynamicUser = true;
+        User = "immich-web";
+        Group = "immich-web";
 
-          MemoryDenyWriteExecute = false; # nodejs requires this.
+        MemoryDenyWriteExecute = false; # nodejs requires this.
 
-          TemporaryFileSystem = "/:ro";
-          BindReadOnlyPaths = [
-            "/nix/store"
-            "-/etc/resolv.conf"
-            "-/etc/nsswitch.conf"
-            "-/etc/hosts"
-            "-/etc/localtime"
-          ];
-        };
+        TemporaryFileSystem = "/:ro";
+        BindReadOnlyPaths = [
+          "/nix/store"
+          "-/etc/resolv.conf"
+          "-/etc/nsswitch.conf"
+          "-/etc/hosts"
+          "-/etc/localtime"
+        ];
+      };
     };
 
     systemd.services.immich-machine-learning = mkIf mlCfg.enable {
       description = "Immich machine learning (Self-hosted photo and video backup solution)";
-      after = ["network.target"];
-      wantedBy = ["multi-user.target"];
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
 
-      environment =
-        {
-          NODE_ENV = "production";
-          MACHINE_LEARNING_PORT = toString mlCfg.port;
+      environment = {
+        NODE_ENV = "production";
+        MACHINE_LEARNING_PORT = toString mlCfg.port;
 
-          MACHINE_LEARNING_CACHE_FOLDER = "/var/cache/immich-ml";
-          TRANSFORMERS_CACHE = "/var/cache/immich-ml";
-        }
-        // mapAttrs (_: toString) mlCfg.extraConfig;
+        MACHINE_LEARNING_CACHE_FOLDER = "/var/cache/immich-ml";
+        TRANSFORMERS_CACHE = "/var/cache/immich-ml";
+      } // mapAttrs (_: toString) mlCfg.extraConfig;
 
-      serviceConfig =
-        commonServiceConfig
-        // {
-          ExecStart = "${cfg.package.machine-learning}/bin/machine-learning";
-          DynamicUser = true;
-          User = "immich-ml";
-          Group = "immich-ml";
+      serviceConfig = commonServiceConfig // {
+        ExecStart = "${cfg.package.machine-learning}/bin/machine-learning";
+        DynamicUser = true;
+        User = "immich-ml";
+        Group = "immich-ml";
 
-          MemoryDenyWriteExecute = false; # onnxruntime_pybind11 requires this.
-          ProcSubset = "all"; # Needs /proc/cpuinfo
+        MemoryDenyWriteExecute = false; # onnxruntime_pybind11 requires this.
+        ProcSubset = "all"; # Needs /proc/cpuinfo
 
-          CacheDirectory = "immich-ml";
-          CacheDirectoryMode = "0700";
+        CacheDirectory = "immich-ml";
+        CacheDirectoryMode = "0700";
 
-          # TODO gpu access
+        # TODO gpu access
 
-          TemporaryFileSystem = "/:ro";
-          BindReadOnlyPaths = [
-            "/nix/store"
-            "-/etc/resolv.conf"
-            "-/etc/nsswitch.conf"
-            "-/etc/hosts"
-            "-/etc/localtime"
-          ];
-        };
+        TemporaryFileSystem = "/:ro";
+        BindReadOnlyPaths = [
+          "/nix/store"
+          "-/etc/resolv.conf"
+          "-/etc/nsswitch.conf"
+          "-/etc/hosts"
+          "-/etc/localtime"
+        ];
+      };
     };
 
-    meta.maintainers = with maintainers; [oddlama];
+    meta.maintainers = with maintainers; [ oddlama ];
   };
 }

@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports =
     fleetModules [
       "common"
@@ -41,7 +42,10 @@
     # Networking, modem and misc.
     {
       # Ensures any rndis config from stage-1 is not clobbered by NetworkManager
-      networking.networkmanager.unmanaged = ["rndis0" "usb0"];
+      networking.networkmanager.unmanaged = [
+        "rndis0"
+        "usb0"
+      ];
 
       # Setup USB gadget networking in initrd...
       mobile.boot.stage-1.networking.enable = lib.mkDefault true;
@@ -75,13 +79,14 @@
           "video"
           "wheel"
         ];
-        backupPaths = [];
+        backupPaths = [ ];
       };
     }
 
     {
       system.stateVersion = "24.11";
-      nixpkgs.config.allowUnfreePredicate = pkg:
+      nixpkgs.config.allowUnfreePredicate =
+        pkg:
         builtins.elem (lib.getName pkg) [
           "oneplus-sdm845-firmware-zstd"
           "oneplus-sdm845-firmware-xz"
@@ -106,21 +111,23 @@
             bind = $mod, r, exec, rotate-screen hor
             bind = $mod SHIFT, r, exec, rotate-screen ver
           '';
-          home.packages = let
-            rotateScript = pkgs.writeShellApplication {
-              name = "rotate-screen";
-              runtimeInputs = [pkgs.hyprland];
-              text = ''
-                if [[ "$1" == "hor" ]]; then
-                  hyprctl keyword monitor DSI-1,1080x2340,0x0,2,transform,1
-                  hyprctl keyword input:touchdevice:transform 1
-                elif [[ "$1" == "ver" ]]; then
-                  hyprctl keyword monitor DSI-1,1080x2340,0x0,2,transform,0
-                  hyprctl keyword input:touchdevice:transform 0
-                fi
-              '';
-            };
-          in [rotateScript];
+          home.packages =
+            let
+              rotateScript = pkgs.writeShellApplication {
+                name = "rotate-screen";
+                runtimeInputs = [ pkgs.hyprland ];
+                text = ''
+                  if [[ "$1" == "hor" ]]; then
+                    hyprctl keyword monitor DSI-1,1080x2340,0x0,2,transform,1
+                    hyprctl keyword input:touchdevice:transform 1
+                  elif [[ "$1" == "ver" ]]; then
+                    hyprctl keyword monitor DSI-1,1080x2340,0x0,2,transform,0
+                    hyprctl keyword input:touchdevice:transform 0
+                  fi
+                '';
+              };
+            in
+            [ rotateScript ];
           services.swayidle.enable = lib.mkForce false;
         }
       ];
@@ -138,7 +145,13 @@
 
       zramSwap.enable = lib.mkDefault true;
 
-      boot.binfmt.emulatedSystems = lib.mkForce ["x86_64-linux" "i686-linux" "i386-linux" "i486-linux" "i586-linux"];
+      boot.binfmt.emulatedSystems = lib.mkForce [
+        "x86_64-linux"
+        "i686-linux"
+        "i386-linux"
+        "i486-linux"
+        "i586-linux"
+      ];
     }
   ];
 }

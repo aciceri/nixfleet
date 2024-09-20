@@ -22,26 +22,26 @@
       language = [
         {
           name = "nix";
-          language-servers = ["nixd"];
+          language-servers = [ "nixd" ];
         }
         {
           name = "markdown";
-          language-servers = ["zk"];
+          language-servers = [ "zk" ];
         }
         {
           name = "typescript";
-          language-servers = ["vtsls"];
+          language-servers = [ "vtsls" ];
         }
       ];
       language-server = {
         nixd.command = "nixd";
         vtsls = {
           command = "vtsls";
-          args = ["--stdio"];
+          args = [ "--stdio" ];
         };
         zk = {
           command = "zk";
-          args = ["lsp"];
+          args = [ "lsp" ];
         };
       };
     };

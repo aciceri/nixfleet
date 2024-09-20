@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   clientConfig = {
     "m.homeserver".base_url = "https://matrix.aciceri.dev";
     "org.matrix.msc3575.proxy".url = "https://syncv3.matrix.aciceri.dev";
@@ -14,8 +15,9 @@
     add_header Access-Control-Allow-Origin *;
     return 200 '${builtins.toJSON data}';
   '';
-in {
-  imports = [../nginx-base];
+in
+{
+  imports = [ ../nginx-base ];
 
   services.nginx.virtualHosts = {
     "aciceri.dev" = {
@@ -58,20 +60,23 @@ in {
       listeners = [
         {
           port = 8008;
-          bind_addresses = ["127.0.0.1"];
+          bind_addresses = [ "127.0.0.1" ];
           type = "http";
           tls = false;
           x_forwarded = true;
           resources = [
             {
-              names = ["client" "federation"];
+              names = [
+                "client"
+                "federation"
+              ];
               compress = true;
             }
           ];
         }
       ];
     };
-    extraConfigFiles = [config.age.secrets.matrix-registration-shared-secret.path];
+    extraConfigFiles = [ config.age.secrets.matrix-registration-shared-secret.path ];
   };
 
   backup.paths = [
@@ -81,7 +86,7 @@ in {
 
   services.postgresqlBackup = {
     enable = true;
-    databases = ["matrix-synapse"];
+    databases = [ "matrix-synapse" ];
   };
 
   services.matrix-sliding-sync = {

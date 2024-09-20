@@ -1,6 +1,14 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   boot = {
-    initrd.availableKernelModules = ["ohci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+    initrd.availableKernelModules = [
+      "ohci_pci"
+      "ehci_pci"
+      "ahci"
+      "usb_storage"
+      "usbhid"
+      "sd_mod"
+    ];
     loader.grub = lib.mkForce {
       enable = true;
       version = 2;
@@ -23,5 +31,5 @@
     };
   };
 
-  swapDevices = [{device = "/dev/disk/by-label/swap";}];
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 }

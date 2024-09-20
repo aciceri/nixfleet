@@ -4,7 +4,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
@@ -42,17 +43,29 @@
   };
 
   fonts = {
-    fonts = with pkgs; [powerline-fonts dejavu_fonts fira-code fira-code-symbols emacs-all-the-icons-fonts nerdfonts joypixels etBook];
+    fonts = with pkgs; [
+      powerline-fonts
+      dejavu_fonts
+      fira-code
+      fira-code-symbols
+      emacs-all-the-icons-fonts
+      nerdfonts
+      joypixels
+      etBook
+    ];
     fontconfig.defaultFonts = {
-      monospace = ["DejaVu Sans Mono for Powerline"];
-      sansSerif = ["DejaVu Sans"];
-      serif = ["DejaVu Serif"];
+      monospace = [ "DejaVu Sans Mono for Powerline" ];
+      sansSerif = [ "DejaVu Sans" ];
+      serif = [ "DejaVu Serif" ];
     };
   };
 
   nixpkgs.config.joypixels.acceptLicense = true;
 
-  environment.systemPackages = with pkgs; [waypipe firefox];
+  environment.systemPackages = with pkgs; [
+    waypipe
+    firefox
+  ];
 
   programs.mosh.enable = true;
 
@@ -61,7 +74,7 @@
   };
 
   boot.loader.grub = {
-    devices = ["/dev/sda"];
+    devices = [ "/dev/sda" ];
     efiSupport = true;
     efiInstallAsRemovable = true;
   };

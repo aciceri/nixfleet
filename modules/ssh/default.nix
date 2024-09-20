@@ -1,4 +1,5 @@
-{fleetFlake, ...}: {
+{ fleetFlake, ... }:
+{
   services = {
     openssh = {
       enable = true;
@@ -15,5 +16,7 @@
   };
 
   # This makes sense only because I'm the only user for these machines
-  users.users.root.openssh.authorizedKeys.keys = builtins.attrValues (with (import "${fleetFlake}/lib"); keys.users // keys.hosts);
+  users.users.root.openssh.authorizedKeys.keys = builtins.attrValues (
+    with (import "${fleetFlake}/lib"); keys.users // keys.hosts
+  );
 }

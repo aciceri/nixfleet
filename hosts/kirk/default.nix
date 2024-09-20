@@ -1,10 +1,10 @@
 {
   fleetModules,
   lib,
-  pkgs,
   config,
   ...
-}: {
+}:
+{
   imports =
     fleetModules [
       "common"
@@ -67,11 +67,11 @@
       "zulip"
       "calibre"
     ];
-    extraGroups = [];
-    backupPaths = [];
+    extraGroups = [ ];
+    backupPaths = [ ];
   };
 
-  boot.initrd.kernelModules = ["i915"];
+  boot.initrd.kernelModules = [ "i915" ];
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"

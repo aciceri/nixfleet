@@ -4,47 +4,67 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["uinput"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "uinput" ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
     device = "rpool/nixos/root";
     fsType = "zfs";
-    options = ["zfsutil" "X-mount.mkdir"];
+    options = [
+      "zfsutil"
+      "X-mount.mkdir"
+    ];
   };
 
   fileSystems."/home" = {
     device = "rpool/nixos/home";
     fsType = "zfs";
-    options = ["zfsutil" "X-mount.mkdir"];
+    options = [
+      "zfsutil"
+      "X-mount.mkdir"
+    ];
   };
 
   fileSystems."/var/lib" = {
     device = "rpool/nixos/var/lib";
     fsType = "zfs";
-    options = ["zfsutil" "X-mount.mkdir"];
+    options = [
+      "zfsutil"
+      "X-mount.mkdir"
+    ];
   };
 
   fileSystems."/var/log" = {
     device = "rpool/nixos/var/log";
     fsType = "zfs";
-    options = ["zfsutil" "X-mount.mkdir"];
+    options = [
+      "zfsutil"
+      "X-mount.mkdir"
+    ];
   };
 
   fileSystems."/boot" = {
     device = "bpool/nixos/root";
     fsType = "zfs";
-    options = ["zfsutil" "X-mount.mkdir"];
+    options = [
+      "zfsutil"
+      "X-mount.mkdir"
+    ];
   };
 
   fileSystems."/boot/efis/nvme-INTEL_SSDPEKKF010T8L_PHHP938405741P0D-part1" = {
@@ -64,7 +84,7 @@
   # };
 
   swapDevices = [
-    {device = "/dev/disk/by-label/swap";}
+    { device = "/dev/disk/by-label/swap"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

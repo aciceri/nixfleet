@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.calibre];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.calibre ];
 }

@@ -9,5 +9,5 @@
       };
     };
   };
-  systemd.user.services.pantalaimon.Unit.Requires = ["dbus.socket"];
+  systemd.user.services.pantalaimon.Unit.Requires = [ "dbus.socket" ];
 }

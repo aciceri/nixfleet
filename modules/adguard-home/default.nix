@@ -6,6 +6,9 @@
       openFirewall = true;
     };
   };
-  networking.firewall.allowedTCPPorts = [3000 53];
-  networking.firewall.allowedUDPPorts = [53];
+  networking.firewall.allowedTCPPorts = [
+    3000
+    53
+  ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
 }

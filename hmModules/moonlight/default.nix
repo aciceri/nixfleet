@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.moonlight-qt];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.moonlight-qt ];
 }

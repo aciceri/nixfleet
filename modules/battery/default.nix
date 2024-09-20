@@ -1,10 +1,11 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.tlp.enable = true;
 
   services.upower.enable = true;
 
   nixpkgs.overlays = [
-    (self: super: {
+    (_self: super: {
       tlp = super.tlp.override {
         enableRDW = config.networkmanager.enable;
       };

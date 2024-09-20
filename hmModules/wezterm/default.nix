@@ -2,12 +2,12 @@
   pkgs,
   hostname,
   ...
-}: {
+}:
+{
   programs.wezterm = {
     enable = true;
     package =
-      if hostname == "pircard"
-      then
+      if hostname == "pircard" then
         (pkgs.wezterm.overrideAttrs (old: rec {
           pname = "wezterm";
           version = "20240406-cce0706";
@@ -24,43 +24,40 @@
               "xcb-imdkit-0.3.0" = "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI=";
             };
           };
-          patches =
-            (old.patches or [])
-            ++ [
-              (pkgs.fetchpatch {
-                # fix(wayland): ensure repaint event is sent in show
-                url = "https://patch-diff.githubusercontent.com/raw/wez/wezterm/pull/5264.patch";
-                hash = "sha256-c+frVaBEL0h3PJvNu3AW2iap+uUXBY8olbm7Wsxuh4Q=";
-              })
-              (pkgs.writeText
-                "wezterm-remove_capabilities.patch"
-                ''
-                  diff --git a/window/src/os/wayland/seat.rs b/window/src/os/wayland/seat.rs
-                  index 3798f4259..e91591130 100644
-                  --- a/window/src/os/wayland/seat.rs
-                  +++ b/window/src/os/wayland/seat.rs
-                  @@ -65,9 +65,15 @@ impl SeatHandler for WaylandState {
-                           _conn: &Connection,
-                           _qh: &QueueHandle<Self>,
-                           _seat: WlSeat,
-                  -        _capability: smithay_client_toolkit::seat::Capability,
-                  +        capability: smithay_client_toolkit::seat::Capability,
-                       ) {
-                  -        todo!()
-                  +        if capability == Capability::Keyboard && self.keyboard.is_some() {
-                  +            self.keyboard.take().unwrap().release();
-                  +        }
-                  +
-                  +        if capability == Capability::Pointer && self.pointer.is_some() {
-                  +            self.pointer = None;
-                  +        }
-                       }
+          patches = (old.patches or [ ]) ++ [
+            (pkgs.fetchpatch {
+              # fix(wayland): ensure repaint event is sent in show
+              url = "https://patch-diff.githubusercontent.com/raw/wez/wezterm/pull/5264.patch";
+              hash = "sha256-c+frVaBEL0h3PJvNu3AW2iap+uUXBY8olbm7Wsxuh4Q=";
+            })
+            (pkgs.writeText "wezterm-remove_capabilities.patch" ''
+              diff --git a/window/src/os/wayland/seat.rs b/window/src/os/wayland/seat.rs
+              index 3798f4259..e91591130 100644
+              --- a/window/src/os/wayland/seat.rs
+              +++ b/window/src/os/wayland/seat.rs
+              @@ -65,9 +65,15 @@ impl SeatHandler for WaylandState {
+                       _conn: &Connection,
+                       _qh: &QueueHandle<Self>,
+                       _seat: WlSeat,
+              -        _capability: smithay_client_toolkit::seat::Capability,
+              +        capability: smithay_client_toolkit::seat::Capability,
+                   ) {
+              -        todo!()
+              +        if capability == Capability::Keyboard && self.keyboard.is_some() {
+              +            self.keyboard.take().unwrap().release();
+              +        }
+              +
+              +        if capability == Capability::Pointer && self.pointer.is_some() {
+              +            self.pointer = None;
+              +        }
+                   }
 
-                       fn remove_seat(&mut self, _conn: &Connection, _qh: &QueueHandle<Self>, _seat: WlSeat) {
-                '')
-            ];
+                   fn remove_seat(&mut self, _conn: &Connection, _qh: &QueueHandle<Self>, _seat: WlSeat) {
+            '')
+          ];
         }))
-      else pkgs.wezterm;
+      else
+        pkgs.wezterm;
 
     extraConfig = ''
       return {

@@ -6,5 +6,5 @@
 writeShellApplication {
   name = "deploy";
   text = builtins.readFile ./deploy.sh;
-  runtimeInputs = [nixos-rebuild];
+  runtimeInputs = [ nixos-rebuild ];
 }

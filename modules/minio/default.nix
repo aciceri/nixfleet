@@ -2,14 +2,15 @@
   config,
   lib,
   ...
-}: {
-  imports = [../nginx-base];
+}:
+{
+  imports = [ ../nginx-base ];
 
   services.minio = {
     enable = true;
     rootCredentialsFile = config.age.secrets.minio-credentials.path;
     region = "eu-south-1";
-    dataDir = lib.mkForce ["/mnt/hd/minio"];
+    dataDir = lib.mkForce [ "/mnt/hd/minio" ];
   };
 
   services.nginx.virtualHosts."cache.aciceri.dev" = {
@@ -25,8 +26,7 @@
     '';
     locations."/" = {
       proxyPass = "http://127.0.0.1:9000";
-      extraConfig = ''
-      '';
+      extraConfig = '''';
     };
   };
 }

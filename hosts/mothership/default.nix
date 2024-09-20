@@ -5,7 +5,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   imports = fleetModules [
     "common"
     "wireguard-server"
@@ -57,11 +58,20 @@
   };
 
   fonts = {
-    fonts = with pkgs; [powerline-fonts dejavu_fonts fira-code fira-code-symbols emacs-all-the-icons-fonts nerdfonts joypixels etBook];
+    fonts = with pkgs; [
+      powerline-fonts
+      dejavu_fonts
+      fira-code
+      fira-code-symbols
+      emacs-all-the-icons-fonts
+      nerdfonts
+      joypixels
+      etBook
+    ];
     fontconfig.defaultFonts = {
-      monospace = ["DejaVu Sans Mono for Powerline"];
-      sansSerif = ["DejaVu Sans"];
-      serif = ["DejaVu Serif"];
+      monospace = [ "DejaVu Sans Mono for Powerline" ];
+      sansSerif = [ "DejaVu Sans" ];
+      serif = [ "DejaVu Serif" ];
     };
   };
 
@@ -69,16 +79,21 @@
 
   nixpkgs.config.joypixels.acceptLicense = true;
 
-  environment.systemPackages = with pkgs; [waypipe];
+  environment.systemPackages = with pkgs; [ waypipe ];
 
   programs.dconf.enable = true;
 
   programs.mosh.enable = true;
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usbhid"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot = {

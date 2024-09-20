@@ -2,7 +2,8 @@
   age,
   username,
   ...
-}: {
+}:
+{
   services.git-workspace = {
     enable = true;
     frequency = "04:00:00";

@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.transmission = {
     enable = true;
     openRPCPort = true;
@@ -44,7 +45,7 @@
     "d /mnt/hd/torrent/.incomplete 770 transmission transmission"
   ];
 
-  ccr.extraGroups = ["transmission"];
+  ccr.extraGroups = [ "transmission" ];
 
   environment.persistence."/persist".directories = [
     config.services.transmission.home

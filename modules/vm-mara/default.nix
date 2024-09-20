@@ -1,10 +1,10 @@
 {
-  config,
   pkgs,
   # lib,
   # fleetFlake,
   ...
-}: {
+}:
+{
   security.polkit.enable = true;
   virtualisation.libvirtd.enable = true;
 
@@ -117,35 +117,37 @@
   # -audiodev alsa,id=snd0,out.try-poll=off -device ich9-intel-hda -device hda-output,audiodev=snd0 \
   # -device vfio-pci,host=00:02.0 \
 
-  systemd.services.vm-mara = let
-    start-vm = pkgs.writeShellApplication {
-      name = "start-vm";
-      runtimeInputs = with pkgs; [qemu];
-      text = ''
-        [ ! -f /var/lib/vm-mara/w10.qcow2 ] && \
-          qemu-img create -f qcow2 /var/lib/vm-mara/w10.qcow2 50G
+  systemd.services.vm-mara =
+    let
+      start-vm = pkgs.writeShellApplication {
+        name = "start-vm";
+        runtimeInputs = with pkgs; [ qemu ];
+        text = ''
+          [ ! -f /var/lib/vm-mara/w10.qcow2 ] && \
+            qemu-img create -f qcow2 /var/lib/vm-mara/w10.qcow2 50G
 
-        qemu-system-x86_64 \
-          -enable-kvm \
-          -cpu host,kvm=off,hv-spinlocks=819,hv-vapic=on,hv-relaxed=on,hv-vendor-id="IrisXE" \
-          -smp 4 \
-          -m 8192 \
-          -nic user,model=virtio-net-pci,hostfwd=tcp::3389-:3389,hostfwd=tcp::47989-:47989,hostfwd=tcp::47990-:47990,hostfwd=tcp::47984-:47984,hostfwd=tcp::48010-:48010,hostfwd=udp::47998-:47988,hostfwd=udp::47999-:47999,hostfwd=udp::48000-:48000,hostfwd=udp::48002-:48002,hostfwd=udp::48003-:48003,hostfwd=udp::48004-:48004,hostfwd=udp::48005-:48005,hostfwd=udp::48006-:48006,hostfwd=udp::48007-:48007,hostfwd=udp::48008-:48008,hostfwd=udp::48009-:48009,hostfwd=udp::48010-:48010 \
-          -cdrom /var/lib/vm-mara/virtio-win.iso \
-          -device nec-usb-xhci,id=usb,bus=pci.0,addr=0x4 \
-          -device usb-tablet \
-          -vnc :0 \
-          -nographic \
-          -vga none \
-          -drive file=/var/lib/vm-mara/w10.qcow2 \
-          -device vfio-pci,host=00:02.0,addr=03.0,x-vga=on,multifunction=on,romfile=${./adls_dmc_ver2_01.bin}
-      '';
+          qemu-system-x86_64 \
+            -enable-kvm \
+            -cpu host,kvm=off,hv-spinlocks=819,hv-vapic=on,hv-relaxed=on,hv-vendor-id="IrisXE" \
+            -smp 4 \
+            -m 8192 \
+            -nic user,model=virtio-net-pci,hostfwd=tcp::3389-:3389,hostfwd=tcp::47989-:47989,hostfwd=tcp::47990-:47990,hostfwd=tcp::47984-:47984,hostfwd=tcp::48010-:48010,hostfwd=udp::47998-:47988,hostfwd=udp::47999-:47999,hostfwd=udp::48000-:48000,hostfwd=udp::48002-:48002,hostfwd=udp::48003-:48003,hostfwd=udp::48004-:48004,hostfwd=udp::48005-:48005,hostfwd=udp::48006-:48006,hostfwd=udp::48007-:48007,hostfwd=udp::48008-:48008,hostfwd=udp::48009-:48009,hostfwd=udp::48010-:48010 \
+            -cdrom /var/lib/vm-mara/virtio-win.iso \
+            -device nec-usb-xhci,id=usb,bus=pci.0,addr=0x4 \
+            -device usb-tablet \
+            -vnc :0 \
+            -nographic \
+            -vga none \
+            -drive file=/var/lib/vm-mara/w10.qcow2 \
+            -device vfio-pci,host=00:02.0,addr=03.0,x-vga=on,multifunction=on,romfile=${./adls_dmc_ver2_01.bin}
+        '';
+      };
+    in
+    {
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+      serviceConfig = {
+        ExecStart = "${start-vm}/bin/start-vm";
+      };
     };
-  in {
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
-    serviceConfig = {
-      ExecStart = "${start-vm}/bin/start-vm";
-    };
-  };
 }
