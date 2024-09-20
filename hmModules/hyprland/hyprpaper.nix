@@ -2,6 +2,7 @@ let
   wallpaper = ./wallpaper.png;
 in {
   xdg.configFile."hypr/hyprpaper.conf".text = ''
+    splash = false
     preload = ${wallpaper}
     wallpaper = eDP-1,${wallpaper}
     wallpaper = DP-1,${wallpaper}

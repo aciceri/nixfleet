@@ -47,7 +47,6 @@
       "helix"
       "shell"
       "element"
-      "emacs"
       "firefox"
       "gpg"
       "mpv"

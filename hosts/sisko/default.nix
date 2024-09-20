@@ -78,10 +78,15 @@
     efi.canTouchEfiVariables = false;
   };
 
+  hardware.deviceTree.enable = true;
+  hardware.deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
+  boot.loader.systemd-boot.installDeviceTree = true;
+
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
     "ahci"
+    "usb_storage"
   ];
 
   boot.kernelParams = [

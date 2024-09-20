@@ -43,7 +43,7 @@ lib.mkMerge [
           scrollback-up-page = "Control+Shift+k";
           scrollback-down-page = "Control+Shift+j";
           search-start = "Control+Shift+s";
-          pipe-command-output = ''[sh -c "f=$(mktemp); cat - > $f; footclient hx $f; rm $f"] Control+Shift+g'';
+          pipe-command-output = ''[sh -c 'f=$(mktemp); cat - > $f; footclient hx $f; rm $f'] Control+Shift+g'';
         };
 
         mouse = {
@@ -63,7 +63,7 @@ lib.mkMerge [
         onEvent = "fish_preexec";
       };
       foot_cmd_end = {
-        body = ''echo -en "\e]133;D\e\\'';
+        body = ''echo -en "\e]133;D\e\\"'';
         onEvent = "fish_postexec";
       };
     };
