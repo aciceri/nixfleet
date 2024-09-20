@@ -1,4 +1,13 @@
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    zk
+    nixd
+    terraform-ls
+    python3Packages.python-lsp-server
+    nodePackages.typescript-language-server
+  ];
+
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -11,6 +20,7 @@
           normal = "block";
           select = "underline";
         };
+        color-modes = true;
         true-color = true; # to make colors coherent when in ssh
         # inline-diagnostic = {
         #   cursor-line = "hint";
@@ -23,6 +33,7 @@
         {
           name = "nix";
           language-servers = [ "nixd" ];
+          formatter.command = "nixfmt";
         }
         {
           name = "markdown";
@@ -35,10 +46,6 @@
       ];
       language-server = {
         nixd.command = "nixd";
-        vtsls = {
-          command = "vtsls";
-          args = [ "--stdio" ];
-        };
         zk = {
           command = "zk";
           args = [ "lsp" ];
