@@ -85,6 +85,7 @@
       "calibre"
       "reinstall-magisk-on-lineage"
       "vscode-server"
+      "zk"
     ];
     extraGroups = [ ];
     backupPaths = [ ];
