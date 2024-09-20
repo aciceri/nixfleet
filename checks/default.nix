@@ -1,35 +1,23 @@
-{
-  inputs,
-  self,
-  lib,
-  ...
-}: {
-  imports = [
-    inputs.treefmt-nix.flakeModule
-    inputs.pre-commit-hooks.flakeModule
-  ];
+{ inputs, self, lib, ... }: {
+  imports = [ inputs.treefmt-nix.flakeModule inputs.git-hooks-nix.flakeModule ];
 
-  perSystem = _: {
+  perSystem = { pkgs, ... }: {
     treefmt.config = {
       projectRootFile = ".git/config";
-      programs.alejandra.enable = true;
+      programs.nixfmt.enable = true;
     };
 
-    pre-commit.settings.hooks = {
-      alejandra.enable = true;
-      # deadnix.enable = true;
-      # statix.enable = true;
-    };
+    pre-commit.settings.hooks = { nixfmt.enable = true; };
+
+    formatter = pkgs.nixfmt-rfc-style;
   };
 
-  flake.checks = let
-    build = _: nc: nc.config.system.build.toplevel;
+  flake.checks = let build = _: nc: nc.config.system.build.toplevel;
   in {
-    x86_64-linux = lib.mapAttrs build {
-      inherit (self.nixosConfigurations) picard;
-    };
+    x86_64-linux =
+      lib.mapAttrs build { inherit (self.nixosConfigurations) picard; };
     aarch64-linux = lib.mapAttrs build {
-      inherit (self.nixosConfigurations) sisko; #pbp;
+      inherit (self.nixosConfigurations) sisko; # pbp;
     };
   };
 }

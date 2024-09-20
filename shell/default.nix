@@ -1,9 +1,5 @@
-{inputs, ...}: {
-  perSystem = {
-    pkgs,
-    config,
-    ...
-  }: {
+{
+  perSystem = { pkgs, config, ... }: {
     devShells.default = pkgs.mkShell {
       name = "fleet-shell";
       buildInputs = with pkgs; [

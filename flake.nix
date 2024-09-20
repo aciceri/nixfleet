@@ -1,5 +1,6 @@
 {
-  description = "A complete, declarative, and reproducible configuration of my entire Nix fleet";
+  description =
+    "A complete, declarative, and reproducible configuration of my entire Nix fleet";
 
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
@@ -20,8 +21,8 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";
@@ -57,8 +58,8 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = inputs @ {flakeParts, ...}:
-    flakeParts.lib.mkFlake {inherit inputs;} {
+  outputs = inputs@{ flakeParts, ... }:
+    flakeParts.lib.mkFlake { inherit inputs; } {
       imports = [
         # TODO export modules as flake outputs
         # ./modules
@@ -68,6 +69,6 @@
         ./shell
         ./checks
       ];
-      systems = ["x86_64-linux" "aarch64-linux"];
+      systems = [ "x86_64-linux" "aarch64-linux" ];
     };
 }
