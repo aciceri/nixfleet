@@ -33,6 +33,7 @@
       "mount-rock5b"
       "adb"
       "binfmt"
+      "prometheus-exporters"
     ]
     ++ [
       ./disko.nix
