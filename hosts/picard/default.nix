@@ -26,7 +26,6 @@
       "waydroid"
       "virt-manager"
       "ssh-initrd"
-      "hercules-ci"
       "printing"
       "pam"
       "wireguard-client"
