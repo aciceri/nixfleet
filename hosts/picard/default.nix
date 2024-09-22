@@ -129,12 +129,15 @@
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot = {
+    enable = lib.mkForce false; # needed by lanzaboote
+  };
+  boot.lanzaboote = {
     enable = true;
+    pkiBundle = "/etc/secureboot";
     configurationLimit = 20;
   };
 
-  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
 
   networking.hostId = "5b02e763";
 

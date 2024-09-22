@@ -55,6 +55,10 @@
     };
     impermanence.url = "github:nix-community/impermanence";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
