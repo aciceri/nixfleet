@@ -58,7 +58,6 @@
       "element"
       "zmkbatx"
       "tremotesf"
-      # "emacs"
       "firefox"
       "gpg"
       "mpv"
