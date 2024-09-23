@@ -32,7 +32,7 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "mlabs.cachix.org-1:gStKdEqNKcrlSQw5iMW6wFCj3+b+1ASpBVY2SYuNV2M="
       ];
-      # deprecated-features = [ "url-literals" ];
+      deprecated-features = [ "url-literals" ];
     };
 
     nixPath = [ "nixpkgs=${fleetFlake.inputs.nixpkgs}" ];
