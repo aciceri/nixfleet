@@ -28,7 +28,7 @@
 
     gtk = {
       enable = true;
-      font.name = "Sans,Symbols Nerd Font";
+      font.name = lib.mkForce "Sans,Symbols Nerd Font";
       iconTheme = {
         name = "Adwaita";
         package = pkgs.adwaita-icon-theme;

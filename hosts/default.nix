@@ -68,11 +68,13 @@
           inputs.nixThePlanet.nixosModules.macos-ventura
           inputs.lix-module.nixosModules.default
           inputs.lanzaboote.nixosModules.lanzaboote
+          inputs.catppuccin.nixosModules.catppuccin
         ];
         extraHmModules = [
           # inputs.ccrEmacs.hmModules.default
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
           inputs.vscode-server.nixosModules.home
+          inputs.catppuccin.homeManagerModules.catppuccin
         ];
         secrets = {
           "picard-wireguard-private-key" = { };

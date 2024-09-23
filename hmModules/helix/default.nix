@@ -12,7 +12,6 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      theme = "catppuccin_mocha";
       editor = {
         indent-guides.render = true;
         cursor-shape = {

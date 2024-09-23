@@ -116,45 +116,11 @@
   #   '';
   # };
 
-  xdg.configFile = {
-    "dracula-theme" = {
-      target = "fish/themes/dracula.theme";
-      source =
-        let
-          theme = pkgs.fetchFromGitHub {
-            owner = "dracula";
-            repo = "fish";
-            rev = "269cd7d76d5104fdc2721db7b8848f6224bdf554";
-            hash = "sha256-Hyq4EfSmWmxwCYhp3O8agr7VWFAflcUe8BUKh50fNfY=";
-          };
-        in
-        "${theme}/themes/Dracula\ Official.theme";
-    };
-    "catppuccin-theme" = {
-      target = "fish/themes/Catppuccin\ Mocha.theme";
-      source =
-        let
-          theme = pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "fish";
-            rev = "a3b9eb5eaf2171ba1359fe98f20d226c016568cf";
-            hash = "sha256-shQxlyoauXJACoZWtRUbRMxmm10R8vOigXwjxBhG8ng=";
-          };
-        in
-        "${theme}/themes/Catppuccin\ Mocha.theme";
-    };
-  };
-
   programs.fish = {
     enable = true;
-    shellInit =
-      ''
-        fish_config theme choose "dracula"
-        fish_config theme choose "Catppuccin Mocha"
-      ''
-      + lib.optionalString (builtins.hasAttr "cachix-personal-token" age.secrets) ''
-        export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
-      '';
+    shellInit = lib.optionalString (builtins.hasAttr "cachix-personal-token" age.secrets) ''
+      export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
+    '';
     shellAliases = {
       "cat" = "bat";
     };

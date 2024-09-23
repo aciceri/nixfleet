@@ -56,21 +56,20 @@ in
 
   gtk = {
     enable = true;
-    font.name = "Sans,Symbols Nerd Font";
+    # font.name = lib.mkForce "Sans,Symbols Nerd Font";
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
     };
-    cursorTheme = {
-      name = "catppuccin-mocha-sapphire";
-      package = pkgs.catppuccin-cursors;
-      size = 48;
-    };
+    # cursorTheme = {
+    #   name = "catppuccin-mocha-sapphire";
+    #   package = pkgs.catppuccin-cursors;
+    #   size = 48;
+    # };
   };
 
   qt = {
     enable = true;
-    platformTheme.name = "gtk3";
   };
 
   # services.kanshi = {
