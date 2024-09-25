@@ -27,8 +27,6 @@ in
       user.signingKey = "/home/${username}/.ssh/id_rsa";
       gpg.format = "ssh";
       commit.gpgsign = true;
-
-      core.editor = "emacsclient";
     };
 
     userName = config.name;
