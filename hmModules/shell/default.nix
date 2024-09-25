@@ -81,6 +81,11 @@
       dig.dnsutils
       lsof
       comma
+      ffmpeg-headless
+      jless
+      nix-melt
+      jq
+      yq-go
     ]
     ++ (lib.optionals
       (builtins.elem hostname [
