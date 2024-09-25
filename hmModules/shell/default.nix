@@ -17,6 +17,9 @@
   };
 
   programs.fzf.enable = true;
+
+  programs.ripgrep.enable = true;
+
   programs.direnv = {
     enable = true;
     config = {
