@@ -15,7 +15,7 @@ let
       rev = "5a3281dee9f889afdeea7263558e7a715dcf5aab";
       hash = "sha256-UzpHAHpQx2MlmBNKm2turjeVmgp5zXKWm3nZbEo0mYE=";
     };
-    cargoSha256 = "sha256-wPV+ZY34OMbBrjmhvwjljbwmcUiPdWNHFU3ac7aVbIQ=";
+    cargoHash = "sha256-wPV+ZY34OMbBrjmhvwjljbwmcUiPdWNHFU3ac7aVbIQ=";
 
     patchPhase = ''
       substituteInPlace src/lib.rs \
