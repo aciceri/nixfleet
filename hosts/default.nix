@@ -97,6 +97,7 @@
         extraModules = with inputs; [
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
+          lix-module.nixosModules.default
         ];
         secrets = {
           "sisko-wireguard-private-key" = { };

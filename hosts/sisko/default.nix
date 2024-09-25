@@ -21,14 +21,7 @@
       "invidious"
       "searx"
       "rock5b-samba"
-      # "paperless"
-      # "restic"
-      # "syncthing"
-      # "minio"
-      # # "matrix"
       "forgejo"
-      # # "jellyfin"
-      # "immich"
       "prometheus"
       "grafana"
       "prometheus-exporters"
@@ -36,7 +29,6 @@
       "promtail"
       "garmin-collector"
       "restic"
-      # "immich"
       "atuin"
     ]
     ++ [
