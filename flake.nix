@@ -3,9 +3,7 @@
 
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
-    # FIXME remove constraint
-    nixpkgs.url = "github:NixOS/nixpkgs";
-    # nixpkgsForSisko.url = "github:NixOS/nixpkgs/0e74ca98a74bc7270d28838369593635a5db3260";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
       url = "github:nix-community/home-manager";
