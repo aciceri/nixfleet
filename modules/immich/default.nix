@@ -1,10 +1,6 @@
-{ config, ... }:
-let
-  nixpkgsImmich = builtins.getFlake "github:NixOS/nixpkgs/c0ee4c1770aa1ef998c977c4cc653a07ec95d9bf";
-in
 {
-  containers.nextcloud = {
-    nixpkgs = nixpkgsImmich;
+  containers.immich = {
+    nixpkgs = builtins.getFlake "github:NixOS/nixpkgs/51296fce6f2b33717f710788af4e134aa7ff0e58";
     autoStart = true;
     privateNetwork = true;
     # hostAddress = "192.168.100.10";
