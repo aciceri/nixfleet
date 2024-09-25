@@ -28,12 +28,10 @@
     nix-direnv.enable = true;
   };
 
-  # programs.exa = {
-  #   enable = false;
-  #   enableAliases = true;
-  # };
-
-  # programs.fzf.enable = false;
+  programs.lsd = {
+    enable = false;
+    enableAliases = true;
+  };
 
   programs.vim.enable = true;
 
