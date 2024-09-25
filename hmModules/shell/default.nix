@@ -15,6 +15,8 @@
       "preview_images_method" = "sixel";
     };
   };
+
+  programs.fzf.enable = true;
   programs.direnv = {
     enable = true;
     config = {
