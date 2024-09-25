@@ -7,7 +7,9 @@
   home.packages = [ pkgs.tremotesf ];
 
   systemd.user.services.tremotesf = {
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = [
+      "waybar.service"
+    ];
 
     Unit = {
       Description = "tremotesf";

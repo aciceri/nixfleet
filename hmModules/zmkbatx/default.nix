@@ -8,7 +8,6 @@
 
   systemd.user.services.zmkBATx = {
     Install.WantedBy = [
-      "graphical-session.target"
       "waybar.service"
     ];
 
@@ -17,7 +16,7 @@
     };
 
     Service = {
-      ExecStart = lib.getExe pkgs.zmkBATx;
+      ExecStart = "sleep 5 && ${lib.getExe pkgs.zmkBATx}";
       Restart = "on-failure";
       RestartSec = 3;
     };

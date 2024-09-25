@@ -3,15 +3,18 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [
+      configPackages = with pkgs; [
+        xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
       ];
-      config.common.default = "*";
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ];
+      xdgOpenUsePortal = true;
+      wlr.enable = true;
     };
-  };
-
-  environment.sessionVariables = {
-    GTK_USE_PORTAL = "1";
   };
 }
