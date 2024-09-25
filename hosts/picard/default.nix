@@ -85,6 +85,7 @@
       "vscode-server"
       "zk"
       "catppuccin"
+      "freecad"
     ];
     extraGroups = [ ];
     backupPaths = [ ];
