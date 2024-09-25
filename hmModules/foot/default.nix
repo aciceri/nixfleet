@@ -14,6 +14,7 @@ lib.mkMerge [
           login-shell = "yes";
           dpi-aware = "no";
           horizontal-letter-offset = "1";
+          pad = "1x1";
           font =
             let
               size = "13";
