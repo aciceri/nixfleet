@@ -1,30 +1,69 @@
 {
   pkgs,
-  username,
   ...
 }:
+let
+  mkExtension = shortId: uuid: {
+    name = uuid;
+    value = {
+      install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+      installation_mode = "normal_installed";
+    };
+  };
+in
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-      extraPolicies = {
-        ExtensionSettings = { };
+    nativeMessagingHosts = [ pkgs.tridactyl-native ];
+    policies = {
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+        EmailTracking = true;
       };
-      nativeMessagingHosts = [ pkgs.tridactyl-native ];
+      HardwareAcceleration = true;
+      FirefoxHome = {
+        TopSites = false;
+        SponsoredTopSites = false;
+        Highlights = false;
+        Pocket = false;
+        SponsoredPocket = false;
+        Snippets = false;
+        Locked = false;
+      };
+      FirefoxSuggest = {
+        WebSuggestions = true;
+        SponsoredSuggestions = false;
+        ImproveSuggest = false;
+        Locked = true;
+      };
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      DontCheckDefaultBrowser = true;
+      DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
+      SearchBar = "unified"; # alternative: "separate"
+      HttpsOnlyMode = "force_enabled";
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+      OfferToSaveLoginsDefault = false;
+      PasswordManagerEnabled = true;
+      DefaultDownloadDirectory = "\${home}/Downloads";
+      PromptForDownloadLocation = false;
+      RequestedLocales = "en-US";
+
+      ExtensionSettings = builtins.listToAttrs [
+        (mkExtension "ublock-origin" "uBlock0@raymondhill.net")
+        (mkExtension "tridactyl-vim" "tridactyl.vim@cmcaine.co.uk")
+        (mkExtension "styl-us" "7a7a4a92-a2a0-41d1-9fd7-1e92480d612d")
+      ];
     };
-    profiles.${username} = {
-      settings = {
-        "browser.startup.homepage" = "https://google.it";
-        "browser.search.region" = "IT";
-        "browser.search.isUS" = false;
-        "distribution.searchplugins.defaultLocale" = "it-IT";
-        "general.useragent.locale" = "it-IT";
-        "browser.bookmarks.showMobileBookmarks" = true;
-        "browser.download.folderList" = 2;
-        "browser.download.lastDir" = "/home/${username}/Downloads/";
-        "browser.shell.checkDefaultBrowser" = false;
-      };
-      search.force = true;
+    profiles.default = {
+      search.default = "DuckDuckGo";
       search.engines = {
         "Searx" = {
           urls = [
@@ -40,10 +79,19 @@
           ];
         };
       };
+      bookmarks = [ ];
+      extensions = [ ];
+      userChrome = builtins.readFile ./userchrome.css;
     };
   };
-  home.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = 1;
-    NIXOS_OZONE_WL = 1;
+
+  xdg.configFile."tridactyl/tridactylrc".text = ''
+    set editorcmd footclient -e hx %f
+
+    colors catppuccin
+  '';
+
+  xdg.configFile."tridactyl/themes/catppuccin.css" = {
+    source = ./catppuccin.css;
   };
 }
