@@ -30,7 +30,7 @@
     };
     dream2nix.url = "github:nix-community/dream2nix";
     nixThePlanet = {
-      url = "github:aciceri/NixThePlanet/nix-in-darwin";
+      url = "github:MatthewCroughan/NixThePlanet/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixDarwin = {

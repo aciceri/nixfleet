@@ -675,16 +675,15 @@
         "osx-kvm": "osx-kvm"
       },
       "locked": {
-        "lastModified": 1708168451,
-        "narHash": "sha256-loWlwexnfQGFsEHeJbXpWbnmeDFkBwZB38+4BkUcGhM=",
-        "owner": "aciceri",
+        "lastModified": 1727105240,
+        "narHash": "sha256-FEuqbcZ4TDUMwCpTA/E3J5L7pLD4U+zXPnZbmXSmaJo=",
+        "owner": "MatthewCroughan",
         "repo": "NixThePlanet",
-        "rev": "e8c91035d01f5082ccf30e351dcd993a5b480a72",
+        "rev": "2f622af217807da78e44a5a15f620743dac57f46",
         "type": "github"
       },
       "original": {
-        "owner": "aciceri",
-        "ref": "nix-in-darwin",
+        "owner": "MatthewCroughan",
         "repo": "NixThePlanet",
         "type": "github"
       }
