@@ -1,6 +1,8 @@
 {
   pkgs,
   secrets,
+  fleetFlake,
+  lib,
   ...
 }:
 {
@@ -175,9 +177,6 @@
       compose = {
         no-attachment-warning = "^[^>]*attach(ed|ment)";
       };
-      triggers = {
-        email-received = ''exec notify-send "New email from %n" "%s"'';
-      };
       filters = {
         "text/plain" = "colorize";
         "text/html" = "html";
@@ -188,6 +187,18 @@
       };
     };
   };
+
+  systemd.user.services.emails-watcher = {
+    Unit.Description = "Send notifications when new emails arrive";
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+    Service = {
+      ExecStart = "${lib.getExe fleetFlake.packages.${pkgs.system}.emails-watcher}";
+      Environment = [ "INBOX_NEW=~/Maildir/autistici/Inbox/new" ];
+    };
+  };
+
   accounts.email = {
     accounts.autistici = {
       aerc.enable = true;
