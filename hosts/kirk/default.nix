@@ -47,6 +47,7 @@
       "git-workspace"
       "helix"
       "shell"
+      "zellij"
       "element"
       "firefox"
       "gpg"
@@ -67,6 +68,9 @@
       "remmina"
       "zulip"
       "calibre"
+      "zathura"
+      "imv"
+      "catppuccin"
     ];
     extraGroups = [ ];
     backupPaths = [ ];

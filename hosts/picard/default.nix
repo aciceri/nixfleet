@@ -35,7 +35,7 @@
       "hass-poweroff"
       "forgejo-runners"
       "teamviewer"
-      # "macos-ventura"
+      "macos-ventura"
       "sunshine"
       "mount-rock5b"
       "adb"
@@ -55,6 +55,7 @@
       "git-workspace"
       "helix"
       "shell"
+      "zellij"
       "element"
       "zmkbatx"
       "tremotesf"
@@ -86,6 +87,8 @@
       "zk"
       "catppuccin"
       "freecad"
+      "zathura"
+      "imv"
     ];
     extraGroups = [ ];
     backupPaths = [ ];
