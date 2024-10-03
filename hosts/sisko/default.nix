@@ -1,7 +1,6 @@
 {
   fleetModules,
   pkgs,
-  config,
   ...
 }:
 {
@@ -9,7 +8,6 @@
     fleetModules [
       "common"
       "ssh"
-      "ccr"
       "wireguard-server"
       "mediatomb"
       "transmission"
@@ -35,31 +33,11 @@
       ./disko.nix
     ];
 
-  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_6_10;
-  # boot.kernelPackages = let
-  #   pkgs = fleetFlake.inputs.nixpkgsForSisko.legacyPackages.aarch64-linux;
-  # in
-  #   pkgs.linuxPackagesFor pkgs.linux_testing;
-  # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_9.override {
-  #   argsOverride = {
-  #     src = pkgs.fetchFromGitLab {
-  #       domain = "gitlab.collabora.com";
-  #       owner = "hardware-enablement/rockchip-3588";
-  #       repo = "linux";
-  #       rev = "23bb9c65a88c114bbe945b7ef5366bb02d3d9b80";
-  #       sha256 = "sha256-6TygOl5r7/N2jlcPznWlvJfVVeXKSR8yMoGuTDbIdTA=";
-  #     };
-  #     version = "6.9";
-  #     modDirVersion = "6.9.0";
-  #   };
-  # });
 
   system.stateVersion = "24.05";
 
   powerManagement.cpuFreqGovernor = "schedutil";
-
-  ccr.enable = true;
 
   nixpkgs.hostPlatform = "aarch64-linux";
 
@@ -98,7 +76,6 @@
       "/var/log"
       "/var/lib/containers"
       "/var/lib/postgresql"
-      "/home/${config.ccr.username}/.ssh"
     ];
     files = [
       "/etc/machine-id"

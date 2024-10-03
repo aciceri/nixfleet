@@ -14,9 +14,10 @@
         extraConfig = ''
           HostKey /ssh_initrd_host_ed25519_key
         '';
-        authorizedKeys = with (import ../../lib).keys.users; [
-          ccr-gpg
-          ccr-ssh
+        authorizedKeys = with (import ../../lib).keys; [
+          users.ccr-gpg
+          users.ccr-ssh
+          hosts.sisko
         ];
       };
     };

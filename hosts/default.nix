@@ -44,9 +44,11 @@
           inputs.disko.nixosModules.disko
           inputs.nixosHardware.nixosModules.lenovo-thinkpad-x1-7th-gen
           inputs.lix-module.nixosModules.default
+          inputs.catppuccin.nixosModules.catppuccin
         ];
         extraHmModules = [
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
+          inputs.catppuccin.homeManagerModules.catppuccin
         ];
         secrets = {
           "kirk-wireguard-private-key" = { };
@@ -90,6 +92,7 @@
 
       sisko = {
         system = "aarch64-linux";
+        enableHomeManager = false;
         vpn = {
           ip = "10.100.0.1";
           publicKey = "bc5giljukT1+ChbbyTLdOfejfR3c8RZ4XoXmQM54nTY=";
@@ -101,7 +104,6 @@
         ];
         secrets = {
           "sisko-wireguard-private-key" = { };
-          "cachix-personal-token".owner = "ccr";
           "home-planimetry".owner = "hass";
           "home-assistant-token".owner = "prometheus";
           "grafana-password".owner = "grafana";
@@ -122,6 +124,10 @@
       oneplus8t = {
         ip = "10.100.0.4";
         publicKey = "9ccx4C4xvPC6lPgTZAHDSfK4FS2BP2i4D57u9IZjw18=";
+      };
+      macos-ventura = {
+        ip = "10.100.0.6";
+        publicKey = "/Eee1V0PsjZSzj7un1NxHKtFR+TpUIgJ7VAdIAzmvzQ=";
       };
     };
   };
