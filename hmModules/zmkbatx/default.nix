@@ -16,7 +16,9 @@
     };
 
     Service = {
-      ExecStart = "sleep 5 && ${lib.getExe pkgs.zmkBATx}";
+      ExecStart = ''
+        ${pkgs.runtimeShell} -l -c "${lib.getExe' pkgs.busybox "sleep"} 5 && ${lib.getExe pkgs.zmkBATx}"
+      '';
       Restart = "on-failure";
       RestartSec = 3;
     };
