@@ -90,6 +90,7 @@
       "zathura"
       "imv"
       "libreoffice"
+      "logseq"
     ];
     extraGroups = [ ];
     backupPaths = [ ];
