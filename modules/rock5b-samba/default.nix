@@ -9,7 +9,7 @@
 
     samba = {
       enable = true;
-      securityType = "user";
+      # global.security = "user";
       settings.global = {
         "workgroup" = "WORKGROUP";
         "server string" = "rock5b";
@@ -21,7 +21,7 @@
         "recycle:keeptree" = "yes";
         "recycle:versions" = "yes";
       };
-      shares = {
+      settings = {
         torrent = {
           path = "/mnt/hd/torrent";
           comment = "torrent";
