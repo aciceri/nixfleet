@@ -28,7 +28,6 @@
       "garmin-collector"
       "restic"
       "atuin"
-      "rock5b-fan-control"
       "immich"
     ]
     ++ [
