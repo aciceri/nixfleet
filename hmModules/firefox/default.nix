@@ -18,7 +18,6 @@ in
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
-
       EnableTrackingProtection = {
         Value = true;
         Locked = true;
