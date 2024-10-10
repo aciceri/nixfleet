@@ -26,13 +26,22 @@ in
   }".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
 
   services.restic.backups.sisko = {
-    paths = [ "/persist" ];
+    paths = [
+      "/persist"
+      "/mnt/hd/immich"
+    ];
+    exclude = [ " /persist/var/lib/containers" ];
     passwordFile = config.age.secrets.SISKO_RESTIC_PASSWORD.path;
     extraOptions = [
       "sftp.command='${lib.getExe pkgs.sshpass} -f ${config.age.secrets.HETZNER_STORAGE_BOX_SISKO_SSH_PASSWORD.path} ssh -p${port} ${user}@${host} -s sftp'"
     ];
     repository = "sftp://${user}@${host}:${port}/";
     initialize = true;
+    pruneOpts = [
+      "--keep-yearly 1"
+      "--keep-monthly 2"
+      "--keep-daily 7"
+    ];
     timerConfig.OnCalendar = "daily";
     timerConfig.RandomizedDelaySec = "1h";
   };
