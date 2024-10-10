@@ -4,8 +4,6 @@
     enable = true;
     openRPCPort = true;
     openPeerPorts = true;
-    # FIXME remove after https://github.com/NixOS/nixpkgs/issues/279049
-    webHome = "${config.services.transmission.package}/share/transmission/web";
     settings = {
       download-dir = "/mnt/hd/torrent";
       incomplete-dir = "/mnt/hd/torrent/.incomplete";
@@ -32,7 +30,7 @@
       alt-speed-time-day = 127; # all days, bitmap, 0111110 is weekends and 1000001 is weekdays
 
       ratio-limit-enabled = true;
-      ratio-limit = 100; # I am a generous god
+      ratio-limit = 2;
     };
   };
 
