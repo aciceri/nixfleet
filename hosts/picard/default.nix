@@ -89,6 +89,7 @@
       "freecad"
       "zathura"
       "imv"
+      "libreoffice"
     ];
     extraGroups = [ ];
     backupPaths = [ ];
