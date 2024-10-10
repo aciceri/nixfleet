@@ -2,7 +2,7 @@
   services.mediatomb = {
     enable = true;
     openFirewall = true;
-    serverName = "Rock 5B";
+    serverName = "Sisko";
     mediaDirectories = [
       {
         path = "/mnt/hd/torrent";
