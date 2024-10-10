@@ -1,9 +1,7 @@
 let
   ssd = "/dev/disk/by-id/ata-CT240BX300SSD1_1739E1042F3C";
+  hd = "/dev/disk/by-id/ata-ST12000NM0558_ZHZ6006Q";
 in
-# hd1 = "/dev/disk/by-id/ata-WDC_WD10EADS-22M2B0_WD-WCAV52709550";
-# hd2 = "/dev/disk/by-id/ata-WDC_WD10EADX-22TDHB0_WD-WCAV5V359530";
-# old_hd = "/dev/disk/by-id/ata-WDC_WD5000AAKX-08U6AA0_WD-WCC2E5TR40FU";
 {
   disko.devices = {
     nodev."/" = {
@@ -58,6 +56,63 @@ in
           };
         };
       };
+      hd = {
+        device = hd;
+        type = "disk";
+        content = {
+          type = "gpt";
+          partitions = {
+            root = {
+              size = "100%";
+              content = {
+                type = "filesystem";
+                format = "bcachefs";
+                mountpoint = "/mnt/hd";
+              };
+            };
+          };
+        };
+      };
+      #   hd = {
+      #     type = "disk";
+      #     device = hd;
+      #     content = {
+      #       type = "gpt";
+      #       partitions = {
+      #         zfs = {
+      #           size = "100%";
+      #           content = {
+      #             type = "zfs";
+      #             pool = "zroot";
+      #           };
+      #         };
+      #       };
+      #     };
+      #   };
+      # };
+      # zpool = {
+      #   zroot = {
+      #     type = "zpool";
+      #     rootFsOptions = {
+      #       compression = "lz4";
+      #       acltype = "posixacl";
+      #       xattr = "sa";
+      #       "com.sun:auto-snapshot" = "true";
+      #       mountpoint = "none";
+      #     };
+      #     datasets = {
+      #       "root" = {
+      #         type = "zfs_fs";
+      #         options.mountpoint = "/mnt/hd";
+      #         mountpoint = "/mnt/hd";
+      #       };
+      #       "root/torrent" = {
+      #         type = "zfs_fs";
+      #         options.mountpoint = "/mnt/hd/torrent";
+      #         mountpoint = "/mnt/hd/torrent";
+      #       };
+      #     };
+      #  };
     };
   };
 }

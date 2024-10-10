@@ -28,6 +28,8 @@
       "garmin-collector"
       "restic"
       "atuin"
+      "rock5b-fan-control"
+      "immich"
     ]
     ++ [
       ./disko.nix
@@ -93,12 +95,6 @@
 
   fileSystems."/persist".neededForBoot = true;
   boot.tmp.cleanOnBoot = true;
-
-  fileSystems."/mnt/hd" = {
-    device = "/dev/disk/by-id/ata-WDC_WD5000AAKX-08U6AA0_WD-WCC2E5TR40FU-part1";
-    fsType = "ext4";
-    options = [ "nofail" ];
-  };
 
   environment.systemPackages = with pkgs; [
     cifs-utils
