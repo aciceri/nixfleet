@@ -36,17 +36,17 @@
         proxyPass = "http://localhost:${builtins.toString config.services.invidious.port}";
       };
     };
-    # "photos.aciceri.dev" = {
-    #   extraConfig = ''
-    #     client_max_body_size 50000M;
-    #   '';
-    #   forceSSL = true;
-    #   enableACME = true;
-    #   locations."/" = {
-    #     proxyPass = "http://localhost:2283";
-    #     proxyWebsockets = true;
-    #   };
-    # };
+    "photos.aciceri.dev" = {
+      extraConfig = ''
+        client_max_body_size 50000M;
+      '';
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://localhost:8080";
+        proxyWebsockets = true;
+      };
+    };
 
     # "jellyfin.aciceri.dev" = {
     #   forceSSL = true;
