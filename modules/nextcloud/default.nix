@@ -8,11 +8,9 @@
     "d /mnt/raid/nextcloud 770 nextcloud nextcloud"
   ];
 
-  ccr.extraGroups = [ "nextcloud" ];
-
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud26;
+    package = pkgs.nextcloud_30;
     database.createLocally = true;
     home = "/mnt/raid/nextcloud";
     hostName = "nextcloud.aciceri.dev";
@@ -21,6 +19,4 @@
       overwriteProtocol = "https";
     };
   };
-
-  networking.firewall.allowedTCPPorts = [ 80 ];
 }
