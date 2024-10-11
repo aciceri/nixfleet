@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   logseq = pkgs.appimageTools.wrapType2 {
     name = "logseq";
@@ -8,7 +8,8 @@ let
       hash = "sha256-Hy/zk8ZCkWajsMRUMsewLvkKpMpsBZYnFootPU9y6Z0=";
     };
   };
+  logseq-wayland = pkgs.writeScriptBin "logseq" "${lib.getExe logseq} --enable-features=UseOzonePlatform --ozone-platform=wayland";
 in
 {
-  home.packages = [ logseq ];
+  home.packages = [ logseq-wayland ];
 }
