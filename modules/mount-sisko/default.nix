@@ -4,18 +4,24 @@
   ...
 }:
 {
-  fileSystems."/home/${config.ccr.username}/torrent" = {
-    device = "//sisko.fleet/torrent";
-    fsType = "cifs";
-    options =
-      let
-        credentials = pkgs.writeText "credentials" ''
-          username=guest
-          password=
-        '';
-      in
-      [
-        "credentials=${credentials},x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,uid=1000,gid=1000"
-      ];
+  environment.systemPackages = with pkgs; [ nfs-utils ];
+  boot.supportedFilesystems = [ "nfs" ];
+  services.rpcbind.enable = true;
+
+  security.wrappers."mount.nfs" = {
+    setuid = true;
+    owner = "root";
+    group = "root";
+    source = "${pkgs.nfs-utils.out}/bin/mount.nfs";
+  };
+
+  fileSystems."/home/${config.ccr.username}/nas" = {
+    device = "sisko.fleet:/hd";
+    fsType = "nfs";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "user"
+    ];
   };
 }
