@@ -57,6 +57,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
   outputs =
