@@ -8,7 +8,19 @@
 {
   programs.mbsync.enable = true;
   programs.msmtp.enable = true;
-  services.mbsync.enable = true;
+  services.mbsync = {
+    enable = true;
+    postExec = lib.getExe (
+      pkgs.writeShellScriptBin "mbsync-post-exec" ''
+              ${lib.getExe pkgs.notmuch} new
+              for _ in _ _
+              do
+        	afew -C ~/.config/notmuch/default/config --tag --new -vv
+        	afew -C ~/.config/notmuch/default/config --move --new -vv
+              done
+      ''
+    );
+  };
 
   home.file.".config/aerc/stylesets" =
     let
@@ -188,6 +200,58 @@
     };
   };
 
+  programs.notmuch = {
+    enable = true;
+    new.tags = [ "new" ];
+    search.excludeTags = [
+      "trash"
+      "deleted"
+      "spam"
+    ];
+    maildir.synchronizeFlags = true;
+  };
+
+  programs.afew = {
+    enable = true;
+    extraConfig = ''
+      [Filter.1]
+      message = "Tag GitHub notifications"
+      tags = +github
+      query = from:noreply@github.com OR from:notifications@github.com
+
+      [Filter.2]
+      query = "folder:autistici/Inbox"
+      tags = +autistici
+      message = "Tag personal autistici emails"
+
+      [Filter.3]
+      query = "not folder:autistici/Inbox"
+      tag = -new
+      message = "Sanity check: remove the new tag for emails moved out from Inbox"
+
+      [Filter.4]
+      query = "not folder:autistici/Inbox"
+      tag = -new
+      message = "Sanity check: remove the new tag for emails moved out from Inbox"
+
+      [Filter.5]
+      query = "not folder:autistici/Sent"
+      tag = +sent
+      message = "Sanity check: add the sent tag for emails in Sent"
+
+      [Filter.6]
+      query = "not folder:autistici/Drafts"
+      tag = +draft
+      message = "Sanity check: add the draft tag for emails in Draft"
+
+      [MailMover]
+      folders = autistici/Inbox
+      rename = true
+
+      autistici/Inbox = 'tag:archive':autistici/Archive 'tag:github':autistici/GitHub 'NOT tag:new':autistici/Trash
+    '';
+  };
+
   systemd.user.services.emails-watcher = {
     Unit.Description = "Send notifications when new emails arrive";
     Install = {
@@ -214,6 +278,8 @@
       mbsync = {
         enable = true;
         create = "maildir";
+        expunge = "both";
+        remove = "both";
       };
       msmtp.enable = true;
       notmuch.enable = true;
