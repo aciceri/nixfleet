@@ -25,10 +25,21 @@ in
     host
   }".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
 
+  services.postgresqlBackup = {
+    enable = true;
+    backupAll = true;
+    location = "/var/backup/postgresql";
+  };
+
+  environment.persistence."/persist".directories = [
+    config.services.postgresqlBackup.location
+  ];
+
   services.restic.backups.sisko = {
     paths = [
       "/persist"
       "/mnt/hd/immich"
+      "/mnt/hd/paperless"
     ];
     exclude = [ " /persist/var/lib/containers" ];
     passwordFile = config.age.secrets.SISKO_RESTIC_PASSWORD.path;
