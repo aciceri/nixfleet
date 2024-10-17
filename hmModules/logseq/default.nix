@@ -8,7 +8,7 @@ let
       hash = "sha256-Hy/zk8ZCkWajsMRUMsewLvkKpMpsBZYnFootPU9y6Z0=";
     };
   };
-  logseq-wayland = pkgs.writeScriptBin "logseq" "${lib.getExe logseq} --enable-features=UseOzonePlatform --ozone-platform=wayland";
+  logseq-wayland = pkgs.writeScriptBin "logseq" "${lib.getExe' logseq "logseq"} --enable-features=UseOzonePlatform --ozone-platform=wayland";
 in
 {
   home.packages = [ logseq-wayland ];
