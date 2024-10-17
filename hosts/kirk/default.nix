@@ -34,6 +34,7 @@
       "adb"
       "binfmt"
       "prometheus-exporters"
+      "syncthing"
     ]
     ++ [
       ./disko.nix
