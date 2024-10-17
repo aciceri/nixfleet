@@ -4,6 +4,7 @@
 }:
 {
   services.forgejo = {
+    # TODO migrate to Postgres
     enable = true;
     settings = {
       DEFAULT = {
