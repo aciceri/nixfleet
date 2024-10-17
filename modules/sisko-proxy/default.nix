@@ -47,13 +47,16 @@
         proxyWebsockets = true;
       };
     };
-
-    # "jellyfin.aciceri.dev" = {
+    "paper.aciceri.dev" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://localhost:${builtins.toString config.services.paperless.port}";
+      };
+    };
+    # "${config.services.nextcloud.hostName}" = {
     #   forceSSL = true;
     #   enableACME = true;
-    #   locations."/" = {
-    #     proxyPass = "http://localhost:8096";
-    #   };
     # };
     # "sevenofnix.aciceri.dev" = {
     #   forceSSL = true;
