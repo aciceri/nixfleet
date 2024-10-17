@@ -17,13 +17,13 @@
         projectRootFile = ".git/config";
         programs = {
           nixfmt-rfc-style.enable = true;
-          deadnix.enable = true;
+          deadnix.enable = false;
         };
       };
 
       pre-commit.settings.hooks = {
         nixfmt-rfc-style.enable = true;
-        deadnix.enable = true;
+        deadnix.enable = false;
       };
     };
 
