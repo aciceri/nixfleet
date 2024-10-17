@@ -31,13 +31,13 @@
       "wireguard-client"
       "binfmt"
       "greetd"
-      # "syncthing"
+      "syncthing"
       "hass-poweroff"
       "forgejo-runners"
       "teamviewer"
       "macos-ventura"
       "sunshine"
-      "mount-rock5b"
+      "mount-sisko"
       "adb"
       "guix"
       "prometheus-exporters"
@@ -91,6 +91,7 @@
       "imv"
       "libreoffice"
       "logseq"
+      "emacs"
     ];
     extraGroups = [ ];
     backupPaths = [ ];

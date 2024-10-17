@@ -15,10 +15,10 @@
       "home-assistant"
       "adguard-home"
       "cloudflare-dyndns"
-      "rock5b-proxy"
+      "sisko-proxy"
       "invidious"
       "searx"
-      "rock5b-samba"
+      "sisko-nfs"
       "forgejo"
       "prometheus"
       "grafana"
@@ -30,6 +30,7 @@
       "atuin"
       "immich"
       "paperless"
+      "syncthing"
     ]
     ++ [
       ./disko.nix

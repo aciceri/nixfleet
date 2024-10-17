@@ -1,7 +1,7 @@
 {
   fleetModules,
   lib,
-  config,
+  pkgs,
   ...
 }:
 {
@@ -27,13 +27,13 @@
       "printing"
       "pam"
       "wireguard-client"
-      "restic"
       "greetd"
       "syncthing"
-      "mount-rock5b"
+      "mount-sisko"
       "adb"
       "binfmt"
       "prometheus-exporters"
+      "promtail"
       "syncthing"
     ]
     ++ [
@@ -72,6 +72,9 @@
       "zathura"
       "imv"
       "catppuccin"
+      "libreoffice"
+      "logseq"
+      "emacs"
     ];
     extraGroups = [ ];
     backupPaths = [ ];
@@ -88,7 +91,7 @@
     "kvm-intel"
   ];
 
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot = {
@@ -102,8 +105,13 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
+  };
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
   };
 }
