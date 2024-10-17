@@ -54,10 +54,10 @@
         (name: value: {
           inherit name;
           value = pkgs.callPackage "${self}/packages/${name}" {
-            pkgsStable = inputs.nixpkgsStable.legacyPackages.${system};
             dream2nix = inputs.dream2nix;
             projectRoot = self.outPath;
             packagePath = "packages/${name}";
+            inherit inputs;
           };
         })
         (lib.filterAttrs (_: type: type == "directory") (builtins.readDir "${self}/packages"))
