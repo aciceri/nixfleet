@@ -12,12 +12,10 @@
       "search.aciceri.dev"
       "invidious.aciceri.dev"
       "vpn.aciceri.dev"
-      "cache.aciceri.dev"
-      "matrix.aciceri.dev"
-      "syncv3.matrix.aciceri.dev"
-      "jellyfin.aciceri.dev"
       "photos.aciceri.dev"
       "status.aciceri.dev"
+      "paper.aciceri.dev"
+      "cloud.aciceri.dev"
     ];
     apiTokenFile = config.age.secrets.cloudflare-dyndns-api-token.path;
   };
