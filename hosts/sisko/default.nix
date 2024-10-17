@@ -29,6 +29,7 @@
       "restic"
       "atuin"
       "immich"
+      "paperless"
     ]
     ++ [
       ./disko.nix
