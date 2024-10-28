@@ -92,6 +92,7 @@
       "libreoffice"
       "logseq"
       "emacs"
+      "vial"
     ];
     extraGroups = [ ];
     backupPaths = [ ];
