@@ -10,7 +10,6 @@
 
   programs.helix = {
     enable = true;
-    defaultEditor = true;
     settings = {
       editor = {
         indent-guides.render = true;
