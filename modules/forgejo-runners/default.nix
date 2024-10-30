@@ -115,6 +115,7 @@ lib.mkMerge [
       # extraGroups = [ "podman" ];
     };
     users.groups.nixuser = { };
+    nix.settings.trusted-users = [ "nixuser" ];
   }
   {
     # Format of the token file:
