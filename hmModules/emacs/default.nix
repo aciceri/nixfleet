@@ -2,13 +2,18 @@
   lib,
   fleetFlake,
   pkgs,
+  age,
   ...
 }:
 let
   emacs = fleetFlake.packages.${pkgs.system}.emacs;
+  inherit (emacs.passthru) treesitGrammars;
 in
 {
-  home.sessionVariables.EDITOR = lib.mkForce "emacsclient -c";
+  systemd.user.sessionVariables = {
+    EDITOR = lib.mkForce "emacsclient -c";
+    OPENAI_API_KEY_PATH = age.secrets.chatgpt-token.path;
+  };
   programs.emacs = {
     enable = true;
     package = emacs;
@@ -46,4 +51,23 @@ in
       en_US-large
       it_IT
     ]);
+  home.activation = {
+    cloneCcrEmacsFlake = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            PATH=$PATH:${
+              lib.makeBinPath (
+                with pkgs;
+                [
+                  git
+                  openssh
+                ]
+              )
+            }
+            if [ ! -d "$HOME/.config/emacs" ]; then
+              mkdir "$HOME/.config/emacs"
+      	$DRY_RUN_CMD ln -s "$HOME/projects/aciceri/nixfleet/hmModules/emacs/init.el" "$HOME/.config/emacs/init.el"
+      	$DRY_RUN_CMD ln -s "$HOME/.config/emacs" "$HOME/emacs"
+            fi
+            $DRY_RUN_CMD ln -sfn ${treesitGrammars} "$HOME/.config/emacs/tree-sitter"
+    '';
+  };
 }
