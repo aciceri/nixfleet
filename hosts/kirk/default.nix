@@ -73,7 +73,6 @@
       "imv"
       "catppuccin"
       "libreoffice"
-      "logseq"
       "emacs"
     ];
     extraGroups = [ ];

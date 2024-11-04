@@ -90,7 +90,6 @@
       "zathura"
       "imv"
       "libreoffice"
-      "logseq"
       "emacs"
       "vial"
     ];
