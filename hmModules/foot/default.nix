@@ -10,7 +10,7 @@ lib.mkMerge [
       server.enable = true;
       settings = {
         main = {
-          term = "xterm-256color";
+          term = "xterm-direct";
           login-shell = "yes";
           dpi-aware = "no";
           horizontal-letter-offset = "1";
