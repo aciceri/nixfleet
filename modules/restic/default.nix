@@ -55,5 +55,19 @@ in
     ];
     timerConfig.OnCalendar = "daily";
     timerConfig.RandomizedDelaySec = "1h";
+    backupPrepareCommand = ''
+      ${pkgs.systemd}/bin/systemctl stop podman-*
+      ${pkgs.systemd}/bin/systemctl stop syncthing
+      ${pkgs.systemd}/bin/systemctl stop paperless-*
+      ${pkgs.systemd}/bin/systemctl stop forgejo
+      ${pkgs.systemd}/bin/systemctl stop home-assistant
+    '';
+    backupCleanupCommand = ''
+      ${pkgs.systemd}/bin/systemctl start --no-block --all "podman-*"
+      ${pkgs.systemd}/bin/systemctl start syncthing
+      ${pkgs.systemd}/bin/systemctl start --no-block --all "paperless-*"
+      ${pkgs.systemd}/bin/systemctl start forgejo
+      ${pkgs.systemd}/bin/systemctl start home-assistant
+    '';
   };
 }
