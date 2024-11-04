@@ -83,7 +83,8 @@
     ];
     shellInit =
       ''
-        fish_vi_key_bindings
+        # fish_vi_key_bindings
+        fish_default_key_bindings
       ''
       + lib.optionalString (builtins.hasAttr "cachix-personal-token" age.secrets) ''
         export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
