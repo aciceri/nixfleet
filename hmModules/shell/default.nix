@@ -49,7 +49,7 @@
       WantedBy = [ "default.target" ];
     };
     Service = {
-      # ExecStartPre = "${lib.getExe' pkgs.toybox "rm"} -f ${config.programs.atuin.settings.daemon.socket_path}";
+      ExecStartPre = "${lib.getExe' pkgs.toybox "rm"} -f ${config.programs.atuin.settings.daemon.socket_path}";
       ExecStart = "${lib.getExe pkgs.atuin} daemon";
     };
   };
