@@ -787,11 +787,30 @@ This is meant to be an helper to be called from the window manager."
   (defun org-roam-node-date (node)
     "Return the org datestring when a node was created (obtained from the filename)"
       (format "<%s>" (file-name-sans-extension (file-name-nondirectory (org-roam-node-file node)))))
+
+  (org-roam-ql-defpred
+   'date-range
+   "Check if node was created in given time range"
+   #'org-roam-node-date
+   #'(lambda (node-date start-date end-date)
+       (let ((node-date (condition-case nil
+			    ;; if the entry is not from the journal (i.e. the filename is not something like "2024-10-10.org")
+			    ;; then it's always discarded (the epoch time is given to it)
+			    (encode-time (org-parse-time-string node-date))
+			    (error (encode-time (org-parse-time-string "<1970-01-01>")))))
+	     (start-date (encode-time (org-parse-time-string start-date)))
+	     (end-date (encode-time (org-parse-time-string end-date))))
+	 (and (time-less-p start-date node-date)
+	      (time-less-p node-date end-date)))
+       ))
   
-  (defun ccr/org-roam-spent-hours (client)
+  (defun ccr/org-roam-spent-hours (client &optional date-start date-end)
     "Return the total spent hours on something (usually a client)"
-    (apply #'+(mapcar #'org-roam-node-spent (org-roam-ql-nodes `(tags ,client "billable")))))
-  )
+    (let* ((query-tags `(tags ,client "billable"))
+	   (query (if (and date-start date-end)
+		      `(and ,query-tags (date-range ,date-start ,date-end))
+		    query-tags)))
+      (apply #'+(mapcar #'org-roam-node-spent (org-roam-ql-nodes query))))))
 
 (use-package org-roam-ql
   :after org-roam
