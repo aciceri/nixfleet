@@ -89,6 +89,7 @@ let
       kind-icon
       ef-themes
       indent-bars
+      ement
     ])
     ++ (with nongnuPackages; [
       eat
