@@ -62,9 +62,17 @@
   ];
 
   boot.kernelParams = [
+    "earlycon"
+    "consoleblank=0"
     "console=tty1"
-    "console=ttyS0,1500000"
+    "console=ttyS2,1500000"
   ];
+
+  systemd.services."serial-getty@ttyS2" = {
+    enable = true;
+    wantedBy = [ "getty.target" ];
+    serviceConfig.restart = "always";
+  };
 
   environment.persistence."/persist" = {
     hideMounts = true;
