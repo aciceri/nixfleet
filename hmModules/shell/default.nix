@@ -3,6 +3,7 @@
   pkgs,
   age,
   hostname,
+  config,
   ...
 }:
 {
@@ -47,13 +48,19 @@
     Install = {
       WantedBy = [ "default.target" ];
     };
-    Service.ExecStart = "${lib.getExe pkgs.atuin} daemon";
+    Service = {
+      # ExecStartPre = "${lib.getExe' pkgs.toybox "rm"} -f ${config.programs.atuin.settings.daemon.socket_path}";
+      ExecStart = "${lib.getExe pkgs.atuin} daemon";
+    };
   };
 
   programs.atuin = {
     enable = true;
     settings = {
-      daemon.enabled = true;
+      daemon = {
+        enabled = true;
+        socket_path = "/home/ccr/.local/share/atuin/atuin.sock"; # FIXME using ~ or $HOME doesn't work: https://github.com/atuinsh/atuin/issues/2289
+      };
       auto_sync = true;
       sync_frequency = "5m";
       sync_address = "http://sisko.fleet:8889";
