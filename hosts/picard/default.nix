@@ -35,7 +35,7 @@
       "hass-poweroff"
       "forgejo-runners"
       "teamviewer"
-      "macos-ventura"
+      # "macos-ventura"
       "sunshine"
       "mount-sisko"
       "adb"
@@ -127,10 +127,15 @@
   ];
 
   systemd.services.ddcci = {
-    serviceConfig.Type = "oneshot";
     script = ''
       echo 'ddcci 0x37' > /sys/bus/i2c/devices/i2c-2/new_device
     '';
+    wantedBy = [ "graphical.target" ];
+    restartIfChanged = false;
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
   };
 
   boot.loader.efi.canTouchEfiVariables = true;
