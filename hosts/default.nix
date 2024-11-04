@@ -115,7 +115,6 @@
             owner = "grafana";
             group = "forgejo";
           };
-          "garmin-collector-environment".owner = "garmin-collector";
         };
       };
     };

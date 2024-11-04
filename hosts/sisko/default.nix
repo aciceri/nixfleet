@@ -25,7 +25,6 @@
       "prometheus-exporters"
       "loki"
       "promtail"
-      "garmin-collector"
       "restic"
       "atuin"
       "immich"
