@@ -62,6 +62,7 @@ in
       ];
     };
     profiles.default = {
+      search.force = true;
       search.default = "DuckDuckGo";
       search.engines = {
         "Searx" = {
