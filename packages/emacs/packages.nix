@@ -68,6 +68,7 @@ let
       org-modern
       org-roam
       org-roam-ql
+      org-roam-ui
       visual-fill-column
       consult-org-roam
       pass

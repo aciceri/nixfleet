@@ -841,6 +841,16 @@ This is meant to be an helper to be called from the window manager."
   ("C-c n l" . consult-org-roam-forward-links)
   ("C-c n s" . consult-org-roam-search))
 
+(use-package org-roam-ui
+  :straight
+    :after org-roam
+    :hook (after-init . org-roam-ui-mode) ;; don't care about startup time since I'm using Emacs daemonized
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+
 (use-package gptel
   :custom
   (gptel-api-key (lambda () (require 'f) (f-read-text (getenv "OPENAI_API_KEY_PATH"))))
