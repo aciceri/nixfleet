@@ -2,13 +2,33 @@ pkgs: epkgs:
 let
   inherit (epkgs) melpaPackages nongnuPackages elpaPackages;
 
-  # *Attrset* containig extra emacs packages from flake inputs
+  buildEmacsPackage = args:
+    epkgs.trivialBuild {
+      pname = args.name;
+      inherit (args) src;
+      version = args.src.rev;
+      propagatedUserEnvPkgs = args.deps;
+      buildInputs = args.deps;
+    };
+
+  # *Attrset* containig extra emacs packages
+  extraPackages = {
+    combobulate = buildEmacsPackage {
+      name = "combobulate";
+      src = pkgs.fetchFromGitHub {
+        owner = "mickeynp";
+        repo = "combobulate";
+        rev = "e9c5be84062e8183f556d7133d5a477a57e37e51";
+        hash = "sha256-r6jObsYx7RRTJUmrCN5h3+0WcHqJA67emhr4/W3rBrM=";
+      };
+      deps = [ ];
+    };
+  };
 
   # *List* containing emacs packages from (M)ELPA
-  mainPackages =
-    # builtins.filter
+  mainPackages = builtins.filter
     # if an extra package has the same name then give precedence to it
-    # (package: ! builtins.elem package.pname (builtins.attrNames extraPackages))
+    (package: !builtins.elem package.pname (builtins.attrNames extraPackages))
     (with melpaPackages; [
       meow
       meow-tree-sitter
@@ -78,33 +98,12 @@ let
       notmuch
       consult-notmuch
       poly-org
-      casual-calc
+      casual
       gptel
       agenix
       solidity-mode
       # org-re-reveal # FIXME very not nice hash mismatch when building
       # gptel # TODO uncomment when there will be a new release including GPT-4o 
-    ])
-    ++ (with elpaPackages; [
-      delight
-      kind-icon
-      ef-themes
-      indent-bars
-      ement
-    ])
-    ++ (with nongnuPackages; [
-      eat
-      corfu-terminal
-      haskell-ts-mode
-    ]);
-in
-mainPackages
-# ++ (builtins.attrValues extraPackages)
-# Playing with EAF
-++ [
-  # Disabled because pymupdf was broken
-  # (pkgs.callPackage ./eaf.nix {
-  #   inherit (epkgs) melpaBuild;
-  #   inherit (melpaPackages) ctable deferred epc s;
-  # })
-]
+    ]) ++ (with elpaPackages; [ delight kind-icon ef-themes indent-bars ement ])
+    ++ (with nongnuPackages; [ eat corfu-terminal haskell-ts-mode ]);
+in mainPackages ++ (builtins.attrValues extraPackages)
