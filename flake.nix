@@ -1,5 +1,6 @@
 {
-  description = "A complete, declarative, and reproducible configuration of my entire Nix fleet";
+  description =
+    "A complete, declarative, and reproducible configuration of my entire Nix fleet";
 
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
@@ -33,16 +34,20 @@
       url = "github:MatthewCroughan/NixThePlanet/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixDarwin = {
-      url = "github:LnL7/nix-darwin";
-    };
+    nixDarwin = { url = "github:LnL7/nix-darwin"; };
     nix-on-droid.url = "github:nix-community/nix-on-droid";
     lix = {
-      url = "git+https://git@git.lix.systems/lix-project/lix";
+      url =
+        "git+https://git@git.lix.systems/lix-project/lix?rev=f6077314fa6aff862758095bb55fe844e9162a1d"; # FIXME update
       flake = false;
     };
     lix-module = {
       url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lix-eval-jobs = {
+      url = "git+https://git.lix.systems/lix-project/nix-eval-jobs";
       inputs.lix.follows = "lix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -60,8 +65,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
-  outputs =
-    inputs@{ flakeParts, ... }:
+  outputs = inputs@{ flakeParts, ... }:
     flakeParts.lib.mkFlake { inherit inputs; } {
       imports = [
         # TODO export modules as flake outputs
@@ -72,9 +76,6 @@
         ./shell
         ./checks
       ];
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
+      systems = [ "x86_64-linux" "aarch64-linux" ];
     };
 }
