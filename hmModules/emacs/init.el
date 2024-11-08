@@ -770,7 +770,7 @@ This is meant to be an helper to be called from the window manager."
    '(
      ("d" "Generic entry" entry
       "* %?"
-      :target (file+head "%<%Y-%m-%d>.org" "#+title %<%Y-%m-%d>"))
+      :target (file+head "%<%Y-%m-%d>.org" "#+TITLE: %<%Y-%m-%d>"))
      ("b" "Billable entry" entry
       "* TODO ${Entry} :billable:${Client}:\n:PROPERTIES:\n:SPENT: ${Spent}\n:END:\n%?"
       :target (file+head "%<%Y-%m-%d>.org" "#+title %<%Y-%m-%d>")
