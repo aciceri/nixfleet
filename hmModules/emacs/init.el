@@ -1,11 +1,10 @@
 ;; package --- My Emacs config -*- lexical-binding:t -*-
 ;; Author: Andrea Ciceri <andrea.ciceri@autistici.org>
 ;;; Commentary:
-;; TODO
-;; - org-roam
-;; - org goodies
-;; - persp-mode?
-;; - understand how to configure cape
+;; TODO org goodies
+;; TODO understand how to configure cape
+;; TODO org-roam-protocol to capture notes from the browser
+;; TODO attach documents (like PDFs) to my Zettelkasten notes
 ;;; Code:
 
 
