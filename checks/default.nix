@@ -11,7 +11,7 @@
     };
 
     pre-commit.settings.hooks = {
-      nixfmt.enable = true;
+      nixfmt-rfc-style.enable = true;
       deadnix.enable = false;
     };
   };
