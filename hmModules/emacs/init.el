@@ -875,7 +875,7 @@ This is meant to be an helper to be called from the window manager."
 	    (end-pos (line-end-position)))
 	(gptel-request
 	    (buffer-substring-no-properties start-pos end-pos) ;the prompt
-	  :system "You are proficient with emacs shell (eshell), translate the following to something I could directly prompt to the shell. Your responses should only be code, without explanation or formatting."
+	  :system "You are proficient with emacs shell (eshell), translate the following to something I could directly prompt to the shell. Your responses should only be code, without explanation or formatting or quoting."
 	  :buffer (current-buffer)
 	  :context (cons (set-marker (make-marker) start-pos)
 			 (set-marker (make-marker) end-pos))
