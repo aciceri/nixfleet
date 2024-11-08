@@ -1,3 +1,6 @@
+# To restore something use something like
+# restic-sisko restore <snapshot_id> --include /persist/var/lib/hass --target /
+# To get snaphots run restic-sisko snapshots
 {
   config,
   pkgs,
