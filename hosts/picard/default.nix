@@ -1,40 +1,49 @@
-{ fleetModules, lib, config, pkgs, ... }: {
-  imports = fleetModules [
-    "common"
-    "ssh"
-    "ccr"
-    "nix"
-    "networkmanager"
-    "bluetooth"
-    "dbus"
-    "docker"
-    "fonts"
-    "qmk-udev"
-    "mosh"
-    "udisks2"
-    "xdg"
-    "pipewire"
-    "nix-development"
-    "waydroid"
-    "virt-manager"
-    "ssh-initrd"
-    "printing"
-    "pam"
-    "wireguard-client"
-    "binfmt"
-    "greetd"
-    "syncthing"
-    "hass-poweroff"
-    "forgejo-runners"
-    "teamviewer"
-    "macos-ventura"
-    "sunshine"
-    "mount-sisko"
-    "adb"
-    "guix"
-    "prometheus-exporters"
-    "promtail"
-  ] ++ [ ./disko.nix ];
+{
+  fleetModules,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  imports =
+    fleetModules [
+      "common"
+      "ssh"
+      "ccr"
+      "nix"
+      "networkmanager"
+      "bluetooth"
+      "dbus"
+      "docker"
+      "fonts"
+      "qmk-udev"
+      "mosh"
+      "udisks2"
+      "xdg"
+      "pipewire"
+      "nix-development"
+      "waydroid"
+      "virt-manager"
+      "ssh-initrd"
+      "printing"
+      "pam"
+      "wireguard-client"
+      "binfmt"
+      "greetd"
+      "syncthing"
+      "hass-poweroff"
+      "forgejo-runners"
+      "teamviewer"
+      "macos-ventura"
+      "sunshine"
+      "mount-sisko"
+      "adb"
+      "guix"
+      "prometheus-exporters"
+      "promtail"
+    ]
+    ++ [ ./disko.nix ];
 
   ccr = {
     enable = true;
@@ -88,8 +97,13 @@
 
   boot.kernelParams = [ "ip=dhcp" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.initrd.availableKernelModules =
-    [ "nvme" "xhci_pci" "ahci" "usbhid" "r8169" ];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usbhid"
+    "r8169"
+  ];
   boot.kernelModules = [
     "kvm-amd"
     "ddcci"
@@ -138,8 +152,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
-  hardware.cpu.amd.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   hardware.graphics = {

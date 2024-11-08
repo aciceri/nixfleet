@@ -16,7 +16,8 @@ let
       fi
     fi
   '';
-in {
+in
+{
   imports = [
     ./hyprpaper.nix
     ../waybar
@@ -38,7 +39,9 @@ in {
     brightnessctl
   ];
 
-  systemd.user.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+  systemd.user.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   services.network-manager-applet.enable = true;
   services.blueman-applet.enable = true;
@@ -61,7 +64,9 @@ in {
     };
   };
 
-  qt = { enable = true; };
+  qt = {
+    enable = true;
+  };
 
   # services.kanshi = {
   #   enable = true;
@@ -91,14 +96,16 @@ in {
   # };
 
   home.file.".icons/catppuccin-mocha-sapphire" = {
-    source =
-      "${pkgs.catppuccin-cursors.mochaSapphire}/share/icons/catppuccin-mocha-sapphire-cursors";
+    source = "${pkgs.catppuccin-cursors.mochaSapphire}/share/icons/catppuccin-mocha-sapphire-cursors";
     recursive = true;
   };
 
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = with pkgs.hyprlandPlugins; [ hy3 hyprspace ];
+    plugins = with pkgs.hyprlandPlugins; [
+      hy3
+      hyprspace
+    ];
     # TODO migrate to structured options
     extraConfig = builtins.readFile ./hyprland.conf;
   };

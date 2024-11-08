@@ -1,11 +1,15 @@
-{ config, lib, fleetFlake, ... }: {
+{
+  config,
+  lib,
+  fleetFlake,
+  ...
+}:
+{
   nixpkgs.overlays = [
     (final: _: {
-      nix-eval-job =
-        fleetFlake.inputs.lix-eval-jobs.packages.${final.system}.nix-eval-jobs
-        // {
-          nix = final.nix;
-        };
+      nix-eval-job = fleetFlake.inputs.lix-eval-jobs.packages.${final.system}.nix-eval-jobs // {
+        nix = final.nix;
+      };
     })
   ];
 
@@ -17,7 +21,10 @@
 
     settings = {
       auto-optimise-store = true;
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       netrc-file = "/etc/nix/netrc";
       substituters = [
         #   "s3://cache?profile=default&region=eu-south-1&scheme=https&endpoint=cache.aciceri.dev"
@@ -49,29 +56,32 @@
       options = "--delete-older-than 180d";
     };
 
-    registry = lib.mkForce ({
-      nixpkgs.to = {
-        type = "path";
-        path = fleetFlake.inputs.nixpkgs;
-      };
-      n.to = {
-        type = "path";
-        path = fleetFlake.inputs.nixpkgs;
-      };
-    } // (lib.optionalAttrs (builtins.hasAttr "ccr" config) {
-      nixfleet.to = {
-        type = "path";
-        path = "/home/${config.ccr.username}/projects/aciceri/nixfleet";
-      };
-      fleet.to = {
-        type = "path";
-        path = "/home/${config.ccr.username}/projects/aciceri/nixfleet";
-      };
-      ccrEmacs.to = {
-        type = "path";
-        path = "/home/${config.ccr.username}/.config/emacs";
-      };
-    }));
+    registry = lib.mkForce (
+      {
+        nixpkgs.to = {
+          type = "path";
+          path = fleetFlake.inputs.nixpkgs;
+        };
+        n.to = {
+          type = "path";
+          path = fleetFlake.inputs.nixpkgs;
+        };
+      }
+      // (lib.optionalAttrs (builtins.hasAttr "ccr" config) {
+        nixfleet.to = {
+          type = "path";
+          path = "/home/${config.ccr.username}/projects/aciceri/nixfleet";
+        };
+        fleet.to = {
+          type = "path";
+          path = "/home/${config.ccr.username}/projects/aciceri/nixfleet";
+        };
+        ccrEmacs.to = {
+          type = "path";
+          path = "/home/${config.ccr.username}/.config/emacs";
+        };
+      })
+    );
 
     distributedBuilds = true;
     buildMachines =
@@ -79,16 +89,26 @@
         hostName = "sisko.fleet";
         system = "aarch64-linux";
         maxJobs = 7;
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+        supportedFeatures = [
+          "kvm"
+          "nixos-test"
+          "big-parallel"
+          "benchmark"
+        ];
         protocol = "ssh-ng";
         sshUser = "root";
         sshKey = "/home/${config.ccr.username}/.ssh/id_rsa";
-      } ++ (lib.lists.optional (config.networking.hostName == "picard") {
-        hostName =
-          "mac.staging.mlabs.city?remote-program=/run/current-system/sw/bin/nix-store";
+      }
+      ++ (lib.lists.optional (config.networking.hostName == "picard") {
+        hostName = "mac.staging.mlabs.city?remote-program=/run/current-system/sw/bin/nix-store";
         system = "x86_64-darwin";
         maxJobs = 4;
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+        supportedFeatures = [
+          "kvm"
+          "nixos-test"
+          "big-parallel"
+          "benchmark"
+        ];
         protocol = "ssh";
         sshUser = "root";
         sshKey = "/home/${config.ccr.username}/.ssh/id_rsa";

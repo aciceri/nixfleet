@@ -1,34 +1,42 @@
-{ fleetModules, lib, pkgs, ... }: {
-  imports = fleetModules [
-    "common"
-    "ssh"
-    "ccr"
-    "nix"
-    "networkmanager"
-    "bluetooth"
-    "dbus"
-    "docker"
-    "fonts"
-    "qmk-udev"
-    "mosh"
-    "udisks2"
-    "xdg"
-    "pipewire"
-    "nix-development"
-    "virt-manager"
-    "ssh-initrd"
-    "printing"
-    "pam"
-    "wireguard-client"
-    "greetd"
-    "syncthing"
-    "mount-sisko"
-    "adb"
-    "binfmt"
-    "prometheus-exporters"
-    "promtail"
-    "syncthing"
-  ] ++ [ ./disko.nix ];
+{
+  fleetModules,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports =
+    fleetModules [
+      "common"
+      "ssh"
+      "ccr"
+      "nix"
+      "networkmanager"
+      "bluetooth"
+      "dbus"
+      "docker"
+      "fonts"
+      "qmk-udev"
+      "mosh"
+      "udisks2"
+      "xdg"
+      "pipewire"
+      "nix-development"
+      "virt-manager"
+      "ssh-initrd"
+      "printing"
+      "pam"
+      "wireguard-client"
+      "greetd"
+      "syncthing"
+      "mount-sisko"
+      "adb"
+      "binfmt"
+      "prometheus-exporters"
+      "promtail"
+      "syncthing"
+    ]
+    ++ [ ./disko.nix ];
 
   ccr = {
     enable = true;
@@ -70,8 +78,12 @@
   };
 
   boot.initrd.kernelModules = [ "i915" ];
-  boot.initrd.availableKernelModules =
-    [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "usb_storage"
+    "sd_mod"
+  ];
   boot.kernelModules = [ "kvm-intel" ];
 
   boot.kernelPackages = pkgs.linuxPackages;
