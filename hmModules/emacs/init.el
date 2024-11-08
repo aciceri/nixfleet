@@ -720,7 +720,13 @@ This is meant to be an helper to be called from the window manager."
     (set-face-attribute face nil :inherit 'fixed-pitch))
   
   (org-babel-do-load-languages
-   'org-babel-load-languages '((haskell . t))))
+   'org-babel-load-languages '((haskell . t)))
+  
+  (defun ccr/org-attach-save-file-list-to-property (dir)
+    "Save list of attachments to ORG_ATTACH_FILES property."
+    (when-let* ((files (org-attach-file-list dir)))
+      (org-set-property "ORG_ATTACH_FILES" (mapconcat #'identity files ", "))))
+  (add-hook 'org-attach-after-change-hook #'ccr/org-attach-save-file-list-to-property))
 
 (use-package org-agenda
   :custom
