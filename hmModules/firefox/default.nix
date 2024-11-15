@@ -86,7 +86,7 @@ in
   };
 
   xdg.configFile."tridactyl/tridactylrc".text = ''
-    set editorcmd footclient -e hx %f
+    set editorcmd emacsclient -c %f
 
     colors catppuccin
   '';
