@@ -1,7 +1,9 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = [
-    pkgs.vim
+  environment.systemPackages = with pkgs; [
+    helix
+    vim
+    git
   ];
 
   nix.settings.experimental-features = "nix-command flakes";
@@ -10,5 +12,5 @@
 
   services.nix-daemon.enable = true;
 
-  # nixpkgs.localSystem = "x86_64-darwin";
+  system.stateVersion = 5;
 }
