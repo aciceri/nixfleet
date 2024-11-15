@@ -11,19 +11,22 @@
   ];
 
   perSystem =
-    { ... }:
+    { config, ... }:
     {
       treefmt.config = {
         projectRootFile = ".git/config";
+        flakeFormatter = true;
+        flakeCheck = true;
         programs = {
           nixfmt.enable = true;
-          deadnix.enable = false;
         };
       };
 
-      pre-commit.settings.hooks = {
-        nixfmt-rfc-style.enable = true;
-        deadnix.enable = false;
+      pre-commit.settings = {
+        hooks.treefmt = {
+          enable = true;
+          package = config.treefmt.build.wrapper;
+        };
       };
     };
 
