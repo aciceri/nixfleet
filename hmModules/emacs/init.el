@@ -860,7 +860,7 @@ This is meant to be an helper to be called from the window manager."
 (use-package gptel
   :custom
   (gptel-api-key (lambda () (require 'f) (f-read-text (getenv "OPENAI_API_KEY_PATH"))))
-  (gptel-model "gpt-4o")
+  (gptel-model 'gpt-4o)
   :config
   (require 'gptel-curl)
 
