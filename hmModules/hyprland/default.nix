@@ -66,33 +66,6 @@ in
     enable = true;
   };
 
-  # services.kanshi = {
-  #   enable = true;
-  #   systemdTarget = "hyprland-session.target";
-  #   profiles = {
-  #     undocked = {
-  #       outputs = [
-  #         {
-  #           status = "enable";
-  #           criteria = "eDP-1";
-  #         }
-  #       ];
-  #     };
-  #     docked = {
-  #       outputs = [
-  #         {
-  #           status = "disable";
-  #           criteria = "eDP-1";
-  #         }
-  #         {
-  #           status = "enable";
-  #           criteria = "DP-1";
-  #         }
-  #       ];
-  #     };
-  #   };
-  # };
-
   home.file.".icons/catppuccin-mocha-sapphire" = {
     source = "${pkgs.catppuccin-cursors.mochaSapphire}/share/icons/catppuccin-mocha-sapphire-cursors";
     recursive = true;
