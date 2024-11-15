@@ -23,9 +23,7 @@ in
     ../waybar
     ../swayidle
     ../gammastep
-    # ../wezterm
-    # ../wayvnc
-    # ../swaync
+    ../swaync
     ../foot
   ];
 
