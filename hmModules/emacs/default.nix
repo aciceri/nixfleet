@@ -44,8 +44,8 @@ in
       mediainfo
       unzipNLS
       nodejs_20
-      pkgs.qadwaitadecorations
-      pkgs.kdePackages.qtwayland
+      qadwaitadecorations
+      kdePackages.qtwayland
     ]
     ++ (with hunspellDicts; [
       en_US-large
