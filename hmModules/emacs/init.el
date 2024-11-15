@@ -527,6 +527,8 @@
 
 (use-package sh-mode
   :hook (sh-mode . tree-sitter-hl-mode))
+(use-package gptscript-mode
+  :mode "\\.gpt\\'")
 
 ;; FIXME
 ;; (use-package mmm-mode
