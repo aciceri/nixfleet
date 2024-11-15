@@ -25,7 +25,7 @@ in
     ../gammastep
     # ../wezterm
     # ../wayvnc
-    ../swaync
+    # ../swaync
     ../foot
   ];
 
