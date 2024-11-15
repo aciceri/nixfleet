@@ -523,10 +523,11 @@
 	 ))
 
 (use-package yaml-mode
-  :hook (yaml-mode . tree-sitter-hl-mode))
+  :hook (yaml-mode . yaml-ts-mode))
 
 (use-package sh-mode
-  :hook (sh-mode . tree-sitter-hl-mode))
+  :hook (sh-mode . bash-ts-mode))
+
 (use-package gptscript-mode
   :mode "\\.gpt\\'")
 
