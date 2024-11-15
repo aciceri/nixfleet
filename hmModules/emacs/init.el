@@ -57,6 +57,7 @@
   (focus-follows-mouse t)
   (mouse-autoselect-window t)
   (treesit-font-lock-level 4)
+  (custom-file "~/.config/emacs/custom.el")
   :config
   (set-face-background 'vertical-border (face-background 'default))
   (set-display-table-slot standard-display-table 'vertical-border (make-glyph-code ?┃))
@@ -948,30 +949,3 @@ This is meant to be an helper to be called from the window manager."
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("5bafdfa3e21f921abf9b9fd77e1e0ce032e62e3a6f8f13ec8ce7945727c654e9"
-     "5f92b9fc442528b6f106eaefa18bb5e7bfa0d737164e18f1214410fef2a6678d"
-     "b7f70bd00f79099f11d67a25c592d70593377488a263bb3dd73dee99b0549dba"
-     "7d10494665024176a90895ff7836a8e810d9549a9872c17db8871900add93d5c"
-     "b5c3c59e2fff6877030996eadaa085a5645cc7597f8876e982eadc923f597aca" default))
- '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
- '(org-fold-catch-invisible-edits 'show-and-error nil nil "Customized with use-package org")
- '(safe-local-variable-values
-   '((eval progn (require 'org-re-reveal)
-	   (add-hook 'after-save-hook #'org-re-reveal-export-to-html nil t))
-     (copilot-mode 0) (copilot-mode -1))))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-;; Local Variables:
-;; byte-compile-warnings: (not free-vars noruntime unresolved)
-;; End:
