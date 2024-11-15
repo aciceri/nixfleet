@@ -848,7 +848,6 @@ This is meant to be an helper to be called from the window manager."
   ("C-c n s" . consult-org-roam-search))
 
 (use-package org-roam-ui
-  :straight
     :after org-roam
     :hook (after-init . org-roam-ui-mode) ;; don't care about startup time since I'm using Emacs daemonized
     :config
