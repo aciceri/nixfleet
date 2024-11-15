@@ -1,4 +1,4 @@
-host=${1-mothership}
+host=${1-picard}
 
 nixos-rebuild switch \
     --flake ".#${host}" \
