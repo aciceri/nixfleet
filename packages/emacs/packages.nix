@@ -106,6 +106,7 @@ let
           gptel
           agenix
           solidity-mode
+          telega
           # org-re-reveal # FIXME very not nice hash mismatch when building
         ]
       )
