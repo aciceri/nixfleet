@@ -24,6 +24,16 @@ let
       };
       deps = [ ];
     };
+    gptscript = buildEmacsPackage {
+      name = "gptscript";
+      src = pkgs.fetchFromGitHub {
+        owner = "emacs-openai";
+        repo = "gptscript-mode";
+        rev = "d9c6272de1288d3f42a1cbac136e5fac57e185e2";
+        hash = "sha256-RM0dptx8qm2b4fvW6oQ0Lq5kshRKcapeIW2piUMAZmw=";
+      };
+      deps = [ ];
+    };
   };
 
   # *List* containing emacs packages from (M)ELPA
