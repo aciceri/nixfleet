@@ -62,12 +62,12 @@ in
       );
     in
     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      	PATH=$PATH:${path}
-      	if [ ! -d "$HOME/.config/emacs" ]; then
-                mkdir "$HOME/.config/emacs"
-      	  $DRY_RUN_CMD ln -s "$HOME/projects/aciceri/nixfleet/hmModules/emacs/init.el" "$HOME/.config/emacs/init.el"
-      	  $DRY_RUN_CMD ln -s "$HOME/.config/emacs" "$HOME/emacs"
-      	fi
-      	$DRY_RUN_CMD ln -sfn ${treesitGrammars} "$HOME/.config/emacs/tree-sitter"
+      PATH=$PATH:${path}
+      if [ ! -d "$HOME/.config/emacs" ]; then
+        mkdir "$HOME/.config/emacs"
+          $DRY_RUN_CMD ln -s "$HOME/projects/aciceri/nixfleet/hmModules/emacs/init.el" "$HOME/.config/emacs/init.el"
+          $DRY_RUN_CMD ln -s "$HOME/.config/emacs" "$HOME/emacs"
+        fi
+      $DRY_RUN_CMD ln -sfn ${treesitGrammars} "$HOME/.config/emacs/tree-sitter"
     '';
 }
