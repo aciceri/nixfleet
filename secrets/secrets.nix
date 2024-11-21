@@ -161,6 +161,11 @@ with keys.users;
     ccr-gpg
     sisko
   ];
+  "sisko-attic-environment-file.age".publicKeys = [
+    ccr-ssh
+    ccr-gpg
+    sisko
+  ];
 
   # WireGuard
   "picard-wireguard-private-key.age".publicKeys = [

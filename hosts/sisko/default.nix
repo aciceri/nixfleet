@@ -30,6 +30,7 @@
       "immich"
       "paperless"
       "syncthing"
+      "atticd"
     ]
     ++ [
       ./disko.nix

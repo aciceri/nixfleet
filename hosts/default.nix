@@ -110,11 +110,13 @@
           "cloudflare-dyndns-api-token" = { };
           "restic-hetzner-password" = { };
           "hass-ssh-key".owner = "hass";
+          "sisko-attic-environment-file".owner = "atticd";
           "autistici-password" = {
             # FIXME terrible, should create a third ad-hoc group
             owner = "grafana";
             group = "forgejo";
           };
+
         };
       };
     };
