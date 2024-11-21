@@ -70,15 +70,6 @@ in
           "::1"
         ];
       };
-      # ffmpeg = {};
-      # camera = [
-      #   {
-      #     name = "EyeToy";
-      #     platform = "ffmpeg";
-      #     input = "/dev/video1";
-      #     extra_arguments = "-vcodec h264";
-      #   }
-      # ];
       homeassistant = {
         unit_system = "metric";
         time_zone = "Europe/Rome";
@@ -87,17 +78,6 @@ in
         internal_url = "http://rock5b.fleet:8123";
       };
       logger.default = "WARNING";
-      # backup = {};
-      # media_player = [{
-      #   platform = "webostv";
-      #   host = "10.1.1.213";
-      #   name = "TV";
-      #   timeout = "5";
-      #   turn_on_action = {
-      #     service = "wake_on_lan.send_magic_packet";
-      #     data.mac = "20:28:bc:74:14:c2";
-      #   };
-      # }];
       wake_on_lan = { };
       switch = [
         {
@@ -109,7 +89,6 @@ in
         }
       ];
       shell_command.turn_off_picard = ''${pkgs.openssh}/bin/ssh -i /var/lib/hass/.ssh/id_ed25519 -o StrictHostKeyChecking=no hass@picard.fleet "exec sudo \$(readlink \$(which systemctl)) poweroff"'';
-      # shell_command.turn_off_picard = ''whoami'';
       prometheus = {
         namespace = "hass";
       };
