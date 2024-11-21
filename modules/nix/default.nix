@@ -2,16 +2,22 @@
   config,
   lib,
   fleetFlake,
+  pkgs,
   ...
 }:
 {
   nixpkgs.overlays = [
     (final: _: {
+      nix-fast-build = fleetFlake.inputs.nix-fast-build.packages.${final.system}.nix-fast-build // {
+        nix = final.nix;
+      };
       nix-eval-job = fleetFlake.inputs.lix-eval-jobs.packages.${final.system}.nix-eval-jobs // {
         nix = final.nix;
       };
     })
   ];
+
+  environment.systemPackages = [ pkgs.nix-fast-build ];
 
   nix = {
     optimise.automatic = true;
