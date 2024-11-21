@@ -18,7 +18,7 @@
       "sisko-proxy"
       "invidious"
       "searx"
-      "sisko-nfs"
+      "sisko-share"
       "forgejo"
       "prometheus"
       "grafana"
