@@ -23,6 +23,7 @@ let
         nix-fast-build
         curl
         tea
+        attic-client
       ]
     }; do
       for bin in "$dir"/bin/*; do
