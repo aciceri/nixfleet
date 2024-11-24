@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   screenshotScript = pkgs.writeShellScriptBin "screenshot.sh" ''
     filename="$HOME/shots/$(date --iso-8601=seconds).png"
