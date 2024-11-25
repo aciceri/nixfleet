@@ -10,7 +10,7 @@ jobs:
       - name: Attic login
         run: attic login sisko http://10.100.0.1:8081 ${{secrets.ATTIC_SISKO_TOKEN}}
       - name: Build with nix
-        run: nix-fast-build --no-nom --skip-cached --systems "x86_64-linux aarch64-linux" --attic-cache "sisko" --result-file result.json || true
+        run: nix-fast-build --no-nom --systems "x86_64-linux aarch64-linux" --attic-cache "sisko" --result-file result.json || true
       - name: Report checks
         run: report-checks
         
