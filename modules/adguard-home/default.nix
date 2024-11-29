@@ -2,6 +2,7 @@
   services.adguardhome = {
     enable = true;
     port = 3000;
+    mutableSettings = true;
     settings = {
       openFirewall = true;
     };
@@ -11,4 +12,7 @@
     53
   ];
   networking.firewall.allowedUDPPorts = [ 53 ];
+  environment.persistence."/persist".directories = [
+    "/var/lib/AdGuardHome"
+  ];
 }
