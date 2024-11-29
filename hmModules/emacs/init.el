@@ -33,8 +33,8 @@
 (use-package consult-eglot
   :after (consult eglot embark)
   :config
-    (require 'consult-eglot-embark)
-    (consult-eglot-embark-mode)
+  (require 'consult-eglot-embark)
+  (consult-eglot-embark-mode)
   )
 
 (use-package emacs
@@ -156,8 +156,8 @@
   (treemacs-load-theme "nerd-icons"))
 
 (use-package nerd-icons-dired
-    :hook
-      (dired-mode . nerd-icons-dired-mode))
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
 
 (use-package indent-bars
   :config
@@ -169,7 +169,7 @@
   (indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 0.4))
   (indent-bars-no-stipple-char (string-to-char "┋"))
   (indent-bars-prefer-character 't) ;; so it works also in terminal
-)
+  )
 
 (use-package diredfl
   :config (diredfl-global-mode))
@@ -321,27 +321,27 @@
 	   (call-interactively 'ccr/h-resize))
 	  (t (push key unread-command-events))))
   :bind (("C-c w k" . windmove-up)
-	   ("C-c w l" . windmove-right)
-	   ("C-c w j" . windmove-down)
-	   ("C-c w h" . windmove-left)
-	   ("M-k" . windmove-up)
-	   ("M-l" . windmove-right)
-	   ("M-j" . windmove-down)
-	   ("M-h" . windmove-left)
-	   ("C-c w <up>" . windmove-up)
-	   ("C-c w <right>" . windmove-right)
-	   ("C-c w <down>" . windmove-down)
-	   ("C-c w <left>" . windmove-left)
-	   ("C-c w q" . delete-window)
-	   ("C-c w K" . windmove-delete-up)
-	   ("C-c w L" . windmove-delete-right)
-	   ("C-c w J" . windmove-delete-down)
-	   ("C-c w H" . windmove-delete-left)
-	   ("C-c w x" . kill-buffer-and-window)
-	   ("C-c w v" . split-window-right)
-	   ("C-c w s" . split-window-below)
-	   ("C-c w V" . ccr/v-resize)
-	   ("C-c w S" . ccr/h-resize)))
+	 ("C-c w l" . windmove-right)
+	 ("C-c w j" . windmove-down)
+	 ("C-c w h" . windmove-left)
+	 ("M-k" . windmove-up)
+	 ("M-l" . windmove-right)
+	 ("M-j" . windmove-down)
+	 ("M-h" . windmove-left)
+	 ("C-c w <up>" . windmove-up)
+	 ("C-c w <right>" . windmove-right)
+	 ("C-c w <down>" . windmove-down)
+	 ("C-c w <left>" . windmove-left)
+	 ("C-c w q" . delete-window)
+	 ("C-c w K" . windmove-delete-up)
+	 ("C-c w L" . windmove-delete-right)
+	 ("C-c w J" . windmove-delete-down)
+	 ("C-c w H" . windmove-delete-left)
+	 ("C-c w x" . kill-buffer-and-window)
+	 ("C-c w v" . split-window-right)
+	 ("C-c w s" . split-window-below)
+	 ("C-c w V" . ccr/v-resize)
+	 ("C-c w S" . ccr/h-resize)))
 
 (use-package vertico
   :custom
@@ -352,8 +352,8 @@
   (vertico-cycle t)
   (vertico-mode t)
   :bind (:map vertico-map
-    (("DEL" . vertico-directory-delete-char)
-     ("C-DEL" . vertico-directory-delete-word))))
+	      (("DEL" . vertico-directory-delete-char)
+	       ("C-DEL" . vertico-directory-delete-word))))
 
 ;; (use-package vertico-posframe
 ;;   :after vertico
@@ -381,25 +381,24 @@
          ([remap goto-line] . consult-goto-line)
          ([remazp imenu] . consult-imenu)
          ([remap project-switch-to-buffer] . consult-project-buffer)
-          ("C-c b b" . consult-project-buffer)
-           ("C-c b B" . consult-buffer)
-           ("C-c g l" . consult-goto-line)
-           ("C-c b i" . consult-imenu)
-           ("C-c f f" . consult-find)
-           ("C-c F" . consult-ripgrep)
-           ("C-c f" . consult-find)
-	   ("C-c l" . consult-line)
-           ("C-c L" . consult-focus-lines)
-           ("C-c m" . consult-mark)
-           ("C-c o o" . consult-outline)
-           ("C-c e" . consult-flymake))
+         ("C-c b b" . consult-project-buffer)
+         ("C-c b B" . consult-buffer)
+         ("C-c g l" . consult-goto-line)
+         ("C-c b i" . consult-imenu)
+         ("C-c f f" . consult-find)
+         ("C-c F" . consult-ripgrep)
+         ("C-c f" . consult-find)
+	 ("C-c l" . consult-line)
+         ("C-c L" . consult-focus-lines)
+         ("C-c m" . consult-mark)
+         ("C-c o o" . consult-outline)
+         ("C-c e" . consult-flymake))
   :custom
   (xref-show-xrefs-function #'consult-xref)
   (xref-show-definitions-function #'consult-xref))
 
 (use-package orderless
   :custom
-  (completion-styles '(orderless)))
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
@@ -417,9 +416,9 @@
   (tab-always-indent 'complete)
   (kind-icon-default-face 'corfu-default)
   :bind (:map corfu-map
-    (("M-d" . corfu-doc-toggle)
-    ("M-l" . corfu-show-location)
-    ("SPC" . corfu-insert-separator)))
+	      (("M-d" . corfu-doc-toggle)
+	       ("M-l" . corfu-show-location)
+	       ("SPC" . corfu-insert-separator)))
   :init
   (global-corfu-mode))
 
@@ -487,7 +486,7 @@
 				    :feature 'function
 				    :override t
 				    `((formal) @font-lock-type-face)
-										   
+				    
 				    :language 'nix
 				    :feature 'function
 				    `((attrpath) @font-lock-function-name-face)
@@ -509,8 +508,8 @@
 
 (use-package typescript-ts-mode
   :hook ((typescript-ts-mode . (lambda ()
-			  (require 'eglot)
-			  (eglot-ensure))))
+				 (require 'eglot)
+				 (eglot-ensure))))
   :mode "\\.ts\\'")
 
 (use-package haskell-ts-mode
@@ -567,6 +566,7 @@
 (use-package aggressive-indent
   :hook ((lisp-mode . aggressive-indent-mode)
 	 (emacs-lisp-mode . aggressive-indent-mode)))
+
 (use-package eldoc
   :delight)
 
@@ -577,10 +577,10 @@
   (eldoc-box-lighter "ElBox")
   :bind (("C-c h" . eldoc-box-help-at-point)))
 
-  (use-package diff-hl
-    :init
-    (global-diff-hl-mode 1)
-    (diff-hl-margin-mode 1))
+(use-package diff-hl
+  :init
+  (global-diff-hl-mode 1)
+  (diff-hl-margin-mode 1))
 
 (use-package envrc
   :config
@@ -612,7 +612,7 @@
 
 (use-package eshell
   :init (require 'eshell) ;; this slows down Emacs startup but it's needed when starting eshell with
-  			  ;; emacsclient --eval before opening another eshell buffer directly from inside Emacs
+  ;; emacsclient --eval before opening another eshell buffer directly from inside Emacs
   (eat-eshell-mode)
   (eat-eshell-visual-command-mode)
   :custom ((eshell-prefer-lisp-functions t)
@@ -669,18 +669,19 @@
 
 (use-package popper
   :custom
-  (popper-reference-buffers '("\*Messages\*"
-			      "Output\*$"
-			      "\\*Async Shell Command\\*"
-			      (completion-list-mode . hide)
-			      help-mode
-			      compilation-mode
-			      "^\\*Nix-REPL*\\*$" nix-repl-mode ;eshell as a popup
-			      "^\\*.+-eshell.*\\*$" eshell-mode ;eshell as a popup
-			      "^\\*shell.*\\*$" shell-mode	;shell as a popup
-			      "^\\*term.*\\*$" term-mode	;term as a popup
-			      "^\\*eat.*\\*$" eat-mode		;eat as a popup
-			      ))
+  (popper-reference-buffers
+   '("\*Messages\*"
+     "Output\*$"
+     "\\*Async Shell Command\\*"
+     (completion-list-mode . hide)
+     help-mode
+     compilation-mode
+     "^\\*Nix-REPL*\\*$" nix-repl-mode
+     "^\\*.+-eshell.*\\*$" eshell-mode
+     "^\\*shell.*\\*$" shell-mode
+     "^\\*term.*\\*$" term-mode
+     "^\\*eat.*\\*$" eat-mode
+     ))
   (popper-window-height 0.33)
   (popper-echo-lines 1)
   (popper-mode-line nil)
@@ -768,18 +769,18 @@ This is meant to be an helper to be called from the window manager."
   ;; FIXME the following doesn't work when using the daemon, it should be executed only
   ;; one time after the first frame is created
   :hook (server-after-make-frame . (lambda ()
-  (set-face-font 'variable-pitch "Dejavu Serif-14")
-  (set-face-font 'fixed-pitch "Iosevka Comfy-14")
-  (set-face-font 'org-table "Iosevka Comfy-14")
-  (set-face-font 'org-meta-line "Iosevka Comfy-14")
-  (set-face-font 'org-drawer "Iosevka Comfy-14")
-  (set-face-font 'org-special-keyword "Iosevka Comfy-14")
-  (set-face-font 'org-property-value "Iosevka Comfy-14")
-  (set-face-font 'org-block "Iosevka Comfy-14")
-  (set-face-font 'org-modern-tag "Iosevka Comfy-14")
-  (set-face-font 'org-modern-date-active "Iosevka Comfy-14")
-  (set-face-font 'org-modern-date-inactive "Iosevka Comfy-14")))
-)
+				     (set-face-font 'variable-pitch "Dejavu Serif-14")
+				     (set-face-font 'fixed-pitch "Iosevka Comfy-14")
+				     (set-face-font 'org-table "Iosevka Comfy-14")
+				     (set-face-font 'org-meta-line "Iosevka Comfy-14")
+				     (set-face-font 'org-drawer "Iosevka Comfy-14")
+				     (set-face-font 'org-special-keyword "Iosevka Comfy-14")
+				     (set-face-font 'org-property-value "Iosevka Comfy-14")
+				     (set-face-font 'org-block "Iosevka Comfy-14")
+				     (set-face-font 'org-modern-tag "Iosevka Comfy-14")
+				     (set-face-font 'org-modern-date-active "Iosevka Comfy-14")
+				     (set-face-font 'org-modern-date-inactive "Iosevka Comfy-14")))
+  )
 
 (use-package org-roam
   :custom
@@ -812,23 +813,23 @@ This is meant to be an helper to be called from the window manager."
     (string-to-number (cdr (assoc "SPENT" (org-roam-node-properties node)))))
   (defun org-roam-node-date (node)
     "Return the org datestring when a node was created (obtained from the filename)"
-      (format "<%s>" (file-name-sans-extension (file-name-nondirectory (org-roam-node-file node)))))
+    (format "<%s>" (file-name-sans-extension (file-name-nondirectory (org-roam-node-file node)))))
 
   (org-roam-ql-defpred
-   'date-range
-   "Check if node was created in given time range"
-   #'org-roam-node-date
-   #'(lambda (node-date start-date end-date)
-       (let ((node-date (condition-case nil
-			    ;; if the entry is not from the journal (i.e. the filename is not something like "2024-10-10.org")
-			    ;; then it's always discarded (the epoch time is given to it)
-			    (encode-time (org-parse-time-string node-date))
-			    (error (encode-time (org-parse-time-string "<1970-01-01>")))))
-	     (start-date (encode-time (org-parse-time-string start-date)))
-	     (end-date (encode-time (org-parse-time-string end-date))))
-	 (and (time-less-p start-date node-date)
-	      (time-less-p node-date end-date)))
-       ))
+    'date-range
+    "Check if node was created in given time range"
+    #'org-roam-node-date
+    #'(lambda (node-date start-date end-date)
+	(let ((node-date (condition-case nil
+			     ;; if the entry is not from the journal (i.e. the filename is not something like "2024-10-10.org")
+			     ;; then it's always discarded (the epoch time is given to it)
+			     (encode-time (org-parse-time-string node-date))
+			   (error (encode-time (org-parse-time-string "<1970-01-01>")))))
+	      (start-date (encode-time (org-parse-time-string start-date)))
+	      (end-date (encode-time (org-parse-time-string end-date))))
+	  (and (time-less-p start-date node-date)
+	       (time-less-p node-date end-date)))
+	))
   
   (defun ccr/org-roam-spent-hours (client &optional date-start date-end)
     "Return the total spent hours on something (usually a client)"
@@ -868,13 +869,13 @@ This is meant to be an helper to be called from the window manager."
   ("C-c n s" . consult-org-roam-search))
 
 (use-package org-roam-ui
-    :after org-roam
-    :hook (after-init . org-roam-ui-mode) ;; don't care about startup time since I'm using Emacs daemonized
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start nil))
+  :after org-roam
+  :hook (after-init . org-roam-ui-mode) ;; don't care about startup time since I'm using Emacs daemonized
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start nil))
 
 (use-package gptel
   :custom
