@@ -274,7 +274,7 @@
    '("s" . meow-kill)
    '("t" . meow-till)
    '("u" . meow-undo)
-   '("U" . meow-undo-in-selection)
+   '("U" . vundo)
    '("/" . meow-visit)
    '("v" . meow-visit)
    '("w" . meow-mark-word)
