@@ -117,6 +117,7 @@ let
           agenix
           solidity-mode
           telega
+          aggressive-indent
           # org-re-reveal # FIXME very not nice hash mismatch when building
         ]
       )
@@ -126,6 +127,8 @@ let
       ef-themes
       indent-bars
       ement
+      vundo
+      pulsar
     ])
     ++ (with nongnuPackages; [
       eat
