@@ -3,6 +3,7 @@
   config,
   pkgs,
   lib,
+  fleetFlake,
   ...
 }:
 let
@@ -24,6 +25,7 @@ let
         curl
         tea
         attic-client
+        fleetFlake.packages.${pkgs.system}.forgejo-report-checks
       ]
     }; do
       for bin in "$dir"/bin/*; do
