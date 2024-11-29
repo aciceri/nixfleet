@@ -46,7 +46,6 @@ in
       $DRY_RUN_CMD echo ${hosts.sisko} >> "${config.user.home}/.ssh/authorized_keys"
       $DRY_RUN_CMD echo ${hosts.kirk} >> "${config.user.home}/.ssh/authorized_keys"
       $DRY_RUN_CMD echo ${users.ccr-ssh} >> "${config.user.home}/.ssh/authorized_keys"
-      $DRY_RUN_CMD echo ${users.ccr-gpg} >> "${config.user.home}/.ssh/authorized_keys"
 
       if [[ ! -d "${sshdDirectory}" ]]; then
         $DRY_RUN_CMD rm $VERBOSE_ARG --recursive --force "${sshdTmpDirectory}"
