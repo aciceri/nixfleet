@@ -564,6 +564,9 @@
   :hook ((lisp-mode . enable-paredit-mode)
 	 (emacs-lisp-mode . enable-paredit-mode)))
 
+(use-package aggressive-indent
+  :hook ((lisp-mode . aggressive-indent-mode)
+	 (emacs-lisp-mode . aggressive-indent-mode)))
 (use-package eldoc
   :delight)
 
