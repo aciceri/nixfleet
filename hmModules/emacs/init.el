@@ -123,9 +123,20 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package pulsar
+  :after (consult imenu)
+  :config
+  (pulsar-global-mode)
+  ;; TODO use :hook (I've tried but it didn't work, why?)
+  (add-hook 'consult-after-jump-hook #'pulsar-recenter-top)
+  (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)
+  (add-hook 'imenu-after-jump-hook #'pulsar-recenter-top)
+  (add-hook 'imenu-after-jump-hook #'pulsar-reveal-entry)
+  (add-hook 'next-error-hook #'pulsar-pulse-line)
+  )
+
 (use-package clipetty
   :delight
-  :ensure t
   :hook (after-init . global-clipetty-mode))
 
 (use-package nerd-icons)
