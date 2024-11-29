@@ -388,8 +388,9 @@
            ("C-c f f" . consult-find)
            ("C-c F" . consult-ripgrep)
            ("C-c f" . consult-find)
-           ("C-c l" . consult-line)
-           ("C-c m" . wconsult-mark)
+	   ("C-c l" . consult-line)
+           ("C-c L" . consult-focus-lines)
+           ("C-c m" . consult-mark)
            ("C-c o o" . consult-outline)
            ("C-c e" . consult-flymake))
   :custom
