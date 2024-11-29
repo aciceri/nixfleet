@@ -13,8 +13,8 @@ let
   garmin_connect = pkgs.fetchFromGitHub {
     owner = "cyberjunky";
     repo = "home-assistant-garmin_connect";
-    rev = "d42edcabc67ba6a7f960e849c8aaec1aabef87c0";
-    hash = "sha256-KqbP6TpH9B0/AjtsW5TcWSNgUhND+w8rO6X8fHqtsDI=";
+    rev = "e2deaed42b66c982b150ca9a9e543031ad51228c";
+    hash = "sha256-TtrcgLGnhNRBF1SqKMkPlEi/XEBUtDAnaWfzkh50+D8=";
   };
 in
 {
