@@ -400,6 +400,8 @@
 (use-package orderless
   :custom
   (completion-styles '(orderless)))
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package embark
   :bind (("C-'" . embark-act)
