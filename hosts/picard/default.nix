@@ -90,6 +90,7 @@
       "libreoffice"
       "emacs"
       "vial"
+      "chirp"
     ];
     extraGroups = [ ];
     backupPaths = [ ];
