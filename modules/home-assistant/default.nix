@@ -51,6 +51,10 @@ in
       "wake_on_lan"
       "prometheus"
     ];
+    customComponents = with pkgs.home-assistant-custom-components; [
+      tuya_local
+      localtuya
+    ];
     extraPackages =
       python3Packages: with python3Packages; [
         # used by pun_sensor
