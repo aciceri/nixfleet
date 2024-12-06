@@ -40,7 +40,7 @@
 
   ccr = {
     enable = true;
-    autologin = true;
+    autologin = false;
     modules = [
       "git"
       "git-workspace"
