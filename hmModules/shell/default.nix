@@ -4,6 +4,7 @@
   age,
   hostname,
   config,
+  username,
   ...
 }:
 {
@@ -59,7 +60,7 @@
     settings = {
       daemon = {
         enabled = true;
-        socket_path = "/home/ccr/.local/share/atuin/atuin.sock"; # FIXME using ~ or $HOME doesn't work: https://github.com/atuinsh/atuin/issues/2289
+        socket_path = "/home/${username}/.local/share/atuin/atuin.sock"; # FIXME using ~ or $HOME doesn't work: https://github.com/atuinsh/atuin/issues/2289
       };
       auto_sync = true;
       sync_frequency = "5m";
