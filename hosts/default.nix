@@ -119,6 +119,20 @@
 
         };
       };
+
+      tpol = {
+        extraModules = with inputs; [
+          lix-module.nixosModules.default
+        ];
+        secrets = {
+          "tpol-wireguard-private-key" = { };
+        };
+        vpn = {
+          ip = "10.100.0.7";
+          publicKey = "b/Pi7koTFo5CMAAzcL2ulvQ/0dUjKzbmXpvh4Lb/Bgo=";
+        };
+        extraHmModulesUser = "mara";
+      };
     };
 
     vpnExtra = {

@@ -4,6 +4,7 @@
   pkgs,
   fleetHmModules,
   fleetFlake,
+  vpn,
   ...
 }:
 {
@@ -46,20 +47,33 @@
       default = [
         "wheel"
         "fuse"
-        "networkmanager"
+        "video"
         "dialout"
+        "systemd-journal"
+        "camera"
+        "networkmanager"
       ];
     };
   };
 
   config = lib.mkIf config.mara.enable {
+
+    programs.fish.enable = true;
+
+    mara.modules = [
+      "shell"
+      "git"
+      "nix-index"
+      "btop"
+    ];
+
     users.users.mara = {
       uid = 1001;
       inherit (config.mara) hashedPassword;
       description = "Mara Savastano";
       isNormalUser = true;
       inherit (config.mara) extraGroups;
-      shell = pkgs.nushell;
+      shell = pkgs.fish;
       openssh.authorizedKeys.keys = config.mara.authorizedKeys;
     };
 
@@ -68,7 +82,16 @@
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.users.mara = {
-      imports = fleetHmModules config.mara.modules;
+      imports = fleetHmModules config.mara.modules ++ [
+        {
+          _module.args = {
+            inherit (config.age) secrets;
+            inherit vpn;
+            username = "mara";
+            hostname = config.networking.hostName;
+          };
+        }
+      ];
       home.packages = config.mara.packages;
       home.stateVersion = config.system.stateVersion;
     };

@@ -182,4 +182,8 @@ with keys.users;
 
     deltaflyer
   ];
+  "tpol-wireguard-private-key.age".publicKeys = [
+    ccr-ssh
+    tpol
+  ];
 }

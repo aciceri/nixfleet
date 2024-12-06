@@ -12,6 +12,7 @@
       pbp = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFF05LScu9m5BXMlFAT1g+g/AkAi7kvq1dY6W3Rzqq3f";
       picard = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ1+1z1IsLVJ6aGarMgzw3NbmFKcpYVgdUjl7xDsewxT";
       deltaflyer = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPETMwELvGTnhKJbpK0oFs4lK8vm/kV9KdgL9wufYDDQ";
+      tpol = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIQxHSow2l0TDWTonBPPaGvTgVvMS/xsQOf1nHnvLSwV";
     };
   };
 }
