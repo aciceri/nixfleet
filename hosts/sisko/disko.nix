@@ -66,8 +66,11 @@ in
               size = "100%";
               content = {
                 type = "filesystem";
-                format = "bcachefs";
+                format = "xfs";
                 mountpoint = "/mnt/hd";
+                mountOptions = [
+                  "nofail"
+                ];
               };
             };
           };
