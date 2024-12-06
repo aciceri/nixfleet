@@ -4,7 +4,7 @@
     (
       let
         cura5 = pkgs.appimageTools.wrapType2 rec {
-          name = "cura5";
+          pname = "cura5";
           version = "5.8.0";
           src = pkgs.fetchurl {
             url = "https://github.com/Ultimaker/Cura/releases/download/${version}/UltiMaker-Cura-${version}-linux-X64.AppImage";
