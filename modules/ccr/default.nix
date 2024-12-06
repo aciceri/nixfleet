@@ -86,6 +86,7 @@ in
           "dialout"
           "systemd-journal"
           "camera"
+          "networkmanager"
         ];
         ccr.modules = [
           "shell"
