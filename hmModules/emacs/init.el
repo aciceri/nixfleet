@@ -881,6 +881,8 @@ This is meant to be an helper to be called from the window manager."
   :custom
   (gptel-api-key (lambda () (require 'f) (f-read-text (getenv "OPENAI_API_KEY_PATH"))))
   (gptel-model 'gpt-4o)
+  (gptel-default-mode 'org-mode)
+  (gptel-org-branching-context 't)
   :config
   (require 'gptel-curl)
 
@@ -918,6 +920,9 @@ This is meant to be an helper to be called from the window manager."
     ;; (add-hook 'kill-buffer-hook 'delete-frame nil 't)
     ) ;; destroy frame on exit
   )
+
+(use-package mixed-pitch
+  :hook (text-mode . mixed-pitch-mode))
 
 (use-package pass
   :config
@@ -966,6 +971,27 @@ This is meant to be an helper to be called from the window manager."
      (:name "Draft" :query "tag:draft" :key "s")
      (:name "GitHub" :query "tag:github" :key "g")
      (:name "Trash" :query "tag:trash" :key "t"))))
+
+;;; Experiments, remove from here
+
+(defun ccr/test ()
+  "test"
+  (interactive)
+  (with-selected-frame 
+      (make-frame '((name . "emacs-run-launcher")
+                    (minibuffer . only)
+                    (fullscreen . 0) ; no fullscreen
+                    (undecorated . t) ; remove title bar
+                    ;;(auto-raise . t) ; focus on this frame
+                    ;;(tool-bar-lines . 0)
+                    ;;(menu-bar-lines . 0)
+                    (internal-border-width . 10)
+                    (width . 80)
+                    (height . 11)))
+    (unwind-protect
+	(completing-read "ciao " '("foo" "bar") nil t "")
+      (delete-frame))))
+
 
 (provide 'init)
 ;;; init.el ends here
