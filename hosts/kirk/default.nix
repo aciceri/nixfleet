@@ -101,6 +101,7 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
   hardware.enableRedistributableFirmware = lib.mkDefault true;
+  hardware.rtl-sdr.enable = true;
 
   hardware.graphics = {
     enable = true;
