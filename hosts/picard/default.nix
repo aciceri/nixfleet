@@ -91,8 +91,9 @@
       "emacs"
       "vial"
       "chirp"
+      "sdrangel"
     ];
-    extraGroups = [ ];
+    extraGroups = [ "plugdev" ];
     backupPaths = [ ];
   };
 
