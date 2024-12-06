@@ -5,10 +5,11 @@
       xterm.enable = false;
       xfce.enable = true;
     };
-    displayManager = {
-      defaultSession = "xfce";
-      autoLogin.user = "mara";
-    };
+  };
+
+  services.displayManager = {
+    defaultSession = "xfce";
+    autoLogin.user = "mara";
   };
 
   home-manager.users.mara.home.file."background-image" = {
