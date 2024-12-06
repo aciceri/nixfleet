@@ -118,6 +118,7 @@ let
           solidity-mode
           telega
           aggressive-indent
+          mixed-pitch
           # org-re-reveal # FIXME very not nice hash mismatch when building
         ]
       )
