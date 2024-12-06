@@ -72,6 +72,8 @@
       "catppuccin"
       "libreoffice"
       "emacs"
+      "chirp"
+      "sdrangel"
     ];
     extraGroups = [ ];
     backupPaths = [ ];
