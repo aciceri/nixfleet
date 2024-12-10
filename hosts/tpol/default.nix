@@ -75,7 +75,7 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = ''
-        ${lib.getExe' pkgs.rtl-sdr "rtl_tcp"} -a ${vpn.${config.networking.hostName}}
+        ${lib.getExe' pkgs.rtl-sdr "rtl_tcp"} -a ${vpn.${config.networking.hostName}.ip}
       '';
     };
   };
@@ -86,7 +86,7 @@
     serviceConfig = {
       ExecStart = ''
         ${lib.getExe' pkgs.sdrangel "sdrangelsrv"} --remote-tcp-hwtype RTLSDR --remote-tcp-port 1234 --remote-tcp-address ${
-          vpn.${config.networking.hostName}
+          vpn.${config.networking.hostName}.ip
         } --remote-tcp
       '';
     };
