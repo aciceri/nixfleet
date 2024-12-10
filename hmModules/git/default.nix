@@ -14,6 +14,9 @@ in
     ../gitui
     ../lazygit
   ];
+
+  home.packages = [ pkgs.git-credential-manager ];
+
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
@@ -27,6 +30,9 @@ in
       user.signingKey = "/home/${username}/.ssh/id_rsa";
       gpg.format = "ssh";
       commit.gpgsign = true;
+
+      credential.helper = "manager";
+      credential.credentialStore = "cache";
     };
 
     userName = config.name;
