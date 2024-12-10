@@ -50,6 +50,7 @@ in
       "wyoming"
       "wake_on_lan"
       "prometheus"
+      "openai_conversation"
     ];
     customComponents = with pkgs.home-assistant-custom-components; [
       tuya_local
