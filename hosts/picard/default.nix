@@ -172,4 +172,6 @@
     enable = true;
     policy = [ "magic" ];
   };
+
+  hardware.hackrf.enable = true;
 }
