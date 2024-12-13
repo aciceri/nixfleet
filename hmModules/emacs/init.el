@@ -435,6 +435,8 @@
   (which-key-mode)
   (which-key-setup-side-window-right))
 
+(use-package p-search)
+
 (use-package magit
   :bind (("C-c o g" . magit)))
 
