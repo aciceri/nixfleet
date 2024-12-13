@@ -785,6 +785,12 @@ This is meant to be an helper to be called from the window manager."
   )
 
 (use-package org-roam
+  :init
+  (require 'org)
+  (require 'org-roam)
+  (require 'org-roam-dailies)
+  (require 'org-protocol)
+  (require 'org-roam-protocol)
   :custom
   (org-roam-v2-ack t)
   (org-roam-directory (file-truename "~/org"))
@@ -797,10 +803,18 @@ This is meant to be an helper to be called from the window manager."
      ("b" "Billable entry" entry
       "* TODO ${Entry} :billable:${Client}:\n:PROPERTIES:\n:SPENT: ${Spent}\n:END:\n%?"
       :target (file+head "%<%Y-%m-%d>.org" "#+TITLE: %<%Y-%m-%d>")
-      :create-id t))
+      :create-id t)
+     )
+   )
+  (org-roam-capture-ref-templates
+   '(
+     ("r" "Web entry" entry
+      "* ${Title} \n:PROPERTIES:\n:URL: ${ref}\n:END:\n %i"
+      :target (file+head "daily/%<%Y-%m-%d>.org" "#+TITLE: %<%Y-%m-%d>")
+      :create-id t)
+     )
    )
   :config
-  (require 'org-roam-dailies)
   (org-roam-db-autosync-mode)
 
   ;; In order to automatically add an org id for some capture templates (using the :create-id keyword)
