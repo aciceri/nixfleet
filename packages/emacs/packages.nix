@@ -34,6 +34,16 @@ let
       };
       deps = [ ];
     };
+    p-search = buildEmacsPackage {
+      name = "p-search";
+      src = pkgs.fetchFromGitHub {
+        owner = "zkry";
+        repo = "p-search";
+        rev = "3fcf06f862976433642d07d06ec911efc43d0189";
+        hash = "sha256-j4JEV+uHXK5Uf6/7D2AaSMKxBr3t59U+WNZzVsJ+gkc=";
+      };
+      deps = [ elpaPackages.heap ];
+    };
   };
 
   # *List* containing emacs packages from (M)ELPA
