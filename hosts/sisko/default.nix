@@ -75,6 +75,8 @@
     serviceConfig.restart = "always";
   };
 
+  users.users.root.hashedPassword = "$y$j9T$mLSUS2hvJdN3s8f9Y3uLE0$sYQtJdn4DuSAZnDkhSsV0WIxNdpuqlH7ODNy1RfuRp4";
+
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
