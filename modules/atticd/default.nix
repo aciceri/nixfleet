@@ -5,7 +5,7 @@
     settings = {
       listen = "0.0.0.0:8081";
       allowed-hosts = [ ]; # Allow all hosts
-      # api-endpoint = "https://cache.staging.mlabs.city/";
+      # api-endpoint = "https://cache.aciceri.dev";
       soft-delete-caches = false;
       require-proof-of-possession = true;
 
@@ -13,10 +13,12 @@
 
       storage = {
         type = "local";
-        path = "/mnt/hd/atticd";
+        path = "/mnt/hd/attic";
       };
 
       compression.type = "none";
+
+      garbage-collection.interval = "0 hours"; # disable garbage collection
 
       chunking = {
         nar-size-threshold = 64 * 1024; # 64 KiB
