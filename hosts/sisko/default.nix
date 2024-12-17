@@ -110,4 +110,6 @@
   environment.systemPackages = with pkgs; [
     cifs-utils
   ];
+
+  powerManagement.scsiLinkPolicy = "med_power_with_dipm";
 }
