@@ -16,10 +16,7 @@
         path = "/mnt/hd/atticd";
       };
 
-      compression = {
-        level = 8;
-        type = "zstd";
-      };
+      compression.type = "none";
 
       chunking = {
         nar-size-threshold = 64 * 1024; # 64 KiB
