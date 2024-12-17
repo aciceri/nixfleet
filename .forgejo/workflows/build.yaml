@@ -8,9 +8,9 @@ jobs:
       - uses: actions/checkout@v4
         name: Checkout repository
       - name: Attic login
-        run: attic login sisko http://10.100.0.1:8081 ${{secrets.ATTIC_SISKO_TOKEN}}
+        run: attic login nixfleet http://10.100.0.1:8081 ${{secrets.ATTIC_NIXFLEET_TOKEN}}
       - name: Build with nix
-        run: nix-fast-build --no-nom --systems "x86_64-linux aarch64-linux" --attic-cache "sisko" --result-file result.json || true
+        run: nix-fast-build --no-nom --systems "x86_64-linux aarch64-linux" --attic-cache "nixfleet" --skip-cached --result-file result.json || true
       - name: Report checks
         run: report-checks
         
