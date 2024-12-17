@@ -26,7 +26,7 @@ for result in data['results']:
             context=type,
             description=attr,
             target_url="https://git.aciceri.dev",  # FIXME
-            state="success" if success else "failure"  # ma be pending,success,failure,error_message
+            state="success" if success else "failure"  # may be pending,success,failure,error_message
         )
     )
 
