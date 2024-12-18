@@ -19,7 +19,21 @@
         flakeCheck = true;
         programs = {
           nixfmt.enable = true;
+          prettier.enable = true;
+          black.enable = true;
+          shfmt.enable = true;
         };
+        settings.global.excludes = [
+          "*.age"
+          "*.svg"
+          "*.png"
+          "*.jpg"
+          "*.bin"
+          "*.el"
+          "*.org"
+          ".envrc"
+          "*.conf"
+        ];
       };
 
       pre-commit.settings = {
