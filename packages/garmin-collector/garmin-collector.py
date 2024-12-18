@@ -66,8 +66,19 @@ class GarminCollector:
     def collect(self):
         try:
             body = self.api.get_daily_weigh_ins(today.isoformat())["totalAverage"]
-            metric_gauge = GaugeMetricFamily("body_composition", "Body composition and weight", labels=["metric"])
-            for k in ["weight", "bmi", "bodyFat", "bodyWater", "boneMass", "muscleMass", "physiqueRating", "visceralFat"]:
+            metric_gauge = GaugeMetricFamily(
+                "body_composition", "Body composition and weight", labels=["metric"]
+            )
+            for k in [
+                "weight",
+                "bmi",
+                "bodyFat",
+                "bodyWater",
+                "boneMass",
+                "muscleMass",
+                "physiqueRating",
+                "visceralFat",
+            ]:
                 metric_gauge.add_metric([k], body[k])
         except Exception as e:
             print(f"Something went wrong while fetching body composition data\n{e}")
@@ -79,4 +90,4 @@ if __name__ == "__main__":
     registry = CollectorRegistry()
     registry.register(GarminCollector())
 
-    push_to_gateway(gateway_address, job='garmin', registry=registry)
+    push_to_gateway(gateway_address, job="garmin", registry=registry)

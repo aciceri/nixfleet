@@ -1,7 +1,7 @@
 name: update-flake-lock
 on:
   schedule:
-    - cron: '0 15 * * *' # daily at 15:00
+    - cron: "0 15 * * *" # daily at 15:00
 
 jobs:
   lockfile:
@@ -32,4 +32,4 @@ jobs:
             --title "Update flake's lockfile" \
             --description "Check the commit description for inputs deltas" \
             --assignees aciceri \
-            || echo "PR already existing" 
+            || echo "PR already existing"

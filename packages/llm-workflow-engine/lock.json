@@ -653,25 +653,11 @@
     },
     "targets": {
       "default": {
-        "aiohttp": [
-          "aiosignal",
-          "attrs",
-          "frozenlist",
-          "multidict",
-          "yarl"
-        ],
-        "aiosignal": [
-          "frozenlist"
-        ],
-        "alembic": [
-          "mako",
-          "sqlalchemy",
-          "typing-extensions"
-        ],
+        "aiohttp": ["aiosignal", "attrs", "frozenlist", "multidict", "yarl"],
+        "aiosignal": ["frozenlist"],
+        "alembic": ["mako", "sqlalchemy", "typing-extensions"],
         "annotated-types": [],
-        "ansible": [
-          "ansible-core"
-        ],
+        "ansible": ["ansible-core"],
         "ansible-core": [
           "cryptography",
           "jinja2",
@@ -679,45 +665,27 @@
           "pyyaml",
           "resolvelib"
         ],
-        "anyio": [
-          "idna",
-          "sniffio"
-        ],
+        "anyio": ["idna", "sniffio"],
         "argcomplete": [],
         "attrs": [],
-        "beautifulsoup4": [
-          "soupsieve"
-        ],
-        "build": [
-          "packaging",
-          "pyproject-hooks"
-        ],
+        "beautifulsoup4": ["soupsieve"],
+        "build": ["packaging", "pyproject-hooks"],
         "certifi": [],
-        "cffi": [
-          "pycparser"
-        ],
+        "cffi": ["pycparser"],
         "chardet": [],
         "charset-normalizer": [],
         "click": [],
         "colorclass": [],
         "compressed-rtf": [],
-        "cryptography": [
-          "cffi"
-        ],
-        "dataclasses-json": [
-          "marshmallow",
-          "typing-inspect"
-        ],
+        "cryptography": ["cffi"],
+        "dataclasses-json": ["marshmallow", "typing-inspect"],
         "distro": [],
         "dnspython": [],
         "docutils": [],
         "docx2txt": [],
         "easygui": [],
         "ebcdic": [],
-        "email-validator": [
-          "dnspython",
-          "idna"
-        ],
+        "email-validator": ["dnspython", "idna"],
         "et-xmlfile": [],
         "extract-msg": [
           "beautifulsoup4",
@@ -731,25 +699,12 @@
         "frozenlist": [],
         "greenlet": [],
         "h11": [],
-        "httpcore": [
-          "certifi",
-          "h11"
-        ],
-        "httpx": [
-          "anyio",
-          "certifi",
-          "httpcore",
-          "idna",
-          "sniffio"
-        ],
+        "httpcore": ["certifi", "h11"],
+        "httpx": ["anyio", "certifi", "httpcore", "idna", "sniffio"],
         "idna": [],
         "iniconfig": [],
-        "jinja2": [
-          "markupsafe"
-        ],
-        "jsonpatch": [
-          "jsonpointer"
-        ],
+        "jinja2": ["markupsafe"],
+        "jsonpatch": ["jsonpointer"],
         "jsonpointer": [],
         "langchain": [
           "aiohttp",
@@ -785,42 +740,21 @@
           "pyyaml",
           "tenacity"
         ],
-        "langchain-openai": [
-          "langchain-core",
-          "openai",
-          "tiktoken"
-        ],
-        "langchain-text-splitters": [
-          "langchain-core"
-        ],
-        "langsmith": [
-          "orjson",
-          "pydantic",
-          "requests"
-        ],
+        "langchain-openai": ["langchain-core", "openai", "tiktoken"],
+        "langchain-text-splitters": ["langchain-core"],
+        "langsmith": ["orjson", "pydantic", "requests"],
         "lark": [],
         "lxml": [],
-        "mako": [
-          "markupsafe"
-        ],
-        "markdown-it-py": [
-          "mdurl"
-        ],
+        "mako": ["markupsafe"],
+        "markdown-it-py": ["mdurl"],
         "markupsafe": [],
-        "marshmallow": [
-          "packaging"
-        ],
+        "marshmallow": ["packaging"],
         "mdurl": [],
-        "msoffcrypto-tool": [
-          "cryptography",
-          "olefile"
-        ],
+        "msoffcrypto-tool": ["cryptography", "olefile"],
         "multidict": [],
         "mypy-extensions": [],
         "names": [],
-        "numexpr": [
-          "numpy"
-        ],
+        "numexpr": ["numpy"],
         "numpy": [],
         "olefile": [],
         "oletools": [
@@ -840,16 +774,11 @@
           "tqdm",
           "typing-extensions"
         ],
-        "openpyxl": [
-          "et-xmlfile"
-        ],
+        "openpyxl": ["et-xmlfile"],
         "orjson": [],
         "packaging": [],
         "pcodedmp": [],
-        "pdfminer-six": [
-          "charset-normalizer",
-          "cryptography"
-        ],
+        "pdfminer-six": ["charset-normalizer", "cryptography"],
         "pillow": [],
         "pip": [],
         "pip-tools": [
@@ -861,68 +790,31 @@
           "wheel"
         ],
         "pluggy": [],
-        "prompt-toolkit": [
-          "wcwidth"
-        ],
+        "prompt-toolkit": ["wcwidth"],
         "pycparser": [],
-        "pydantic": [
-          "annotated-types",
-          "pydantic-core",
-          "typing-extensions"
-        ],
-        "pydantic-core": [
-          "typing-extensions"
-        ],
+        "pydantic": ["annotated-types", "pydantic-core", "typing-extensions"],
+        "pydantic-core": ["typing-extensions"],
         "pygments": [],
         "pyparsing": [],
         "pyperclip": [],
         "pyproject-hooks": [],
-        "pytest": [
-          "iniconfig",
-          "packaging",
-          "pluggy"
-        ],
-        "pytest-datadir": [
-          "pytest"
-        ],
-        "python-frontmatter": [
-          "pyyaml"
-        ],
-        "python-pptx": [
-          "lxml",
-          "pillow",
-          "xlsxwriter"
-        ],
+        "pytest": ["iniconfig", "packaging", "pluggy"],
+        "pytest-datadir": ["pytest"],
+        "python-frontmatter": ["pyyaml"],
+        "python-pptx": ["lxml", "pillow", "xlsxwriter"],
         "pyyaml": [],
         "red-black-tree-mod": [],
         "regex": [],
-        "requests": [
-          "certifi",
-          "charset-normalizer",
-          "idna",
-          "urllib3"
-        ],
+        "requests": ["certifi", "charset-normalizer", "idna", "urllib3"],
         "resolvelib": [],
-        "rich": [
-          "markdown-it-py",
-          "pygments"
-        ],
-        "rtfde": [
-          "lark",
-          "oletools"
-        ],
+        "rich": ["markdown-it-py", "pygments"],
+        "rtfde": ["lark", "oletools"],
         "setuptools": [],
         "six": [],
         "sniffio": [],
         "soupsieve": [],
-        "speechrecognition": [
-          "requests",
-          "typing-extensions"
-        ],
-        "sqlalchemy": [
-          "greenlet",
-          "typing-extensions"
-        ],
+        "speechrecognition": ["requests", "typing-extensions"],
+        "sqlalchemy": ["greenlet", "typing-extensions"],
         "tenacity": [],
         "textract": [
           "argcomplete",
@@ -937,26 +829,17 @@
           "speechrecognition",
           "xlrd"
         ],
-        "tiktoken": [
-          "regex",
-          "requests"
-        ],
+        "tiktoken": ["regex", "requests"],
         "tqdm": [],
         "typing-extensions": [],
-        "typing-inspect": [
-          "mypy-extensions",
-          "typing-extensions"
-        ],
+        "typing-inspect": ["mypy-extensions", "typing-extensions"],
         "tzlocal": [],
         "urllib3": [],
         "wcwidth": [],
         "wheel": [],
         "xlrd": [],
         "xlsxwriter": [],
-        "yarl": [
-          "idna",
-          "multidict"
-        ]
+        "yarl": ["idna", "multidict"]
       },
       "dev": {}
     }

@@ -13,4 +13,3 @@ jobs:
         run: nix-fast-build --no-nom --systems "x86_64-linux aarch64-linux" --attic-cache "nixfleet" --skip-cached --result-file result.json || true
       - name: Report checks
         run: report-checks
-        

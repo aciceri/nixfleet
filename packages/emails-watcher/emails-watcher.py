@@ -13,24 +13,21 @@ class MaildirHandler(FileSystemEventHandler):
     def on_created(self, event):
         if not event.is_directory:
             print(f"New email found: {event.src_path}")
-            with open(event.src_path, 'r') as email_file:
+            with open(event.src_path, "r") as email_file:
                 msg = message_from_file(email_file)
                 print(f'{msg["From"]}: {msg["Subject"]}')
                 self.notifier.send(
-                  title=msg["From"],
-                  message=msg["Subject"],
-                  sound=DEFAULT_SOUND,
-                  icon=Icon(name="mail-message-new"),
-                  timeout=20
+                    title=msg["From"],
+                    message=msg["Subject"],
+                    sound=DEFAULT_SOUND,
+                    icon=Icon(name="mail-message-new"),
+                    timeout=20,
                 )
 
 
 if __name__ == "__main__":
     maildir_new = os.path.expanduser(os.environ.get("INBOX_NEW"))
-    notifier = DesktopNotifierSync(
-        app_name="Mails",
-        notification_limit=10
-    )
+    notifier = DesktopNotifierSync(app_name="Mails", notification_limit=10)
 
     event_handler = MaildirHandler(notifier)
     observer = Observer()
