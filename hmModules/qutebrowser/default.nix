@@ -36,7 +36,8 @@ in
         ",l" = ''config-cycle spellcheck.languages [" it-IT "] [" en-US "]'';
       };
       insert = {
-        "<Ctrl-p>" = ''spawn --userscript qute-pass --dmenu-invocation '${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0 -d' --password-only --unfiltered'';
+        "<Ctrl-p>" =
+          ''spawn --userscript qute-pass --dmenu-invocation '${pkgs.fuzzel}/bin/fuzzel --background-color=253559cc --border-radius=5 --border-width=0 -d' --password-only --unfiltered'';
       };
     };
     settings = {

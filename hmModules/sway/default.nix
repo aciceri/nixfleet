@@ -110,7 +110,8 @@
               in
               lib.mkOptionDefault {
                 "${modifier}+x" = "exec emacsclient -c";
-                "${modifier}+y" = "exec ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet emacsclient -c";
+                "${modifier}+y" =
+                  "exec ${pkgs.waypipe}/bin/waypipe --compress lz4=10 ssh mothership.fleet emacsclient -c";
                 "${modifier}+b" = "exec qutebrowser";
                 "${modifier}+s" = "exec ${screenshotScript}";
                 # "${modifier}+g" = "exec ${screenrecordingScript}";  # FIXME

@@ -24,9 +24,8 @@ in
     };
   };
 
-  services.openssh.knownHosts."${
-    host
-  }".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
+  services.openssh.knownHosts."${host}".publicKey =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
 
   services.postgresqlBackup = {
     enable = true;
