@@ -37,7 +37,7 @@
     };
     nix-on-droid.url = "github:nix-community/nix-on-droid";
     lix = {
-      url = "git+https://git@git.lix.systems/lix-project/lix?rev=f6077314fa6aff862758095bb55fe844e9162a1d"; # FIXME update
+      url = "git+https://git@git.lix.systems/lix-project/lix"; # FIXME update
       flake = false;
     };
     lix-module = {
