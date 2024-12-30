@@ -46,6 +46,7 @@ in
       nodejs_20
       qadwaitadecorations
       kdePackages.qtwayland
+      copilot-node-server
     ]
     ++ (with hunspellDicts; [
       en_US-large
