@@ -31,6 +31,7 @@
       "paperless"
       "syncthing"
       "atticd"
+      "jellyfin"
     ]
     ++ [
       ./disko.nix

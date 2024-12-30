@@ -14,8 +14,7 @@
       "vpn.aciceri.dev"
       "photos.aciceri.dev"
       "status.aciceri.dev"
-      "paper.aciceri.dev"
-      "cloud.aciceri.dev"
+      "jelly.aciceri.dev"
     ];
     apiTokenFile = config.age.secrets.cloudflare-dyndns-api-token.path;
   };
