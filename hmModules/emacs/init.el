@@ -171,6 +171,13 @@
   (indent-bars-prefer-character 't) ;; so it works also in terminal
   )
 
+(use-package copilot
+  :custom
+  (copilot-max-char -1)
+  (copilot-indent-offset-warning-disable 't)
+  :hook (prog-mode org-mode)
+  :bind (("C-<tab>" . copilot-accept-completion)))
+
 (use-package diredfl
   :config (diredfl-global-mode))
 

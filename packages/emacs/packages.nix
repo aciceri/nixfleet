@@ -44,6 +44,22 @@ let
       };
       deps = [ elpaPackages.heap ];
     };
+    copilot = buildEmacsPackage {
+      name = "copilot";
+      src = pkgs.fetchFromGitHub {
+        owner = "copilot-emacs";
+        repo = "copilot.el";
+        rev = "b7bff7b934837744688fd74191ecffb83b3bcc05";
+        hash = "sha256-MEsjXQIeiTI6NXN5rTW7HfFPC18IZnhAssma2BZa0ks=";
+      };
+      deps = with epkgs; [
+        s
+        dash
+        editorconfig
+        jsonrpc
+        f
+      ];
+    };
   };
 
   # *List* containing emacs packages from (M)ELPA
