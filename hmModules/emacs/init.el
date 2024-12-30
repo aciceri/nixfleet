@@ -515,6 +515,15 @@
 			     (eglot-ensure))))
   :mode "\\.py\\'")
 
+(use-package solidity-mode
+  :hook ((solidity-mode . (lambda ()
+			    (require 'eglot)
+			    (add-to-list 'eglot-server-programs
+					 '(solidity-mode . ("nomicfoundation-solidity-language-server" "--stdio")))
+			    (eglot-ensure))))
+  :mode "\\.sol\\'")
+
+
 (use-package typescript-ts-mode
   :hook ((typescript-ts-mode . (lambda ()
 				 (require 'eglot)
