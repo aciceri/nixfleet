@@ -29,7 +29,8 @@ in
     "matrix.aciceri.dev" = {
       forceSSL = true;
       enableACME = true;
-      locations."/".proxyPass = "http://127.0.0.1:${builtins.toString (lib.head config.services.matrix-synapse.settings.listeners).port}";
+      locations."/".proxyPass =
+        "http://127.0.0.1:${builtins.toString (lib.head config.services.matrix-synapse.settings.listeners).port}";
       locations."/_matrix".proxyPass = "http://localhost:8008";
       locations."/_synapse/client".proxyPass = "http://localhost:8008";
     };

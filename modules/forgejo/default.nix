@@ -83,7 +83,8 @@ in
     "git.aciceri.dev" = {
       enableACME = true;
       forceSSL = true;
-      locations."/".proxyPass = "http://127.0.0.1:${builtins.toString config.services.forgejo.settings.server.HTTP_PORT}";
+      locations."/".proxyPass =
+        "http://127.0.0.1:${builtins.toString config.services.forgejo.settings.server.HTTP_PORT}";
     };
   };
 }
