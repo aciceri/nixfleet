@@ -287,7 +287,6 @@ in
                       _module.args = {
                         age = config.age or { };
                         fleetFlake = self;
-                        pkgsStable = inputs.nixpkgsStable.legacyPackages.${pkgs.system};
                       };
                     };
                   }
