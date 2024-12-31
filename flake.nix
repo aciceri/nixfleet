@@ -28,16 +28,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dream2nix.url = "github:nix-community/dream2nix";
-    nixThePlanet = {
-      url = "github:MatthewCroughan/NixThePlanet/";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixThePlanet.url = "github:MatthewCroughan/NixThePlanet"; # not following nixpkgs on purpose
     nixDarwin = {
       url = "github:LnL7/nix-darwin";
     };
     nix-on-droid.url = "github:nix-community/nix-on-droid";
     lix = {
-      url = "git+https://git@git.lix.systems/lix-project/lix?rev=f6077314fa6aff862758095bb55fe844e9162a1d"; # FIXME update
+      url = "git+https://git@git.lix.systems/lix-project/lix"; # FIXME update
       flake = false;
     };
     lix-module = {
