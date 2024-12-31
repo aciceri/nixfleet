@@ -39,8 +39,8 @@
   ];
 
   systemd.tmpfiles.rules = [
-    "d /mnt/hd/torrent 770 transmission transmission"
-    "d /mnt/hd/torrent/.incomplete 770 transmission transmission"
+    "d /mnt/hd/torrent 774 transmission transmission"
+    "d /mnt/hd/torrent/.incomplete 774 transmission transmission"
   ];
 
   environment.persistence."/persist".directories = [
