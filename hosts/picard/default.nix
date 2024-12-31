@@ -39,7 +39,6 @@
       "sunshine"
       "mount-sisko"
       "adb"
-      "guix"
       "prometheus-exporters"
       "promtail"
     ]
