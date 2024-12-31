@@ -19,15 +19,16 @@
   systemd.services.nfs-server.preStart = ''
     chmod -R 775 /export/hd/torrent
   '';
+
   services.webdav = {
     enable = true;
 
     settings = {
-      address = "10.1.1.2"; # accessible only in LAN, used by Kodi installed on the TV
+      address = "0.0.0.0";
       port = 9999;
       scope = "/mnt/hd/torrent";
       modify = false;
-      auth = false; # TODO should we enable authentication? It's only reachable in LAN
+      auth = false;
       debug = true;
       users = [ ];
     };
