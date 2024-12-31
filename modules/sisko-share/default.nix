@@ -16,6 +16,9 @@
     '';
   };
 
+  systemd.services.nfs-server.preStart = ''
+    chmod -R 775 /export/hd/torrent
+  '';
   services.webdav = {
     enable = true;
 
