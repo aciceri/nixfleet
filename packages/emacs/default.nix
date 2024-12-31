@@ -19,7 +19,7 @@ let
       cp $f $out/"libtree-sitter-$(basename $f)"
     done
   '';
-  emacsWithoutPackages = pkgs'.emacs-git.override {
+  emacsWithoutPackages = pkgs'.emacs-unstable.override {
     withSQLite3 = true;
     withWebP = true;
     withPgtk = true;
