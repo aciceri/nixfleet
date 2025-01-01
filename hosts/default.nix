@@ -116,7 +116,7 @@
             owner = "grafana";
             group = "forgejo";
           };
-
+          "firefly-app-key".owner = "firefly-iii";
         };
       };
 

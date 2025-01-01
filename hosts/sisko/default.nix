@@ -32,6 +32,7 @@
       "syncthing"
       "atticd"
       "jellyfin"
+      "firefly"
     ]
     ++ [
       ./disko.nix
