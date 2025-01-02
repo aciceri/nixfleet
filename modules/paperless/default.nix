@@ -22,4 +22,17 @@
   environment.persistence."/persist".directories = [
     config.services.paperless.dataDir
   ];
+
+  imports = [ ../nginx-base ];
+
+  services.nginx.virtualHosts."paper.aciceri.dev" = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/" = {
+      proxyPass = "http://localhost:${builtins.toString config.services.paperless.port}";
+    };
+    extraConfig = ''
+      client_max_body_size 50000M;
+    '';
+  };
 }

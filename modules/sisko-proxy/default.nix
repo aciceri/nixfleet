@@ -47,13 +47,6 @@
         proxyWebsockets = true;
       };
     };
-    "paper.aciceri.dev" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://localhost:${builtins.toString config.services.paperless.port}";
-      };
-    };
     # "${config.services.nextcloud.hostName}" = {
     #   forceSSL = true;
     #   enableACME = true;
