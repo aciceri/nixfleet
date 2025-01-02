@@ -16,7 +16,10 @@
     };
 
     Service = {
-      ExecStart = "${lib.getExe' pkgs.coreutils "sleep"} 5 && ${lib.getExe pkgs.tremotesf} --minimized";
+      ExecStart = pkgs.writeShellScript "start-tremotesf.sh" ''
+        sleep 5
+        ${lib.getExe pkgs.tremotesf} --minimized
+      '';
       Restart = "on-failure";
       RestartSec = 3;
     };
