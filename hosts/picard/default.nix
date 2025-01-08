@@ -91,6 +91,7 @@
       "vial"
       "chirp"
       "sdrangel"
+      "discord"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
