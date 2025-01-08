@@ -62,7 +62,7 @@ in
     cursorTheme = {
       name = "catppuccin-mocha-sapphire";
       package = pkgs.catppuccin-cursors;
-      size = 40;
+      size = 38;
     };
   };
 
