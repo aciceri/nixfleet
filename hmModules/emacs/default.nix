@@ -52,23 +52,12 @@ in
       en_US-large
       it_IT
     ]);
-  home.activation.cloneCcrEmacsFlake =
-    let
-      path = lib.makeBinPath (
-        with pkgs;
-        [
-          git
-          openssh
-        ]
-      );
-    in
-    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      PATH=$PATH:${path}
-      if [ ! -d "$HOME/.config/emacs" ]; then
-        mkdir "$HOME/.config/emacs"
-          $DRY_RUN_CMD ln -s "$HOME/projects/aciceri/nixfleet/hmModules/emacs/init.el" "$HOME/.config/emacs/init.el"
-          $DRY_RUN_CMD ln -s "$HOME/.config/emacs" "$HOME/emacs"
-        fi
-      $DRY_RUN_CMD ln -sfn ${treesitGrammars} "$HOME/.config/emacs/tree-sitter"
-    '';
+  home.activation.linkEmacsConfig = lib.hm.dag.entryAnywhere ''
+    if [ ! -d "$HOME/.config/emacs" ]; then
+      $DRY_RUN_CMD mkdir "$HOME/.config/emacs"
+      $DRY_RUN_CMD ln -s "$HOME/projects/aciceri/nixfleet/hmModules/emacs/init.el" "$HOME/.config/emacs/init.el"
+      $DRY_RUN_CMD ln -s "$HOME/.config/emacs" "$HOME/emacs"
+    fi
+    $DRY_RUN_CMD ln -sfn ${treesitGrammars} "$HOME/.config/emacs/tree-sitter"
+  '';
 }
