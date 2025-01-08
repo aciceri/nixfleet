@@ -9,7 +9,7 @@ let
     url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
     hash = "sha256-IgTfSl24Eap+0zhfiwTvmdVy/dryPxfEF7LhVNVXe+U=";
   };
-  cfg = config.programs.fzf.catppuccin;
+  cfg = config.catppuccin.fzf;
   palette = (lib.importJSON "${config.catppuccin.sources.palette}/palette.json").${cfg.flavor}.colors;
   selectColor = color: palette.${color}.hex;
   color_fg = selectColor "text";
