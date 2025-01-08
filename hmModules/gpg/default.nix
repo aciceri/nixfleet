@@ -9,7 +9,7 @@
           name = "pinentry-rofi-with-env";
           runtimeInputs = with pkgs; [
             coreutils
-            rofi
+            rofi-wayland
           ];
           text = ''
             "${pkgs.pinentry-rofi}/bin/pinentry-rofi" "$@"
