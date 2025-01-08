@@ -18,8 +18,12 @@
         modules-left = [
           "wlr/mode"
           "hyprland/workspaces"
+          "niri/workspaces"
         ];
-        modules-center = [ "wlr/window" ];
+        modules-center = [
+          "hyprland/window"
+          "niri/window"
+        ];
         modules-right = [
           "network"
           "tray"

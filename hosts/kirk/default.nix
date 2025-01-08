@@ -54,6 +54,7 @@
       "password-store"
       "slack"
       "hyprland"
+      "niri"
       "udiskie"
       "xdg"
       "spotify"

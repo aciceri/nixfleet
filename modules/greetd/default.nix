@@ -23,6 +23,15 @@ let
         Exec=cosmic-session
       '';
     })
+    (pkgs.writeTextFile {
+      name = "xorg-session.desktop";
+      destination = "/niri-session.desktop";
+      text = ''
+        [Desktop Entry]
+        Name=Niri
+        Exec=${lib.getExe' pkgs.niri "niri-session"}
+      '';
+    })
   ];
 in
 {
