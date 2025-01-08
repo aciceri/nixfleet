@@ -10,6 +10,7 @@ let
       version = args.src.rev;
       propagatedUserEnvPkgs = args.deps;
       buildInputs = args.deps;
+      postInstall = args.postInstall or "";
     };
 
   # *Attrset* containig extra emacs packages
@@ -59,6 +60,23 @@ let
         jsonrpc
         f
       ];
+    };
+    lean4-mode = buildEmacsPackage {
+      name = "lean4-mode";
+      src = pkgs.fetchFromGitHub {
+        owner = "leanprover-community";
+        repo = "lean4-mode";
+        rev = "76895d8939111654a472cfc617cfd43fbf5f1eb6";
+        hash = "sha256-DLgdxd0m3SmJ9heJ/pe5k8bZCfvWdaKAF0BDYEkwlMQ=";
+      };
+      deps = [
+        epkgs.dash
+        melpaPackages.magit
+        melpaPackages.lsp-mode
+      ];
+      postInstall = ''
+        cp -r $src/data $LISPDIR
+      '';
     };
   };
 

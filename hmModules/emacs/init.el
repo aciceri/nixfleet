@@ -507,6 +507,8 @@
 (use-package dockerfile-ts-mode
   :mode "Dockerfile\\'")
 
+(use-package lean4-mode
+  :mode "\\.lean\\'")
 (use-package python-ts-mode
   :hook ((python-ts-mode . (lambda ()
 			     (require 'eglot)
