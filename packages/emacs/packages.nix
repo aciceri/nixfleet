@@ -78,6 +78,16 @@ let
         cp -r $src/data $LISPDIR
       '';
     };
+    kdl-ts-mode = buildEmacsPackage {
+      name = "kdl-ts-mode";
+      src = pkgs.fetchFromGitHub {
+        owner = "dataphract";
+        repo = "kdl-ts-mode";
+        rev = "3dbf116cd19261d8d70f456ae3385e1d20208452";
+        hash = "sha256-4bfKUzzLhBFg4TeGQD0dClumcO4caIBU8/uRncFVVFQ=";
+      };
+      deps = [ ];
+    };
   };
 
   # *List* containing emacs packages from (M)ELPA

@@ -561,6 +561,8 @@
 (use-package sh-mode
   :hook (sh-mode . bash-ts-mode))
 
+(use-package kdl-ts-mode
+  :mode "\\.kdl\\'")
 (use-package gptscript-mode
   :mode "\\.gpt\\'")
 
