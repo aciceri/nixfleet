@@ -509,6 +509,7 @@
 
 (use-package lean4-mode
   :mode "\\.lean\\'")
+
 (use-package python-ts-mode
   :hook ((python-ts-mode . (lambda ()
 			     (require 'eglot)
@@ -563,6 +564,7 @@
 
 (use-package kdl-ts-mode
   :mode "\\.kdl\\'")
+
 (use-package gptscript-mode
   :mode "\\.gpt\\'")
 
@@ -1010,23 +1012,25 @@ This is meant to be an helper to be called from the window manager."
 
 ;;; Experiments, remove from here
 
+
 (defun ccr/test ()
   "test"
   (interactive)
   (with-selected-frame 
-      (make-frame '((name . "emacs-run-launcher")
+      (make-frame '((name . "floating")
                     (minibuffer . only)
-                    (fullscreen . 0) ; no fullscreen
-                    (undecorated . t) ; remove title bar
+                    (fullscreen . 0)	; no fullscreen
+                    (undecorated . t)	; remove title bar
                     ;;(auto-raise . t) ; focus on this frame
                     ;;(tool-bar-lines . 0)
                     ;;(menu-bar-lines . 0)
                     (internal-border-width . 10)
-                    (width . 80)
-                    (height . 11)))
+                    (width . 50)
+                    (height . 10)))
     (unwind-protect
-	(completing-read "ciao " '("foo" "bar") nil t "")
+	(completing-read "ciao " '("foo" "bar" "pippo") nil t "")
       (delete-frame))))
+
 
 
 (provide 'init)
