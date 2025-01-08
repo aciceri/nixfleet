@@ -73,7 +73,6 @@
           inputs.catppuccin.nixosModules.catppuccin
         ];
         extraHmModules = [
-          # inputs.ccrEmacs.hmModules.default
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
           inputs.vscode-server.nixosModules.home
           inputs.catppuccin.homeManagerModules.catppuccin
