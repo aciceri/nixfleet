@@ -27,7 +27,7 @@ in
     ../waybar
     ../swayidle
     ../gammastep
-    ../swaync
+    # ../swaync
     ../foot
   ];
 
