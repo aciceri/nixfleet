@@ -106,6 +106,12 @@ output "eDP-1" {
     // position x=1280 y=0
 }
 
+output "Dell Inc. DELL U2515H 9X2VY5170PJL" {
+  mode "2560x1440@59.951"
+  scale 1
+  transform "normal"
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
