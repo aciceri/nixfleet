@@ -48,8 +48,6 @@
   (native-comp-async-report-warnings-errors nil)
   (inhibit-startup-message t)
   (visible-bell t)
-  (scroll-conservatively 101) ;; more than 100 => redisplay doesn't recenter point)
-  (scroll-margin 3)
   (temporary-file-directory "~/.emacs-saves/")
   (backup-directory-alist `(("." . ,temporary-file-directory)))
   (auto-save-files-name-transforms `((".*" ,temporary-file-directory t)))
@@ -83,6 +81,13 @@
 	   (buffer-name (format "nixos-rebuild-%s" operation)))
       (async-shell-command (format "sudo nixos-rebuild --flake fleet %s -L" operation) buffer-name)))
   )
+
+(use-package ultra-scroll
+  :init
+  (setq scroll-conservatively 101 ; important!
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
 
 (use-package doc-view
   :custom
@@ -628,7 +633,6 @@
   (add-to-list 'eat-semi-char-non-bound-keys '[?\e 108]) ; M-l
   (eat-update-semi-char-mode-map)
   (eat-reload)
-  :hook (eat-mode . (lambda () (setq-local scroll-margin 0)))
   :bind (("C-c o t" . eat-project))
   ;; FIXME doesn't work well
   ;; ((eat-mode . compilation-shell-minor-mode))
@@ -666,7 +670,6 @@
 	  (defalias (car alias) (cdr alias)))
 	ccr/eshell-aliases)
 
-  :hook (eshell-mode . (lambda () (setq-local scroll-margin 0)))
   :bind (("C-c o e" . project-eshell)
 	 :map eshell-mode-map
 	 ("C-r" . eshell-atuin-history))) ;; i.e. just C-r in semi-char-mode

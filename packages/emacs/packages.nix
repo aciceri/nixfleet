@@ -88,6 +88,16 @@ let
       };
       deps = [ ];
     };
+    ultra-scroll = buildEmacsPackage {
+      name = "ultra-scroll";
+      src = pkgs.fetchFromGitHub {
+        owner = "jdtsmith";
+        repo = "ultra-scroll";
+        rev = "78ab497c6568e4a99f34a84b4c9bfe87d1a71d8c";
+        hash = "sha256-q/LGP69GRtEEbSpXi9JUoZjr/UV1QMVjQw96M6qxsZU=";
+      };
+      deps = [ ];
+    };
   };
 
   # *List* containing emacs packages from (M)ELPA
