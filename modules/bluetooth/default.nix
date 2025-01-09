@@ -1,13 +1,13 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 {
   services.blueman.enable = true;
-  hardware.pulseaudio.enable = true;
   hardware.bluetooth = {
-    enable = true;
+    enable = lib.mkDefault true;
     settings = {
       General = {
         Name = config.networking.hostName;
