@@ -19,6 +19,10 @@
     fi
   '';
 
+  home.packages = with pkgs; [
+    rofi-power-menu
+  ];
+
   # waybar needs the hyprctl binary in PATH when started in hyprland
   # TODO still needed?
   systemd.user.services.waybar.Service.Environment = "PATH=${lib.makeBinPath [ pkgs.hyprland ]}";

@@ -300,6 +300,9 @@ window-rule {
   open-maximized true
 }
 
+window-rule {
+  match app-id=r#"^Emacs Selector$"#
+}
 
 
 
@@ -332,6 +335,7 @@ binds {
     Mod+G { spawn "emacsclient" "-c" "--eval" "(switch-to-buffer (gptel \"*ChatGPT*\"))"; }
     Mod+Shift+C { spawn "emacsclient" "-c" "--eval" "(org-roam-dailies-capture-today)"; }
     Super+Alt+L { spawn "swaylock"; }
+    Mod+Space { spawn "rofi" "-show" "menu" "-modi" "menu:rofi-power-menu"; }
 
 
     // Example volume keys mappings for PipeWire & WirePlumber.
