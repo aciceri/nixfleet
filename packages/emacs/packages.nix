@@ -164,6 +164,7 @@ let
           terraform-mode
           diredfl
           org-modern
+          math-preview
           org-roam
           org-roam-ql
           org-roam-ui
