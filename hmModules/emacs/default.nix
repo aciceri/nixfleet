@@ -47,6 +47,7 @@ in
       qadwaitadecorations
       kdePackages.qtwayland
       copilot-node-server
+      math-preview
     ]
     ++ (with hunspellDicts; [
       en_US-large
