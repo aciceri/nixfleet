@@ -1,0 +1,95 @@
+[
+  {
+    "backlight": {
+      "device": "ddcci2",
+      "format": "{percent}% {icon}",
+      "format-icons": [" ", " "]
+    },
+    "battery": {
+      "format": "{capacity}% {icon}",
+      "format-alt": "{time} {icon}",
+      "format-charging": "{capacity}% ",
+      "format-icons": [" ", " ", " ", " ", " "],
+      "format-plugged": "{capacity}%  ",
+      "states": {
+        "critical": 15,
+        "warning": 30
+      }
+    },
+    "clock": {
+      "format-alt": "{:%Y-%m-%d}",
+      "tooltip-format": "{:%Y-%m-%d | %H:%M}"
+    },
+    "cpu": {
+      "format": "{usage}% ",
+      "tooltip": false
+    },
+    "height": 30,
+    "hyprland/workspaces": {
+      "all-outputs": true,
+      "disable-scroll-wraparound": true,
+      "on-click": "activate"
+    },
+    "ipc": true,
+    "layer": "top",
+    "memory": {
+      "format": "{}% "
+    },
+    "modules-center": ["hyprland/window", "niri/window"],
+    "modules-left": ["wlr/mode", "hyprland/workspaces", "niri/workspaces"],
+    "modules-right": [
+      "network",
+      "tray",
+      "pulseaudio",
+      "cpu",
+      "memory",
+      "temperature",
+      "backlight",
+      "battery",
+      "clock"
+    ],
+    "network": {
+      "format-alt": "{ifname}: {ipaddr}/{cidr}",
+      "format-disconnected": "Disconnected ⚠",
+      "format-ethernet": "{ifname}: {ipaddr}/{cidr} 󰈀  up: {bandwidthUpBits:>4} down: {bandwidthDownBits:>4}",
+      "format-linked": "{ifname} (No IP) ",
+      "format-wifi": "{essid} ({signalStrength}%)   {ipaddr}/{cidr} up: {bandwidthUpBits:>4} down: {bandwidthDownBits:>4}",
+      "interval": 1
+    },
+    "position": "top",
+    "pulseaudio": {
+      "format": "{volume}% {icon} {format_source}",
+      "format-bluetooth": "{volume}% {icon} {format_source}",
+      "format-bluetooth-muted": " {icon} {format_source}",
+      "format-icons": {
+        "car": "",
+        "default": [" ", " ", " "],
+        "handsfree": "",
+        "headphones": " ",
+        "headset": "",
+        "phone": "",
+        "portable": ""
+      },
+      "format-muted": " {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "on-click": "/nix/store/rya5a9r0ryh9x8yf03m3s420r4ay6ysg-pavucontrol-6.1/bin/pavucontrol"
+    },
+    "temperature": {
+      "critical-threshold": 80,
+      "format": "{temperatureC}°C {icon}",
+      "format-icons": ["", "", ""],
+      "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input"
+    },
+    "tray": {
+      "spacing": 10
+    },
+    "wlr/mode": {
+      "format": "<span style=\"italic\">{}</span>",
+      "tooltip": false
+    },
+    "wlr/window": {
+      "max_length": 50
+    }
+  }
+]
