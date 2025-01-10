@@ -1021,7 +1021,7 @@ This is meant to be an helper to be called from the window manager."
   "test"
   (interactive)
   (with-selected-frame 
-      (make-frame '((name . "floating")
+      (make-frame '((name . "Emacs Selector")
                     (minibuffer . only)
                     (fullscreen . 0)	; no fullscreen
                     (undecorated . t)	; remove title bar
