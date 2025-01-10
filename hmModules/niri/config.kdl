@@ -280,24 +280,24 @@ window-rule {
 }
 
 window-rule {
-    geometry-corner-radius 4
-    clip-to-geometry true
+  geometry-corner-radius 4
+  clip-to-geometry true
 }
 
 window-rule {
-    match app-id=r#"^spotify$"#
-    open-maximized true
-    open-on-workspace "spotify"
+  match app-id=r#"^spotify$"#
+  open-maximized true
+  open-on-workspace "spotify"
 }
 
 window-rule {
-    match app-id=r#"^Slack$"#
-    open-maximized true
+  match app-id=r#"^Slack$"#
+  open-maximized true
 }
 
 window-rule {
-    match app-id=r#"^Element"#
-    open-maximized true
+  match app-id=r#"^Element"#
+  open-maximized true
 }
 
 
