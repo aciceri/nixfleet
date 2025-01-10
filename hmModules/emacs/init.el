@@ -56,6 +56,7 @@
   (mouse-autoselect-window t)
   (treesit-font-lock-level 4)
   (custom-file "~/.config/emacs/custom.el")
+  (frame-title-format "%b - Emacs")
   :config
   (set-face-background 'vertical-border (face-background 'default))
   (set-display-table-slot standard-display-table 'vertical-border (make-glyph-code ?┃))
