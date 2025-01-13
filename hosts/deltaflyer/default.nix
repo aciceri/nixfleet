@@ -30,6 +30,13 @@
     # INSECURE STUFF FIRST
     # Users and hardcoded passwords.
     {
+      nixpkgs.overlays = [
+        (prev: final: {
+          gcc7 = final.gcc;
+          gcc8 = final.gcc;
+        })
+      ];
+
       users.users.root.password = "nixos";
       # users.users.ccr.password = "1234";
 
@@ -66,11 +73,13 @@
           "git"
           "shell"
           "helix"
-          "hyprland"
+          # "hyprland"
+          "niri"
           "emacs"
           "firefox"
           "mpv"
           "xdg"
+          "catppuccin"
         ];
         extraGroups = [
           "dialout"
@@ -99,18 +108,18 @@
       ccr.extraModules = [
         {
           programs.fish.loginShellInit = ''
-            pgrep Hypr >/dev/null || exec dbus-run-session Hyprland
+            pgrep niri >/dev/null || exec niri-session
           '';
-          wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
-            monitor = DSI-1, 1080x2340, 0x0, 2, transform, 1
-            input {
-              touchdevice {
-                transform = 1
-              }
-            }
-            bind = $mod, r, exec, rotate-screen hor
-            bind = $mod SHIFT, r, exec, rotate-screen ver
-          '';
+          # wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
+          #   monitor = DSI-1, 1080x2340, 0x0, 2, transform, 1
+          #   input {
+          #     touchdevice {
+          #       transform = 1
+          #     }
+          #   }
+          #   bind = $mod, r, exec, rotate-screen hor
+          #   bind = $mod SHIFT, r, exec, rotate-screen ver
+          # '';
           home.packages =
             let
               rotateScript = pkgs.writeShellApplication {

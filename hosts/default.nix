@@ -14,20 +14,22 @@
       deltaflyer = {
         nixpkgs =
           let
-            # keep in sync with https://github.com/NixOS/mobile-nixos/blob/development/pkgs.nix
-            rev = "44d0940ea560dee511026a53f0e2e2cde489b4d4";
+            # keep in sync with https://github.com/mobile-nixos/mobile-nixos/blob/development/npins/sources.json
+            rev = "d3c42f187194c26d9f0309a8ecc469d6c878ce33";
           in
           builtins.getFlake "github:NixOS/nixpkgs/${rev}";
         extraHmModules = [
-          # inputs.ccrEmacs.hmModules.default
+          inputs.catppuccin.homeManagerModules.catppuccin
         ];
         vpn = {
           ip = "10.100.0.5";
           publicKey = "6bzmBx2b5yzMdW0aK0KapoBesNcxTv5+qdo+pGmG+jc=";
         };
-        homeManager = builtins.getFlake "github:nix-community/home-manager/670d9ecc3e46a6e3265c203c2d136031a3d3548e";
+        # homeManager = builtins.getFlake "github:nix-community/home-manager/670d9ecc3e46a6e3265c203c2d136031a3d3548e";
         extraModules = [
           (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-fajita"; })
+          inputs.catppuccin.nixosModules.catppuccin
+          inputs.lix-module.nixosModules.default
         ];
         secrets = {
           "deltaflyer-wireguard-private-key" = { };
