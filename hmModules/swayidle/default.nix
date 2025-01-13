@@ -48,10 +48,4 @@
         }
       ];
     };
-
-  # Otherwise it will start only after Sway and will not work with Hyprland
-  systemd.user.services.swayidle = {
-    Unit.PartOf = lib.mkForce [ ];
-    Install.WantedBy = lib.mkForce [ "graphical-session-pre.target" ];
-  };
 }
