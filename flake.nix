@@ -59,10 +59,6 @@
     };
     catppuccin.url = "github:catppuccin/nix";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    nix-fast-build = {
-      url = "github:Mic92/nix-fast-build";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
