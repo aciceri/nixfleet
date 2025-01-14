@@ -1016,25 +1016,40 @@ This is meant to be an helper to be called from the window manager."
 
 ;;; Experiments, remove from here
 
-
-(defun ccr/test ()
-  "test"
+(defun ccr/test (niri-socket)
+  "Select a window and focus it based on `niri msg` output."
   (interactive)
-  (with-selected-frame 
-      (make-frame '((name . "Emacs Selector")
-                    (minibuffer . only)
-                    (fullscreen . 0)	; no fullscreen
-                    (undecorated . t)	; remove title bar
-                    ;;(auto-raise . t) ; focus on this frame
-                    ;;(tool-bar-lines . 0)
-                    ;;(menu-bar-lines . 0)
-                    (internal-border-width . 10)
-                    (width . 50)
-                    (height . 10)))
-    (unwind-protect
-	(completing-read "ciao " '("foo" "bar" "pippo") nil t "")
-      (delete-frame))))
+  (let* ((niri-output (ccr/niri-get-windows niri-socket))
+         (display-list (mapcar (lambda (entry)
+                                 (let ((title (cdr (assoc 'title entry)))
+                                       (app-id (cdr (assoc 'app_id entry)))
+                                       (id (cdr (assoc 'id entry))))
+                                   (cons (format "%s - %s" title app-id) id)))
+                               niri-output)))
+    (with-selected-frame
+        (make-frame '((name . "Emacs Selector")
+                      (minibuffer . only)
+                      (fullscreen . 0)
+                      (undecorated . t)
+                      (internal-border-width . 10)
+                      (width . 120)
+                      (height . 20)))
+      (unwind-protect
+          (let* ((entry (completing-read "Select window: " (mapcar #'car display-list) nil t ""))
+                 (entry-id (cdr (assoc entry display-list)))  ;; Get the ID associated with the selected entry
+                 (command (format "NIRI_SOCKET=\"%s\" niri msg action focus-window --id %s" niri-socket entry-id)))
+	    (message command)
+            (shell-command command))
+        (delete-frame)))))
 
+
+(defun ccr/niri-get-windows (niri-socket)
+  "Esegue `niri msg --json windows` e parse l'output JSON in una alist."
+  (let* ((command (format "NIRI_SOCKET=\"%s\" niri msg --json windows" niri-socket))
+	 (output (shell-command-to-string command))
+	 (json-object-type 'alist)	; Usa alist per rappresentare gli oggetti JSON
+	 (parsed-json (json-read-from-string output)))
+    parsed-json))
 
 
 (provide 'init)

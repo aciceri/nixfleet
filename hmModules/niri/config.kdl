@@ -301,7 +301,9 @@ window-rule {
 }
 
 window-rule {
-  match app-id=r#"^Emacs Selector$"#
+  match title=r#"^Emacs Selector$"#
+  opacity 0.95
+  open-floating true
 }
 
 
