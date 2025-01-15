@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -54,7 +55,14 @@ in
 
   gtk = {
     enable = true;
-    # font.name = lib.mkForce "Sans,Symbols Nerd Font";
+    theme = {
+      name = "Catppuccin-GTK-Purple-Dark-Compact";
+      package = pkgs.magnetic-catppuccin-gtk.override {
+        accent = [ "purple" ];
+        shade = "dark";
+        size = "compact";
+      };
+    };
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -66,13 +74,13 @@ in
     };
   };
 
-  qt = {
-    enable = true;
-  };
-
   home.file.".icons/catppuccin-mocha-sapphire" = {
     source = "${pkgs.catppuccin-cursors.mochaSapphire}/share/icons/catppuccin-mocha-sapphire-cursors";
     recursive = true;
+  };
+
+  qt = {
+    enable = true;
   };
 
   wayland.windowManager.hyprland = {
