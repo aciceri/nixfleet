@@ -304,8 +304,15 @@ window-rule {
   match title=r#"^Emacs Selector$"#
   opacity 0.95
   open-floating true
+  open-focused true
 }
 
+window-rule {
+  match title=r#"^bTop$"#
+  opacity 0.95
+  open-floating true
+  open-focused true
+}
 
 
 
@@ -338,7 +345,7 @@ binds {
     Mod+Shift+C { spawn "emacsclient" "-c" "--eval" "(org-roam-dailies-capture-today)"; }
     Mod+Alt+L { spawn "swaylock"; }
     Mod+Space { spawn "rofi" "-show" "menu" "-modi" "menu:rofi-power-menu"; }
-
+    Mod+Ctrl+b { spawn "foot" "--title='bTop'" "-W" "210x60" "btop";}
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
