@@ -456,11 +456,10 @@
 (use-package magit-delta
   :hook (magit-mode . magit-delta-mode))
 
-;; FIXME
-;; (use-package magit-todos
-;;   :after magit
-;;   :custom (magit-todos-keyword-suffix "\\(?:([^)]+)\\)?:?")
-;;   :config (magit-todos-mode 1))
+(use-package magit-todos
+  :after magit
+  :custom (magit-todos-keyword-suffix "\\(?:([^)]+)\\)?:?")
+  :config (magit-todos-mode 1))
 
 (use-package difftastic
   :demand t
