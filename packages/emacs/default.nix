@@ -11,12 +11,7 @@ let
       inputs.emacs-overlay.overlays.emacs
     ]
   );
-  pkgs-with-tree-sitter-kdl =
-    (builtins.getFlake "github:aciceri/nixpkgs/23a675ee8313427610cf129dd2b52a69bf6a2a26")
-    .legacyPackages.${pkgs.stdenv.system};
-  # TODO remove when merged: https://github.com/NixOS/nixpkgs/pull/371287/files
-  # all-grammars = pkgs'.tree-sitter.withPlugins builtins.attrValues;
-  all-grammars = pkgs-with-tree-sitter-kdl.tree-sitter.withPlugins builtins.attrValues;
+  all-grammars = pkgs'.tree-sitter.withPlugins builtins.attrValues;
   treesitGrammars = pkgs'.runCommand "treesit-grammars" { } ''
     mkdir $out
     for f in ${all-grammars}/*
