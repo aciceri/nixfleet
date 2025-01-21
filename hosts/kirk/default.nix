@@ -77,7 +77,7 @@
       "sdrangel"
       "zmkbatx"
     ];
-    extraGroups = [ ];
+    extraGroups = [ "plugdev" ];
     backupPaths = [ ];
   };
 
