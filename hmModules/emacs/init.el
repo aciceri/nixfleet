@@ -141,6 +141,12 @@
   (add-hook 'next-error-hook #'pulsar-pulse-line)
   )
 
+(use-package visual-replace
+  :defer t
+  :bind (("C-c r" . visual-replace)
+         :map isearch-mode-map
+         ("C-c r" . visual-replace-from-isearch)))
+
 (use-package clipetty
   :delight
   :hook (after-init . global-clipetty-mode))

@@ -184,6 +184,7 @@ let
           telega
           aggressive-indent
           mixed-pitch
+          visual-replace
           # org-re-reveal # FIXME very not nice hash mismatch when building
         ]
       )
