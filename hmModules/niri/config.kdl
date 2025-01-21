@@ -314,6 +314,13 @@ window-rule {
   open-focused true
 }
 
+window-rule {
+  match title=r#"^GPTel - Emacs$"#
+  opacity 0.95
+  open-floating true
+  open-focused true
+}
+
 
 
 
@@ -341,7 +348,7 @@ binds {
     Mod+B { spawn "firefox"; }
     Mod+RETURN { spawn "emacsclient" "-c" "--eval" "(ccr/start-eshell)"; }
     Mod+M { spawn "emacsclient" "-c" "--eval" "(notmuch-search \"tag:new\")"; }
-    Mod+G { spawn "emacsclient" "-c" "--eval" "(switch-to-buffer (gptel \"*ChatGPT*\"))"; }
+    Mod+G { spawn "emacsclient" "-c" "--eval" "(switch-to-buffer (gptel \"*ChatGPT*\"))" "-F" "((name . \"GPTel - Emacs\") (width . 150) (height . 60))'"; }
     Mod+Shift+C { spawn "emacsclient" "-c" "--eval" "(org-roam-dailies-capture-today)"; }
     Mod+Alt+L { spawn "swaylock"; }
     Mod+Space { spawn "rofi" "-show" "menu" "-modi" "menu:rofi-power-menu"; }
