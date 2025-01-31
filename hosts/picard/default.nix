@@ -93,6 +93,7 @@
       "chirp"
       "sdrangel"
       "discord"
+      "ib-tws"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
