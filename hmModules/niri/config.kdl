@@ -68,6 +68,9 @@ environment {
     DISPLAY ":0"
 }
 
+hotkey-overlay {
+    skip-at-startup
+}
 
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
