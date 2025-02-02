@@ -33,6 +33,11 @@
     fi
   '';
 
+  home.sessionVariables = {
+    DISPLAY = ":0";
+    QT_QPA_PLATFORM = "wayland";
+  };
+
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
