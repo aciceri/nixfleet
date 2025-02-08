@@ -926,8 +926,15 @@ This is meant to be an helper to be called from the window manager."
 
 (use-package gptel
   :custom
-  (gptel-api-key (lambda () (require 'f) (f-read-text (getenv "OPENAI_API_KEY_PATH"))))
-  (gptel-model 'gpt-4o)
+  ;; (gptel-model 'deepseek/deepseek-chat)
+  (gptel-model 'qwen/qwen-max)
+  (gptel-backend (gptel-make-openai "OpenRouter"
+		   :host "openrouter.ai"
+		   :endpoint "/api/v1/chat/completions"
+		   :key (lambda () (require 'f) (f-read-text (getenv "OPENAI_API_KEY_PATH")))
+		   :stream t
+		   :models '(qwen/qwen-max deepseek/deepseek-chat))
+		 )
   (gptel-default-mode 'org-mode)
   (gptel-org-branching-context nil) ;; this is cool but I don't feel comfortable with it
   :config
@@ -963,9 +970,7 @@ This is meant to be an helper to be called from the window manager."
   (defun ccr/start-chatgpt () ;; Used from outside Emacs by emacsclient --eval
     (display-buffer (gptel "*ChatGPT*"))
     (set-frame-name "floating")
-    ;; (delete-other-windows)
-    ;; (add-hook 'kill-buffer-hook 'delete-frame nil 't)
-    ) ;; destroy frame on exit
+    )
   )
 
 (use-package mixed-pitch
