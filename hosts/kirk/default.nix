@@ -75,8 +75,9 @@
       "emacs"
       "chirp"
       "sdrangel"
+      "zmkbatx"
     ];
-    extraGroups = [ ];
+    extraGroups = [ "plugdev" ];
     backupPaths = [ ];
   };
 

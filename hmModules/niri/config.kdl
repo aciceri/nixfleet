@@ -91,7 +91,7 @@ output "eDP-1" {
     mode "1920x1080@59.999"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1.2
+    scale 1.1
 
     // Transform allows to rotate the output counter-clockwise, valid values are:monitor
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
