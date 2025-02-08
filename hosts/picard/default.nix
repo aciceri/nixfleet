@@ -94,6 +94,7 @@
       "sdrangel"
       "discord"
       "ib-tws"
+      "zoom"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
