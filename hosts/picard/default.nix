@@ -41,7 +41,6 @@
       "adb"
       "prometheus-exporters"
       "promtail"
-      "dump1090"
     ]
     ++ [ ./disko.nix ];
 
