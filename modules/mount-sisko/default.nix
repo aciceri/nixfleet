@@ -15,7 +15,7 @@
     source = "${pkgs.nfs-utils.out}/bin/mount.nfs";
   };
 
-  fileSystems."/home/${config.ccr.username}/nas" = {
+  fileSystems."/mnt/nas" = {
     device = "sisko.fleet:/hd";
     fsType = "nfs";
     options = [
