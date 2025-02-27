@@ -274,7 +274,7 @@ in
                 extraHmModules = config.extraHmModules;
               in
               [
-                config.homeManager.nixosModule
+                config.homeManager.nixosModules.home-manager
                 (
                   {
                     config,
