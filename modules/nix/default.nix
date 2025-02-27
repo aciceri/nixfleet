@@ -6,18 +6,6 @@
   ...
 }:
 {
-  nixpkgs.overlays = [
-    (final: _: {
-      nix-eval-jobs =
-        (fleetFlake.inputs.lix-eval-jobs.packages.${final.system}.nix-eval-jobs.override {
-          nix = final.nix;
-        })
-        // {
-          nix = final.nix;
-        };
-    })
-  ];
-
   environment.systemPackages = [ pkgs.nix-fast-build ];
 
   nix = {
