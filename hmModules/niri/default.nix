@@ -2,13 +2,52 @@
   pkgs,
   lib,
   config,
+  hostname,
   ...
 }:
+let
+  niriVars =
+    {
+      picard = {
+        floating-gptel = {
+          rows = "60";
+          cols = "150";
+        };
+        floating-btop = {
+          rows = "210";
+          cols = "60";
+        };
+      };
+      kirk = {
+        floating-gptel = {
+          rows = "40";
+          cols = "140";
+        };
+        floating-btop = {
+          rows = "40";
+          cols = "140";
+        };
+      };
+    }
+    ."${hostname}" or niriVars.kirk;
+  run-floating-gptel =
+    with niriVars.floating-gptel;
+    pkgs.writeScriptBin "run-floating-gptel" ''
+      emacsclient -c --eval '(switch-to-buffer (gptel "*GptEl*"))' -F '((name . "GPTel - Emacs") (width . ${cols}) (height . ${rows}))'
+    '';
+  run-floating-btop =
+    with niriVars.floating-btop;
+    pkgs.writeScriptBin "run-floating-btop" ''
+      foot --title='bTop' -W ${rows}x${cols} btop
+    '';
+in
 {
   home.packages = with pkgs; [
     niri
     waypaper
     xwayland-satellite
+    run-floating-gptel
+    run-floating-btop
   ];
   systemd.user.targets.niri-session = {
     Unit = {

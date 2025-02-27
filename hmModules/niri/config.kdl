@@ -351,11 +351,13 @@ binds {
     Mod+B { spawn "firefox"; }
     Mod+RETURN { spawn "emacsclient" "-c" "--eval" "(ccr/start-eshell)"; }
     Mod+M { spawn "emacsclient" "-c" "--eval" "(notmuch-search \"tag:new\")"; }
-    Mod+G { spawn "emacsclient" "-c" "--eval" "(switch-to-buffer (gptel \"*ChatGPT*\"))" "-F" "((name . \"GPTel - Emacs\") (width . 150) (height . 60))'"; }
+    // Mod+G { spawn "emacsclient" "-c" "--eval" "(switch-to-buffer (gptel \"*ChatGPT*\"))" "-F" "((name . \"GPTel - Emacs\") (width . $NIRI_GPTEL_COLS) (height . $NIRI_GPTEL_ROWS))'"; }
+    Mod+G { spawn "run-floating-gptel"; }
     Mod+Shift+C { spawn "emacsclient" "-c" "--eval" "(org-roam-dailies-capture-today)"; }
     Mod+Alt+L { spawn "swaylock"; }
     Mod+Space { spawn "rofi" "-show" "menu" "-modi" "menu:rofi-power-menu"; }
-    Mod+Ctrl+b { spawn "foot" "--title='bTop'" "-W" "210x60" "btop";}
+    // Mod+Ctrl+b { spawn "foot" "--title='bTop'" "-W" "$NIRI_BTOP_COLSx$NIRI_BTOP_ROWS" "btop";}
+    Mod+Ctrl+b { spawn "run-floating-btop"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
