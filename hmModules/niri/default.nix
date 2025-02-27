@@ -83,7 +83,7 @@ in
     theme =
       let
         inherit (config.lib.formats.rasi) mkLiteral;
-        cfg = config.programs.fzf.catppuccin;
+        cfg = config.catppuccin.fzf;
         palette = (lib.importJSON "${config.catppuccin.sources.palette}/palette.json").${cfg.flavor}.colors;
         selectColor = color: palette.${color}.hex;
 
