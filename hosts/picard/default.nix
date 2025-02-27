@@ -118,15 +118,16 @@
 
   # https://github.com/NixOS/nixpkgs/issues/328909
   boot.extraModulePackages = [
-    (config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
-      patches = [ ];
-      src = pkgs.fetchFromGitLab {
-        owner = "${old.pname}-linux";
-        repo = "${old.pname}-linux";
-        rev = "7853cbfc28bc62e87db79f612568b25315397dd0";
-        hash = "sha256-QImfvYzMqyrRGyrS6I7ERYmteaTijd8ZRnC6+bA9OyM=";
-      };
-    }))
+    # (config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
+    #   patches = [ ];
+    #   src = pkgs.fetchFromGitLab {
+    #     owner = "${old.pname}-linux";
+    #     repo = "${old.pname}-linux";
+    #     rev = "7853cbfc28bc62e87db79f612568b25315397dd0";
+    #     hash = "sha256-QImfvYzMqyrRGyrS6I7ERYmteaTijd8ZRnC6+bA9OyM=";
+    #   };
+    # }))
+    config.boot.kernelPackages.ddcci-driver
   ];
 
   # systemd.services.ddcci = {
