@@ -37,6 +37,10 @@
   (consult-eglot-embark-mode)
   )
 
+(use-package eglot-booster
+  :after eglot
+  :config (eglot-booster-mode))
+
 (use-package emacs
   :bind (("<mouse-4>" . scroll-down-line)
 	 ("<mouse-5>" . scroll-up-line)

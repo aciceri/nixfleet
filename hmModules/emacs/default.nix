@@ -48,6 +48,7 @@ in
       kdePackages.qtwayland
       copilot-node-server
       math-preview
+      emacs-lsp-booster
     ]
     ++ (with hunspellDicts; [
       en_US-large

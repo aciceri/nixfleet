@@ -98,6 +98,16 @@ let
       };
       deps = [ ];
     };
+    eglot-booster = buildEmacsPackage {
+      name = "eglot-booster";
+      src = pkgs.fetchFromGitHub {
+        owner = "jdtsmith";
+        repo = "eglot-booster";
+        rev = "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed";
+        hash = "sha256-PLfaXELkdX5NZcSmR1s/kgmU16ODF8bn56nfTh9g6bs=";
+      };
+      deps = [ ];
+    };
   };
 
   # *List* containing emacs packages from (M)ELPA
