@@ -116,31 +116,21 @@
     "i2c-dev" # needed?
   ];
 
-  # https://github.com/NixOS/nixpkgs/issues/328909
   boot.extraModulePackages = [
-    # (config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
-    #   patches = [ ];
-    #   src = pkgs.fetchFromGitLab {
-    #     owner = "${old.pname}-linux";
-    #     repo = "${old.pname}-linux";
-    #     rev = "7853cbfc28bc62e87db79f612568b25315397dd0";
-    #     hash = "sha256-QImfvYzMqyrRGyrS6I7ERYmteaTijd8ZRnC6+bA9OyM=";
-    #   };
-    # }))
     config.boot.kernelPackages.ddcci-driver
   ];
 
-  # systemd.services.ddcci = {
-  #   script = ''
-  #     echo 'ddcci 0x37' > /sys/bus/i2c/devices/i2c-2/new_device
-  #   '';
-  #   wantedBy = [ "graphical.target" ];
-  #   restartIfChanged = false;
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     RemainAfterExit = true;
-  #   };
-  # };
+  systemd.services.ddcci = {
+    script = ''
+      echo 'ddcci 0x37' > /sys/bus/i2c/devices/i2c-2/new_device
+    '';
+    wantedBy = [ "graphical.target" ];
+    restartIfChanged = false;
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+  };
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot = {
