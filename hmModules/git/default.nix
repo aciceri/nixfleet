@@ -33,6 +33,12 @@ in
 
       credential.helper = "manager";
       credential.credentialStore = "cache";
+
+      core = {
+	fsmonitor = true;
+	untrackedcache = true;
+      };
+      fetch.writeCommitGraph = true;
     };
 
     userName = config.name;
