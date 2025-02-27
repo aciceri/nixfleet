@@ -69,7 +69,6 @@
         };
         extraModules = [
           inputs.disko.nixosModules.disko
-          inputs.nixThePlanet.nixosModules.macos-ventura
           inputs.lix-module.nixosModules.default
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.catppuccin.nixosModules.catppuccin
