@@ -57,7 +57,6 @@
       "niri"
       "udiskie"
       "xdg"
-      "spotify"
       "lutris"
       "wine"
       "cura"
