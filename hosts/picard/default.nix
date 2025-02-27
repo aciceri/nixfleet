@@ -35,7 +35,7 @@
       "hass-poweroff"
       "forgejo-runners"
       "teamviewer"
-      "macos-ventura"
+      # "macos-ventura"
       "sunshine"
       "mount-sisko"
       "adb"
