@@ -35,8 +35,8 @@ in
       credential.credentialStore = "cache";
 
       core = {
-	fsmonitor = true;
-	untrackedcache = true;
+        fsmonitor = true;
+        untrackedcache = true;
       };
       fetch.writeCommitGraph = true;
     };
