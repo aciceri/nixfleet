@@ -2,7 +2,7 @@
 {
   services.pipewire.enable = true;
 
-  hardware.pulseaudio = {
+  services.pulseaudio = {
     enable = false;
   };
 }
