@@ -1,6 +1,7 @@
 {
   lib,
   fleetModules,
+  pkgs,
   ...
 }:
 {
@@ -15,4 +16,12 @@
   users.mutableUsers = false;
   i18n.defaultLocale = "en_US.UTF-8";
   nixpkgs.config.allowUnfree = true; # Forgive me Mr. Stallman :(
+  system.switch.enableNg = true;
+
+  environment.systemPackages = [ pkgs.btop ];
+
+  # FIXME not the best place
+  nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+  ];
 }
