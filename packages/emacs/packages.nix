@@ -205,6 +205,7 @@ let
           aggressive-indent
           mixed-pitch
           visual-replace
+          org-super-agenda
           # org-re-reveal # FIXME very not nice hash mismatch when building
         ]
       )
