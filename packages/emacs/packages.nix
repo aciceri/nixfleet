@@ -148,7 +148,17 @@ let
           embark
           embark-consult
           magit
-          magit-delta
+          (magit-delta.override (old: {
+            # FIXME why is this needed?
+            melpaBuild =
+              args:
+              old.melpaBuild (
+                args
+                // {
+                  packageRequires = (args.packageRequires or [ ]) ++ [ dash ];
+                }
+              );
+          }))
           magit-todos
           difftastic
           with-editor
