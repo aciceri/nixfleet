@@ -20,7 +20,7 @@
             ];
           };
           sisko = {
-            id = "TOC7QXZ-JLB4LYP-VNIJAV5-DCKVGFN-UE45SPX-PPFJHSG-O3UHFCK-2PEMAQ6";
+            id = "QE6V7PR-VHMAHHS-GHD4ZI3-IBB7FEM-M6EQZBX-YFCWDAK-YCYL6VO-NNRMXQK";
             addresses = [
               "tcp://sisko.fleet"
             ];
