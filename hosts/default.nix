@@ -117,6 +117,7 @@
             group = "forgejo";
           };
           "firefly-app-key".owner = "firefly-iii";
+          "matrix-registration-shared-secret".owner = "matrix-synapse";
         };
       };
 

@@ -95,6 +95,7 @@
       "discord"
       "ib-tws"
       "zoom"
+      "pantalaimon"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
