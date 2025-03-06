@@ -33,6 +33,7 @@
       "atticd"
       "jellyfin"
       "firefly"
+      "matrix"
     ]
     ++ [
       ./disko.nix

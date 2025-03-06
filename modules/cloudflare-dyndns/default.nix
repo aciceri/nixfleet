@@ -17,6 +17,7 @@
       "jelly.aciceri.dev"
       "firefly.aciceri.dev"
       "import.firefly.aciceri.dev"
+      "matrix.aciceri.dev"
     ];
     apiTokenFile = config.age.secrets.cloudflare-dyndns-api-token.path;
   };

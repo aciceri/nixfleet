@@ -7,7 +7,7 @@
 let
   clientConfig = {
     "m.homeserver".base_url = "https://matrix.aciceri.dev";
-    "org.matrix.msc3575.proxy".url = "https://syncv3.matrix.aciceri.dev";
+    # "org.matrix.msc3575.proxy".url = "https://syncv3.matrix.aciceri.dev";
   };
   serverConfig."m.server" = "matrix.aciceri.dev:443";
   mkWellKnown = data: ''
@@ -38,13 +38,13 @@ in
 
   services.postgresql = {
     enable = true;
-    initialScript = pkgs.writeText "synapse-init.sql" ''
-      CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
-      CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
-        TEMPLATE template0
-        LC_COLLATE = "C"
-        LC_CTYPE = "C";
-    '';
+    # initialScript = pkgs.writeText "synapse-init.sql" ''
+    #   CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
+    #   CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+    # TEMPLATE template0
+    # LC_COLLATE = "C"
+    # LC_CTYPE = "C";
+    # '';
   };
 
   systemd.tmpfiles.rules = [
@@ -80,27 +80,27 @@ in
     extraConfigFiles = [ config.age.secrets.matrix-registration-shared-secret.path ];
   };
 
-  backup.paths = [
-    config.services.matrix-synapse.dataDir
-    "/var/backup/postgresql/matrix-synapse.sql.gz"
-  ];
+  # backup.paths = [
+  #   config.services.matrix-synapse.dataDir
+  #   "/var/backup/postgresql/matrix-synapse.sql.gz"
+  # ];
 
-  services.postgresqlBackup = {
-    enable = true;
-    databases = [ "matrix-synapse" ];
-  };
+  # services.postgresqlBackup = {
+  #   enable = true;
+  # databases = [ "matrix-synapse" ];
+  # };
 
-  services.matrix-sliding-sync = {
-    enable = true;
-    environmentFile = config.age.secrets.matrix-sliding-sync-secret.path;
-    settings = {
-      SYNCV3_SERVER = "http://localhost:8008";
-    };
-  };
+  # services.matrix-sliding-sync = {
+  #   enable = true;
+  #   environmentFile = config.age.secrets.matrix-sliding-sync-secret.path;
+  #   settings = {
+  #     SYNCV3_SERVER = "http://localhost:8008";
+  #   };
+  # };
 
-  services.nginx.virtualHosts."syncv3.matrix.aciceri.dev" = {
-    enableACME = true;
-    forceSSL = true;
-    locations."/".proxyPass = config.services.matrix-sliding-sync.settings.SYNCV3_SERVER;
-  };
+  # services.nginx.virtualHosts."syncv3.matrix.aciceri.dev" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   locations."/".proxyPass = config.services.matrix-sliding-sync.settings.SYNCV3_SERVER;
+  # };
 }
