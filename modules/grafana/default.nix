@@ -7,7 +7,7 @@ in
     enable = true;
     settings = {
       server = {
-        domain = "status.aciceri.dev";
+        domain = "status.sisko.aciceri.dev";
         http_addr = "127.0.0.1";
         http_port = 2342;
         root_url = "https://${config.services.grafana.settings.server.domain}:443/";
@@ -30,10 +30,11 @@ in
   ];
 
   services.nginx.virtualHosts = {
-    "status.aciceri.dev" = {
-      enableACME = true;
+    "status.sisko.wg.aciceri.dev" = {
+      useACMEHost = "aciceri.dev";
       forceSSL = true;
       locations."/".proxyPass = "http://127.0.0.1:${builtins.toString cfg.settings.server.http_port}";
+      serverAliases = [ "status.sisko.zt.aciceri.dev" ];
     };
   };
 }

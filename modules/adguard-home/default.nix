@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   services.adguardhome = {
     enable = true;
@@ -15,4 +16,13 @@
   environment.persistence."/persist".directories = [
     "/var/lib/AdGuardHome"
   ];
+
+  services.nginx.virtualHosts."adguard.sisko.wg.aciceri.dev" = {
+    forceSSL = true;
+    useACMEHost = "aciceri.dev";
+    locations."/" = {
+      proxyPass = "http://localhost:${builtins.toString config.services.adguardhome.port}";
+    };
+    serverAliases = [ "adguard.sisko.zt.aciceri.dev" ];
+  };
 }

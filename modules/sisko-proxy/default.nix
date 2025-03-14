@@ -15,26 +15,17 @@
         proxy_set_header    Connection  $connection_upgrade;
       '';
     };
-    "torrent.aciceri.dev" = {
+    "home.sisko.aciceri.dev" = {
       forceSSL = true;
-      enableACME = true;
+      useACMEHost = "aciceri.dev";
       locations."/" = {
-        proxyPass = "http://localhost:${builtins.toString config.services.transmission.settings.rpc-port}";
+        proxyPass = "http://localhost:${builtins.toString config.services.home-assistant.config.http.server_port}";
+        proxyWebsockets = true;
       };
-    };
-    "search.aciceri.dev" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://localhost:8888";
-      };
-    };
-    "invidious.aciceri.dev" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://localhost:${builtins.toString config.services.invidious.port}";
-      };
+      extraConfig = ''
+        proxy_set_header    Upgrade     $http_upgrade;
+        proxy_set_header    Connection  $connection_upgrade;
+      '';
     };
     "photos.aciceri.dev" = {
       extraConfig = ''

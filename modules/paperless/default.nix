@@ -25,14 +25,15 @@
 
   imports = [ ../nginx-base ];
 
-  services.nginx.virtualHosts."paper.aciceri.dev" = {
+  services.nginx.virtualHosts."paper.sisko.wg.aciceri.dev" = {
     forceSSL = true;
-    enableACME = true;
+    useACMEHost = "aciceri.dev";
     locations."/" = {
       proxyPass = "http://localhost:${builtins.toString config.services.paperless.port}";
     };
     extraConfig = ''
       client_max_body_size 50000M;
     '';
+    serverAliases = [ "paper.sisko.zt.aciceri.dev" ];
   };
 }

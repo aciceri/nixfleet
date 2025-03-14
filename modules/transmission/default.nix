@@ -48,4 +48,13 @@
   environment.persistence."/persist".directories = [
     config.services.transmission.home
   ];
+
+  services.nginx.virtualHosts."torrent.sisko.wg.aciceri.dev" = {
+    forceSSL = true;
+    useACMEHost = "aciceri.dev";
+    locations."/" = {
+      proxyPass = "http://localhost:${builtins.toString config.services.transmission.settings.rpc-port}";
+    };
+    serverAliases = [ "torrent.sisko.zt.aciceri.dev" ];
+  };
 }

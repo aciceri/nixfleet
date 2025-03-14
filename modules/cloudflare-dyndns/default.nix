@@ -8,15 +8,8 @@
       "aciceri.dev"
       "git.aciceri.dev"
       "home.aciceri.dev"
-      "torrent.aciceri.dev"
-      "search.aciceri.dev"
-      "invidious.aciceri.dev"
-      "vpn.aciceri.dev"
       "photos.aciceri.dev"
-      "status.aciceri.dev"
       "jelly.aciceri.dev"
-      "firefly.aciceri.dev"
-      "import.firefly.aciceri.dev"
       "matrix.aciceri.dev"
     ];
     apiTokenFile = config.age.secrets.cloudflare-dyndns-api-token.path;

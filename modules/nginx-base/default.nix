@@ -1,7 +1,23 @@
+{ config, ... }:
 {
   security.acme = {
     acceptTerms = true;
     defaults.email = "andrea.ciceri@autistici.org";
+    certs = {
+      "aciceri.dev" = {
+        reloadServices = [ "nginx.service" ];
+        domain = "aciceri.dev";
+        extraDomainNames = [
+          "*.sisko.zt.aciceri.dev"
+          "*.sisko.wg.aciceri.dev"
+        ];
+        dnsProvider = "cloudflare";
+        # dnsResolver = "1.1.1.1:53";
+        dnsPropagationCheck = true;
+        group = config.services.nginx.group;
+        environmentFile = config.age.secrets.cloudflare-dyndns-api-token.path;
+      };
+    };
   };
 
   networking.firewall.allowedTCPPorts = [
@@ -11,6 +27,7 @@
 
   services.nginx = {
     enable = true;
+    statusPage = true;
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
     recommendedProxySettings = true;
