@@ -32,6 +32,7 @@
       "matrix"
       "radarr"
       "zerotier"
+      "mosh"
     ]
     ++ [
       ./disko.nix
