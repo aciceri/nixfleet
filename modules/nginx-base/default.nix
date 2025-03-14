@@ -12,7 +12,6 @@
           "*.sisko.wg.aciceri.dev"
         ];
         dnsProvider = "cloudflare";
-        # dnsResolver = "1.1.1.1:53";
         dnsPropagationCheck = true;
         group = config.services.nginx.group;
         environmentFile = config.age.secrets.cloudflare-dyndns-api-token.path;
