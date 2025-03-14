@@ -41,6 +41,7 @@
       "adb"
       "prometheus-exporters"
       "promtail"
+      "zerotier"
     ]
     ++ [ ./disko.nix ];
 

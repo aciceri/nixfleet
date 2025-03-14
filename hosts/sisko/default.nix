@@ -35,6 +35,7 @@
       "firefly"
       "matrix"
       "radarr"
+      "zerotier"
     ]
     ++ [
       ./disko.nix

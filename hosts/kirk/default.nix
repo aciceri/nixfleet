@@ -35,6 +35,7 @@
       "prometheus-exporters"
       "promtail"
       "syncthing"
+      "zerotier"
     ]
     ++ [ ./disko.nix ];
 
