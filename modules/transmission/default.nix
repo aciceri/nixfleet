@@ -8,6 +8,8 @@
       download-dir = "/mnt/hd/torrent";
       incomplete-dir = "/mnt/hd/torrent/.incomplete";
 
+      download-queue-enabled = false;
+
       rpc-bind-address = "0.0.0.0";
       peer-port = 51413; # Forward both TCP and UDP on router traffic from router
       rpc-whitelist-enabled = false;
