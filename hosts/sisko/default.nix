@@ -34,6 +34,7 @@
       "jellyfin"
       "firefly"
       "matrix"
+      "radarr"
     ]
     ++ [
       ./disko.nix
