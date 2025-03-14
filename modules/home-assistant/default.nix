@@ -80,7 +80,6 @@ in
         time_zone = "Europe/Rome";
         temperature_unit = "C";
         external_url = "https://home.aciceri.dev";
-        internal_url = "http://rock5b.fleet:8123";
       };
       logger.default = "WARNING";
       wake_on_lan = { };
@@ -89,7 +88,7 @@ in
           name = "Picard";
           platform = "wake_on_lan";
           mac = "74:56:3c:37:17:bd"; # this shouldn't be public
-          host = "picard.fleet";
+          host = "picard.wg.aciceri.dev";
           turn_off.service = "shell_command.turn_off_picard";
         }
       ];

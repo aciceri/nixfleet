@@ -27,6 +27,6 @@
 
   networking.hosts = lib.mapAttrs' (hostname: vpnConfig: {
     name = vpnConfig.ip;
-    value = [ "${hostname}.fleet" ];
+    value = [ "${hostname}.wg.aciceri.dev" ];
   }) vpn;
 }

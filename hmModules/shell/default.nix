@@ -64,7 +64,7 @@
       };
       auto_sync = true;
       sync_frequency = "5m";
-      sync_address = "http://sisko.fleet:8889";
+      sync_address = "http://sisko.wg.aciceri.dev:8889";
       search_mode = "fuzzy";
       style = "compact";
     };

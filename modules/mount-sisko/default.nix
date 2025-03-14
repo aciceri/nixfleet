@@ -16,7 +16,7 @@
   };
 
   fileSystems."/mnt/nas" = {
-    device = "sisko.fleet:/hd";
+    device = "sisko.wg.aciceri.dev:/hd";
     fsType = "nfs";
     options = [
       "x-systemd.automount"

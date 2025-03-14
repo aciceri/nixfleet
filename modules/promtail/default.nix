@@ -12,7 +12,7 @@ let
     };
     clients = [
       {
-        url = "http://sisko.fleet:${
+        url = "http://sisko.wg.aciceri.dev:${
           builtins.toString config.services.loki.configuration.server.http_listen_port or 3100
         }/loki/api/v1/push";
       }

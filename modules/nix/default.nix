@@ -81,7 +81,7 @@
     distributedBuilds = true;
     buildMachines =
       lib.lists.optional (config.networking.hostName == "picard") {
-        hostName = "sisko.fleet";
+        hostName = "sisko.wg.aciceri.dev";
         system = "aarch64-linux";
         maxJobs = 7;
         supportedFeatures = [
