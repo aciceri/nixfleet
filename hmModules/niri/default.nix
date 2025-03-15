@@ -14,8 +14,8 @@ let
           cols = "150";
         };
         floating-btop = {
-          rows = "210";
-          cols = "60";
+          rows = "60";
+          cols = "210";
         };
       };
       kirk = {
@@ -38,7 +38,7 @@ let
   run-floating-btop =
     with niriVars.floating-btop;
     pkgs.writeScriptBin "run-floating-btop" ''
-      foot --title='bTop' -W ${rows}x${cols} btop
+      foot --title='bTop' -W ${cols}x${rows} btop
     '';
 in
 {
