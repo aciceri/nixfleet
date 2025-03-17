@@ -30,7 +30,7 @@
       "atticd"
       "jellyfin"
       "matrix"
-      "radarr"
+      "arr"
       "zerotier"
       "mosh"
     ]
