@@ -70,7 +70,10 @@ in
       };
     };
     secrets.mailer.PASSWD = config.age.secrets.autistici-password.path;
-    dump.enable = true;
+    dump = {
+      enable = true;
+      backupDir = "/mnt/hd/forgejo-dumps";
+    };
   };
 
   environment.persistence."/persist".directories = [
