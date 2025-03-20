@@ -63,7 +63,7 @@ in
     };
     profiles.default = {
       search.force = true;
-      search.default = "DuckDuckGo";
+      search.default = "Google";
       search.engines = {
         "Searx" = {
           urls = [
