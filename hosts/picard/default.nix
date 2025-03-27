@@ -77,7 +77,7 @@
       "tor-browser"
       "kicad"
       "monero"
-      "zulip"
+      # "zulip"
       "teams"
       "obs-studio"
       "calibre"
