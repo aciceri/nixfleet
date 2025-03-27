@@ -99,7 +99,6 @@ in
 {
   programs.zellij = {
     enable = true;
-    enableFishIntegration = false;
     settings = {
       default_layout = "${layout}";
       pane_frames = false;

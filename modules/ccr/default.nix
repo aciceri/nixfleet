@@ -28,7 +28,7 @@ in
 
     shell = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.fish;
+      default = pkgs.bash;
     };
 
     modules = lib.mkOption {

@@ -70,35 +70,53 @@
     };
   };
 
-  programs.fish = {
+  programs.bash = {
     enable = true;
-    plugins = [
-      # {
-      #   name = "fifc";
-      #   src = pkgs.fishPlugins.fifc.src;
-      # }
-      {
-        name = "z";
-        src = pkgs.fishPlugins.z.src;
-      }
-    ];
-    shellInit =
-      ''
-        # fish_vi_key_bindings
-        fish_default_key_bindings
-      ''
-      + lib.optionalString (builtins.hasAttr "cachix-personal-token" age.secrets) ''
-        export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
-      '';
+    initExtra = lib.optionalString (builtins.hasAttr "cachix-personal-token" age.secrets) ''
+      export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
+    '';
     shellAliases = {
       "cat" = "bat";
     };
   };
 
+  programs.zoxide.enable = true;
+  programs.thefuck.enable = true;
+  programs.oh-my-posh = {
+    enable = true;
+    useTheme = "catppuccin_mocha";
+  };
+
+  programs.zellij.enableBashIntegration = false;
+
+  # programs.fish = {
+  #   enable = true;
+  #   plugins = [
+  #     # {
+  #     #   name = "fifc";
+  #     #   src = pkgs.fishPlugins.fifc.src;
+  #     # }
+  #     {
+  #       name = "z";
+  #       src = pkgs.fishPlugins.z.src;
+  #     }
+  #   ];
+  #   shellInit =
+  #     ''
+  #       # fish_vi_key_bindings
+  #       fish_default_key_bindings
+  #     ''
+  #     + lib.optionalString (builtins.hasAttr "cachix-personal-token" age.secrets) ''
+  #       export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
+  #     '';
+  #   shellAliases = {
+  #     "cat" = "bat";
+  #   };
+  # };
+
   home.packages =
     with pkgs;
     [
-      thefuck
       dig.dnsutils
       lsof
       comma
