@@ -38,8 +38,6 @@
       ./disko.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_6_11;
-
   system.stateVersion = "24.05";
 
   powerManagement.cpuFreqGovernor = "schedutil";
