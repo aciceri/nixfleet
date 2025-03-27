@@ -554,6 +554,7 @@
   :hook ((rust-mode . (lambda ()
 			(require 'eglot)
 			(eglot-ensure)))))
+
 (use-package haskell-ts-mode
   :hook ((haskell--ts-mode . eglot-ensure))
   :mode "\\.hs\\'"
@@ -660,7 +661,8 @@
   (eat-eshell-mode)
   (eat-eshell-visual-command-mode)
   :custom ((eshell-prefer-lisp-functions t)
-	   (eshell-history-size 10000))
+	   (eshell-history-size 10000)
+	   (eshell-banner-message ""))
   :config
   (defun ccr/start-eshell () ;; Used from outside Emacs by emacsclient --eval
     (eshell 'N)
