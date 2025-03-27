@@ -223,16 +223,16 @@ layout {
         // bottom 64
     }
 
-    // shadow {
-    //     on
-    // }
+    shadow {
+        on
+    }
 }
 
 layer-rule {
     match namespace="^rofi$"
-    // shadow {
-    //    on
-    // }
+    shadow {
+       on
+    }
 }
 
 // Add lines like this to spawn processes at startup.
