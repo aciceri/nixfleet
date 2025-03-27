@@ -689,8 +689,10 @@
 	ccr/eshell-aliases)
 
   :bind (("C-c o e" . project-eshell)
-	 :map eshell-mode-map
-	 ("C-r" . eshell-atuin-history))) ;; i.e. just C-r in semi-char-mode
+	 (:map eshell-mode-map
+	       ("C-r" . eshell-atuin-history)
+	       ("C-<return>" . corfu-send)
+	       ))) ;; i.e. just C-r in semi-char-mode
 
 (use-package eshell-command-not-found
   :custom ((eshell-command-not-found-command "command-not-found"))
