@@ -3,7 +3,7 @@
 
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
-    nixpkgs.url = "github:NixOS/nixpkgs/ed4a395ea001367c1f13d34b1e01aa10290f67d6"; # FIXME update (check if screen sharing works!)
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
       url = "github:nix-community/home-manager";
