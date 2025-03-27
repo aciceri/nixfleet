@@ -103,8 +103,6 @@ in
           openssh.authorizedKeys.keys = config.ccr.authorizedKeys;
         };
 
-        programs.fish.enable = true;
-
         services.getty.autologinUser = if config.ccr.autologin then cfg.username else null;
 
         home-manager.useGlobalPkgs = true;
