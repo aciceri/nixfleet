@@ -63,7 +63,7 @@ in
     };
     profiles.default = {
       search.force = true;
-      search.default = "Google";
+      search.default = "google";
       search.engines = {
         "Searx" = {
           urls = [
@@ -79,7 +79,6 @@ in
           ];
         };
       };
-      bookmarks = [ ];
       extensions = [ ];
       userChrome = builtins.readFile ./userchrome.css;
     };
