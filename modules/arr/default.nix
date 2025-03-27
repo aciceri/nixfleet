@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 {
   services.radarr = {
     enable = true;
@@ -6,9 +6,6 @@
 
   services.sonarr = {
     enable = true;
-    package =
-      (builtins.getFlake "github:NixOS/nixpkgs/c80f6a7e10b39afcc1894e02ef785b1ad0b0d7e5")
-      .legacyPackages.${pkgs.stdenv.system}.sonarr;
   };
 
   services.prowlarr = {
