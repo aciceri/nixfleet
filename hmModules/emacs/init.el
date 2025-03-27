@@ -548,6 +548,12 @@
 				 (eglot-ensure))))
   :mode "\\.ts\\'")
 
+(use-package rust-mode
+  :init
+  (setq rust-mode-treesitter-derive t)
+  :hook ((rust-mode . (lambda ()
+			(require 'eglot)
+			(eglot-ensure)))))
 (use-package haskell-ts-mode
   :hook ((haskell--ts-mode . eglot-ensure))
   :mode "\\.hs\\'"

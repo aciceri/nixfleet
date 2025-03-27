@@ -182,6 +182,7 @@ let
           markdown-mode
           haskell-mode
           terraform-mode
+          rust-mode
           diredfl
           org-modern
           math-preview
