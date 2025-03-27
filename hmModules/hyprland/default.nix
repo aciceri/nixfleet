@@ -84,7 +84,7 @@ in
   };
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = false;
     plugins = with pkgs.hyprlandPlugins; [
       hy3
       hyprspace
