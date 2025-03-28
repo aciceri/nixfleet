@@ -981,7 +981,6 @@ This is meant to be an helper to be called from the window manager."
 
 (use-package gptel
   :custom
-  ;; (gptel-model 'deepseek/deepseek-chat)
   (gptel-model 'qwen/qwen-max)
   (gptel-backend (gptel-make-openai "OpenRouter"
 		   :host "openrouter.ai"
@@ -995,8 +994,8 @@ This is meant to be an helper to be called from the window manager."
   :config
   (require 'gptel-curl)
 
-  (add-hook 'gptel-post-response-functions 'gptel-end-of-response)
-  (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
+  ;; (add-hook 'gptel-post-response-functions 'gptel-end-of-response)
+  ;; (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
 
   (defun ccr/suggest-eshell-command ()
     (interactive)
