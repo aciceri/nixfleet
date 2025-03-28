@@ -701,9 +701,6 @@
 (use-package eshell-atuin
   :hook ((eshell-mode . eshell-atuin-mode)))
 
-(use-package fish-completion-mode
-  :hook ((eshell-mode . fish-completion-mode)))
-
 (use-package eshell-syntax-highlighting
   :custom
   ((eshell-syntax-highlighting-highlight-in-remote-dirs nil))

@@ -132,7 +132,6 @@ let
           ligature
           treemacs-nerd-icons
           eshell-syntax-highlighting
-          fish-completion # fish completion for eshell
           eshell-prompt-extras
           eshell-atuin
           eshell-command-not-found
