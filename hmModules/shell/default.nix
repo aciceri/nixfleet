@@ -56,7 +56,7 @@
   };
 
   programs.atuin = {
-    enable = true;
+    enable = false; # FIXME broken on bash: https://github.com/nix-community/home-manager/issues/5958
     settings = {
       daemon = {
         enabled = true;
