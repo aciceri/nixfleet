@@ -67,6 +67,7 @@
       sync_address = "http://sisko.wg.aciceri.dev:8889";
       search_mode = "fuzzy";
       style = "compact";
+      enter_accept = "true";
     };
   };
 
