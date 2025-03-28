@@ -66,7 +66,6 @@
       "digikam"
       "discord"
       "remmina"
-      "zulip"
       "calibre"
       "zathura"
       "imv"
