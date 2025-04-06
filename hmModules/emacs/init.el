@@ -993,6 +993,10 @@ This is meant to be an helper to be called from the window manager."
 		 )
   (gptel-default-mode 'org-mode)
   (gptel-org-branching-context nil) ;; this is cool but I don't feel comfortable with it
+  ("C-c a a" . gptel-add)
+  ("C-c a f" . gptel-add-file)
+  ("C-c a r" . gptel-context-remove-all)
+  ("C-c a " . gptel-menu)
   :config
   (require 'gptel-curl)
 
