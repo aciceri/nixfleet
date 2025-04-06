@@ -993,17 +993,72 @@ This is meant to be an helper to be called from the window manager."
 		 )
   (gptel-default-mode 'org-mode)
   (gptel-org-branching-context nil) ;; this is cool but I don't feel comfortable with it
+  (gptel-use-tools 't)
+  
   :bind
   ("C-c a a" . gptel-add)
   ("C-c a f" . gptel-add-file)
   ("C-c a r" . gptel-context-remove-all)
   ("C-c a " . gptel-menu)
+
+
   :config
   (require 'gptel-curl)
 
   ;; (add-hook 'gptel-post-response-functions 'gptel-end-of-response)
   ;; (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
 
+  (setq gptel-tools (mapcar (lambda (tool) (apply #'gptel-make-tool tool))
+			    '((
+			       :name "create_file"
+			       :function (lambda (path filename content)
+					   (let ((full-path (expand-file-name filename path)))
+					     (with-temp-buffer
+					       (insert content)
+					       (write-file full-path))
+					     (format-read "Created file %s in %s" filename path)))
+			       :description "Create a new file with the specified content"
+			       :args (list '(:name "path"
+						   :type string
+						   :description "The directory where to create the file")
+					   '(:name "filename"
+						   :type string
+						   :description "The name of the file to create")
+					   '(:name "content"
+						   :type string
+						   :description "The content to write to the file"))
+			       :category "filesystem"
+			       )
+			      ;; (
+			      ;;  :name "run_command"
+			      ;;  :confirm 't
+			      ;;  :function (lambda (command)
+			      ;; 		   (shell-command-to-string command))
+			      ;;  :description "Run arbitrary commands"
+			      ;;  :args (list '(:name "command"
+			      ;; 			   :type string
+			      ;; 			   :description "The content to run e.g. 'ls *' or 'fd <pattern> <path>'"))
+			      ;;  )
+			      (
+			       :name "get_weather"
+			       :function (lambda (location)
+					   (url-retrieve-synchronously "api.weather.com/..."
+								       location unit))
+			       :description "Get the current weather in a given location"
+			       :args (list '(:name "location"
+						   :type string
+						   :description "The city and state, e.g. San Francisco, CA")
+					   '(:name "unit"
+						   :type string
+						   :enum ["celsius" "farenheit"]
+						   :description
+						   "The unit of temperature, either 'celsius' or 'fahrenheit"
+						   :optional t
+						   ))
+			       )
+			      ))
+	)
+  
   (defun ccr/suggest-eshell-command ()
     (interactive)
     (save-excursion
