@@ -983,16 +983,17 @@ This is meant to be an helper to be called from the window manager."
 
 (use-package gptel
   :custom
-  (gptel-model 'qwen/qwen-max)
+  (gptel-model 'google/gemini-2.0-flash-001)
   (gptel-backend (gptel-make-openai "OpenRouter"
 		   :host "openrouter.ai"
 		   :endpoint "/api/v1/chat/completions"
 		   :key (lambda () (require 'f) (f-read-text (getenv "OPENAI_API_KEY_PATH")))
 		   :stream t
-		   :models '(qwen/qwen-max deepseek/deepseek-chat))
+		   :models '(google/gemini-2.0-flash-001))
 		 )
   (gptel-default-mode 'org-mode)
   (gptel-org-branching-context nil) ;; this is cool but I don't feel comfortable with it
+  :bind
   ("C-c a a" . gptel-add)
   ("C-c a f" . gptel-add-file)
   ("C-c a r" . gptel-context-remove-all)
