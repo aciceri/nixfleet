@@ -700,8 +700,8 @@
   :custom ((eshell-command-not-found-command "command-not-found"))
   :hook ((eshell-mode . eshell-command-not-found-mode)))
 
-(use-package eshell-atuin
-  :hook ((eshell-mode . eshell-atuin-mode)))
+;; (use-package eshell-atuin
+;;   :hook ((eshell-mode . eshell-atuin-mode)))
 
 (use-package eshell-syntax-highlighting
   :custom
