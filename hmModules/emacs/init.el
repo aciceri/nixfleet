@@ -214,6 +214,8 @@
   :custom
   (meow-use-clipboard 't)
   :config
+  (require 'meow-tree-sitter)
+  (meow-tree-sitter-register-defaults)
   (add-hook 'after-make-frame-functions (defun ccr/meow--prepare-face (_)
 					  (meow--prepare-face)
 					  (remove-hook 'after-make-frame-functions 'ccr/meow--prepare-face)))
