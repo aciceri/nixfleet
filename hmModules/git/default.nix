@@ -27,11 +27,11 @@ in
       rebase.autostash = true;
       github.user = "aciceri";
 
-      user.signingKey = "/home/${username}/.ssh/id_rsa";
+      user.signingKey = "/home/${username}/.ssh/id_ed25519";
       gpg.format = "ssh";
       commit.gpgsign = true;
 
-      credential.helper = "manager";
+      credential.helper = "libsecret";
       credential.credentialStore = "cache";
 
       core = {
