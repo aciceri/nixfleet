@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   systemd.tmpfiles.rules = [
     "d /export 770 nobody nogroup"
@@ -34,10 +35,63 @@
     };
   };
 
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+    # workgroup = "WORKGROUP";
+    # hostname = "siko";
+    # discovery = true;
+  };
+
+  services.avahi = {
+    publish.enable = true;
+    publish.userServices = true;
+    # ^^ Needed to allow samba to automatically register mDNS records (without the need for an `extraServiceFile`
+    #nssmdns4 = true;
+    # ^^ Not one hundred percent sure if this is needed- if it aint broke, don't fix it
+    enable = true;
+    openFirewall = true;
+  };
+
+  services.samba = {
+    enable = true;
+    # global.security = "user";
+    package = pkgs.samba4Full;
+    # settings.global = {
+    #   "workgroup" = "WORKGROUP";
+    #   "server string" = "sisko";
+    #   "netbios name" = "sisko";
+    #   "security" = "user";
+    #   "map to guest" = "bad user";
+    #   "vfs objects" = "recycle";
+    #   "recycle:repository" = ".recycle";
+    #   "recycle:keeptree" = "yes";
+    #   "recycle:versions" = "yes";
+    #   "hosts allow" = "10.1.1.0. 127.0.0.1 localhost";
+    # };
+    settings = {
+      torrent = {
+        path = "/mnt/hd/torrent";
+        comment = "hd";
+        "force user" = "transmission";
+        browseable = "yes";
+        writeable = "yes";
+      };
+    };
+  };
+
   users.users.webdav.extraGroups = [ "transmission" ];
 
-  networking.firewall.allowedTCPPorts = [
-    2049
-    9999
-  ];
+  networking.firewall = {
+    allowedTCPPorts = [
+      2049
+      9999
+      139
+      445
+    ];
+    allowedUDPPorts = [
+      137
+      138
+    ];
+  };
 }
