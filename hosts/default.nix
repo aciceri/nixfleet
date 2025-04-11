@@ -121,6 +121,33 @@
         };
       };
 
+      pike = {
+        vpn = {
+          ip = "10.100.0.8";
+          publicKey = "16ctjunXCXDPLSUhocstJ9z9l45/YuJFxlLkpoxChjI=";
+        };
+        extraModules = [
+          inputs.lix-module.nixosModules.default
+          inputs.catppuccin.nixosModules.catppuccin
+        ];
+        extraHmModules = [
+          inputs.impermanence.homeManagerModules.impermanence
+          "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
+          inputs.vscode-server.nixosModules.home
+          inputs.catppuccin.homeManagerModules.catppuccin
+        ];
+        secrets = {
+          "pike-wireguard-private-key" = { };
+          "chatgpt-token".owner = "ccr";
+          "cachix-personal-token".owner = "ccr";
+          "git-workspace-tokens".owner = "ccr";
+          "autistici-password".owner = "ccr";
+          "restic-hetzner-password" = { };
+          "forgejo-runners-token".owner = "nixuser";
+          "forgejo-nix-access-tokens".owner = "nixuser";
+        };
+      };
+
       tpol = {
         extraModules = with inputs; [
           lix-module.nixosModules.default
