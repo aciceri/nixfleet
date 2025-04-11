@@ -92,6 +92,7 @@
 
       sisko = {
         system = "aarch64-linux";
+        nixpkgs = inputs.nixpkgsSisko;
         enableHomeManager = false;
         vpn = {
           ip = "10.100.0.1";
