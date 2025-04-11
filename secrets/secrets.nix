@@ -11,6 +11,7 @@ with keys.users;
     sisko
     pbp
     picard
+    pike
   ];
   "magit-forge-github-token.age".publicKeys = [
     ccr-ssh
@@ -22,6 +23,7 @@ with keys.users;
     mothership
     kirk
     picard
+    pike
   ];
   "hydra-admin-password.age".publicKeys = [
     ccr-ssh
@@ -40,6 +42,7 @@ with keys.users;
     kirk
     picard
     sisko
+    pike
   ];
   "hercules-ci-join-token.age".publicKeys = [
     ccr-ssh
@@ -87,6 +90,7 @@ with keys.users;
     mothership
     picard
     deltaflyer
+    pike
   ];
   "cloudflare-dyndns-api-token.age".publicKeys = [
     ccr-ssh
@@ -97,6 +101,7 @@ with keys.users;
     picard
     sisko
     kirk
+    pike
   ];
   "hass-ssh-key.age".publicKeys = [
     ccr-ssh
@@ -117,10 +122,12 @@ with keys.users;
   "forgejo-runners-token.age".publicKeys = [
     ccr-ssh
     picard
+    pike
   ];
   "forgejo-nix-access-tokens.age".publicKeys = [
     ccr-ssh
     picard
+    pike
   ];
   "garmin-collector-environment.age".publicKeys = [
     ccr-ssh
@@ -163,5 +170,9 @@ with keys.users;
   "tpol-wireguard-private-key.age".publicKeys = [
     ccr-ssh
     tpol
+  ];
+  "pike-wireguard-private-key.age".publicKeys = [
+    ccr-ssh
+    pike
   ];
 }
