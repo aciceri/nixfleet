@@ -29,7 +29,16 @@ let
         };
       };
     }
-    ."${hostname}" or niriVars.kirk;
+    ."${hostname}" or {
+      floating-gptel = {
+        rows = "40";
+        cols = "140";
+      };
+      floating-btop = {
+        rows = "40";
+        cols = "140";
+      };
+    };
   run-floating-gptel =
     with niriVars.floating-gptel;
     pkgs.writeScriptBin "run-floating-gptel" ''
