@@ -46,7 +46,7 @@ in
       nodejs_20
       qadwaitadecorations
       kdePackages.qtwayland
-      copilot-node-server
+      copilot-language-server.fhs
       math-preview
       emacs-lsp-booster
     ]
