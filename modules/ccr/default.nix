@@ -70,6 +70,31 @@ in
       type = types.listOf types.str;
       default = [ ];
     };
+
+    impermanence = {
+      enable = lib.mkOption {
+        type = types.bool;
+        default = (config.environment.persistence or null) != null;
+      };
+
+      directories = lib.mkOption {
+        type = types.listOf types.anything; # TODO re-use type from the NixOS module
+        default = [
+          ".cache"
+          "Downloads"
+        ];
+      };
+
+      files = lib.mkOption {
+        type = types.listOf types.anything; # TODO re-use type from the NixOS module
+        default = [
+          ".ssh/id_ed25519.pub"
+          ".ssh/id_ed25519"
+          ".ssh/authorized_keys"
+          ".ssh/known_hosts"
+        ];
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -120,11 +145,22 @@ in
                 };
               }
             ]
+            ++ [
+              (lib.mkIf cfg.impermanence.enable {
+                home.persistence."/persist/home/${cfg.username}" = {
+                  inherit (cfg.impermanence) directories files;
+                  allowOther = true;
+                };
+              })
+            ]
             ++ cfg.extraModules;
           home.packages = cfg.packages;
           home.stateVersion = config.system.stateVersion;
         };
       }
+      (lib.mkIf cfg.impermanence.enable {
+        programs.fuse.userAllowOther = true;
+      })
     ]
   );
 }
