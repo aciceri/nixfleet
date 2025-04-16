@@ -335,6 +335,11 @@ window-rule {
   open-focused true
 }
 
+window-rule {
+  match title=r#"^Authentication Required"#
+  open-floating true
+  open-focused true
+}
 
 
 
