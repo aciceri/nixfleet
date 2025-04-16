@@ -131,7 +131,6 @@
           inputs.catppuccin.nixosModules.catppuccin
         ];
         extraHmModules = [
-          inputs.impermanence.homeManagerModules.impermanence
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
           inputs.vscode-server.nixosModules.home
           inputs.catppuccin.homeManagerModules.catppuccin
