@@ -146,7 +146,7 @@ in
               }
             ]
             ++ [
-              (lib.mkIf cfg.impermanence.enable {
+              (lib.optionalAttrs cfg.impermanence.enable {
                 home.persistence."/persist/home/${cfg.username}" = {
                   inherit (cfg.impermanence) directories files;
                   allowOther = true;
