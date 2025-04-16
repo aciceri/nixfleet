@@ -19,7 +19,7 @@
           in
           builtins.getFlake "github:NixOS/nixpkgs/${rev}";
         extraHmModules = [
-          inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.catppuccin.homeModules.catppuccin
         ];
         vpn = {
           ip = "10.100.0.5";
@@ -50,7 +50,7 @@
         ];
         extraHmModules = [
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
-          inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.catppuccin.homeModules.catppuccin
         ];
         secrets = {
           "kirk-wireguard-private-key" = { };
@@ -76,7 +76,7 @@
         extraHmModules = [
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
           inputs.vscode-server.nixosModules.home
-          inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.catppuccin.homeModules.catppuccin
         ];
         secrets = {
           "picard-wireguard-private-key" = { };
@@ -133,7 +133,7 @@
         extraHmModules = [
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
           inputs.vscode-server.nixosModules.home
-          inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.catppuccin.homeModules.catppuccin
         ];
         secrets = {
           "pike-wireguard-private-key" = { };
