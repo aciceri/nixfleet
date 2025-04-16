@@ -2,7 +2,6 @@
   fleetModules,
   lib,
   config,
-  pkgs,
   ...
 }:
 {
@@ -31,8 +30,6 @@
     "binfmt"
     "greetd"
     # "syncthing"
-    "hass-poweroff"
-    "forgejo-runners"
     "teamviewer"
     "sunshine"
     "mount-sisko"
