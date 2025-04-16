@@ -38,7 +38,7 @@
     "mount-sisko"
     "adb"
     "prometheus-exporters"
-    "promtail"
+    # "promtail"
     "zerotier"
   ];
 

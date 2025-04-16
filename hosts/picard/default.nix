@@ -40,7 +40,7 @@
       "mount-sisko"
       "adb"
       "prometheus-exporters"
-      "promtail"
+      # "promtail"
       "zerotier"
     ]
     ++ [ ./disko.nix ];
