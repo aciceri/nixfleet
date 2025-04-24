@@ -690,26 +690,35 @@
 	  (defalias (car alias) (cdr alias)))
 	ccr/eshell-aliases)
 
-  (defun ccr/eshell-get-current-input ()
-    (when (eq major-mode 'eshell-mode)
-      (let ((input-start (save-excursion
-                           (eshell-bol)
-                           (point)))
-            (input-end (point-at-eol)))
-	(buffer-substring-no-properties input-start input-end))))
   
+  (defun ccr/eshell-get-current-input ()
+    "Restituisce l'input corrente dell'utente nella riga Eshell."
+    (when (eq major-mode 'eshell-mode)
+      (let ((start (save-excursion (eshell-bol) (point)))
+            (end (point-at-eol)))
+	(buffer-substring-no-properties start end))))
+
+  (defun ccr/eshell-replace-current-input (new-input)
+    (when (eq major-mode 'eshell-mode)
+      (let ((inhibit-read-only t))
+	(eshell-bol)
+	(delete-region (point) (point-at-eol))
+	(insert new-input)
+	(end-of-line))))
+
   (defun ccr/eshell-history ()
     (interactive)
     (when (eq major-mode 'eshell-mode)
       (let* ((current-input (ccr/eshell-get-current-input))
-             (eshell-history (f-read-text eshell-history-file-name))
-             (bash-history (f-read-text "/home/ccr/.bash_history"))
-             (history (split-string (concat eshell-history "\n" bash-history) "\n"))
+             (eshell-history (when (and eshell-history-file-name
+					(file-readable-p eshell-history-file-name))
+                               (f-read-text eshell-history-file-name)))
+             (bash-history (when (file-readable-p "~/.bash_history")
+                             (f-read-text "~/.bash_history")))
+             (history (split-string (concat (or eshell-history "") "\n"
+                                            (or bash-history "")) "\n" t))
              (selection (completing-read "History: " history nil t current-input)))
-	(eshell-bol)
-	(kill-line)
-	(insert selection))))
-
+	(ccr/eshell-replace-current-input selection))))
   
   :bind (("C-c o e" . project-eshell)
 	 (:map eshell-mode-map
