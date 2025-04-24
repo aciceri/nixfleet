@@ -97,6 +97,7 @@
       "ib-tws"
       "zoom"
       "pantalaimon"
+      "moonlight"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
