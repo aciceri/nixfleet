@@ -690,9 +690,30 @@
 	  (defalias (car alias) (cdr alias)))
 	ccr/eshell-aliases)
 
+  (defun ccr/eshell-get-current-input ()
+    (when (eq major-mode 'eshell-mode)
+      (let ((input-start (save-excursion
+                           (eshell-bol)
+                           (point)))
+            (input-end (point-at-eol)))
+	(buffer-substring-no-properties input-start input-end))))
+  
+  (defun ccr/eshell-history ()
+    (interactive)
+    (when (eq major-mode 'eshell-mode)
+      (let* ((current-input (ccr/eshell-get-current-input))
+             (eshell-history (f-read-text eshell-history-file-name))
+             (bash-history (f-read-text "/home/ccr/.bash_history"))
+             (history (split-string (concat eshell-history "\n" bash-history) "\n"))
+             (selection (completing-read "History: " history nil t current-input)))
+	(eshell-bol)
+	(kill-line)
+	(insert selection))))
+
+  
   :bind (("C-c o e" . project-eshell)
 	 (:map eshell-mode-map
-	       ("C-r" . eshell-atuin-history)
+	       ("C-r" . ccr/eshell-history)
 	       ("C-<return>" . corfu-send)
 	       ))) ;; i.e. just C-r in semi-char-mode
 
