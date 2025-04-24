@@ -61,7 +61,6 @@
       "udiskie"
       "xdg"
       # "spotify"
-      "lutris"
       "wine"
       "cura"
       "chrome"
@@ -71,7 +70,6 @@
       "tor-browser"
       "kicad"
       "monero"
-      # "zulip"
       "teams"
       "obs-studio"
       "calibre"
@@ -88,7 +86,6 @@
       "chirp"
       "sdrangel"
       "discord"
-      # "ib-tws"
       "zoom"
       "pantalaimon"
     ];
@@ -101,19 +98,11 @@
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
-    # "ahci"
     "usbhid"
-    # "r8169"
     "thunderbolt"
     "vmd"
     "usb_storage"
     "sd_mod"
-  ];
-  boot.kernelModules = [
-    # "kvm-amd"
-    # "ddcci"
-    # "ddcci-backlight"
-    # "i2c-dev" # needed?
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -150,6 +139,12 @@
       "fmask=0022"
       "dmask=0022"
     ];
+  };
+
+  fileSystems."/mnt/shared" = {
+    device = "/dev/nvme0n1p2";
+    fsType = "ntfs";
+    options = [ "nofail" ];
   };
 
   services.zfs.autoScrub.enable = true;
