@@ -9,7 +9,7 @@
 
   networking.nat.enable = true;
 
-  networking.firewall.allowedUDPPorts = [ config.networking.wireguard.interfaces.wg0.listenPort ]; # FIXME move this to wireguard-server
+  networking.firewall.allowedUDPPorts = [ config.networking.wireguard.interfaces.wg0.listenPort ];
 
   networking.wireguard.interfaces.wg0 = {
     ips = [ "${vpn.${config.networking.hostName}.ip}/24" ];
