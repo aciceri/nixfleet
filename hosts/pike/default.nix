@@ -88,6 +88,7 @@
       "discord"
       "zoom"
       "pantalaimon"
+      "gimp"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];

@@ -98,6 +98,7 @@
       "zoom"
       "pantalaimon"
       "moonlight"
+      "gimp"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
