@@ -378,7 +378,9 @@
   (vertico-mode t)
   :bind (:map vertico-map
 	      (("DEL" . vertico-directory-delete-char)
-	       ("C-DEL" . vertico-directory-delete-word))))
+	       ("C-DEL" . vertico-directory-delete-word)
+	       ("M-q" . vertico-quick-insert)
+	       ("C-q" . vertico-quick-exit))))
 
 ;; (use-package vertico-posframe
 ;;   :after vertico
