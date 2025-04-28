@@ -34,7 +34,6 @@
 
   programs.lsd = {
     enable = true;
-    enableAliases = true;
   };
 
   programs.vim.enable = true;
