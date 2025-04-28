@@ -75,6 +75,8 @@
       "chirp"
       "sdrangel"
       "zmkbatx"
+      "moonlight"
+      "gimp"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
