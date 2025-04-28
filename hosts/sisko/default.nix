@@ -33,6 +33,7 @@
       "arr"
       "zerotier"
       "mosh"
+      "amule"
     ]
     ++ [
       ./disko.nix
