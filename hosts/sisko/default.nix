@@ -34,6 +34,7 @@
       "zerotier"
       "mosh"
       "amule"
+      "adguard-home"
     ]
     ++ [
       ./disko.nix
