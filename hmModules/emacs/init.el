@@ -1025,7 +1025,7 @@ This is meant to be an helper to be called from the window manager."
 		 )
   (gptel-default-mode 'org-mode)
   (gptel-org-branching-context nil) ;; this is cool but I don't feel comfortable with it
-  (gptel-use-tools 't)
+  (gptel-use-tools nil)
   
   :bind
   ("C-c a a" . gptel-add)
