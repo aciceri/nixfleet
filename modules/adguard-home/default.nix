@@ -1,18 +1,40 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   services.adguardhome = {
     enable = true;
-    port = 3000;
     mutableSettings = true;
     settings = {
-      openFirewall = true;
+      dhcp = {
+        enabled = true;
+        interface_name = "enP4p65s0";
+
+        dhcpv4 = {
+          gateway_ip = "10.1.1.1";
+          range_start = "10.1.1.2";
+          range_end = "10.1.1.255";
+          subnet_mask = "255.255.255.0";
+        };
+      };
+      dns = {
+        upstream_dns = [
+          "https://dns10.quad9.net/dns-query"
+        ];
+
+        bind_hosts = [
+          "127.0.0.1"
+          "10.1.1.2"
+        ];
+      };
     };
   };
-  networking.firewall.allowedTCPPorts = [
-    3000
+
+  systemd.services.adguardhome.serviceConfig.DynamicUser = lib.mkForce false;
+
+  networking.firewall.allowedUDPPorts = [
     53
+    67
   ];
-  networking.firewall.allowedUDPPorts = [ 53 ];
+  networking.firewall.allowedTCPPorts = [ 53 ];
   environment.persistence."/persist".directories = [
     "/var/lib/AdGuardHome"
   ];
