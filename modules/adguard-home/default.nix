@@ -52,8 +52,6 @@ in
 
   networking.defaultGateway = "10.1.1.1";
 
-  networking.nameservers = [ "127.0.0.1" ];
-
   environment.persistence."/persist".directories = [
     "/var/lib/AdGuardHome"
   ];
