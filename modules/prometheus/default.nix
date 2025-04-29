@@ -27,14 +27,14 @@ in
           }
         ];
       }
-      {
-        job_name = "pushgateway";
-        static_configs = [
-          {
-            targets = [ cfg.pushgateway.web.listen-address ];
-          }
-        ];
-      }
+      # {
+      #   job_name = "pushgateway";
+      #   static_configs = [
+      #     {
+      #       targets = [ cfg.pushgateway.web.listen-address ];
+      #     }
+      #   ];
+      # }
       {
         job_name = "node";
         static_configs = [
