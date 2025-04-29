@@ -21,6 +21,7 @@
       "grafana"
       "prometheus-exporters"
       "loki"
+      "alloy"
       "restic"
       "atuin"
       "immich"

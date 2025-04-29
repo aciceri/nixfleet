@@ -35,7 +35,7 @@
     "mount-sisko"
     "adb"
     "prometheus-exporters"
-    # "promtail"
+    "alloy"
     "zerotier"
   ];
 

@@ -33,7 +33,7 @@
       "adb"
       "binfmt"
       "prometheus-exporters"
-      "promtail"
+      "alloy"
       "syncthing"
       "zerotier"
     ]

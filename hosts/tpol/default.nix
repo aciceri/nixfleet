@@ -24,6 +24,7 @@
       "battery"
       "printing"
       "wireguard-client"
+      "alloy"
     ];
 
   boot.initrd.availableKernelModules = [
