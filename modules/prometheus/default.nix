@@ -43,6 +43,7 @@ in
               "sisko"
               "picard"
               "kirk"
+              "pike"
             ];
           }
         ];
@@ -54,6 +55,7 @@ in
             targets = builtins.map (host: "${host}.wg.aciceri.dev:9586") [
               "picard"
               "kirk"
+              "pike"
             ];
           }
         ];
@@ -65,6 +67,7 @@ in
             targets = builtins.map (host: "${host}.wg.aciceri.dev:9134") [
               "picard"
               "kirk"
+              "pike"
             ];
           }
         ];
@@ -101,12 +104,14 @@ in
               "sisko"
               "kirk"
               "picard"
+              "pike"
             ];
           }
         ];
       }
     ];
   };
+
   environment.persistence."/persist".directories = [
     "/var/lib/${cfg.stateDir}"
   ];
