@@ -1,4 +1,7 @@
 { config, lib, ... }:
+let
+  interface = "enP4p65s0";
+in
 {
   services.adguardhome = {
     enable = true;
@@ -6,7 +9,7 @@
     settings = {
       dhcp = {
         enabled = true;
-        interface_name = "enP4p65s0";
+        interface_name = interface;
 
         dhcpv4 = {
           gateway_ip = "10.1.1.1";
@@ -28,6 +31,7 @@
     };
   };
 
+  # otherwise it creates a directory in /var/lib/private which can't be easily persisted
   systemd.services.adguardhome.serviceConfig.DynamicUser = lib.mkForce false;
 
   networking.firewall.allowedUDPPorts = [
@@ -35,6 +39,21 @@
     67
   ];
   networking.firewall.allowedTCPPorts = [ 53 ];
+
+  networking.interfaces.${interface} = {
+    ipv4.addresses = [
+      {
+        address = "10.1.1.2";
+        prefixLength = 24;
+      }
+    ];
+    useDHCP = false;
+  };
+
+  networking.defaultGateway = "10.1.1.1";
+
+  networking.nameservers = [ "127.0.0.1" ];
+
   environment.persistence."/persist".directories = [
     "/var/lib/AdGuardHome"
   ];
