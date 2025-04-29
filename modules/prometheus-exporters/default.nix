@@ -15,6 +15,7 @@ in
           "sisko"
           "picard"
           "kirk"
+          "pike"
         ]
         {
           enable = true;
@@ -53,6 +54,7 @@ in
           "sisko"
           "picard"
           "kirk"
+          "pike"
         ]
         {
           enable = true;
@@ -62,6 +64,7 @@ in
         [
           "picard"
           "kirk"
+          "pike"
         ]
         {
           enable = true;
@@ -81,9 +84,12 @@ in
           "sisko"
           "picard"
           "kirk"
+          "pike"
         ]
         {
           enable = true;
         };
   };
+
+  systemd.services.prometheus-restic-exporter.path = [ pkgs.openssh ];
 }
