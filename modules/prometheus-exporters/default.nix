@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -69,9 +70,12 @@ in
         {
           enable = true;
         };
-    # restic = mkFor ["sisko"] {
-    #   enable = true;
-    # };
+    restic = mkFor [ "sisko" ] {
+      # https://github.com/ngosang/restic-exporter/issues/31
+      enable = false;
+      repository = config.services.restic.backups.sisko.repository;
+      passwordFile = config.age.secrets.SISKO_RESTIC_PASSWORD.path;
+    };
     postgres = mkFor [ "sisko" ] {
       enable = true;
     };
