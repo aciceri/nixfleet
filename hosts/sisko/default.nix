@@ -35,6 +35,7 @@
       "mosh"
       "amule"
       "adguard-home"
+      "garmin-grafana"
     ]
     ++ [
       ./disko.nix
