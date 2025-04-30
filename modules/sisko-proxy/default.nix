@@ -34,7 +34,7 @@
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://localhost:8080";
+        proxyPass = "http://localhost:${builtins.toString config.services.immich.port}";
         proxyWebsockets = true;
       };
     };
