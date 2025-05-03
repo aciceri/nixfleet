@@ -43,8 +43,8 @@
 
 (use-package emacs
   :bind (("<mouse-4>" . scroll-down-line)
-	 ("<mouse-5>" . scroll-up-line)
-	 (("C-x F" . recentf-open)))
+	     ("<mouse-5>" . scroll-up-line)
+	     (("C-x F" . recentf-open)))
   :hook (server-after-make-frame . (lambda () (xterm-mouse-mode +1))) ;; FIXME why is this needed?
   :custom
   (use-dialog-box nil)
@@ -61,6 +61,8 @@
   (treesit-font-lock-level 4)
   (custom-file "~/.config/emacs/custom.el")
   (frame-title-format "%b - Emacs")
+  (indent-tabs-mode nil)
+  (tab-width 4)
   :config
   (set-face-background 'vertical-border (face-background 'default))
   (set-display-table-slot standard-display-table 'vertical-border (make-glyph-code ?┃))
@@ -83,7 +85,7 @@
   (defun ccr/nixos-rebuild ()
     (interactive)
     (let* ((operation (completing-read "nixos-rebuild " '("switch" "boot" "test" "dry-activate")))
-	   (buffer-name (format "nixos-rebuild-%s" operation)))
+	       (buffer-name (format "nixos-rebuild-%s" operation)))
       (async-shell-command (format "sudo nixos-rebuild --flake fleet %s -L" operation) buffer-name)))
   )
 
