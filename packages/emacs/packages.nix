@@ -206,6 +206,7 @@ let
           mixed-pitch
           visual-replace
           org-super-agenda
+          tidal
           # org-re-reveal # FIXME very not nice hash mismatch when building
         ]
       )
