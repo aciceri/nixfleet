@@ -223,6 +223,9 @@ let
       eat
       corfu-terminal
       haskell-ts-mode
+    ])
+    ++ (with epkgs; [
+      typst-ts-mode # why this doesn't seem to be in elpaPackages?
     ]);
 in
 mainPackages ++ (builtins.attrValues extraPackages)
