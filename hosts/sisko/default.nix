@@ -36,6 +36,8 @@
       "amule"
       "adguard-home"
       "garmin-grafana"
+      # "dump1090"
+      "arbi"
     ]
     ++ [
       ./disko.nix
