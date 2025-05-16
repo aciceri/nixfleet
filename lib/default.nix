@@ -4,6 +4,7 @@
       ccr-ssh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIm9Sl/I+5G4g4f6iE4oCUJteP58v+wMIew9ZuLB+Gea";
       oneplus8t = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8da1Mf11vXFF0kVDgxocVoGwpHHMEs9emS9T+v8hLb oneplus8t";
       hercules-ci-agent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGPupm00BiveTIYF6CNwuMijF5VvEaPDMjvt+vMlAy+N hercules-ci-agent";
+      forgejo-ci = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH5mbqLoZ/0J45J7J+17XMGv/dXs3DGABJsnvDv4rgC9 forgjeo-ci";
     };
     hosts = {
       kirk = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAH49KzayIro3L1bteR7nwupMM/vKlDh05t5/DFD9/uz";
