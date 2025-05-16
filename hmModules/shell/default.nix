@@ -84,7 +84,12 @@
   programs.thefuck.enable = true;
   programs.oh-my-posh = {
     enable = true;
-    useTheme = "catppuccin_mocha";
+    # same as "captuccin_mocha" but without the OS logo
+    settings = lib.mkForce (
+      builtins.fromJSON (
+        builtins.unsafeDiscardStringContext (builtins.readFile ./catppuccin_mocha.omp.json)
+      )
+    );
   };
 
   programs.zellij.enableBashIntegration = false;
