@@ -568,6 +568,8 @@
   (add-to-list 'eglot-server-programs
 	           '(haskell-ts-mode . ("haskell-language-server" "--lsp"))))
 
+(use-package tidal
+  :custom ((tidal-interpreter "tidal")))
 (use-package purescript-mode
   :custom ((project-vc-extra-root-markers '("spago.dhall")))
   :hook ((purescript-mode . eglot-ensure)
