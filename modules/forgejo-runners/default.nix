@@ -17,6 +17,7 @@ let
         gnugrep
         gawk
         git
+        openssh
         nix
         bash
         jq
@@ -38,15 +39,6 @@ let
     cp -a "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" $out/etc/ssl/certs/ca-bundle.crt
   '';
   numInstances = 1;
-  pushToCache = pkgs.writeScript "push-to-cache.sh" ''
-    #!/bin/sh
-    set -eu
-    set -f # disable globbing
-    export IFS=' '
-
-    echo "Uploading paths" $OUT_PATHS
-    exec nix copy --to "s3://cache?profile=default&region=eu-south-1&scheme=https&endpoint=cache.aciceri.dev" $OUT_PATHS
-  '';
 in
 lib.mkMerge [
   {
@@ -80,7 +72,6 @@ lib.mkMerge [
         cat <<NIX_CONFIG > etc/nix/nix.conf
         accept-flake-config = true
         experimental-features = nix-command flakes
-        post-build-hook = ${pushToCache}
         include access-tokens
         NIX_CONFIG
 
@@ -121,22 +112,9 @@ lib.mkMerge [
     nix.settings.trusted-users = [ "nixuser" ];
   }
   {
-    # Format of the token file:
     virtualisation = {
       podman.enable = true;
     };
-
-    # virtualisation.containers.storage.settings = {
-    #   storage.driver = "zfs";
-    #   storage.graphroot = "/var/lib/containers/storage";
-    #   storage.runroot = "/run/containers/storage";
-    #   storage.options.zfs.fsname = "zroot/root/podman";
-    # };
-
-    # virtualisation.containers.containersConf.settings = {
-    #   # podman seems to not work with systemd-resolved
-    #   containers.dns_servers = [ "8.8.8.8" "8.8.4.4" ];
-    # };
   }
   {
     systemd.services =
