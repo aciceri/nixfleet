@@ -5,7 +5,8 @@
   ...
 }:
 let
-  garmin-grafana-flake = builtins.getFlake "github:NixOS/nixpkgs/1f03fefb44665cd2377912033de22ffaba2be48d";
+  rev = "f24579d13ee035af96d4a68b765af2aa4b1018b6";
+  garmin-grafana-flake = builtins.getFlake "github:NixOS/nixpkgs/${rev}";
   inherit (garmin-grafana-flake.legacyPackages.${pkgs.system}) garmin-grafana;
 in
 {
