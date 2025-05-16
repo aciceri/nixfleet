@@ -570,6 +570,7 @@
 
 (use-package tidal
   :custom ((tidal-interpreter "tidal")))
+
 (use-package purescript-mode
   :custom ((project-vc-extra-root-markers '("spago.dhall")))
   :hook ((purescript-mode . eglot-ensure)
@@ -1038,7 +1039,7 @@ This is meant to be an helper to be called from the window manager."
 		         )
   (gptel-default-mode 'org-mode)
   (gptel-org-branching-context nil) ;; this is cool but I don't feel comfortable with it
-  (gptel-use-tools nil)
+  (gptel-use-tools 't)
   
   :bind
   ("C-c a a" . gptel-add)
@@ -1053,80 +1054,163 @@ This is meant to be an helper to be called from the window manager."
   ;; (add-hook 'gptel-post-response-functions 'gptel-end-of-response)
   ;; (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
 
-  (setq gptel-tools (mapcar (lambda (tool) (apply #'gptel-make-tool tool))
-			    '((
-			       :name "create_file"
-			       :function (lambda (path filename content)
-					   (let ((full-path (expand-file-name filename path)))
-					     (with-temp-buffer
-					       (insert content)
-					       (write-file full-path))
-					     (format-read "Created file %s in %s" filename path)))
-			       :description "Create a new file with the specified content"
-			       :args (list '(:name "path"
-						   :type string
-						   :description "The directory where to create the file")
-					   '(:name "filename"
-						   :type string
-						   :description "The name of the file to create")
-					   '(:name "content"
-						   :type string
-						   :description "The content to write to the file"))
-			       :category "filesystem"
-			       )
-			      ;; (
-			      ;;  :name "run_command"
-			      ;;  :confirm 't
-			      ;;  :function (lambda (command)
-			      ;; 		   (shell-command-to-string command))
-			      ;;  :description "Run arbitrary commands"
-			      ;;  :args (list '(:name "command"
-			      ;; 			   :type string
-			      ;; 			   :description "The content to run e.g. 'ls *' or 'fd <pattern> <path>'"))
-			      ;;  )
-			      (
-			       :name "get_weather"
-			       :function (lambda (location)
-					   (url-retrieve-synchronously "api.weather.com/..."
-								       location unit))
-			       :description "Get the current weather in a given location"
-			       :args (list '(:name "location"
-						   :type string
-						   :description "The city and state, e.g. San Francisco, CA")
-					   '(:name "unit"
-						   :type string
-						   :enum ["celsius" "farenheit"]
-						   :description
-						   "The unit of temperature, either 'celsius' or 'fahrenheit"
-						   :optional t
-						   ))
-			       )
-			      ))
-	)
+  (defun ccr/edit-buffer (buffer-name old-string new-string)
+    "In BUFFER-NAME, replace OLD-STRING with NEW-STRING."
+    (with-current-buffer buffer-name
+      (let ((case-fold-search nil))  ;; Case-sensitive search
+        (save-excursion
+          (goto-char (point-min))
+          (let ((count 0))
+            (while (search-forward old-string nil t)
+              (setq count (1+ count)))
+            (if (= count 0)
+                (format "Error: Could not find text to replace in buffer %s" buffer-name)
+              (if (> count 1)
+                  (format "Error: Found %d matches for the text to replace in buffer %s" count buffer-name)
+                (goto-char (point-min))
+                (search-forward old-string)
+                (replace-match new-string t t)
+                (format "Successfully edited buffer %s" buffer-name))))))))
+
+  (defun ccr/replace-buffer (buffer-name content)
+    "Completely replace contents of BUFFER-NAME with CONTENT."
+    (with-current-buffer buffer-name
+      (erase-buffer)
+      (insert content)
+      (format "Buffer replaced: %s" buffer-name)))
+  
+  (setq gptel-tools `(
+                      ,(gptel-make-tool
+                        :function (lambda (url)
+                                    (with-current-buffer (url-retrieve-synchronously url)
+                                      (goto-char (point-min))
+                                      (forward-paragraph)
+                                      (let ((dom (libxml-parse-html-region (point) (point-max))))
+                                        (run-at-time 0 nil #'kill-buffer (current-buffer))
+                                        (with-temp-buffer
+                                          (shr-insert-document dom)
+                                          (buffer-substring-no-properties (point-min) (point-max))))))
+                        :name "read_url"
+                        :description "Fetch and read the contents of a URL"
+                        :args (list '(:name "url"
+                                            :type string
+                                            :description "The URL to read"))
+                        :category "web")
+                      ,(gptel-make-tool
+                        :function (lambda (filepath)
+                                    (with-temp-buffer
+                                      (insert-file-contents (expand-file-name filepath))
+                                      (buffer-string)))
+                        :name "read_file"
+                        :description "Read and display the contents of a file"
+                        :args (list '(:name "filepath"
+                                            :type string
+                                            :description "Path to the file to read. Supports relative paths and ~."))
+                        :category "filesystem")
+                      ,(gptel-make-tool
+                        :function (lambda (directory)
+                                    (mapconcat #'identity
+                                               (directory-files directory)
+                                               "\n"))
+                        :name "list_directory"
+                        :description "List the contents of a given directory"
+                        :args (list '(:name "directory"
+                                            :type string
+                                            :description "The path to the directory to list"))
+                        :category "filesystem")
+                      ,(gptel-make-tool
+                        :function (lambda () (mapcar 'buffer-name (buffer-list)))
+                        :name "list_buffers"
+                        :description "Return a list containing all the Emacs buffers"
+                        :category "emacs")
+                      ,(gptel-make-tool
+                        :function (lambda (buffer)
+                                    (unless (buffer-live-p (get-buffer buffer))
+                                      (error "Error: buffer %s is not live." buffer))
+                                    (with-current-buffer buffer
+                                      (buffer-substring-no-properties (point-min) (point-max))))
+                        :name "read_buffer"
+                        :description "Return the contents of an Emacs buffer"
+                        :args (list '(:name "buffer"
+                                            :type string
+                                            :description "The name of the buffer whose contents are to be retrieved"))
+                        :category "emacs")
+                      ,(gptel-make-tool
+                        :function (lambda (buffer text)
+                                    (with-current-buffer (get-buffer-create buffer)
+                                      (save-excursion
+                                        (goto-char (point-max))
+                                        (insert text)))
+                                    (format "Appended text to buffer %s" buffer))
+                        :name "append_to_buffer"
+                        :description "Append text to an Emacs buffer. If the buffer does not exist, it will be created."
+                        :confirm t
+                        :args (list '(:name "buffer"
+                                            :type string
+                                            :description "The name of the buffer to append text to.")
+                                    '(:name "text"
+                                            :type string
+                                            :description "The text to append to the buffer."))
+                        :category "emacs")
+                      ,(gptel-make-tool
+                        :name "EditBuffer"
+                        :function #'ccr/edit-buffer
+                        :description "Edits Emacs buffers"
+                        :confirm t
+                        :args '((:name "buffer_name"
+                                       :type string
+                                       :description "Name of the buffer to modify"
+                                       :required t)
+                                (:name "old_string"
+                                       :type string
+                                       :description "Text to replace (must match exactly)"
+                                       :required t)
+                                (:name "new_string"
+                                       :type string
+                                       :description "Text to replace old_string with"
+                                       :required t))
+                        :category "edit")
+                      ,
+                      (gptel-make-tool
+                       :name "ReplaceBuffer"
+                       :function #'ccr/replace-buffer
+                       :description "Completely overwrites buffer contents"
+                       :confirm t
+                       :args '((:name "buffer_name"
+                                      :type string
+                                      :description "Name of the buffer to overwrite"
+                                      :required t)
+                               (:name "content"
+                                      :type string
+                                      :description "Content to write to the buffer"
+                                      :required t))
+                       :category "edit")
+                      ))
+
   
   (defun ccr/suggest-eshell-command ()
     (interactive)
     (save-excursion
       (eshell-bol)
       (let ((start-pos (point))
-	    (end-pos (line-end-position)))
-	(gptel-request
-	    (buffer-substring-no-properties start-pos end-pos) ;the prompt
-	  :system "You are proficient with emacs shell (eshell), translate the following to something I could directly prompt to the shell. Your responses should only be code, without explanation or formatting or quoting."
-	  :buffer (current-buffer)
-	  :context (cons (set-marker (make-marker) start-pos)
-			 (set-marker (make-marker) end-pos))
-	  :callback
-	  (lambda (response info)
-	    (if (not response)
-		(message "ChatGPT response failed with: %s" (plist-get info :status))
-	      (kill-region start-pos end-pos)
-	      (insert response)))))))
+	        (end-pos (line-end-position)))
+	    (gptel-request
+	        (buffer-substring-no-properties start-pos end-pos) ;the prompt
+	      :system "You are proficient with emacs shell (eshell), translate the following to something I could directly prompt to the shell. Your responses should only be code, without explanation or formatting or quoting."
+	      :buffer (current-buffer)
+	      :context (cons (set-marker (make-marker) start-pos)
+			             (set-marker (make-marker) end-pos))
+	      :callback
+	      (lambda (response info)
+	        (if (not response)
+		        (message "ChatGPT response failed with: %s" (plist-get info :status))
+	          (kill-region start-pos end-pos)
+	          (insert response)))))))
 
   (add-to-list 'display-buffer-alist
                '("^\\*ChatGPT\\*"
-		 (display-buffer-full-frame)
-		 (name . "floating")))
+		         (display-buffer-full-frame)
+		         (name . "floating")))
 
   (defun ccr/start-chatgpt () ;; Used from outside Emacs by emacsclient --eval
     (display-buffer (gptel "*ChatGPT*"))
@@ -1142,9 +1226,9 @@ This is meant to be an helper to be called from the window manager."
   (require 'password-store-otp) ;; FIXME use `use-pacakge' idiomatic way
   
   :bind (("C-c p p" . password-store-copy)
-	 ("C-c p o" . password-store-otp-token-copy)
-	 ("C-c p e" . password-store-edit)
-	 ("C-c p i" . password-store-insert)))
+	     ("C-c p o" . password-store-otp-token-copy)
+	     ("C-c p e" . password-store-edit)
+	     ("C-c p i" . password-store-insert)))
 
 (use-package with-editor
   :init (shell-command-with-editor-mode +1))
