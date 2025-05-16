@@ -566,7 +566,7 @@
   :mode "\\.hs\\'"
   :config
   (add-to-list 'eglot-server-programs
-	       '(haskell-ts-mode . ("haskell-language-server-wrapper" "--lsp"))))
+	           '(haskell-ts-mode . ("haskell-language-server" "--lsp"))))
 
 (use-package purescript-mode
   :custom ((project-vc-extra-root-markers '("spago.dhall")))
