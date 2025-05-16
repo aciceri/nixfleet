@@ -1030,12 +1030,12 @@ This is meant to be an helper to be called from the window manager."
   :custom
   (gptel-model 'google/gemini-2.5-flash-preview)
   (gptel-backend (gptel-make-openai "OpenRouter"
-		   :host "openrouter.ai"
-		   :endpoint "/api/v1/chat/completions"
-		   :key (lambda () (require 'f) (f-read-text (getenv "OPENAI_API_KEY_PATH")))
-		   :stream t
-		   :models '(google/gemini-2.5-flash-preview))
-		 )
+		           :host "openrouter.ai"
+		           :endpoint "/api/v1/chat/completions"
+		           :key (lambda () (require 'f) (f-read-text (getenv "OPENAI_API_KEY_PATH")))
+		           :stream t
+		           :models '(google/gemini-2.5-flash-preview))
+		         )
   (gptel-default-mode 'org-mode)
   (gptel-org-branching-context nil) ;; this is cool but I don't feel comfortable with it
   (gptel-use-tools nil)
