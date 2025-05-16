@@ -598,6 +598,15 @@
 (use-package gptscript-mode
   :mode "\\.gpt\\'")
 
+(use-package gptscript-mode
+  :mode "\\.gpt\\'")
+
+(use-package typst-ts-mode
+  :config
+  (add-to-list 'eglot-server-programs
+	           '(typst-ts-mode . ("tinymist" "lsp")))
+  :mode "\\.typ\\'")
+
 ;; FIXME
 ;; (use-package mmm-mode
 ;;   :config
@@ -615,7 +624,7 @@
 (use-package paredit
   :delight
   :hook ((lisp-mode . enable-paredit-mode)
-	 (emacs-lisp-mode . enable-paredit-mode)))
+	     (emacs-lisp-mode . enable-paredit-mode)))
 
 (use-package aggressive-indent
   :hook ((lisp-mode . aggressive-indent-mode)
