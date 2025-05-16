@@ -573,8 +573,8 @@
 (use-package purescript-mode
   :custom ((project-vc-extra-root-markers '("spago.dhall")))
   :hook ((purescript-mode . eglot-ensure)
-	 (purescript-mode . turn-on-purescript-indentation)
-	 (purescript-mode . (lambda () (setq project-vc-extra-root-markers '("spago.dhall"))))))
+	     (purescript-mode . turn-on-purescript-indentation)
+	     (purescript-mode . (lambda () (setq project-vc-extra-root-markers '("spago.dhall"))))))
 
 (use-package terraform-mode
   :after eglot
