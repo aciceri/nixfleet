@@ -49,7 +49,7 @@
       build = _: nc: nc.config.system.build.toplevel;
     in
     {
-      x86_64-linux = lib.mapAttrs build { inherit (self.nixosConfigurations) picard; };
+      x86_64-linux = lib.mapAttrs build { inherit (self.nixosConfigurations) picard pike kirk; };
       aarch64-linux = lib.mapAttrs build {
         inherit (self.nixosConfigurations) sisko; # pbp;
       };
