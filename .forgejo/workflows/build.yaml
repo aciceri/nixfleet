@@ -9,6 +9,12 @@ jobs:
         name: Checkout repository
       - name: Attic login
         run: attic login nixfleet http://sisko.wg.aciceri.dev:8081 ${{secrets.ATTIC_NIXFLEET_TOKEN}}
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{secrets.FORGEJO_SSH_KEY}}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
       - name: Build with nix
         run: nix-fast-build --no-nom --systems "x86_64-linux aarch64-linux" --attic-cache "nixfleet" --skip-cached --result-file result.json || true
       - name: Report checks
