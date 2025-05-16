@@ -89,6 +89,7 @@
       "zoom"
       "pantalaimon"
       "gimp"
+      "jellyfin"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
