@@ -1,34 +1,46 @@
-{ config, lib, ... }:
+{ config, pkgs, ... }:
+let
+  rev = "966199fe1dccc9c6c7016bdb1d9582f27797bc02";
+  amule-flake = builtins.getFlake "github:NixOS/nixpkgs/${rev}";
+  inherit (amule-flake.legacyPackages.${pkgs.system}) amule-daemon amule-web;
+in
 {
-  users.users.amule = {
-    isSystemUser = true;
-    group = "amule";
-    extraGroups = [ "amule" ];
-    home = config.services.amule.dataDir;
-  };
+  disabledModules = [ "services/networking/amuled.nix" ];
+  documentation.nixos.enable = false;
 
-  users.groups.amule = { };
+  imports = [ "${amule-flake}/nixos/modules/services/networking/amuled.nix" ];
+
   services.amule = {
-    dataDir = "/mnt/hd/amule";
     enable = true;
-    user = "amule";
+    package = amule-daemon;
+    amuleWebPackage = amule-web;
+    openPeerPorts = true;
+    openWebServerPort = true;
+    # TODO the service is accessible only from the VPN
+    # however better using agenix
+    ExternalConnectPasswordFile = pkgs.writeText "password" "pippo";
+    WebServerPasswordFile = pkgs.writeText "password" "pippo";
+    settings = {
+      eMule = {
+        IncomingDir = "/mnt/hd/amule";
+        TempDir = "/mnt/hd/amule/Temp";
+      };
+      WebServer = {
+        Enabled = 1;
+      };
+    };
   };
-
-  # sometimes the service crashes with a segfeault without any reason...
-  systemd.services.amuled.serviceConfig.Restart = lib.mkForce "always";
 
   environment.persistence."/persist".directories = [
     config.services.amule.dataDir
   ];
 
-  networking.firewall = {
-    allowedTCPPorts = [ 4662 ];
-    allowedUDPPortRanges = [
-      {
-        from = 4665;
-        to = 4672;
-      }
-    ];
+  services.nginx.virtualHosts."amule.sisko.wg.aciceri.dev" = {
+    forceSSL = true;
+    useACMEHost = "aciceri.dev";
+    locations."/" = {
+      proxyPass = "http://localhost:${builtins.toString config.services.amule.settings.WebServer.Port}";
+    };
+    serverAliases = [ "amule.sisko.zt.aciceri.dev" ];
   };
-
 }
