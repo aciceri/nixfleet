@@ -2,7 +2,7 @@
 {
   services.gpg-agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-rofi.override {
+    pinentry.package = pkgs.pinentry-rofi.override {
       rofi = pkgs.rofi-wayland;
     };
     extraConfig = ''
