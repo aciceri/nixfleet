@@ -18,9 +18,10 @@
   nixpkgs.config.allowUnfree = true; # Forgive me Mr. Stallman :(
   system.switch.enableNg = true;
 
-  environment.systemPackages = [
-    pkgs.btop
-    pkgs.ncdu
+  environment.systemPackages = with pkgs; [
+    btop
+    ncdu
+    git
   ];
 
   # FIXME not the best place
