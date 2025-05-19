@@ -92,7 +92,7 @@
         ];
         protocol = "ssh-ng";
         sshUser = "root";
-        sshKey = "/home/${config.ccr.username}/.ssh/id_rsa";
+        sshKey = "/home/${config.ccr.username}/.ssh/id_ed25519";
       }
       ++ (lib.lists.optional (config.networking.hostName == "picard") {
         hostName = "mac.staging.mlabs.city?remote-program=/run/current-system/sw/bin/nix-store";
