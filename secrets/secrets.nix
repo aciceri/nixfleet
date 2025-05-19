@@ -92,6 +92,10 @@ with keys.users;
     deltaflyer
     pike
   ];
+  "cloudflare-api-tokens.age".publicKeys = [
+    ccr-ssh
+    sisko
+  ];
   "cloudflare-dyndns-api-token.age".publicKeys = [
     ccr-ssh
     sisko
