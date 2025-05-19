@@ -14,7 +14,7 @@
         dnsProvider = "cloudflare";
         dnsPropagationCheck = true;
         group = config.services.nginx.group;
-        environmentFile = config.age.secrets.cloudflare-dyndns-api-token.path;
+        environmentFile = config.age.secrets.cloudflare-api-tokens.path;
       };
     };
   };

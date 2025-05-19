@@ -109,6 +109,7 @@
           "home-assistant-token".owner = "prometheus";
           "grafana-password".owner = "grafana";
           "cloudflare-dyndns-api-token" = { };
+          "cloudflare-api-tokens" = { };
           "restic-hetzner-password" = { };
           "hass-ssh-key".owner = "hass";
           "sisko-attic-environment-file".owner = "atticd";
