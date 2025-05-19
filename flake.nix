@@ -3,7 +3,7 @@
 
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
-    nixpkgsSisko.url = "github:NixOS/nixpkgs/b6eaf97c6960d97350c584de1b6dcff03c9daf42";
+    nixpkgsSisko.url = "github:NixOS/nixpkgs/292fa7d4f6519c074f0a50394dbbe69859bb6043";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
