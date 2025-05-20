@@ -5,7 +5,10 @@
     openFirewall = true;
   };
 
-  users.users.jellyfin.extraGroups = [ "transmission" ];
+  users.users.jellyfin.extraGroups = [
+    "transmission"
+    "amule"
+  ];
 
   environment.persistence."/persist".directories = [
     config.services.jellyfin.dataDir
