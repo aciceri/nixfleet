@@ -142,9 +142,6 @@
           "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
-          "restic-hetzner-password" = { };
-          "forgejo-runners-token".owner = "nixuser";
-          "forgejo-nix-access-tokens".owner = "nixuser";
         };
       };
 
