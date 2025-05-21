@@ -188,6 +188,7 @@ let
           org-roam
           org-roam-ql
           org-roam-ui
+          org-download
           visual-fill-column
           consult-org-roam
           pass

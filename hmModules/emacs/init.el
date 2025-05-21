@@ -1027,6 +1027,13 @@ This is meant to be an helper to be called from the window manager."
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start nil))
 
+(use-package org-download
+  :after org
+  :custom (org-download-image-dir (concat org-roam-directory "/images"))
+  :bind
+  (:map org-mode-map
+        (("M-p" . org-download-clipboard))))
+
 (use-package gptel
   :custom
   (gptel-model 'google/gemini-2.5-flash-preview)
