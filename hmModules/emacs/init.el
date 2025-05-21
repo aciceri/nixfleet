@@ -163,8 +163,8 @@
   :after marginalia
   :config (nerd-icons-completion-mode +1)
   :hook (
-	 (marginalia-mode . nerd-icons-completion-marginalia-setup)
-	 (ibuffer-mode . nerd-icons-completion-marginalia-setup)))
+	     (marginalia-mode . nerd-icons-completion-marginalia-setup)
+	     (ibuffer-mode . nerd-icons-completion-marginalia-setup)))
 
 (use-package nerd-icons-ibuffer
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
@@ -208,7 +208,7 @@
   (treemacs-display-current-project-exclusively t)
   (treemacs-git-mode 'deferred)
   :bind (("C-c w t" . treemacs-select-window)
-	 ("C-c o T" . treemacs))
+	     ("C-c o T" . treemacs))
   )
 
 (use-package meow
@@ -219,8 +219,8 @@
   (require 'meow-tree-sitter)
   (meow-tree-sitter-register-defaults)
   (add-hook 'after-make-frame-functions (defun ccr/meow--prepare-face (_)
-					  (meow--prepare-face)
-					  (remove-hook 'after-make-frame-functions 'ccr/meow--prepare-face)))
+					                      (meow--prepare-face)
+					                      (remove-hook 'after-make-frame-functions 'ccr/meow--prepare-face)))
   (add-to-list 'meow-mode-state-list '(eshell-mode . insert))
   (add-to-list 'meow-mode-state-list '(eat-mode . insert))
   (add-to-list 'meow-mode-state-list '(notmuch-hello-mode . insert))
@@ -331,44 +331,44 @@
     "Interactively vertically resize the window"
     (interactive "cHit >/< to enlarge/shrink")
     (cond ((eq key (string-to-char ">"))
-	   (enlarge-window-horizontally ccr/v-resize-amount)
-	   (call-interactively 'ccr/v-resize))
-	  ((eq key (string-to-char "<"))
-	   (enlarge-window-horizontally (- ccr/v-resize-amount))
-	   (call-interactively 'ccr/v-resize))
-	  (t (push key unread-command-events))))
+	       (enlarge-window-horizontally ccr/v-resize-amount)
+	       (call-interactively 'ccr/v-resize))
+	      ((eq key (string-to-char "<"))
+	       (enlarge-window-horizontally (- ccr/v-resize-amount))
+	       (call-interactively 'ccr/v-resize))
+	      (t (push key unread-command-events))))
   (defun ccr/h-resize (key)
     "Interactively horizontally resize the window"
     (interactive "cHit >/< to enlarge/shrink")
     (cond ((eq key (string-to-char ">"))
-	   (enlarge-window ccr/h-resize-amount)
-	   (call-interactively 'ccr/h-resize))
-	  ((eq key (string-to-char "<"))
-	   (enlarge-window (- ccr/h-resize-amount))
-	   (call-interactively 'ccr/h-resize))
-	  (t (push key unread-command-events))))
+	       (enlarge-window ccr/h-resize-amount)
+	       (call-interactively 'ccr/h-resize))
+	      ((eq key (string-to-char "<"))
+	       (enlarge-window (- ccr/h-resize-amount))
+	       (call-interactively 'ccr/h-resize))
+	      (t (push key unread-command-events))))
   :bind (("C-c w k" . windmove-up)
-	 ("C-c w l" . windmove-right)
-	 ("C-c w j" . windmove-down)
-	 ("C-c w h" . windmove-left)
-	 ("M-k" . windmove-up)
-	 ("M-l" . windmove-right)
-	 ("M-j" . windmove-down)
-	 ("M-h" . windmove-left)
-	 ("C-c w <up>" . windmove-up)
-	 ("C-c w <right>" . windmove-right)
-	 ("C-c w <down>" . windmove-down)
-	 ("C-c w <left>" . windmove-left)
-	 ("C-c w q" . delete-window)
-	 ("C-c w K" . windmove-delete-up)
-	 ("C-c w L" . windmove-delete-right)
-	 ("C-c w J" . windmove-delete-down)
-	 ("C-c w H" . windmove-delete-left)
-	 ("C-c w x" . kill-buffer-and-window)
-	 ("C-c w v" . split-window-right)
-	 ("C-c w s" . split-window-below)
-	 ("C-c w V" . ccr/v-resize)
-	 ("C-c w S" . ccr/h-resize)))
+	     ("C-c w l" . windmove-right)
+	     ("C-c w j" . windmove-down)
+	     ("C-c w h" . windmove-left)
+	     ("M-k" . windmove-up)
+	     ("M-l" . windmove-right)
+	     ("M-j" . windmove-down)
+	     ("M-h" . windmove-left)
+	     ("C-c w <up>" . windmove-up)
+	     ("C-c w <right>" . windmove-right)
+	     ("C-c w <down>" . windmove-down)
+	     ("C-c w <left>" . windmove-left)
+	     ("C-c w q" . delete-window)
+	     ("C-c w K" . windmove-delete-up)
+	     ("C-c w L" . windmove-delete-right)
+	     ("C-c w J" . windmove-delete-down)
+	     ("C-c w H" . windmove-delete-left)
+	     ("C-c w x" . kill-buffer-and-window)
+	     ("C-c w v" . split-window-right)
+	     ("C-c w s" . split-window-below)
+	     ("C-c w V" . ccr/v-resize)
+	     ("C-c w S" . ccr/h-resize)))
 
 (use-package vertico
   :custom
@@ -379,10 +379,10 @@
   (vertico-cycle t)
   (vertico-mode t)
   :bind (:map vertico-map
-	      (("DEL" . vertico-directory-delete-char)
-	       ("C-DEL" . vertico-directory-delete-word)
-	       ("M-q" . vertico-quick-insert)
-	       ("C-q" . vertico-quick-exit))))
+	          (("DEL" . vertico-directory-delete-char)
+	           ("C-DEL" . vertico-directory-delete-word)
+	           ("M-q" . vertico-quick-insert)
+	           ("C-q" . vertico-quick-exit))))
 
 ;; (use-package vertico-posframe
 ;;   :after vertico
@@ -417,7 +417,7 @@
          ("C-c f f" . consult-find)
          ("C-c F" . consult-ripgrep)
          ("C-c f" . consult-find)
-	 ("C-c l" . consult-line)
+	     ("C-c l" . consult-line)
          ("C-c L" . consult-focus-lines)
          ("C-c m" . consult-mark)
          ("C-c o o" . consult-outline)
@@ -445,9 +445,9 @@
   (tab-always-indent 'complete)
   (kind-icon-default-face 'corfu-default)
   :bind (:map corfu-map
-	      (("M-d" . corfu-doc-toggle)
-	       ("M-l" . corfu-show-location)
-	       ("SPC" . corfu-insert-separator)))
+	          (("M-d" . corfu-doc-toggle)
+	           ("M-l" . corfu-show-location)
+	           ("SPC" . corfu-insert-separator)))
   :init
   (global-corfu-mode))
 
@@ -458,7 +458,7 @@
 
 (use-package prog-mode
   :hook ((prog-mode . hl-line-mode)
-	 (prog-mode . display-line-numbers-mode)))
+	     (prog-mode . display-line-numbers-mode)))
 
 (use-package which-key :delight :config
   (which-key-mode)
@@ -500,28 +500,28 @@
 
 (use-package nix-ts-mode
   :hook (
-	 (nix-ts-mode . (lambda ()
-			  (require 'eglot)
-			  (add-to-list 'eglot-server-programs
-				       '(nix-ts-mode . ("nixd")))
-			  (eglot-ensure)))
-	 (nix-ts-mode . electric-pair-mode)
-	 (nix-ts-mode . (lambda () (setq-local indent-bars-spacing-override 2) (indent-bars-mode)))
-	 (nix-ts-mode . (lambda ()
-			  (setq-local
-			   treesit-font-lock-settings
-			   (append treesit-font-lock-settings
-				   (treesit-font-lock-rules
-				    :language 'nix
-				    :feature 'function
-				    :override t
-				    `((formal) @font-lock-type-face)
-				    
-				    :language 'nix
-				    :feature 'function
-				    `((attrpath) @font-lock-function-name-face)
-				    )))))
-	 )
+	     (nix-ts-mode . (lambda ()
+			              (require 'eglot)
+			              (add-to-list 'eglot-server-programs
+				                       '(nix-ts-mode . ("nixd")))
+			              (eglot-ensure)))
+	     (nix-ts-mode . electric-pair-mode)
+	     (nix-ts-mode . (lambda () (setq-local indent-bars-spacing-override 2) (indent-bars-mode)))
+	     (nix-ts-mode . (lambda ()
+			              (setq-local
+			               treesit-font-lock-settings
+			               (append treesit-font-lock-settings
+				                   (treesit-font-lock-rules
+				                    :language 'nix
+				                    :feature 'function
+				                    :override t
+				                    `((formal) @font-lock-type-face)
+				                    
+				                    :language 'nix
+				                    :feature 'function
+				                    `((attrpath) @font-lock-function-name-face)
+				                    )))))
+	     )
   :mode "\\.nix\\'"
   )
 
@@ -533,33 +533,33 @@
 
 (use-package python-ts-mode
   :hook ((python-ts-mode . (lambda ()
-			     (require 'eglot)
-			     (add-to-list 'eglot-server-programs
-					  '(python-ts-mode . ("jedi-language-server")))
-			     (eglot-ensure))))
+			                 (require 'eglot)
+			                 (add-to-list 'eglot-server-programs
+					                      '(python-ts-mode . ("jedi-language-server")))
+			                 (eglot-ensure))))
   :mode "\\.py\\'")
 
 (use-package solidity-mode
   :hook ((solidity-mode . (lambda ()
-			    (require 'eglot)
-			    (add-to-list 'eglot-server-programs
-					 '(solidity-mode . ("nomicfoundation-solidity-language-server" "--stdio")))
-			    (eglot-ensure))))
+			                (require 'eglot)
+			                (add-to-list 'eglot-server-programs
+					                     '(solidity-mode . ("nomicfoundation-solidity-language-server" "--stdio")))
+			                (eglot-ensure))))
   :mode "\\.sol\\'")
 
 
 (use-package typescript-ts-mode
   :hook ((typescript-ts-mode . (lambda ()
-				 (require 'eglot)
-				 (eglot-ensure))))
+				                 (require 'eglot)
+				                 (eglot-ensure))))
   :mode "\\.ts\\'")
 
 (use-package rust-mode
   :init
   (setq rust-mode-treesitter-derive t)
   :hook ((rust-mode . (lambda ()
-			(require 'eglot)
-			(eglot-ensure)))))
+			            (require 'eglot)
+			            (eglot-ensure)))))
 
 (use-package haskell-ts-mode
   :hook ((haskell--ts-mode . eglot-ensure))
@@ -581,11 +581,11 @@
   :after eglot
   :config
   (add-to-list 'eglot-server-programs
-	       '(terraform-mode . ("terraform-lsp")))
+	           '(terraform-mode . ("terraform-lsp")))
   :hook ((terraform-mode . eglot-ensure)
-	 ;; (terraform-mode . tree-sitter-hl-mode)
-	 (terraform-mode . (lambda () (setq indent-bars-spacing-override 2) (indent-bars-mode)))
-	 ))
+	     ;; (terraform-mode . tree-sitter-hl-mode)
+	     (terraform-mode . (lambda () (setq indent-bars-spacing-override 2) (indent-bars-mode)))
+	     ))
 
 (use-package yaml-mode
   :hook (yaml-mode . yaml-ts-mode))
@@ -629,7 +629,7 @@
 
 (use-package aggressive-indent
   :hook ((lisp-mode . aggressive-indent-mode)
-	 (emacs-lisp-mode . aggressive-indent-mode)))
+	     (emacs-lisp-mode . aggressive-indent-mode)))
 
 (use-package eldoc
   :delight)
@@ -679,8 +679,8 @@
   (eat-eshell-mode)
   (eat-eshell-visual-command-mode)
   :custom ((eshell-prefer-lisp-functions t)
-	   (eshell-history-size 10000)
-	   (eshell-banner-message ""))
+	       (eshell-history-size 10000)
+	       (eshell-banner-message ""))
   :config
   (defun ccr/start-eshell () ;; Used from outside Emacs by emacsclient --eval
     (eshell 'N)
@@ -694,17 +694,17 @@
   ;; (add-to-list 'eshell-modules-list 'eshell-smart) ;; plan 9 style
 
   (setq ccr/eshell-aliases
-	'((g  . magit)
-	  (gl . magit-log)
-	  (d  . dired)
-	  (o  . find-file)	
-	  (oo . find-file-other-window)
-	  (l  . (lambda () (eshell/ls '-la)))
-	  (eshell/clear . eshell/clear-scrollback)))
+	    '((g  . magit)
+	      (gl . magit-log)
+	      (d  . dired)
+	      (o  . find-file)	
+	      (oo . find-file-other-window)
+	      (l  . (lambda () (eshell/ls '-la)))
+	      (eshell/clear . eshell/clear-scrollback)))
   
   (mapc (lambda (alias)
-	  (defalias (car alias) (cdr alias)))
-	ccr/eshell-aliases)
+	      (defalias (car alias) (cdr alias)))
+	    ccr/eshell-aliases)
 
   
   (defun ccr/eshell-get-current-input ()
@@ -712,35 +712,35 @@
     (when (eq major-mode 'eshell-mode)
       (let ((start (save-excursion (eshell-bol) (point)))
             (end (point-at-eol)))
-	(buffer-substring-no-properties start end))))
+	    (buffer-substring-no-properties start end))))
 
   (defun ccr/eshell-replace-current-input (new-input)
     (when (eq major-mode 'eshell-mode)
       (let ((inhibit-read-only t))
-	(eshell-bol)
-	(delete-region (point) (point-at-eol))
-	(insert new-input)
-	(end-of-line))))
+	    (eshell-bol)
+	    (delete-region (point) (point-at-eol))
+	    (insert new-input)
+	    (end-of-line))))
 
   (defun ccr/eshell-history ()
     (interactive)
     (when (eq major-mode 'eshell-mode)
       (let* ((current-input (ccr/eshell-get-current-input))
              (eshell-history (when (and eshell-history-file-name
-					(file-readable-p eshell-history-file-name))
+					                    (file-readable-p eshell-history-file-name))
                                (f-read-text eshell-history-file-name)))
              (bash-history (when (file-readable-p "~/.bash_history")
                              (f-read-text "~/.bash_history")))
              (history (split-string (concat (or eshell-history "") "\n"
                                             (or bash-history "")) "\n" t))
              (selection (completing-read "History: " history nil t current-input)))
-	(ccr/eshell-replace-current-input selection))))
+	    (ccr/eshell-replace-current-input selection))))
   
   :bind (("C-c o e" . project-eshell)
-	 (:map eshell-mode-map
-	       ("C-r" . ccr/eshell-history)
-	       ("C-<return>" . corfu-send)
-	       ))) ;; i.e. just C-r in semi-char-mode
+	     (:map eshell-mode-map
+	           ("C-r" . ccr/eshell-history)
+	           ("C-<return>" . corfu-send)
+	           ))) ;; i.e. just C-r in semi-char-mode
 
 (use-package eshell-command-not-found
   :custom ((eshell-command-not-found-command "command-not-found"))
@@ -757,7 +757,7 @@
 
 (use-package eshell-prompt-extras
   :custom ((eshell-highlight-prompt nil)
-	   (eshell-prompt-function 'epe-theme-lambda)))
+	       (eshell-prompt-function 'epe-theme-lambda)))
 
 (use-package popper
   :custom
