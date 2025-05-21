@@ -98,6 +98,7 @@
       "pantalaimon"
       "moonlight"
       "gimp"
+      "unison"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
