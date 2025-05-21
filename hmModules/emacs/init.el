@@ -1160,6 +1160,23 @@ This is meant to be an helper to be called from the window manager."
                                             :description "The text to append to the buffer."))
                         :category "emacs")
                       ,(gptel-make-tool
+                        :function (lambda (buffer text)
+                                    (with-current-buffer (get-buffer-create buffer)
+                                      (save-excursion
+                                        (goto-char (point-max))
+                                        (insert text)))
+                                    (format "Appended text to buffer %s" buffer))
+                        :name "append_to_buffer"
+                        :description "Append text to an Emacs buffer. If the buffer does not exist, it will be created."
+                        :confirm t
+                        :args (list '(:name "buffer"
+                                            :type string
+                                            :description "The name of the buffer to append text to.")
+                                    '(:name "text"
+                                            :type string
+                                            :description "The text to append to the buffer."))
+                        :category "emacs")
+                      ,(gptel-make-tool
                         :name "EditBuffer"
                         :function #'ccr/edit-buffer
                         :description "Edits Emacs buffers"
@@ -1192,6 +1209,22 @@ This is meant to be an helper to be called from the window manager."
                                       :description "Content to write to the buffer"
                                       :required t))
                        :category "edit")
+                      ,(gptel-make-tool
+                        :function (lambda (title body)
+                                    (org-roam-capture-
+                                     :templates `(("d" "" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" ,(concat "#+title: ${title}\n\n" body)))) ; override default template
+                                     :node (org-roam-node-create :title title)
+                                     :props '(:unnarrowed 't :tags "gptel"))
+                                    )
+                        :name "create_org_roam_note"
+                        :description "Create a new org-roam note."
+                        :args (list '(:name "title"
+                                            :type string
+                                            :description "The name of the note to create. Try to automatically infere it and ask only if dubious.")
+                                    '(:name "body"
+                                            :type string
+                                            :description "The body of the note write in an org language, aovoid starting with an headline as first line. Feel free to exploit the org syntax."))
+                        :category "org-roam")
                       ))
 
   
