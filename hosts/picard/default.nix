@@ -31,7 +31,6 @@
       "wireguard-client"
       "binfmt"
       "greetd"
-      "syncthing"
       "hass-poweroff"
       "forgejo-runners"
       "teamviewer"

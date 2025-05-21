@@ -28,13 +28,11 @@
       "pam"
       "wireguard-client"
       "greetd"
-      "syncthing"
       "mount-sisko"
       "adb"
       "binfmt"
       "prometheus-exporters"
       "alloy"
-      "syncthing"
       "zerotier"
     ]
     ++ [ ./disko.nix ];

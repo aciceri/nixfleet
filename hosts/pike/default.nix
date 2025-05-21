@@ -29,7 +29,6 @@
     "wireguard-client"
     "binfmt"
     "greetd"
-    # "syncthing"
     "teamviewer"
     "sunshine"
     "mount-sisko"
