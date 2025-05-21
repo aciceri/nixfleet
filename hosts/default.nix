@@ -119,6 +119,7 @@
             group = "forgejo";
           };
           "matrix-registration-shared-secret".owner = "matrix-synapse";
+          "arbi-config".owner = "arbi";
         };
       };
 

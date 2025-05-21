@@ -153,6 +153,10 @@ with keys.users;
     ccr-ssh
     sisko
   ];
+  "arbi-config.age".publicKeys = [
+    ccr-ssh
+    sisko
+  ];
 
   # WireGuard
   "picard-wireguard-private-key.age".publicKeys = [
