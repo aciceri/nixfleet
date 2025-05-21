@@ -927,7 +927,7 @@ This is meant to be an helper to be called from the window manager."
   (require 'org-roam-protocol)
   :custom
   (org-roam-v2-ack t)
-  (org-roam-directory (file-truename "~/org"))
+  (org-roam-directory (file-truename "~/roam"))
   (org-roam-complete-everywhere 't)
   (org-roam-dailies-capture-templates
    '(
