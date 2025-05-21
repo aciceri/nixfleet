@@ -786,35 +786,36 @@
 
 (use-package org
   :hook ((org-mode . variable-pitch-mode)
-	 (org-mode . visual-line-mode)
-	 (org-mode . visual-fill-column-mode))
+	     (org-mode . visual-line-mode)
+	     (org-mode . visual-fill-column-mode))
   :custom ((org-log-done nil)
-	   (org-return-follows-link t)
-	   (org-hide-emphasis-markers t)
-	   (visual-fill-column-center-text t)
-	   (visual-fill-column-width 100)
-	   (fill-column 100)
-	   (org-capture-templates '(
-				    ("j" "Work Log Entry"
-				     entry (file+datetree "~/org/work-log.org")
-				     "* %?"
-				     :empty-lines 0)
-				    ("n" "Note"
-				     entry (file+headline "~/org/notes.org" "Random Notes")
-				     "** %?"
-				     :empty-lines 0)
-				    ))
-	   (org-auto-align-tags nil)
-	   (org-tags-column 0)
-	   (org-catch-invisible-edits 'show-and-error)
-	   (org-special-ctrl-a/e t)
-	   (org-insert-heading-respect-content t)
-	   (org-pretty-entities t)
-	   (org-ellipsis "…")
-	   )
+	       (org-return-follows-link t)
+	       (org-hide-emphasis-markers t)
+	       (visual-fill-column-center-text t)
+	       (visual-fill-column-width 100)
+	       (fill-column 100)
+	       (org-capture-templates '(
+				                    ("j" "Work Log Entry"
+				                     entry (file+datetree "~/org/work-log.org")
+				                     "* %?"
+				                     :empty-lines 0)
+				                    ("n" "Note"
+				                     entry (file+headline "~/org/notes.org" "Random Notes")
+				                     "** %?"
+				                     :empty-lines 0)
+				                    ))
+	       (org-auto-align-tags nil)
+	       (org-tags-column 0)
+	       (org-catch-invisible-edits 'show-and-error)
+	       (org-special-ctrl-a/e t)
+	       (org-insert-heading-respect-content t)
+	       (org-pretty-entities t)
+	       (org-ellipsis "…")
+           (org-use-sub-superscripts nil)           
+	       )
   :bind (("C-c o l" . org-store-link)
-	 ("C-c o c" . org-capture)
-	 ("C-c b o" . org-switchb))
+	     ("C-c o c" . org-capture)
+	     ("C-c b o" . org-switchb))
   :config
   (defun ccr/org-capture (key)
     "Capture a note using the template KEY and close the frame when done.
