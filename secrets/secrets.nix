@@ -157,6 +157,13 @@ with keys.users;
     ccr-ssh
     sisko
   ];
+  "nix-netrc.age".publicKeys = [
+    ccr-ssh
+    sisko
+    pike
+    picard
+    kirk
+  ];
 
   # WireGuard
   "picard-wireguard-private-key.age".publicKeys = [
