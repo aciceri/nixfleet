@@ -20,7 +20,7 @@
         "root"
         "@wheel"
       ];
-      netrc-file = "/etc/nix/netrc";
+      netrc-file = config.age.secrets.nix-netrc.path;
       substituters = [
         #   "s3://cache?profile=default&region=eu-south-1&scheme=https&endpoint=cache.aciceri.dev"
         "https://cache.iog.io"
