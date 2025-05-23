@@ -929,7 +929,7 @@ This is meant to be an helper to be called from the window manager."
   :custom
   (org-roam-v2-ack t)
   (org-roam-directory (file-truename "~/roam"))
-  (org-roam-complete-everywhere 't)
+  (org-roam-completion-everywhere 't)
   (org-roam-dailies-capture-templates
    '(
      ("d" "Generic entry" entry
