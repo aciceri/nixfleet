@@ -59,6 +59,7 @@
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
           "restic-hetzner-password" = { };
+          "nix-netrc" = { };
         };
       };
 
@@ -87,6 +88,7 @@
           "restic-hetzner-password" = { };
           "forgejo-runners-token".owner = "nixuser";
           "forgejo-nix-access-tokens".owner = "nixuser";
+          "nix-netrc" = { };
         };
       };
 
@@ -120,6 +122,7 @@
           };
           "matrix-registration-shared-secret".owner = "matrix-synapse";
           "arbi-config".owner = "arbi";
+          "nix-netrc" = { };
         };
       };
 
@@ -143,6 +146,7 @@
           "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
+          "nix-netrc" = { };
         };
       };
 
