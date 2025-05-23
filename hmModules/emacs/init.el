@@ -28,6 +28,7 @@
   (eglot-events-buffer-size 0) ; disable events logging, it should be enabled only when debuggigng LSP servers
   (eglot-sync-connect-nil 0) ; disable UI freeze when opening big files
   (eglot-connect-timeout nil) ; never timeout
+  :bind (("C-q" . eglot-code-action-quickfix))
   )
 
 (use-package consult-eglot
