@@ -945,20 +945,14 @@ This is meant to be an helper to be called from the window manager."
   (org-roam-capture-ref-templates
    '(
      ("r" "Web entry" entry
-      "* ${Title} \n:PROPERTIES:\n:URL: ${ref}\n:END:\n %i"
-      :target (file+head "daily/%<%Y-%m-%d>.org" "#+TITLE: %<%Y-%m-%d>")
+      "** %i \n:PROPERTIES:\n:URL: ${ref}\n:END:"
+      :target (file+olp "inbox.org" ("Web entries"))
       :create-id t)
      )
    )
   :config
   (org-roam-db-autosync-mode)
 
-  ;; In order to automatically add an org id for some capture templates (using the :create-id keyword)
-  (defun ccr/org-capture-maybe-create-id ()
-    (when (org-capture-get :create-id)
-      (org-id-get-create)))
-  (add-hook 'org-capture-mode-hook #'ccr/org-capture-maybe-create-id)
-  
   ;; The following functions name are relevant because org-roam-ql columns in queries use their suffix
   (defun org-roam-node-spent (node)
     "Return the hours spent as number"
@@ -989,7 +983,9 @@ This is meant to be an helper to be called from the window manager."
 	       (query (if (and date-start date-end)
 		              `(and ,query-tags (date-range ,date-start ,date-end))
 		            query-tags)))
-      (apply #'+(mapcar #'org-roam-node-spent (org-roam-ql-nodes query))))))
+      (apply #'+(mapcar #'org-roam-node-spent (org-roam-ql-nodes query)))))
+  :bind
+  (("C-c n i" . org-roam-node-insert)))
 
 (use-package org-roam-ql
   :after org-roam
