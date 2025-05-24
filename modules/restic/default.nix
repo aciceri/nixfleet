@@ -42,6 +42,7 @@ in
       "/persist"
       "/mnt/hd/immich"
       "/mnt/hd/paperless"
+      "/mnt/hd/roam"
     ];
     exclude = [ " /persist/var/lib/containers" ];
     passwordFile = config.age.secrets.SISKO_RESTIC_PASSWORD.path;
