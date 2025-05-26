@@ -16,6 +16,7 @@
         pdfa_image_compression = "lossless";
         invalidate_digital_signatures = true;
       };
+      PAPERLESS_URL = "https://paper.sisko.wg.aciceri.dev";
     };
   };
 
@@ -33,6 +34,12 @@
     };
     extraConfig = ''
       client_max_body_size 50000M;
+      proxy_redirect off;
+      proxy_set_header Host $host:$server_port;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Host $server_name;
+      proxy_set_header X-Forwarded-Proto $scheme;
     '';
     serverAliases = [ "paper.sisko.zt.aciceri.dev" ];
   };
