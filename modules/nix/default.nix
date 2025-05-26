@@ -25,14 +25,14 @@
         "https://cache.iog.io"
         "https://cache.lix.systems"
         "https://nix-community.cachix.org"
-        # "https://mlabs.cachix.org"
+        "https://mlabs.cachix.org"
         "http://sisko.wg.aciceri.dev:8081/nixfleet"
       ];
       trusted-public-keys = [
         "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        # "mlabs.cachix.org-1:gStKdEqNKcrlSQw5iMW6wFCj3+b+1ASpBVY2SYuNV2M="
+        "mlabs.cachix.org-1:gStKdEqNKcrlSQw5iMW6wFCj3+b+1ASpBVY2SYuNV2M="
         "nixfleet:Bud23440n6mMTmgq/7U+mk91zlLjnx2X3lQQrCBCCU4="
       ];
       # deprecated-features = [ "url-literals" ];
