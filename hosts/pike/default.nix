@@ -89,6 +89,7 @@
       "pantalaimon"
       "gimp"
       "jellyfin"
+      "unison"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
