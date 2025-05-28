@@ -16,6 +16,8 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan github.com >> ~/.ssh/known_hosts
       - name: Build with nix (x86_64-linux)
-        run: nix-fast-build --no-nom --systems "x86_64-linux aarch64-linux" --attic-cache "nixfleet" --skip-cached --result-file result.json || true
+        run: nix-fast-build --no-nom --systems "x86_64-linux aarch64-linux" --skip-cached --result-file result.json || true
+      - name: Push to cache
+        run: nix run .#push-to-cache -- nixfleet
       - name: Report checks
         run: report-checks
