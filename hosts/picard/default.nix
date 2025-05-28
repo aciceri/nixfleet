@@ -41,6 +41,7 @@
       "prometheus-exporters"
       "zerotier"
       "alloy"
+      "wireguard-mlabs"
     ]
     ++ [ ./disko.nix ];
 

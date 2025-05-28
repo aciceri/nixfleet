@@ -89,6 +89,7 @@
           "forgejo-runners-token".owner = "nixuser";
           "forgejo-nix-access-tokens".owner = "nixuser";
           "nix-netrc" = { };
+          "wireguard-mlabs-private-key" = { };
         };
       };
 

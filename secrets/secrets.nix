@@ -164,6 +164,12 @@ with keys.users;
     picard
     kirk
   ];
+  "wireguard-mlabs-private-key.age".publicKeys = [
+    ccr-ssh
+    picard
+    pike
+    kirk
+  ];
 
   # WireGuard
   "picard-wireguard-private-key.age".publicKeys = [
