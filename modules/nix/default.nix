@@ -35,7 +35,7 @@
         "mlabs.cachix.org-1:gStKdEqNKcrlSQw5iMW6wFCj3+b+1ASpBVY2SYuNV2M="
         "nixfleet:Bud23440n6mMTmgq/7U+mk91zlLjnx2X3lQQrCBCCU4="
       ];
-      # deprecated-features = [ "url-literals" ];
+      deprecated-features = [ "url-literals" ]; # despite a warning saying that this option doesn't exist it seems to work
     };
 
     nixPath = [ "nixpkgs=${fleetFlake.inputs.nixpkgs}" ];
