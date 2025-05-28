@@ -49,6 +49,7 @@ in
       copilot-language-server.fhs
       math-preview
       emacs-lsp-booster
+      texlive.combined.scheme-full
     ]
     ++ (with hunspellDicts; [
       en_US-large
