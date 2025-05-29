@@ -2,6 +2,7 @@
   config,
   lib,
   vpn,
+  pkgs,
   ...
 }:
 {
@@ -17,5 +18,13 @@
       publicKey = vpnConfig.publicKey;
       allowedIPs = [ "${vpnConfig.ip}/32" ];
     }) vpn;
+
+    postSetup = ''
+      ${lib.getExeo' pkgs.iptables "iptables"} -t nat -A POSTROUTING -s 10.100.0.0/24 -o enP4p65s0 -j MASQUERADE
+    '';
+
+    postShutdown = ''
+      ${lib.getExe' pkgs.iptables "iptables"} -t nat -D POSTROUTING -s 10.100.0.0/24 -o enP4p65s0 -j MASQUERADE
+    '';
   };
 }
