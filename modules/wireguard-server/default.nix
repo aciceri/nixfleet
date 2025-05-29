@@ -20,7 +20,7 @@
     }) vpn;
 
     postSetup = ''
-      ${lib.getExeo' pkgs.iptables "iptables"} -t nat -A POSTROUTING -s 10.100.0.0/24 -o enP4p65s0 -j MASQUERADE
+      ${lib.getExe' pkgs.iptables "iptables"} -t nat -A POSTROUTING -s 10.100.0.0/24 -o enP4p65s0 -j MASQUERADE
     '';
 
     postShutdown = ''
