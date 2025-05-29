@@ -163,6 +163,19 @@ in
     config.services.home-assistant.configDir
   ];
 
+  services.nginx.virtualHosts."home.aciceri.dev" = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/" = {
+      proxyPass = "http://localhost:${builtins.toString config.services.home-assistant.config.http.server_port}";
+      proxyWebsockets = true;
+    };
+    extraConfig = ''
+      proxy_set_header    Upgrade     $http_upgrade;
+      proxy_set_header    Connection  $connection_upgrade;
+    '';
+  };
+
   # virtualisation.oci-containers = {
   #   backend = "podman";
   #   containers.homeassistant = {

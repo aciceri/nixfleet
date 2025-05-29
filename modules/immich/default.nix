@@ -22,4 +22,16 @@
     fsType = "ext4";
     options = [ "bind" ];
   };
+
+  services.nginx.virtualHosts."photos.aciceri.dev" = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/" = {
+      proxyPass = "http://localhost:${builtins.toString config.services.immich.port}";
+      proxyWebsockets = true;
+    };
+    extraConfig = ''
+      client_max_body_size 50000M;
+    '';
+  };
 }
