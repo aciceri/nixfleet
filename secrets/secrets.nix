@@ -84,7 +84,7 @@ with keys.users;
     ccr-ssh
     sisko
   ];
-  "chatgpt-token.age".publicKeys = [
+  "openrouter-api-key.age".publicKeys = [
     ccr-ssh
     kirk
     mothership

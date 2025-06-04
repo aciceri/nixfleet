@@ -1038,7 +1038,7 @@ This is meant to be an helper to be called from the window manager."
   (gptel-backend (gptel-make-openai "OpenRouter"
 		           :host "openrouter.ai"
 		           :endpoint "/api/v1/chat/completions"
-		           :key (lambda () (require 'f) (f-read-text (getenv "OPENAI_API_KEY_PATH")))
+		           :key (lambda () (require 'f) (f-read-text (getenv "OPENROUTER_API_KEY_PATH")))
 		           :stream t
 		           :models '(google/gemini-2.5-flash-preview))
 		         )

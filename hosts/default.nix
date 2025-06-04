@@ -33,7 +33,7 @@
         ];
         secrets = {
           "deltaflyer-wireguard-private-key" = { };
-          "chatgpt-token".owner = "ccr";
+          "openrouter-api-key".owner = "ccr";
         };
       };
 
@@ -54,7 +54,7 @@
         ];
         secrets = {
           "kirk-wireguard-private-key" = { };
-          "chatgpt-token".owner = "ccr";
+          "openrouter-api-key".owner = "ccr";
           "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
@@ -81,7 +81,7 @@
         ];
         secrets = {
           "picard-wireguard-private-key" = { };
-          "chatgpt-token".owner = "ccr";
+          "openrouter-api-key".owner = "ccr";
           "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";
@@ -143,7 +143,7 @@
         ];
         secrets = {
           "pike-wireguard-private-key" = { };
-          "chatgpt-token".owner = "ccr";
+          "openrouter-api-key".owner = "ccr";
           "cachix-personal-token".owner = "ccr";
           "git-workspace-tokens".owner = "ccr";
           "autistici-password".owner = "ccr";

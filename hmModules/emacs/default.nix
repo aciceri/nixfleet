@@ -12,7 +12,7 @@ in
 {
   systemd.user.sessionVariables = {
     EDITOR = lib.mkForce "emacsclient -c";
-    OPENAI_API_KEY_PATH = age.secrets.chatgpt-token.path;
+    OPENROUTER_API_KEY_PATH = age.secrets.openrouter-api-key.path;
   };
   programs.emacs = {
     enable = true;
