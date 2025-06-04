@@ -46,7 +46,6 @@
       "helix"
       "shell"
       "zellij"
-      "element"
       "firefox"
       "gpg"
       "mpv"
@@ -75,6 +74,8 @@
       "zmkbatx"
       "moonlight"
       "gimp"
+      "unison"
+      "jellyfin"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
