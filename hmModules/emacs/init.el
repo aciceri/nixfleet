@@ -1032,6 +1032,15 @@ This is meant to be an helper to be called from the window manager."
   (:map org-mode-map
         (("M-p" . org-download-clipboard))))
 
+(use-package aidermacs
+  :bind (("C-c A" . aidermacs-transient-menu))
+  :init
+  (require 'f)
+  (setenv "OPENROUTER_API_KEY" (f-read-text (getenv "OPENROUTER_API_KEY_PATH")))
+  :custom
+  (aidermacs-use-architect-mode t)
+  (aidermacs-default-model "openrouter/deepseek/deepseek-chat-v3-0324"))
+
 (use-package gptel
   :custom
   (gptel-model 'google/gemini-2.5-flash-preview)

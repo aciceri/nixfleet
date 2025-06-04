@@ -208,6 +208,7 @@ let
           visual-replace
           org-super-agenda
           tidal
+          aidermacs
           # org-re-reveal # FIXME very not nice hash mismatch when building
         ]
       )
