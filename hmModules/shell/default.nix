@@ -81,7 +81,7 @@
   };
 
   programs.zoxide.enable = true;
-  programs.thefuck.enable = true;
+  programs.pay-respects.enable = true;
   programs.oh-my-posh = {
     enable = true;
     # same as "captuccin_mocha" but without the OS logo
