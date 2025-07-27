@@ -76,7 +76,6 @@
         ];
         extraHmModules = [
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
-          inputs.vscode-server.nixosModules.home
           inputs.catppuccin.homeModules.catppuccin
         ];
         secrets = {
@@ -138,7 +137,6 @@
         ];
         extraHmModules = [
           "${inputs.homeManagerGitWorkspace}/modules/services/git-workspace.nix"
-          inputs.vscode-server.nixosModules.home
           inputs.catppuccin.homeModules.catppuccin
         ];
         secrets = {

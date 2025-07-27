@@ -82,7 +82,6 @@
       "obs-studio"
       "calibre"
       "reinstall-magisk-on-lineage"
-      "vscode-server"
       "zk"
       "catppuccin"
       "freecad"
