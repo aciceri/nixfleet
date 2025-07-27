@@ -362,6 +362,7 @@ binds {
     Mod+T { spawn "footclient"; }
     Mod+D { spawn "rofi" "-show" "drun"; }
     Mod+W { spawn "rofi" "-show" "window"; }
+    Mod+E { toggle-column-tabbed-display; }
     Mod+P { spawn "rofi-pass" "--clip"; }
     Mod+X { spawn "emacsclient" "-c"; }
     Mod+B { spawn "firefox"; }
