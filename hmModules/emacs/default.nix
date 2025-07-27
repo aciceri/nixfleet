@@ -50,7 +50,7 @@ in
       math-preview
       emacs-lsp-booster
       texlive.combined.scheme-full
-      aider-chat-full
+      # aider-chat-full
     ]
     ++ (with hunspellDicts; [
       en_US-large
