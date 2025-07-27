@@ -3,7 +3,7 @@
 
   inputs = {
     flakeParts.url = "github:hercules-ci/flake-parts";
-    nixpkgsSisko.url = "github:NixOS/nixpkgs/292fa7d4f6519c074f0a50394dbbe69859bb6043";
+    nixpkgsSisko.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixosHardware.url = "github:NixOS/nixos-hardware";
     homeManager = {
@@ -48,7 +48,7 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:aciceri/catppuccin-nix/fix-foot-update-source";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
