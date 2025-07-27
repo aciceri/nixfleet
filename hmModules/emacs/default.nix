@@ -14,6 +14,10 @@ in
     EDITOR = lib.mkForce "emacsclient -c";
     OPENROUTER_API_KEY_PATH = age.secrets.openrouter-api-key.path;
   };
+  home.shellAliases = {
+    e = "emacsclient -c";
+    em = "emacsclient -nw";
+  };
   programs.emacs = {
     enable = true;
     package = emacs;
