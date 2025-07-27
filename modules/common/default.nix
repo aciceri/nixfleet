@@ -16,7 +16,6 @@
   users.mutableUsers = false;
   i18n.defaultLocale = "en_US.UTF-8";
   nixpkgs.config.allowUnfree = true; # Forgive me Mr. Stallman :(
-  system.switch.enableNg = true;
 
   environment.systemPackages = with pkgs; [
     btop
