@@ -167,7 +167,7 @@
     vpnExtra = {
       oneplus8t = {
         ip = "10.100.0.4";
-        publicKey = "9ccx4C4xvPC6lPgTZAHDSfK4FS2BP2i4D57u9IZjw18=";
+        publicKey = "3odi1jFpq+9Ax43bBlPqQXq3Gc90c1o5ewP//lE2FCE=";
       };
       macos-ventura = {
         ip = "10.100.0.6";
