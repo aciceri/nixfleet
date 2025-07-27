@@ -82,7 +82,7 @@ in
           ];
         };
       };
-      extensions = [ ];
+      extensions.force = true;
       userChrome = builtins.readFile ./userchrome.css;
     };
   };
