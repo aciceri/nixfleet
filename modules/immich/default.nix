@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   environment.persistence."/persist".directories = [
     config.services.immich.machine-learning.environment.MACHINE_LEARNING_CACHE_FOLDER
@@ -7,6 +7,13 @@
   services.immich = {
     enable = true;
     mediaLocation = "/mnt/hd/immich";
+    package =
+      let
+        pkgsImmich =
+          (builtins.getFlake "github:NixOS/nixpkgs/7fd36ee82c0275fb545775cc5e4d30542899511d")
+          .legacyPackages.${pkgs.system};
+      in
+      pkgsImmich.immich;
   };
 
   # The reason for this hack is quite bad
