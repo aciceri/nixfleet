@@ -43,32 +43,32 @@
     controlMaster = "auto";
   };
 
-  systemd.user.services.atuind = {
-    Unit.Description = "Atuin daemon";
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-    Service = {
-      ExecStartPre = "${lib.getExe' pkgs.toybox "rm"} -f ${config.programs.atuin.settings.daemon.socket_path}";
-      ExecStart = "${lib.getExe pkgs.atuin} daemon";
-    };
-  };
+  # systemd.user.services.atuind = {
+  #   Unit.Description = "Atuin daemon";
+  #   Install = {
+  #     WantedBy = [ "default.target" ];
+  #   };
+  #   Service = {
+  #     ExecStartPre = "${lib.getExe' pkgs.toybox "rm"} -f ${config.programs.atuin.settings.daemon.socket_path}";
+  #     ExecStart = "${lib.getExe pkgs.atuin} daemon";
+  #   };
+  # };
 
-  programs.atuin = {
-    enable = false; # FIXME broken on bash: https://github.com/nix-community/home-manager/issues/5958
-    settings = {
-      daemon = {
-        enabled = true;
-        socket_path = "/home/${username}/.local/share/atuin/atuin.sock"; # FIXME using ~ or $HOME doesn't work: https://github.com/atuinsh/atuin/issues/2289
-      };
-      auto_sync = true;
-      sync_frequency = "5m";
-      sync_address = "http://sisko.wg.aciceri.dev:8889";
-      search_mode = "fuzzy";
-      style = "compact";
-      enter_accept = "true";
-    };
-  };
+  # programs.atuin = {
+  #   enable = false; # FIXME broken on bash: https://github.com/nix-community/home-manager/issues/5958
+  #   settings = {
+  #     daemon = {
+  #       enabled = true;
+  #       socket_path = "/home/${username}/.local/share/atuin/atuin.sock"; # FIXME using ~ or $HOME doesn't work: https://github.com/atuinsh/atuin/issues/2289
+  #     };
+  #     auto_sync = true;
+  #     sync_frequency = "5m";
+  #     sync_address = "http://sisko.wg.aciceri.dev:8889";
+  #     search_mode = "fuzzy";
+  #     style = "compact";
+  #     enter_accept = "true";
+  #   };
+  # };
 
   programs.bash = {
     enable = true;
