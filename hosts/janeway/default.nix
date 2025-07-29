@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   fleetFlake,
   ...
 }:
@@ -32,7 +33,16 @@ in
         hostname = "janeway";
         age.secrets = { };
       };
-      imports = [ ../../hmModules/shell ];
+      home.enableNixpkgsReleaseCheck = false;
+      _module.args = {
+        username = "ccr";
+      };
+      programs.git.extraConfig.user.signingKey =
+        lib.mkForce "/data/data/com.termux.nix/files/home/.ssh/id_ed25519";
+      imports = [
+        ../../hmModules/shell
+        ../../hmModules/git
+      ];
     };
 
   build.activation.sshd =
@@ -45,6 +55,7 @@ in
       $DRY_RUN_CMD echo ${hosts.picard} > "${config.user.home}/.ssh/authorized_keys"
       $DRY_RUN_CMD echo ${hosts.sisko} >> "${config.user.home}/.ssh/authorized_keys"
       $DRY_RUN_CMD echo ${hosts.kirk} >> "${config.user.home}/.ssh/authorized_keys"
+      $DRY_RUN_CMD echo ${hosts.pike} >> "${config.user.home}/.ssh/authorized_keys"
       $DRY_RUN_CMD echo ${users.ccr-ssh} >> "${config.user.home}/.ssh/authorized_keys"
 
       if [[ ! -d "${sshdDirectory}" ]]; then
@@ -61,22 +72,24 @@ in
       fi
     '';
 
-  environment.packages =
-    let
-      inherit (fleetFlake.inputs.ccrEmacs.packages.aarch64-linux) ccrEmacs;
-    in
-    [
-      pkgs.bottom
-      pkgs.helix
-      pkgs.stress
-      pkgs.openssh
-      pkgs.git
-      pkgs.btop
-      ccrEmacs
-      (pkgs.writeScriptBin "sshd-start" ''
-        #!${pkgs.runtimeShell}
-        echo "Starting sshd in non-daemonized way on port ${toString port}"
-        ${pkgs.openssh}/bin/sshd -f "${sshdDirectory}/sshd_config" -D
-      '')
-    ];
+  environment.packages = with pkgs; [
+    bottom
+    helix
+    stress
+    openssh
+    btop
+    busybox
+    gnupg
+    zellij
+    (claude-code.overrideAttrs (old: {
+      meta = old.meta // {
+        license = lib.licenses.gpl3; # it's unfree but for some reason setting allowUnfreePredicate doesn't work
+      };
+    }))
+    (pkgs.writeScriptBin "sshd-start" ''
+      #!${pkgs.runtimeShell}
+      echo "Starting sshd in non-daemonized way on port ${toString port}"
+      ${pkgs.openssh}/bin/sshd -f "${sshdDirectory}/sshd_config" -D
+    '')
+  ];
 }

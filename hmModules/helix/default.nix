@@ -3,6 +3,8 @@
   home.packages = with pkgs; [
     zk
     nixd
+    nixfmt
+    claude-code
     terraform-ls
     python3Packages.python-lsp-server
     nodePackages.typescript-language-server
