@@ -29,7 +29,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dream2nix.url = "github:nix-community/dream2nix";
-    nix-on-droid.url = "github:nix-community/nix-on-droid";
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "homeManager";
+    };
     lix = {
       url = "git+https://git@git.lix.systems/lix-project/lix"; # FIXME update
       flake = false;
