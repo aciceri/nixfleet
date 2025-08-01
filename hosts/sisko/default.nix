@@ -37,6 +37,7 @@
       "garmin-grafana"
       # "dump1090"
       "arbi"
+      "siyuan"
     ]
     ++ [
       ./disko.nix
