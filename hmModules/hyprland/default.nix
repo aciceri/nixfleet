@@ -64,8 +64,8 @@ in
       };
     };
     iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
+      # name = "Adwaita";
+      # package = pkgs.adwaita-icon-theme;
     };
     cursorTheme = {
       name = "catppuccin-mocha-sapphire";
