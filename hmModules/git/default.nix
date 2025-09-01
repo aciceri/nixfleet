@@ -11,7 +11,7 @@ let
 in
 {
   imports = [
-    ../gitui
+    # ../gitui
     ../lazygit
   ];
 
