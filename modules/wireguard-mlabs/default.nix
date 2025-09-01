@@ -11,5 +11,6 @@
       }
     ];
     privateKeyFile = config.age.secrets.wireguard-mlabs-private-key.path;
+    mtu = 1300;
   };
 }
