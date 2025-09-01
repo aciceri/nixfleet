@@ -88,7 +88,7 @@
       "zathura"
       "imv"
       "libreoffice"
-      "emacs"
+      # "emacs"
       "vial"
       "chirp"
       "sdrangel"
