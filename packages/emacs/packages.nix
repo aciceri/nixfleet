@@ -194,7 +194,7 @@ let
           pass
           password-store-otp
           eldoc-box
-          go-translate
+          # go-translate
           notmuch
           consult-notmuch
           poly-org
