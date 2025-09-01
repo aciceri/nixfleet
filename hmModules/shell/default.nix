@@ -40,7 +40,8 @@
 
   programs.ssh = {
     enable = true;
-    controlMaster = "auto";
+    enableDefaultConfig = false;
+    matchBlocks."*".controlMaster = "auto";
   };
 
   # systemd.user.services.atuind = {
