@@ -1280,17 +1280,17 @@ This is meant to be an helper to be called from the window manager."
 (use-package with-editor
   :init (shell-command-with-editor-mode +1))
 
-(use-package go-translate
-  :custom
-  (gts-translate-list '(("it" "en") ("en" "it")))
-  (gts-default-translator
-   (gts-translator
-    :picker (gts-prompt-picker)
-    :engines `(,(gts-bing-engine)
-               ,(gts-google-engine :parser (gts-google-summary-parser)))
-    :render (gts-buffer-render)))
-  (gts-buffer-follow-p 't)
-  :bind (("C-c T t" . gts-do-translate)))
+; (use-package go-translate
+;   :custom
+;   (gts-translate-list '(("it" "en") ("en" "it")))
+;   (gts-default-translator
+;    (gts-translator
+;     :picker (gts-prompt-picker)
+;     :engines `(,(gts-bing-engine)
+;                ,(gts-google-engine :parser (gts-google-summary-parser)))
+;     :render (gts-buffer-render)))
+;   (gts-buffer-follow-p 't)
+;   :bind (("C-c T t" . gts-do-translate)))
 
 (use-package message
   :custom
