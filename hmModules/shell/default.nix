@@ -73,9 +73,13 @@
 
   programs.bash = {
     enable = true;
-    initExtra = lib.optionalString (builtins.hasAttr "cachix-personal-token" age.secrets) ''
-      export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
-    '';
+    initExtra =
+      lib.optionalString (builtins.hasAttr "cachix-personal-token" age.secrets) ''
+        export CACHIX_AUTH_TOKEN=$(cat ${age.secrets.cachix-personal-token.path})
+      ''
+      + ''
+        PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND; }printf '\e]7;file://%s%s\e\\' \"\$HOSTNAME\" \"\$PWD\""
+      '';
     shellAliases = {
       "cat" = "bat";
     };
