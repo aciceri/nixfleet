@@ -1,6 +1,6 @@
 {
   virtualisation.oci-containers.containers.siyuan = {
-    image = "b3log/siyuan:v3.2.1";
+    image = "b3log/siyuan:v3.3.0";
     environment = {
       TZ = "Europe/Rome";
       SIYUAN_ACCESS_AUTH_CODE_BYPASS = "true";
