@@ -7,7 +7,9 @@
 let
   rev = "f24579d13ee035af96d4a68b765af2aa4b1018b6";
   garmin-grafana-flake = builtins.getFlake "github:NixOS/nixpkgs/${rev}";
+  influxdb-flake = builtins.getFlake "github:NixOS/nixpkgs/f1caaa39d956c220c853af6ea9cf9f1acdb2522a";
   inherit (garmin-grafana-flake.legacyPackages.${pkgs.system}) garmin-grafana;
+  inherit (influxdb-flake.legacyPackages.${pkgs.system}) influxdb;
 in
 {
   users.users.garmin-grafana = {
@@ -45,7 +47,10 @@ in
 
   # garmin-grafana uses influxdb V1, probably it's the only software I'll ever use using the V1
   # so I"m keeping its declaration inside this module
-  services.influxdb.enable = true;
+  services.influxdb = {
+    enable = true;
+    package = influxdb;
+  };
 
   environment.persistence."/persist".directories = [
     "/var/lib/garmin-grafana"
