@@ -11,7 +11,7 @@ let
 in
 {
   systemd.user.sessionVariables = {
-    EDITOR = lib.mkForce "emacsclient -c";
+    # EDITOR = lib.mkForce "emacsclient -c";
     OPENROUTER_API_KEY_PATH = age.secrets.openrouter-api-key.path;
   };
   home.shellAliases = {
@@ -25,7 +25,7 @@ in
   services.emacs = {
     enable = true;
     client.enable = true;
-    defaultEditor = true;
+    defaultEditor = false;
     socketActivation.enable = false;
     startWithUserSession = true;
     package = emacs;
