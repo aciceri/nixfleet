@@ -79,7 +79,7 @@
       "zathura"
       "imv"
       "libreoffice"
-      "emacs"
+      # "emacs"
       "vial"
       "chirp"
       "sdrangel"
@@ -87,7 +87,7 @@
       "zoom"
       "pantalaimon"
       "gimp"
-      "jellyfin"
+      # "jellyfin"
       "unison"
       "trilium-desktop"
     ];
