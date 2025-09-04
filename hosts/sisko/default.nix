@@ -38,6 +38,7 @@
       # "dump1090"
       "arbi"
       "siyuan"
+      "trilium"
     ]
     ++ [
       ./disko.nix
