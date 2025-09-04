@@ -572,6 +572,12 @@
 (use-package tidal
   :custom ((tidal-interpreter "tidal")))
 
+(use-package aiken-mode
+  :mode "\\.ak\\'"
+  :config
+  (add-to-list 'eglot-server-programs
+	           '(aiken-mode . ("aiken" "lsp" "--stdio"))))
+
 (use-package purescript-mode
   :custom ((project-vc-extra-root-markers '("spago.dhall")))
   :hook ((purescript-mode . eglot-ensure)

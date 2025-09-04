@@ -108,6 +108,16 @@ let
       };
       deps = [ ];
     };
+    aiken-mode = buildEmacsPackage {
+      name = "aiken-mode";
+      src = pkgs.fetchFromGitHub {
+        owner = "xxAVOGADROxx";
+        repo = "aiken-mode";
+        rev = "2772ef1c9b08ab8d8cb8480ccecc7ba03eacb3cc";
+        hash = "sha256-Hi4iDq75CsAp+MJaCOhNnym3gPUwykqI28lID8WVsW8=";
+      };
+      deps = [ ];
+    };
   };
 
   # *List* containing emacs packages from (M)ELPA
@@ -209,6 +219,7 @@ let
           org-super-agenda
           tidal
           aidermacs
+          noir-ts-mode
           # org-re-reveal # FIXME very not nice hash mismatch when building
         ]
       )
