@@ -99,6 +99,7 @@
       "moonlight"
       "gimp"
       "unison"
+      "trilium-desktop"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];

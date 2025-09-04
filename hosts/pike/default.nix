@@ -89,6 +89,7 @@
       "gimp"
       "jellyfin"
       "unison"
+      "trilium-desktop"
     ];
     extraGroups = [ "plugdev" ];
     backupPaths = [ ];
