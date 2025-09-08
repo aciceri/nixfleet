@@ -1,7 +1,11 @@
 { config, ... }:
+let
+  domain = config.services.paperless.domain;
+in
 {
   services.paperless = {
     enable = true;
+    domain = "paper.sisko.wg.aciceri.dev";
     address = "0.0.0.0";
     passwordFile = builtins.toFile "paperless-initial-password" "paperless";
     mediaDir = "/mnt/hd/paperless/";
@@ -16,7 +20,7 @@
         pdfa_image_compression = "lossless";
         invalidate_digital_signatures = true;
       };
-      PAPERLESS_URL = "https://paper.sisko.wg.aciceri.dev";
+      PAPERLESS_URL = "https://${domain}";
     };
   };
 
@@ -26,7 +30,7 @@
 
   imports = [ ../nginx-base ];
 
-  services.nginx.virtualHosts."paper.sisko.wg.aciceri.dev" = {
+  services.nginx.virtualHosts."domain" = {
     forceSSL = true;
     useACMEHost = "aciceri.dev";
     locations."/" = {
